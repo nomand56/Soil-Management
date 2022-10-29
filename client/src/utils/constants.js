@@ -120,3 +120,7 @@ export const payment_url = `${domain}/api/payment/create-payment-intent`;
 export const upload_url = `${domain}/api/upload/`;
 export const default_profile_image =
   'https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg';
+export const login_url=`${domain}/login`;
+export const signup_url=`${domain}/register/client`;
+export const update_url=`${domain}/update/client`;
+export const delete_url=`${domain}/delete/client`;

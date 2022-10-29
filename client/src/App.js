@@ -8,7 +8,7 @@ import {
   About,
   Products,
   Cart,
-  SingleProduct,
+  Product,
   Checkout,
   Error,
   Login,
