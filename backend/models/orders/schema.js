@@ -6,6 +6,12 @@ let schema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  productId:
+  {
+    type: Schema.Types.ObjectId,
+    ref: 'products',
+    required:true
+    },
   price: {
     type: Number,
     required: true,
@@ -30,6 +36,11 @@ let schema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  orderStatus: {
+    type: String,
+    required: true,
+    default:'pending'
+  }
 });
 
 module.exports=schema

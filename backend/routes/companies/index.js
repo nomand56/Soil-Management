@@ -5,10 +5,10 @@ const verifyToken = require("../../middlewares/jwt/index");
 
 
 
-router.get("/", Company.getAllCompany);
-router.post("/register", Company.createCompany);
-router.put("/update", Company.updateCompany);
-router.delete("/delete/:id", Company.deleteCompany);
+router.get("/companies", Company.getAllCompany);
+router.post("/register/company", Company.createCompany);
+router.put("/update/company/record", Company.updateCompany);
+router.delete("/delete/company/:id", Company.deleteCompany);
 
 
 module.exports = router;
