@@ -62,10 +62,23 @@ const getAllProducts = async (req, res) => {
   }
 };
 
+
+
+const getSingleProduct = async (req, res) => {
+  try {
+    let data = await products.findOne({_id:req.params.id});
+
+    res.send(data);
+  } catch (error) {
+    res.send({ error });
+  }
+};
+
 module.exports = {
   addProduct,
   deleteProduct,
   updateProduct,
   getAllProducts,
   updateProductStatus,
+  getSingleProduct
 };
