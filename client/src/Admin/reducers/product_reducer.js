@@ -11,16 +11,21 @@ import {
 
 const product_reducer = (state, action) => {
   if (action.type === GET_PRODUCTS_BEGIN) {
+
     return { ...state, products_error: false, products_loading: true };
   }
   if (action.type === GET_PRODUCTS_ERROR) {
-    return { ...state, products_error: true, products_loading: false };
+    return { ...state, products_error: action.payload, products_loading: false };
   }
   if (action.type === GET_PRODUCTS_SUCCESS) {
+   
+
+    console.log(action.payload);
     return {
       ...state,
       products_loading: false,
       products: action.payload,
+      featured_products:action.payload
     };
   }
   if (action.type === CREATE_NEW_PRODUCT) {

@@ -37,7 +37,8 @@ const updateClient = async (req,res) => {
         res.send({"Error":error})
     }
 }
-const deleteClient = async (req, res) => {
+const 
+deleteClient = async (req, res) => {
     try {
         let request = await Client.findByIdAndRemove(req.params.id);
     res.send("delete successfully");

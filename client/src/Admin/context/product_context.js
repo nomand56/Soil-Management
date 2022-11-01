@@ -56,11 +56,12 @@ export const ProductProvider = ({ children }) => {
     }
   };
 
-  const fetchSingleProduct = async (id) => {
+  const fetchSingleProduct = async (url) => {
     dispatch({ type: GET_SINGLE_PRODUCT_BEGIN });
     try {
-      const response = await axios.get(`${products_url}${id}`);
+      const response = await axios.get(url);
       const { data } = response.data;
+    
       dispatch({ type: GET_SINGLE_PRODUCT_SUCCESS, payload: data });
     } catch (error) {
       dispatch({ type: GET_SINGLE_PRODUCT_ERROR });
@@ -162,9 +163,9 @@ export const ProductProvider = ({ children }) => {
     }
   };
 
-  useEffect(() => {
-    fetchProducts();
-  }, []);
+  // useEffect(() => {
+  //   fetchProducts();
+  // }, []);
 
   return (
     <ProductContext.Provider
@@ -178,6 +179,7 @@ export const ProductProvider = ({ children }) => {
         fetchSingleProduct,
         updateProduct,
         deleteReview,
+        fetchProducts,
       }}
     >
       {children}

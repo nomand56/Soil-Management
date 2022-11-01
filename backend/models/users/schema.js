@@ -16,10 +16,6 @@ let schema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  country: {
-    type: String,
-    required: true,
-  },
   city: {
     type: String,
     required: true,

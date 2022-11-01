@@ -8,8 +8,9 @@ import {
   About,
   Products,
   Cart,
-  Product,
-  Checkout,
+  // Product,
+  SingleProduct,
+  // Checkout,
   Error,
   Login,
   Register,
@@ -19,7 +20,7 @@ import {
   PrivateRoute,
   ProfilePage,
 } from './pages';
-import {Dashboard, OrdersPage, ProductsPage, SingleOrderPage, SingleProductPage, AdminsPage, LoginPage} from "./Admin/adminPages"
+import {Dashboard, AdminOrdersPage, ProductsPage, SingleOrderPage, SingleProductPage, AdminsPage, LoginPage} from "./Admin/adminPages"
 
 function App() {
   const { isSidebarOpen } = useProductsContext();
@@ -59,9 +60,9 @@ function App() {
               <Reset />
             </PrivateRoute>
             <Route exact path='/products/:id' children={<SingleProduct />} />
-            <PrivateRoute exact path='/checkout'>
+            {/* <PrivateRoute exact path='/checkout'>
               <Checkout />
-            </PrivateRoute>
+            </PrivateRoute> */}
             <PrivateRoute exact path='/orders'>
               <OrdersPage />
             </PrivateRoute>
@@ -73,7 +74,7 @@ function App() {
               <Dashboard />
             </PrivateRoute>
             <PrivateRoute exact path='/adminorders'>
-              <OrdersPage />
+              <AdminOrdersPage />
             </PrivateRoute>
             <PrivateRoute exact path='/adminorders/:id'>
               <SingleOrderPage />

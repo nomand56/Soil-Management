@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Wrapper from './styles';
-import { Filters, ProductList, Sort, PageHero } from '../../components';
+import {  ProductList,  PageHero,Sort} from '../../components';
 
 const ProductsPage = () => {
   useEffect(() => {
@@ -12,9 +12,9 @@ const ProductsPage = () => {
       <PageHero title='products' />
       <Wrapper className='page'>
         <div className='section-center products'>
-          <Filters />
           <div>
-            <Sort />
+          <Sort />
+    {/* thIS IS THE PRODUCTS PAGE */}
             <ProductList />
           </div>
         </div>

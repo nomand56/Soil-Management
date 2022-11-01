@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { useProductsContext } from '../../context/products_context';
-import { single_product_url as url } from '../../utils/constants';
+import { single_product_url } from '../../utils/constants';
 import { formatPrice } from '../../utils/helpers';
 import {
   Loading,
@@ -22,12 +22,12 @@ const SingleProductPage = () => {
   const {
     single_product_loading: loading,
     single_product_error: error,
-    single_product: product,
+    single_product,
     fetchSingleProduct,
   } = useProductsContext();
 
   useEffect(() => {
-    fetchSingleProduct(`${url}${id}`);
+    fetchSingleProduct(`${single_product_url}${id}`);
     // eslint-disable-next-line
   }, [id]);
 
@@ -39,23 +39,28 @@ const SingleProductPage = () => {
     }
     // eslint-disable-next-line
   }, [error]);
-
+console.log("single product",single_product)
   const {
-    name,
-    price,
-    description,
-    stock,
-    rating: stars,
-    numberOfReviews,
-    reviews = [],
-    _id: sku,
-    company,
-    images,
-  } = product;
+   productName,
+  productStatus,
+  price,
+  Image,
+  supplierId,
+  quantity:stock,
+
+  _id: sku }=single_product
+console.log(stock)
+  //   description,
+  //   rating: stars,
+  //   numberOfReviews,
+  //   reviews = [],
+  //   company,
+  //   images,
+  // } = product;
 
   useEffect(() => {
-    document.title = `Tomper Wear | ${name}`;
-  }, [name]);
+    document.title = `Tomper Wear `;
+  }, []);
 
   if (loading) {
     return <Loading />;
@@ -65,20 +70,22 @@ const SingleProductPage = () => {
     return <Error />;
   }
 
+
+
   return (
     <Wrapper>
-      <PageHero title={name} product />
+      <PageHero title={productName} product />
       <div className='section section-center page'>
         <Link to='/products' className='btn'>
           back to products
         </Link>
         <div className='product-center'>
-          <ProductImages images={images} />
+          <ProductImages images={Image} />
           <section className='content'>
-            <h2>{name}</h2>
-            <Stars stars={stars} reviews={numberOfReviews} />
+            <h2>{productName}</h2>
+            {/* <Stars stars={stars} reviews={numberOfReviews} /> */}
             <h5 className='price'>{formatPrice(price)}</h5>
-            <p className='desc'>{description}</p>
+            <p className='desc'>Lorem Ipsum data</p>
             <p className='info'>
               <span>Available : </span>
               {stock > 0 ? 'In stock' : 'Out of stock'}
@@ -89,15 +96,15 @@ const SingleProductPage = () => {
             </p>
             <p className='info'>
               <span>Brand : </span>
-              {company}
+              {supplierId}
             </p>
             <hr />
             {stock > 0 && (
-              <AddToCart className='cart-buttons' product={product} />
+              <AddToCart className='cart-buttons' product={single_product} />
             )}
             <hr />
-            <ReviewModal product={product} />
-            <section className='reviews'>
+            <ReviewModal product={single_product} />
+            {/* <section className='reviews'>
               <h3>Reviews</h3>
               {reviews.length < 1 && (
                 <p>No reviews yet, be the first one to review &#128512;</p>
@@ -105,7 +112,7 @@ const SingleProductPage = () => {
               {reviews.map((review, index) => {
                 return <UserReview key={index} {...review} />;
               })}
-            </section>
+            </section> */}
           </section>
         </div>
       </div>

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Wrapper from './styles';
 import { PageHero } from '../../components';
-import aboutImg from '../../assets/hero-bcg.jpeg';
+import aboutImg from '../../assets/soil.jpg';
 
 const AboutPage = () => {
   useEffect(() => {
@@ -19,14 +19,7 @@ const AboutPage = () => {
             <div className='underline'></div>
           </div>
           <p>
-            TomperWear was started by Varun Tiwar in December'21, with an aim to
-            build a strong infrastructure for small bussiness owners to expand
-            their reach, by bringing their products online. Today TomperWear is
-            used by hundreds of shop owners to expand their bussiness. This is
-            possible just due to your trust, support and our constant efforts to
-            make the platform even better. We are working tirelessly to improve
-            the experience of our end users and hope to soon reach 1000+
-            customers.
+    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
           </p>
         </article>
       </Wrapper>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useOrderContext } from '../context/order_context';
-import { FaShoppingCart, FaRupeeSign } from 'react-icons/fa';
-import { MdPendingActions, MdDeliveryDining } from 'react-icons/md';
+import { FaShoppingCart, FaRupeeSign} from 'react-icons/fa';
+import { MdPhonelink } from 'react-icons/md';
 import { formatPrice } from '../utils/helpers';
 import {
   Flex,
@@ -27,13 +27,13 @@ function DashboardCards() {
     {
       title: 'Pending Orders',
       value: pending_orders.length,
-      icon: MdPendingActions,
+      icon: MdPhonelink,
       color: 'red.500',
     },
     {
       title: 'Delivered Orders',
       value: delivered_orders.length,
-      icon: MdDeliveryDining,
+      icon: MdPhonelink,
       color: 'blue.500',
     },
     {

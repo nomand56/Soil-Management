@@ -32,7 +32,7 @@ const Footer = () => {
       </div>
       <h5>
         &copy; {new Date().getFullYear()}
-        <span> Tomper Wear </span>
+        <span> Green Waster Company</span>
         - All Rights Reserved
       </h5>
     </Wrapper>

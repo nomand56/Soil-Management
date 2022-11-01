@@ -10,10 +10,20 @@ import {
   GET_SINGLE_PRODUCT_REVIEWS_BEGIN,
   GET_SINGLE_PRODUCT_REVIEWS_ERROR,
   GET_SINGLE_PRODUCT_REVIEWS_SUCCESS,
+  SET_GRIDVIEW,
+  SET_LISTVIEW
 } from '../actions';
 
 
 const products_reducer = (state, action) => {
+  if (action.type === SET_GRIDVIEW) {
+    return { ...state, grid_view: true };
+  }
+
+  if (action.type === SET_LISTVIEW) {
+    return { ...state, grid_view: false };
+  }
+
   if (action.type === SIDEBAR_OPEN) {
     return { ...state, isSidebarOpen: true };
   }
@@ -26,15 +36,12 @@ const products_reducer = (state, action) => {
     return { ...state, products_loading: true };
   }
 
-  if (action.type === GET_PRODUCTS_SUCCESS) {
-    const featured_products = action.payload.filter(
-      (product) => product.featured === true
-    );
+  if (action.type === GET_PRODUCTS_SUCCESS) {  
     return {
       ...state,
       products_loading: false,
       products: action.payload,
-      featured_products,
+      featured_products: action.payload
     };
   }
 
@@ -51,6 +58,7 @@ const products_reducer = (state, action) => {
   }
 
   if (action.type === GET_SINGLE_PRODUCT_SUCCESS) {
+    
     return {
       ...state,
       single_product_loading: false,

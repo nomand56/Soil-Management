@@ -5,7 +5,8 @@ import {
   CreateNewProductModal,
 } from '../components';
 import { HStack, VStack, Spinner, Heading, Button } from '@chakra-ui/react';
-import { MdOutlineRefresh } from 'react-icons/md';
+import { BiRefresh }  from 'react-icons/bi';
+
 import { useProductContext } from '../context/product_context';
 
 function ProductsPage() {
@@ -28,7 +29,7 @@ function ProductsPage() {
           <Button
             colorScheme='brown'
             variant='outline'
-            leftIcon={<MdOutlineRefresh />}
+            leftIcon={<BiRefresh />}
             onClick={handleRefresh}
           >
             Refresh
@@ -49,7 +50,7 @@ function ProductsPage() {
           <Button
             colorScheme='brown'
             variant='outline'
-            leftIcon={<MdOutlineRefresh />}
+            leftIcon={<BiRefresh />}
             onClick={handleRefresh}
           >
             Refresh
@@ -69,7 +70,7 @@ function ProductsPage() {
         <Button
           colorScheme='brown'
           variant='outline'
-          leftIcon={<MdOutlineRefresh />}
+          leftIcon={<BiRefresh />}
           onClick={handleRefresh}
         >
           Refresh

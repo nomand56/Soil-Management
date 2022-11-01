@@ -19,13 +19,19 @@ const user_reducer = (state, action) => {
         case LOGIN_BEGIN:
             return { ...state, loading: true, error: false }
         case LOGIN_SUCCESS:
-            return { ...state, loading: false, error: action.payload }
+            console.log(action.payload)
+            if(action.payload.token){
+
+                sessionStorage.setItem("token",action.payload.token);
+            }
+            return { ...state, loading: false, token: action.payload }
+          
         case LOGIN_ERROR:
             return { ...state, loading: false, error: true }
         case CREATE_USER_BEGIN:
             return { ...state, loading: true, error: false }
         case CREATE_USER_SUCCESS:
-            return { ...state, loading: false,  }
+            return { ...state, loading: false,}
         case CREATE_USER_ERROR:
             return { ...state, loading: false, error: true }
         case UPDATE_USER_BEGIN:

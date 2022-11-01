@@ -10,19 +10,17 @@ import Loading from './Loading/';
 import Error from './Error/';
 import ProductImages from './ProductImages/';
 import AddToCart from './AddToCart/';
-import Filters from './Filters/';
 import ProductList from './ProductList/';
-import Sort from './Sort/';
 import Stars from './Stars/';
 import CartContent from './CartContent/';
 import PageHero from './PageHero/';
-import StripeCheckout from './StripeCheckout/';
 import Toast from './Toast/';
 import ShippingForm from './ShippingForm/';
 import OrderContent from './OrderContent/';
 import OrderItems from './OrderItems/';
 import ReviewModal from './ReviewModal/';
 import ReviewStars from './ReviewStars/';
+import Sort from './Sort';
 import UserReview from './UserReview/';
 import ErrorBoundary from './ErrorBoundary/';
 export {
@@ -38,13 +36,11 @@ export {
   Error,
   ProductImages,
   AddToCart,
-  Filters,
+ Sort,
   ProductList,
-  Sort,
   Stars,
   CartContent,
   PageHero,
-  StripeCheckout,
   Toast,
   ShippingForm,
   OrderContent,

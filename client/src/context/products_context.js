@@ -1,8 +1,8 @@
 
 import axios from 'axios';
 import React, { useContext, useEffect, useReducer } from 'react';
+import { products_url as url,single_product_url } from '../utils/constants';
 import reducer from '../reducers/products_reducer';
-import { products_url as url } from '../utils/constants';
 import {
   SIDEBAR_OPEN,
   SIDEBAR_CLOSE, 
@@ -15,20 +15,24 @@ import {
   GET_SINGLE_PRODUCT_REVIEWS_BEGIN,
   GET_SINGLE_PRODUCT_REVIEWS_ERROR,
   GET_SINGLE_PRODUCT_REVIEWS_SUCCESS,
+  SET_GRIDVIEW,
+  SET_LISTVIEW
 } from '../actions';
+
 import { useUserContext } from './user_context';
 
 const initialState = {
   isSidebarOpen: false,
   products_loading: false,
   products_error: false,
+  grid_view:true,
   products: [],
-  featured_products: [],
   single_product_loading: false,
   single_product_error: false,
   single_product: {},
   single_product_reviews_loading: false,
   single_product_reviews_error: false,
+  featured_products: [],
 };
 
 const ProductsContext = React.createContext();
@@ -36,7 +40,13 @@ const ProductsContext = React.createContext();
 export const ProductsProvider = ({ children }) => {
   const { currentUser } = useUserContext();
   const [state, dispatch] = useReducer(reducer, initialState);
+  const setGridView = () => {
+    dispatch({ type: SET_GRIDVIEW });
+  };
 
+  const setListView = () => {
+    dispatch({ type: SET_LISTVIEW });
+  };
   const openSidebar = () => {
     dispatch({ type: SIDEBAR_OPEN });
   };
@@ -45,25 +55,26 @@ export const ProductsProvider = ({ children }) => {
     dispatch({ type: SIDEBAR_CLOSE });
   };
 
-  const fetchProducts = async (url) => {
+  const fetchProducts = async () => {
     dispatch({ type: GET_PRODUCTS_BEGIN });
     try {
-      const response = await axios.get(url);
-      const products = response.data;
-      dispatch({ type: GET_PRODUCTS_SUCCESS, payload: products.data });
+      const {data} = await axios.get(url);
+
+      dispatch({ type: GET_PRODUCTS_SUCCESS, payload: data });
+
     } catch (error) {
       dispatch({ type: GET_PRODUCTS_ERROR });
     }
   };
 
-  const fetchSingleProduct = async (url) => {
+  const fetchSingleProduct = async (id) => {
     dispatch({ type: GET_SINGLE_PRODUCT_BEGIN });
     try {
-      const response = await axios.get(url);
-      const singleProduct = response.data;
+      const response = await axios.get(id);
+  // console.log(`${single_product_url}${id}`)
       dispatch({
         type: GET_SINGLE_PRODUCT_SUCCESS,
-        payload: singleProduct.data,
+        payload: response.data,
       });
     } catch (error) {
       dispatch({ type: GET_SINGLE_PRODUCT_ERROR });
@@ -105,9 +116,9 @@ export const ProductsProvider = ({ children }) => {
     }
   };
 
-  useEffect(() => {
-    fetchProducts(url);
-  }, []);
+  // useEffect(() => {
+  //   fetchProducts(url);
+  // }, []);
 
   return (
     <ProductsContext.Provider
@@ -117,6 +128,9 @@ export const ProductsProvider = ({ children }) => {
         closeSidebar,
         fetchSingleProduct,
         reviewProduct,
+        setGridView,
+        setListView,
+        fetchProducts,
         getProductReviews,
       }}
     >

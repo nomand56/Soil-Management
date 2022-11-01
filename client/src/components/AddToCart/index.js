@@ -7,9 +7,9 @@ import AmountButtons from '../AmountButtons/';
 
 const AddToCart = ({ product }) => {
   const { addToCart } = useCartContext();
-  const { _id: id, stock, colors, sizes } = product;
-  const [mainColor, setMainColor] = useState(colors[0]);
-  const [mainSize, setMainSize] = useState(sizes[0]);
+  const { _id: id, stock } = product;
+  // const [mainColor, setMainColor] = useState(colors[0]);
+  // const [mainSize, setMainSize] = useState(sizes[0]);
   const [amount, setAmount] = useState(1);
 
   const increase = () => {
@@ -36,7 +36,7 @@ const AddToCart = ({ product }) => {
     <Wrapper>
       <div className='colors'>
         <span>colors : </span>
-        <div>
+        {/* <div>
           {colors.map((color, index) => {
             return (
               <button
@@ -53,21 +53,21 @@ const AddToCart = ({ product }) => {
               </button>
             );
           })}
-        </div>
+        </div> */}
         <span>size : </span>
         <div>
-          <select
+          {/* <select
             className='input sort-input'
             onChange={(e) => setMainSize(e.target.value)}
-          >
-            {sizes.map((size, index) => {
+          > */}
+            {/* {sizes.map((size, index) => {
               return (
                 <option key={index} value={size}>
                   {size}
                 </option>
               );
-            })}
-          </select>
+            })} */}
+          {/* </select> */}
         </div>
       </div>
       <div className='btn-container'>
@@ -79,7 +79,7 @@ const AddToCart = ({ product }) => {
         <Link
           to='/cart'
           className='btn'
-          onClick={() => addToCart(id, mainColor, mainSize, amount, product)}
+          onClick={() => addToCart(id, amount, product)}
         >
           add to cart
         </Link>

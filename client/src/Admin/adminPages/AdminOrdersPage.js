@@ -2,9 +2,8 @@ import React from 'react';
 import { SidebarWithHeader, OrdersTable } from '../components';
 import { useOrderContext } from '../context/order_context';
 import { Heading, VStack, HStack, Button, Spinner } from '@chakra-ui/react';
-import { MdOutlineRefresh } from 'react-icons/md';
-
-function OrdersPage() {
+import {BiRefresh} from 'react-icons/bi';
+function AdminOrdersPage() {
   const {
     orders,
     orders_loading: loading,
@@ -23,7 +22,7 @@ function OrdersPage() {
           <Button
             colorScheme='brown'
             variant='outline'
-            leftIcon={<MdOutlineRefresh />}
+            leftIcon={<BiRefresh />}
             onClick={handleRefresh}
           >
             Refresh
@@ -43,7 +42,7 @@ function OrdersPage() {
           <Button
             colorScheme='brown'
             variant='outline'
-            leftIcon={<MdOutlineRefresh />}
+            leftIcon={<BiRefresh />}
             onClick={handleRefresh}
           >
             Refresh
@@ -62,7 +61,7 @@ function OrdersPage() {
         <Button
           colorScheme='brown'
           variant='outline'
-          leftIcon={<MdOutlineRefresh />}
+          leftIcon={<BiRefresh />}
           onClick={handleRefresh}
         >
           Refresh
@@ -73,4 +72,4 @@ function OrdersPage() {
   );
 }
 
-export default OrdersPage;
+export default AdminOrdersPage;

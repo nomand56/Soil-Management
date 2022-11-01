@@ -112,15 +112,16 @@ export const services = [
 ];
 
 const domain = process.env.REACT_APP_BACKEND_HOST;
-export const products_url = `${domain}/api/products`;
-export const single_product_url = `${domain}/api/products/`;
-export const create_order_url = `${domain}/api/orders/new`;
+export const products_url = `${domain}getAllProducts`;
+export const single_product_url = `${domain}getSingleProduct/`;
+// console.log(single_product_url)
+export const create_order_url = `${domain}/create/product`;
 export const get_order_url = `${domain}/api/orders`;
 export const payment_url = `${domain}/api/payment/create-payment-intent`;
 export const upload_url = `${domain}/api/upload/`;
-export const default_profile_image =
-  'https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg';
-export const login_url=`${domain}/login`;
-export const signup_url=`${domain}/register/client`;
-export const update_url=`${domain}/update/client`;
-export const delete_url=`${domain}/delete/client`;
+export const default_profile_image ='https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg';
+export const login_url=`${domain}login`;
+console.log(login_url)
+export const signup_url=`${domain}register/client`;
+export const update_url=`${domain}update/client`;
+export const delete_url=`${domain}delete/client`;

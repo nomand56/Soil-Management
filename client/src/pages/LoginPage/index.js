@@ -11,7 +11,7 @@ function LoginPage() {
   const history = useHistory();
   const location = useLocation();
   const mounted = useMounted();
-  const { loginUser, signInWithGoogle } = useUserContext();
+  const { login,token,loading,error} = useUserContext();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -19,24 +19,10 @@ function LoginPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    login(email, password);
 
-    if (!email) {
-      return toast.error('Please enter e-mail');
-    }
 
-    if (!password) {
-      return toast.error('Please enter password');
-    }
 
-    setIsSubmitting(true);
-    loginUser(email, password)
-      .then((res) => {
-        history.push(location.state?.from ?? '/');
-      })
-      .catch((err) => {
-        toast.error(`Error: ${err.message}`);
-      })
-      .finally(() => mounted.current && setIsSubmitting(false));
   };
   
   function togglePasswordVisibility() {
@@ -44,7 +30,7 @@ function LoginPage() {
   }
 
   useEffect(() => {
-    document.title = 'Tomper Wear | Login';
+    document.title = 'Green Waste Company| Login';
   }, []);
 
   return (
@@ -99,26 +85,7 @@ function LoginPage() {
           >
             login
           </Button>
-          <div className='seperator'>
-            <hr />
-            <span>or</span>
-          </div>
-          <button
-            type='button'
-            className='btn google-btn'
-            disabled={isSubmitting}
-            onClick={() => {
-              signInWithGoogle()
-                .then((user) => {
-                  history.push('/');
-                })
-                .catch((err) => {
-                  toast.error(`Error: ${err.message}`);
-                });
-            }}
-          >
-            sign in with google
-          </button>
+         
         </form>
       </div>
     </Wrapper>

@@ -1,17 +1,10 @@
 import React from 'react';
-import { useFilterContext } from '../../context/filter_context';
 import { BsFillGridFill, BsList } from 'react-icons/bs';
+import { useProductContext } from '../../Admin/context/product_context';
 import Wrapper from './styles';
 
 const Sort = () => {
-  const {
-    filtered_products: products,
-    grid_view,
-    sort,
-    setGridView,
-    setListView,
-    updateSort,
-  } = useFilterContext();
+const {setGridView, setListView,grid_view} = useProductContext;
 
   return (
     <Wrapper>
@@ -31,7 +24,7 @@ const Sort = () => {
           <BsList />
         </button>
       </div>
-      <p>{products.length} products found</p>
+
       <hr />
       <form>
         <label htmlFor='sort'>sort by</label>
@@ -39,8 +32,8 @@ const Sort = () => {
           name='sort'
           id='sort'
           className='sort-input'
-          value={sort}
-          onChange={updateSort}
+          value="sort"
+          
         >
           <option value='price-lowest'>price (lowest)</option>
           <option value='price-highest'>price (highest)</option>

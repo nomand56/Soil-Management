@@ -10,7 +10,7 @@ import {
   Spinner,
   Stack,
 } from '@chakra-ui/react';
-import { MdAlternateEmail, MdDelete } from 'react-icons/md';
+import { MdEmail, MdDelete } from 'react-icons/md';
 import { Stars } from '.';
 import { useProductContext } from '../context/product_context';
 
@@ -63,7 +63,7 @@ function SingleProductReviews({ reviews, productId }) {
                     <Text as='b' color='brown.500'>
                       {name}
                     </Text>
-                    <MdAlternateEmail />
+                    <MdEmail />
                     <Text
                       as='a'
                       href={`mailto:${email}`}

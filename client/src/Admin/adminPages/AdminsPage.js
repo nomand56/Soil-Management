@@ -6,7 +6,7 @@ import {
 } from '../components';
 import { useAdminContext } from '../context/admin_context';
 import { HStack, Button, VStack, Spinner, Heading } from '@chakra-ui/react';
-import { MdOutlineRefresh } from 'react-icons/md';
+import {BiRefresh} from 'react-icons/bi';
 
 function AdminsPage() {
   const {
@@ -27,7 +27,7 @@ function AdminsPage() {
           <Button
             colorScheme='brown'
             variant='outline'
-            leftIcon={<MdOutlineRefresh />}
+            leftIcon={<BiRefresh />}
             onClick={handleRefresh}
           >
             Refresh
@@ -47,7 +47,7 @@ function AdminsPage() {
           <Button
             colorScheme='brown'
             variant='outline'
-            leftIcon={<MdOutlineRefresh />}
+            leftIcon={<BiRefresh />}
             onClick={handleRefresh}
           >
             Refresh
@@ -67,7 +67,7 @@ function AdminsPage() {
         <Button
           colorScheme='brown'
           variant='outline'
-          leftIcon={<MdOutlineRefresh />}
+          leftIcon={<BiRefresh />}
           onClick={handleRefresh}
         >
           Refresh

@@ -20,6 +20,7 @@ const FeaturedProducts = () => {
   if (error) {
     return <Error />;
   }
+  console.log(featured)
 
   return (
     <Wrapper className='section'>
@@ -29,7 +30,7 @@ const FeaturedProducts = () => {
       </div>
       <div className='section-center featured'>
         {featured.map((product) => {
-          return <Product key={product.id} {...product} />;
+          return <Product key={product._id} {...product} />;
         })}
       </div>
       <Link to='/products' className='btn'>
