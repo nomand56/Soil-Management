@@ -114,7 +114,6 @@ export const services = [
 const domain = process.env.REACT_APP_BACKEND_HOST;
 export const products_url = `${domain}getAllProducts`;
 export const single_product_url = `${domain}getSingleProduct/`;
-// console.log(single_product_url)
 export const create_order_url = `${domain}/create/product`;
 export const get_order_url = `${domain}/api/orders`;
 export const payment_url = `${domain}/api/payment/create-payment-intent`;
