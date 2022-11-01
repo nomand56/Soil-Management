@@ -67,6 +67,18 @@ export const ProductsProvider = ({ children }) => {
     }
   };
 
+
+    // const fetchFilterProducts = async () => {
+    //   dispatch({ type: GET_PRODUCTS_BEGIN });
+    //   try {
+    //     const { data } = await axios.get(url);
+
+    //     dispatch({ type: GET_PRODUCTS_SUCCESS, payload: data });
+    //   } catch (error) {
+    //     dispatch({ type: GET_PRODUCTS_ERROR });
+    //   }
+    // };
+
   const fetchSingleProduct = async (id) => {
     dispatch({ type: GET_SINGLE_PRODUCT_BEGIN });
     try {

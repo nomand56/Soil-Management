@@ -21,7 +21,7 @@ function ProductList(){
 if (error){
     return <h1>error...</h1>
 }
-console.log("prodyct",products)
+console.log("product",products)
 
 if (grid_view === false) {
   return <ListView products={products}>product list</ListView>;

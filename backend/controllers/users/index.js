@@ -54,7 +54,7 @@ const loginClient = async (req, res) => {
         if (data !== null)
         {
             let token = await jwt.sign({data}, 'abcdabcd');
-            res.send({"token":token})
+            res.send({"token":token,"userType":data.userType})
         }
         else
         {

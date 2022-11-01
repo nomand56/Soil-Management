@@ -36,7 +36,7 @@ export {
   Error,
   ProductImages,
   AddToCart,
- Sort,
+   Sort,
   ProductList,
   Stars,
   CartContent,

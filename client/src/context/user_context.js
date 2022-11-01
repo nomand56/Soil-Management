@@ -38,7 +38,7 @@ const login = async (email, password) => {
   try {
     const config = { headers: { "Content-Type": "application/json" } };
      const response=await axios.post(login_url ,{email,password},config);
-     console.log(response)
+  
       dispatch ({type:LOGIN_SUCCESS,payload:response.data})
   } catch (error) {
     dispatch({ type: LOGIN_ERROR });
