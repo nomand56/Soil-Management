@@ -62,6 +62,19 @@ const getAllProducts = async (req, res) => {
   }
 };
 
+const filterProduct = async (req, res) => {
+  try {
+    let data = await products.find({
+      usedFor: req.body.for, supplierPostalCode: {
+        $lte: +req.body.postalcode + 10,
+        $gte:+req.body.postalcode - 10,
+    }})
+   res.send(data)
+  } catch (error) {
+    res.send({ error });
+  }
+};
+
 
 
 const getSingleProduct = async (req, res) => {
@@ -80,5 +93,6 @@ module.exports = {
   updateProduct,
   getAllProducts,
   updateProductStatus,
-  getSingleProduct
+  getSingleProduct,
+  filterProduct
 };

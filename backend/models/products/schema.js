@@ -9,6 +9,10 @@ let schema = new mongoose.Schema({
     type: Schema.Types.ObjectId,
     ref: "clients",
   },
+   supplierPostalCode: {
+        type:Number,
+        required:true
+    },
   quantity: {
     type: Number,
     required: true,
@@ -23,6 +27,14 @@ let schema = new mongoose.Schema({
     },
     image: {
         type:String,
+        required:true
+  },
+     category: {
+        type:String,
+        required:true
+  },
+      usedFor: {
+        type:[String],
         required:true
     }
 });

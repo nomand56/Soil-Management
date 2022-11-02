@@ -4,10 +4,10 @@ import HomeModal from '../../components/Modal';
 
 const HomePage = () => {
   const [state,setstate]=useState(false)
-  useEffect(() => {
-    document.title = 'Tomper Wear | Home';
-    setstate(true)
-  }, []);
+  // useEffect(() => {
+  //   document.title = 'Tomper Wear | Home';
+  //   setstate(true)
+  // }, []);
 
   return (
     <main>
@@ -15,7 +15,7 @@ const HomePage = () => {
       <FeaturedProducts />
       <Services />
       <Contact />
-      <HomeModal state={state} setstate={setstate} />
+      
     </main>
   );
 };
