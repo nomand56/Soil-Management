@@ -25,15 +25,16 @@ const CartTotals = () => {
             <span>{formatPrice(total_amount + shipping_fee)}</span>
           </h4>
         </article>
-        {currentUser ? (
-          <Link to='/checkout' className='btn'>
+        <Link to='/checkout' className='btn'>
             proceed to checkout
           </Link>
+        {/* {currentUser ? (
+        
         ) : (
           <Link to='/login' className='btn'>
             login
           </Link>
-        )}
+        )} */}
       </div>
     </Wrapper>
   );

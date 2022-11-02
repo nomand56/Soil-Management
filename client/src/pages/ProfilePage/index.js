@@ -11,8 +11,8 @@ import { BsFillEyeFill, BsFillEyeSlashFill } from 'react-icons/bs';
 
 function ProfilePage() {
   const {
-    currentUser: { displayName, photoURL },
-    logoutUser,
+    currentUser: { firstname ,lastname, photoURL },
+    logout,
     updateUserProfileImage,
     updateUserProfileName,
     uploadProfileImage,
@@ -22,7 +22,7 @@ function ProfilePage() {
   const { clearCart } = useCartContext();
   const { closeSidebar } = useProductsContext();
   const [image, setImage] = useState(photoURL);
-  const [name, setName] = useState(displayName || 'USER');
+  const [name, setName] = useState(`${firstname} ${lastname}` || 'USER' );
   const [exisitingPassword, setExistingPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmNewPassword, setConfirmNewPassword] = useState('');
@@ -221,7 +221,7 @@ function ProfilePage() {
           className='btn link'
           onClick={() => {
             clearCart();
-            logoutUser();
+            logout();
             closeSidebar();
           }}
         >

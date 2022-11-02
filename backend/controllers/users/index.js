@@ -1,4 +1,5 @@
 let Client = require('../../models/users/model')
+
 let jwt = require('jsonwebtoken')
 const getClient = async (req, res) => {
     try {
@@ -54,7 +55,9 @@ const loginClient = async (req, res) => {
         if (data !== null)
         {
             let token = await jwt.sign({data}, 'abcdabcd');
-            res.send({"token":token,"userType":data.userType})
+            res.send({"token":token,"userType":data})
+
+
         }
         else
         {
@@ -65,6 +68,8 @@ const loginClient = async (req, res) => {
      res.send(error)   
     }
 }
+
+
 
 
 

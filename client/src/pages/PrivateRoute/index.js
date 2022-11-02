@@ -3,7 +3,7 @@ import { Route, Redirect, useLocation } from 'react-router-dom';
 import { useUserContext } from '../../context/user_context';
 
 const PrivateRoute = ({ children, ...rest }) => {
-  const { currentUser } = useUserContext();
+  const { isAuthenticated } = useUserContext();
   const location = useLocation();
 
   if (
@@ -12,14 +12,14 @@ const PrivateRoute = ({ children, ...rest }) => {
     rest.path === '/forgot-password' ||
     rest.path === '/reset-password'
   ) {
-    return currentUser ? (
+    return isAuthenticated ? (
       <Redirect to={location.state?.from ?? '/'} />
     ) : (
       <Route {...rest}>{children}</Route>
     );
   }
 
-  return currentUser ? (
+  return isAuthenticated ? (
     <Route {...rest}>{children}</Route>
   ) : (
     <Redirect

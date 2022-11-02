@@ -5,17 +5,29 @@ import {
   GET_ORDERS_BEGIN,
   GET_ORDERS_SUCCESS,
   GET_ORDERS_ERROR,
+  GET_SINGLE_ORDER_BEGIN,
+  GET_SINGLE_ORDER_SUCCESS,
+  GET_SINGLE_ORDER_ERROR,
+  UPDATE_ORDER_STATUS
 } from '../actions';
 import { useUserContext } from './user_context';
 import { useCartContext } from './cart_context';
 import { toast } from 'react-toastify';
 import axios from 'axios';
-import { get_order_url, create_order_url } from '../utils/constants';
+import { get_order_url, create_order_url,update_order_status,orders_url,single_order_url } from '../utils/constants';
 
 const initialState = {
   orders_loading: false,
   orders_error: false,
   orders: [],
+  single_order_loading: false,
+  single_order_error: false,
+  single_order: {},
+  single_order_status: '',
+  recent_orders: [],
+  pending_orders: 0,
+  delivered_orders: 0,
+  total_revenue: 0,
   shipping: {
     name: '',
     address: {
@@ -47,6 +59,53 @@ export const OrderProvider = ({ children }) => {
       dispatch({ type: GET_ORDERS_ERROR });
     }
   };
+  const fetchAdminOrders = async () => {
+    dispatch({ type: GET_ORDERS_BEGIN });
+    try {
+      const response = await axios.get(orders_url);
+      const { data } = response.data;
+      dispatch({ type: GET_ORDERS_SUCCESS, payload: data });
+    } catch (error) {
+      dispatch({ type: GET_ORDERS_ERROR });
+    }
+  };
+
+  const fetchSingleOrder = async (id) => {
+    dispatch({ type: GET_SINGLE_ORDER_BEGIN });
+    try {
+      const response = await axios.get(`${single_order_url}${id}`);
+      const { data } = response.data;
+      dispatch({ type: GET_SINGLE_ORDER_SUCCESS, payload: data });
+    } catch (error) {
+      dispatch({ type: GET_SINGLE_ORDER_ERROR });
+    }
+  };
+    const updateOrderStatus = async (status, id) => {
+      try {
+        const response = await axios.put(`${update_order_status}${id}`, {
+          status,
+        });
+        const { success, data } = response.data;
+        dispatch({ type: UPDATE_ORDER_STATUS, payload: data.orderStatus });
+        fetchOrders();
+        return { success, status: data.orderStatus };
+      } catch (error) {
+        const { success, message } = error.response.data;
+        return { success, message };
+      }
+    };
+    const deleteOrder = async (id) => {
+      try {
+        const response = await axios.delete(`${update_order_status}${id}`);
+        const { success, message } = response.data;
+        return { success, message };
+      } catch (error) {
+        const { success, message } = error.response.data;
+        return { success, message };
+      }
+    };
+
+
 
   const placeOrder = async () => {
     const shippingInfo = {
@@ -98,11 +157,16 @@ export const OrderProvider = ({ children }) => {
 
   useEffect(() => {
     fetchOrders(get_order_url);
+    fetchAdminOrders()
     // eslint-disable-next-line
   }, [currentUser, cart]);
 
+
   return (
-    <OrderContext.Provider value={{ ...state, updateShipping, placeOrder }}>
+    <OrderContext.Provider value={{ ...state, updateShipping, placeOrder,  fetchAdminOrders,fetchSingleOrder,
+      updateOrderStatus,
+      deleteOrder
+      }}>
       {children}
     </OrderContext.Provider>
   );
@@ -110,4 +174,4 @@ export const OrderProvider = ({ children }) => {
 // make sure use
 export const useOrderContext = () => {
   return useContext(OrderContext);
-};
+}

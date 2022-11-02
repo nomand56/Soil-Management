@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import CartColumns from '../CartColumns/';
 import CartItem from '../CartItem/';
 import CartTotals from '../CartTotals/';
+import CartDelivery from '../cartDelivery';
 
 const CartContent = () => {
   const { cart, clearCart } = useCartContext();
@@ -28,6 +29,7 @@ const CartContent = () => {
           clear cart
         </button>
       </div>
+      <CartDelivery/>
       <CartTotals />
     </Wrapper>
   );

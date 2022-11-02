@@ -1,7 +1,7 @@
 
 import axios from 'axios';
 import React, { useContext, useEffect, useReducer } from 'react';
-import { products_url as url,single_product_url } from '../utils/constants';
+import { products_url as url, update_product_url , create_new_product} from '../utils/constants';
 import reducer from '../reducers/products_reducer';
 import {
   SIDEBAR_OPEN,
@@ -16,7 +16,9 @@ import {
   GET_SINGLE_PRODUCT_REVIEWS_ERROR,
   GET_SINGLE_PRODUCT_REVIEWS_SUCCESS,
   SET_GRIDVIEW,
-  SET_LISTVIEW
+  SET_LISTVIEW,
+  CREATE_NEW_PRODUCT,
+  UPDATE_EXISTING_PRODUCT,
 } from '../actions';
 
 import { useUserContext } from './user_context';
@@ -27,11 +29,22 @@ const initialState = {
   products_error: false,
   grid_view:true,
   products: [],
+  new_product: {
+    name: '',
+    price: 50000,
+    stock: 10,
+    description: '',
+    images: [],
+    colors: [],
+    sizes: [],
+    category: '',
+    company: '',
+    shipping: true,
+    featured: false,
+  },
   single_product_loading: false,
   single_product_error: false,
   single_product: {},
-  single_product_reviews_loading: false,
-  single_product_reviews_error: false,
   featured_products: [],
 };
 
@@ -66,18 +79,80 @@ export const ProductsProvider = ({ children }) => {
       dispatch({ type: GET_PRODUCTS_ERROR });
     }
   };
-
-
-    // const fetchFilterProducts = async () => {
-    //   dispatch({ type: GET_PRODUCTS_BEGIN });
-    //   try {
-    //     const { data } = await axios.get(url);
-
-    //     dispatch({ type: GET_PRODUCTS_SUCCESS, payload: data });
-    //   } catch (error) {
-    //     dispatch({ type: GET_PRODUCTS_ERROR });
-    //   }
-    // };
+  const deleteProduct = async (id) => {
+    try {
+      const response = await axios.delete(`${update_product_url}${id}`);
+      const { success, message } = response.data;
+      return { success, message };
+    } catch (error) {
+      const { success, message } = error.response.data;
+      return { success, message };
+    }
+  };
+  const updateNewProductDetails = (e) => {
+    const name = e.target.name;
+    let value = e.target.value;
+    if (name === 'price' || name === 'stock') {
+      value = Number(value);
+    }
+    if (name === 'colors' || name === 'sizes') {
+      value = value.replace(/\s+/g, '');
+      if (value === '') {
+        value = [];
+      } else if (value.indexOf(',') > -1) {
+        value = value.split(',');
+      } else {
+        value = value.split();
+      }
+    }
+    if (name === 'shipping' || name === 'featured') {
+      value = e.target.checked;
+    }
+    dispatch({ type: CREATE_NEW_PRODUCT, payload: { name, value } });
+  };
+  const updateExistingProductDetails = (e) => {
+    const name = e.target.name;
+    let value = e.target.value;
+    if (name === 'price' || name === 'stock') {
+      value = Number(value);
+    }
+    if (name === 'colors' || name === 'sizes') {
+      value = value.replace(/\s+/g, '');
+      if (value === '') {
+        value = [];
+      } else if (value.indexOf(',') > -1) {
+        value = value.split(',');
+      } else {
+        value = value.split();
+      }
+    }
+    if (name === 'shipping' || name === 'featured') {
+      value = e.target.checked;
+    }
+    dispatch({ type: UPDATE_EXISTING_PRODUCT, payload: { name, value } });
+  };
+  const createNewProduct = async (product) => {
+    try {
+      const response = await axios.post(create_new_product, product);
+      const { success, data } = response.data;
+      fetchProducts();
+      return { success, data };
+    } catch (error) {
+      const { success, message } = error.response.data;
+      return { success, message };
+    }
+  };
+  const updateProduct = async (id, product) => {
+    try {
+      const response = await axios.put(`${update_product_url}${id}`, product);
+      const { success, message } = response.data;
+      // fetchProducts();
+      return { success, message };
+    } catch (error) {
+      const { success, message } = error.response.data;
+      return { success, message };
+    }
+  };
 
   const fetchSingleProduct = async (id) => {
     dispatch({ type: GET_SINGLE_PRODUCT_BEGIN });
@@ -141,6 +216,13 @@ export const ProductsProvider = ({ children }) => {
         fetchSingleProduct,
         reviewProduct,
         setGridView,
+        deleteProduct,
+        updateNewProductDetails,
+        updateExistingProductDetails,
+        createNewProduct,
+        fetchProducts,
+        fetchSingleProduct,
+        updateProduct,
         setListView,
         fetchProducts,
         getProductReviews,

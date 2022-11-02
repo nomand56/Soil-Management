@@ -22,9 +22,10 @@ import axios from 'axios';
 
 const initialState={
 token:null, 
-user:[],
+currentUser:null,
 loading:false,
 error:false,
+isAuthenticated:false,
 
 }
 const UserContext = React.createContext(); 
@@ -38,7 +39,6 @@ const login = async (email, password) => {
   try {
     const config = { headers: { "Content-Type": "application/json" } };
      const response=await axios.post(login_url ,{email,password},config);
-  
       dispatch ({type:LOGIN_SUCCESS,payload:response.data})
   } catch (error) {
     dispatch({ type: LOGIN_ERROR });
@@ -109,7 +109,8 @@ const deleteUser = async (data) => {
         logout,
         createUser,
         updateUser,
-        deleteUser
+        deleteUser,
+        
       }}
     >
       {children}

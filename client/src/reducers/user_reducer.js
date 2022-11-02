@@ -11,6 +11,7 @@ import {
     DELETE_USER_BEGIN,
     DELETE_USER_SUCCESS,
     DELETE_USER_ERROR,
+    LOGOUT_BEGIN,
 
 } from "../actions"
 
@@ -20,18 +21,17 @@ const user_reducer = (state, action) => {
             return { ...state, loading: true, error: false }
         case LOGIN_SUCCESS:
             console.log(action.payload)
-            if(action.payload.token){
-
-                sessionStorage.setItem("token",action.payload.token);
-            }
-            return { ...state, loading: false, token: action.payload }
-          
+            sessionStorage.setItem("token", action.payload.token);   
+            return { ...state, loading: false, token: action.payload ,isAuthenticated:true,currentUser:action.payload.userType}
         case LOGIN_ERROR:
             return { ...state, loading: false, error: true }
+        case LOGOUT_BEGIN:
+            sessionStorage.removeItem("token");
+            return { ...state, loading: false, token: null, isAuthenticated: false, currentUser: null }
         case CREATE_USER_BEGIN:
             return { ...state, loading: true, error: false }
         case CREATE_USER_SUCCESS:
-            return { ...state, loading: false,}
+            return { ...state, loading: false, }
         case CREATE_USER_ERROR:
             return { ...state, loading: false, error: true }
         case UPDATE_USER_BEGIN:
@@ -50,4 +50,4 @@ const user_reducer = (state, action) => {
             throw new Error(`No Matching "${action.type}" - action type`)
     }
 }
- export default user_reducer
+export default user_reducer
