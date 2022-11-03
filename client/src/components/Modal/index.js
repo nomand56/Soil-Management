@@ -1,59 +1,61 @@
-import React, { useState, useEffect, useContext } from 'react';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
+import React, { useState, useEffect } from 'react';
+import { Box, Button, useDisclosure } from '@chakra-ui/react';
 import {
-  Divider,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  Slider,
-  TextField,
-} from '@mui/material';
-import { useProductsContext } from '../../context/products_context';
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+} from '@chakra-ui/react';
+import GridView from '../GridView';
 import axios from 'axios';
 
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: { md: '80%', xs: '80%' },
-  bgcolor: 'background.paper',
-  boxShadow: 50,
-  display: { md: 'flex', xs: 'block' },
-  justifyContent: 'space-arround',
-};
-
-export default function HomeModal({ open,setopen,state }) {
-let [data,setdata] = useState([])
-  
+function BasicModal({ open, setopen, state }) {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  let [products,setproducts]=useState([])
   useEffect(() => {
-  filterData()
-  }, [])
-  
-  function filterData()
-  {
-    axios.post('api/v1/product/filterProducts', state).then((res) => {
-      console.log(res.data)
-    })
-  }
+    axios.post('api/v1//product/filterProducts', state).then((res) => {
+      setproducts(res.data)
+    });
+  },[])
+
   return (
-    <div>
+    <>
       <Modal
-        open={open}
+        isOpen={open}
         onClose={() => {
           setopen(!open);
         }}
-        aria-labelledby='modal-modal-title'
-        aria-describedby='modal-modal-description'
+        size={'full'}
       >
-        <Box sx={style}>
-        {JSON.stringify(state)}
-        </Box>
-              </Modal>
-    </div>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Green Waste Company</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Box>
+              <GridView products={products} />
+            </Box>
+          </ModalBody>
+
+          <ModalFooter>
+            <Button
+              colorScheme='blue'
+              mr={3}
+              onClick={() => {
+                setopen(!open);
+              }}
+            >
+              Close
+            </Button>
+            <Button variant='ghost'>View More Products</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+    </>
   );
 }
+
+export default BasicModal;

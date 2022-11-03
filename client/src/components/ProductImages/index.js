@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import Wrapper from './styles';
 import ReactImageMagnify from 'react-image-magnify';
 
-const ProductImages = ({ images = [{ url: '' }] }) => {
-  const [main, setMain] = useState(images[0]);
+const ProductImages = ({ image }) => {
+  const [main, setMain] = useState(image);
 
   return (
     <Wrapper>
@@ -15,10 +15,10 @@ const ProductImages = ({ images = [{ url: '' }] }) => {
             sizes: '(max-width: 576px) 300px, (min-width: 992px) 500px,',
             isFluidWidth: true,
             alt: 'main',
-            src: main.url,
+            src: image,
           },
           largeImage: {
-            src: main.url,
+            src: image,
             width: 1200,
             height: 1800,
           },
@@ -29,19 +29,13 @@ const ProductImages = ({ images = [{ url: '' }] }) => {
         }}
       />
       <div className='gallery'>
-        {images.map((image, index) => {
-          return (
+       
             <img
-              src={image.url}
-              alt={image.filename}
-              className={`${image.url === main.url ? 'active' : null}`}
-              key={index}
-              onClick={() => {
-                setMain(images[index]);
-              }}
+              src={image}
+              alt={image}
+              className={`${image === main ? 'active' : null}`}
             />
-          );
-        })}
+        
       </div>
     </Wrapper>
   );

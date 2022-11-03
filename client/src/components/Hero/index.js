@@ -22,24 +22,23 @@ const Hero = () => {
   }
   return (
     <Box
-    sx={{display:"flex" }}
+    sx={{display:{md:"flex",xs:'block'},alignItems:'center',justifyContent:'space-evenly',width:'90%',margin:'20px auto' }}
     >
-      <Box >
+      <Box sx={{width:'100%',marginRight:'20px'}} >
         <img src='./soil.jpg' alt='soil-management' style={HeroImg} />
       </Box>
       <Box>
         <Box>
-          <h6
-            variant='h4'
-            sx={{ color: '#ab7a5f', fontWeight: 'bold' }}
+          <h1
+            style={{ color: '#ab7a5f', fontWeight: 'bold',fontSize:'30px',wordSpacing:'1px' }}
           >
             Quality Soil For Your Garden
-          </h6>
-          <h6>
+          </h1>
+          <h4>
             Green Waste Company is commited to provide you best quality soil for
             you needs at you door step.
-          </h6>
-          <h6 sx={{ color: 'gray', fontSize: '10px' }}>
+          </h4>
+          <h6 style={{ color: 'gray', fontSize: '10px' }}>
             Apply Filters
           </h6>
           {state.index === 1 ? (
@@ -71,7 +70,7 @@ const Hero = () => {
             </Box>
           ) : state.index === 2 ? (
             <Box>
-              <h6 sx={{ fontSize: '10px', color: 'gray' }}>
+              <h6 style={{ fontSize: '10px', color: 'gray' }}>
                 Do You Know What To Buy.
               </h6>
               <Button
@@ -93,7 +92,7 @@ const Hero = () => {
             </Box>
           ) : state.index === 3 ? (
             <Box>
-              <h6 sx={{ fontSize: '10px', color: 'gray' }}>
+              <h6 style={{ fontSize: '10px', color: 'gray' }}>
                 Soil For.
               </h6>
               <Button
@@ -172,10 +171,11 @@ const Hero = () => {
           ) : (
             <Box sx={{ margin: '20px 0px' }}>
               <h6>Enter postal code</h6>
-              <TextField
+              <input
                 name='postalcode'
-                onChange={handleChange}
-                sx={{ width: '100%' }}
+                        onChange={handleChange}
+                        placeholder='Enter Postal Code'
+                style={{ width: '100%',padding:'20px',border:'none',background:'transparent' }}
               />
             </Box>
           )}

@@ -44,7 +44,7 @@ console.log("single product",single_product)
    productName,
   productStatus,
   price,
-  Image,
+  image,
   supplierId,
   quantity:stock,
 
@@ -80,7 +80,7 @@ console.log(stock)
           back to products
         </Link>
         <div className='product-center'>
-          <ProductImages images={Image} />
+          <ProductImages image={image} />
           <section className='content'>
             <h2>{productName}</h2>
             {/* <Stars stars={stars} reviews={numberOfReviews} /> */}
