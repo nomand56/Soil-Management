@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { Grid, Box, Typography, Button, TextField } from '@mui/material';
+import {  Box,TextField } from '@mui/material';
 import { HeroImg,ButtonProps,ActiveButtonProps } from './styles';
 import HomeModal from '../Modal';
+import { Button, ButtonGroup } from '@chakra-ui/react'
+import { Grid, GridItem } from '@chakra-ui/react'
 // import heroBcg2 from '../../assets/hero-bcg-2.jpeg';
 
 const Hero = () => {
@@ -19,33 +21,27 @@ const Hero = () => {
     setopen(true)
   }
   return (
-    <Grid
-      container
-      sx={{
-        alignItems: 'center',
-        justifyContent: 'space-evenly',
-        height: { xs: 'auto', md: '90vh' },
-        textAlign: { md: 'left', xs: 'center' },
-      }}
+    <Box
+    sx={{display:"flex" }}
     >
-      <Grid item xs={12} md={5}>
+      <Box >
         <img src='./soil.jpg' alt='soil-management' style={HeroImg} />
-      </Grid>
-      <Grid item xs={12} md={5}>
+      </Box>
+      <Box>
         <Box>
-          <Typography
+          <h6
             variant='h4'
             sx={{ color: '#ab7a5f', fontWeight: 'bold' }}
           >
             Quality Soil For Your Garden
-          </Typography>
-          <Typography>
+          </h6>
+          <h6>
             Green Waste Company is commited to provide you best quality soil for
             you needs at you door step.
-          </Typography>
-          <Typography sx={{ color: 'gray', fontSize: '10px' }}>
+          </h6>
+          <h6 sx={{ color: 'gray', fontSize: '10px' }}>
             Apply Filters
-          </Typography>
+          </h6>
           {state.index === 1 ? (
             <Box sx={{ margin: '20px auto' }}>
               <Button
@@ -75,9 +71,9 @@ const Hero = () => {
             </Box>
           ) : state.index === 2 ? (
             <Box>
-              <Typography sx={{ fontSize: '10px', color: 'gray' }}>
+              <h6 sx={{ fontSize: '10px', color: 'gray' }}>
                 Do You Know What To Buy.
-              </Typography>
+              </h6>
               <Button
                 sx={state.know === 'yes' ? ActiveButtonProps : ButtonProps}
                 name='know'
@@ -97,9 +93,9 @@ const Hero = () => {
             </Box>
           ) : state.index === 3 ? (
             <Box>
-              <Typography sx={{ fontSize: '10px', color: 'gray' }}>
+              <h6 sx={{ fontSize: '10px', color: 'gray' }}>
                 Soil For.
-              </Typography>
+              </h6>
               <Button
                 sx={
                   state.for === 'homegardning' ? ActiveButtonProps : ButtonProps
@@ -153,9 +149,9 @@ const Hero = () => {
             </Box>
           ) : state.index === 4 ? (
             <Box>
-              <Typography sx={{ fontSize: '10px', color: 'gray' }}>
+              <h6 sx={{ fontSize: '10px', color: 'gray' }}>
                 Choose Quantity.
-              </Typography>
+              </h6>
               <Button
                 sx={state.quantity === 'bags' ? ActiveButtonProps : ButtonProps}
                 name='quantity'
@@ -175,7 +171,7 @@ const Hero = () => {
             </Box>
           ) : (
             <Box sx={{ margin: '20px 0px' }}>
-              <Typography>Enter postal code</Typography>
+              <h6>Enter postal code</h6>
               <TextField
                 name='postalcode'
                 onChange={handleChange}
@@ -209,11 +205,11 @@ const Hero = () => {
             )}
           </Box>
         </Box>
-      </Grid>
+      </Box >
       {open === true ? (
         <HomeModal open={open} setopen={setopen} state={state} />
       ) : null}
-    </Grid>
+    </Box>
   );
 };
 

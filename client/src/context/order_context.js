@@ -157,7 +157,7 @@ export const OrderProvider = ({ children }) => {
 
   useEffect(() => {
     fetchOrders(get_order_url);
-    fetchAdminOrders()
+    // fetchAdminOrders()
     // eslint-disable-next-line
   }, [currentUser, cart]);
 

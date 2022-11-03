@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { formatPrice, getOrderStatusColor } from '../utils/helpers';
 import { BiChevronDown } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
-import { useUserContext } from '../context/user_context';
+import { useUserContext } from '../../context/user_context';
 import {
   Table,
   Thead,
@@ -24,7 +24,7 @@ import {
   HStack,
   useToast,
 } from '@chakra-ui/react';
-import { useOrderContext } from '../context/order_context';
+import { useOrderContext } from '../../context/order_context';
 
 function OrdersTable({ orders }) {
   const toast = useToast();

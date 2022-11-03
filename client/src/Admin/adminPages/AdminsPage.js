@@ -4,7 +4,7 @@ import {
   AdminsTable,
   CreateNewAdminModal,
 } from '../components';
-import { useAdminContext } from '../context/admin_context';
+import { useAdminContext } from '../../context/admin_context';
 import { HStack, Button, VStack, Spinner, Heading } from '@chakra-ui/react';
 import {BiRefresh} from 'react-icons/bi';
 

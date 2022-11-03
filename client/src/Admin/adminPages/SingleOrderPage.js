@@ -10,7 +10,7 @@ import {
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { SidebarWithHeader, OrderDetails } from '../components';
-import { useOrderContext } from '../context/order_context';
+import { useOrderContext } from '../../context/order_context';
 import { orderStatusList } from '../utils/constants';
 
 function SingleOrderPage() {

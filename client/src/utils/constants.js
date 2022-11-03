@@ -120,12 +120,13 @@ export const payment_url = `${domain}/api/payment/create-payment-intent`;
 export const upload_url = `${domain}/api/upload/`;
 export const default_profile_image ='https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg';
 export const login_url=`${domain}login`;
-console.log(login_url)
 export const signup_url=`${domain}register/client`;
 export const update_url=`${domain}update/client`;
 export const delete_url=`${domain}delete/client`;
-export const orders_url = `${domain}/api/admin/orders`;
+export const orders_url = `${domain}orders`;
 export const single_order_url = `${domain}/api/orders/`;
 export const update_order_status = `${domain}/api/admin/order/`;
 export const create_new_product=`${domain}create/product`;
 export const update_product_url=`${domain}update/product`;
+export const admins_url = `${domain}client`;
+export const register_url = `${domain}/api/admin/register`;

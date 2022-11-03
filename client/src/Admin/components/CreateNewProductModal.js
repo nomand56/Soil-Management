@@ -22,7 +22,7 @@ import {
   Checkbox,
 } from '@chakra-ui/react';
 import { useDropzone } from 'react-dropzone';
-import { useProductContext } from '../context/product_context';
+import { useProductsContext } from '../../context/products_context';
 
 function CreateNewProductModal() {
   const {
@@ -40,7 +40,7 @@ function CreateNewProductModal() {
     },
     updateNewProductDetails,
     createNewProduct,
-  } = useProductContext();
+  } = useProductsContext();
 
   const [imageList, setImageList] = useState([]);
   const [loading, setLoading] = useState(false);

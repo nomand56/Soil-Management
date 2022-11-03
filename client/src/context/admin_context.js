@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useReducer } from 'react';
 import axios from 'axios';
 import reducer from '../reducers/admin_reducer';
-import { useUserContext } from '../context/user_context';
+import { useUserContext } from "./user_context"
 import { admins_url, register_url } from '../utils/constants';
 import {
   GET_ADMINS_BEGIN,

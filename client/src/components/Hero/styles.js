@@ -1,5 +1,5 @@
 export const HeroImg = {
-  width: '90%',
+  width: '50%',
   height: '100%',
   borderRadius: '10px',
   margin: '0px auto',

@@ -12,11 +12,11 @@ import {
 } from '@chakra-ui/react';
 import { MdEmail, MdDelete } from 'react-icons/md';
 import { Stars } from '.';
-import { useProductContext } from '../context/product_context';
+import { useProductsContext } from '../../context/products_context';
 
 function SingleProductReviews({ reviews, productId }) {
   const toast = useToast();
-  const { deleteReview } = useProductContext();
+  const { deleteReview } = useProductsContext();
   const [loading, setLoading] = useState(false);
 
   const handleDelete = async (reviewId) => {

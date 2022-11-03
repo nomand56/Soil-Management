@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useUserContext } from '../context/user_context';
+import { useUserContext } from '../../context/user_context';
 import { useToast } from '@chakra-ui/react';
 import { PreLoader } from '../components';
 import useMounted from '../hooks/useMounted';

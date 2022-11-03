@@ -1,6 +1,6 @@
 import React from 'react';
 import { SidebarWithHeader, OrdersTable } from '../components';
-import { useOrderContext } from '../context/order_context';
+import { useOrderContext } from "../../context/order_context"
 import { Heading, VStack, HStack, Button, Spinner } from '@chakra-ui/react';
 import {BiRefresh} from 'react-icons/bi';
 function AdminOrdersPage() {

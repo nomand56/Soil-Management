@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BiChevronDown } from 'react-icons/bi';
 import { formatPrice } from '../utils/helpers';
-import { useProductContext } from '../context/product_context';
+import { useProductsContext } from '../../context/products_context';
 import { Link } from 'react-router-dom';
 import {
   Table,
@@ -27,7 +27,7 @@ import UpdateProductModal from './UpdateProductModal';
 
 function ProductsTable({ products }) {
   const toast = useToast();
-  const { fetchProducts, deleteProduct } = useProductContext();
+  const { fetchProducts, deleteProduct } = useProductsContext();
   const [loading, setLoading] = useState(false);
 
   const handleDelete = async (id) => {

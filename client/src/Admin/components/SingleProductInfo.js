@@ -12,15 +12,15 @@ import {
   Tag,
 } from '@chakra-ui/react';
 import { formatPrice } from '../utils/helpers';
-import { useAdminContext } from '../context/admin_context';
-import { useProductContext } from '../context/product_context';
+import { useAdminContext } from '../../context/admin_context';
+import { useProductsContext } from '../../context/products_context';
 import { Stars } from '.';
-import { useOrderContext } from '../context/order_context';
+import { useOrderContext } from '../../context/order_context';
 
 function SingleProductInfo({ product }) {
   const { admins } = useAdminContext();
   const { orders } = useOrderContext();
-  const { single_product_loading: loading } = useProductContext();
+  const { single_product_loading: loading } = useProductsContext();
   const [createdBy, setCreatedBy] = useState('');
   const [unitSold, setUnitSold] = useState(0);
   const {

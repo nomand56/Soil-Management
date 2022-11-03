@@ -16,7 +16,7 @@ import {
   Box,
   Select,
 } from '@chakra-ui/react';
-import { useAdminContext } from '../context/admin_context';
+import { useAdminContext } from '../../context/admin_context';
 
 function CreateNewAdminModal() {
   const {

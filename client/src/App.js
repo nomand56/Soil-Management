@@ -70,7 +70,7 @@ function App() {
               <ProfilePage />
             </PrivateRoute>
             {/* <Admin route bellow */}
-            <PrivateRoute exact path='/Dashboard'>
+            <PrivateRoute exact path='/dashboard'>
               <Dashboard />
             </PrivateRoute>
             <PrivateRoute exact path='/adminorders'>
@@ -91,7 +91,6 @@ function App() {
             <PrivateRoute exact path='/adminlogin'>
               <LoginPage />
             </PrivateRoute>
-
             <Route exact path='*'>
               <Error />
             </Route>

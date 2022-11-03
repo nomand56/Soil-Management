@@ -1,10 +1,10 @@
 import React from 'react';
 import { BsFillGridFill, BsList } from 'react-icons/bs';
-import { useProductContext } from '../../Admin/context/product_context';
+import { useProductsContext } from "../../context/products_context";
 import Wrapper from './styles';
 
 const Sort = () => {
-const {setGridView, setListView,grid_view} = useProductContext;
+const {setGridView, setListView,grid_view} = useProductsContext;
 
   return (
     <Wrapper>

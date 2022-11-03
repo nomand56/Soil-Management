@@ -15,7 +15,7 @@ import {
   useToast,
   HStack,
 } from '@chakra-ui/react';
-import { useAdminContext } from '../context/admin_context';
+import { useAdminContext } from '../../context/admin_context';
 
 function AdminsTable({ admins }) {
   const toast = useToast();

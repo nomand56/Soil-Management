@@ -1,5 +1,5 @@
 import React from 'react';
-import { useOrderContext } from '../context/order_context';
+import { useOrderContext } from '../../context/order_context';
 import { FaShoppingCart, FaRupeeSign} from 'react-icons/fa';
 import { MdPhonelink } from 'react-icons/md';
 import { formatPrice } from '../utils/helpers';

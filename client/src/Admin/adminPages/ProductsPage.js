@@ -6,8 +6,7 @@ import {
 } from '../components';
 import { HStack, VStack, Spinner, Heading, Button } from '@chakra-ui/react';
 import { BiRefresh }  from 'react-icons/bi';
-
-import { useProductContext } from '../context/product_context';
+import { useProductsContext } from '../../context/products_context';
 
 function ProductsPage() {
   const {
@@ -15,7 +14,7 @@ function ProductsPage() {
     products_loading: loading,
     products_error: error,
     fetchProducts,
-  } = useProductContext();
+  } = useProductsContext();
 
   const handleRefresh = async () => {
     await fetchProducts();

@@ -6,7 +6,7 @@ import {
   SingleProductInfo,
   SingleProductReviews,
 } from '../components';
-import { useProductContext } from '../context/product_context';
+import { useProductsContext } from '../../context/products_context';
 import { VStack, Heading, Spinner, Stack } from '@chakra-ui/react';
 
 function SingleProductPage() {
@@ -16,7 +16,7 @@ function SingleProductPage() {
     single_product_error: error,
     single_product: product,
     fetchSingleProduct,
-  } = useProductContext();
+  } = useProductsContext();
 
   useEffect(() => {
     fetchSingleProduct(id);

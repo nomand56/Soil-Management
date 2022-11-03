@@ -23,7 +23,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { useDropzone } from 'react-dropzone';
-import { useProductContext } from '../context/product_context';
+import { useProductsContext } from '../../context/products_context';
 
 function UpdateProductModal({ id }) {
   const {
@@ -45,7 +45,7 @@ function UpdateProductModal({ id }) {
     fetchSingleProduct,
     updateExistingProductDetails,
     updateProduct,
-  } = useProductContext();
+  } = useProductsContext();
 
   const [imageList, setImageList] = useState(images);
   const [loading, setLoading] = useState(false);
