@@ -4,10 +4,29 @@ import {
   COUNT_CART_TOTALS,
   REMOVE_CART_ITEM,
   TOGGLE_CART_ITEM_AMOUNT,
-  DELIVERY_OPTION
+  DELIVERY_OPTION,
+  SUBMIT_FORM
 } from '../actions';
 
 const cart_reducer = (state, action) => {
+  if (action.type === DELIVERY_OPTION) {
+    if (action.payload === 'standard') {
+      return { ...state, shipping_fee: 700 };
+    }
+    if (action.payload === 'express') {
+      return { ...state, shipping_fee: 1000 };
+    }
+    if (action.payload === 'ordinary') {
+      return { ...state, shipping_fee: 300 };
+    }
+    if (action.payload === 'pickUp') {
+      return { ...state, shipping_fee: 50 };
+    }
+  }
+    if(action.type ===SUBMIT_FORM ){
+      console.log(action.payload)
+      return { ...state, form: action.payload };
+    }
   if (action.type === ADD_TO_CART) {
     const { id, amount, product } = action.payload;
     const tempItem = state.cart.find((item) => item.id === id);
@@ -46,22 +65,7 @@ const cart_reducer = (state, action) => {
   if (action.type === CLEAR_CART) {
     return { ...state, cart: [] };
   }
-if(action.type === DELIVERY_OPTION){
-  if(action.payload === 'standard'){
-    return {...state, shipping_fee: 700};
-  }
-  if(action.payload === 'express'){
-    return {...state, shipping_fee: 1000};
-  }
-  if(action.payload === 'ordinary'){
-    return {...state, shipping_fee: 300};
-  }
-  if(action.payload === 'pickUp'){
-return {...state, shipping_fee: 50};
-  // return { ...state, shipping_fee: action.payload };
-}
-}
-
+  
 
   if (action.type === TOGGLE_CART_ITEM_AMOUNT) {
     const { id, value } = action.payload;

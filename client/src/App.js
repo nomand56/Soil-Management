@@ -19,6 +19,7 @@ import {
   OrdersPage,
   PrivateRoute,
   ProfilePage,
+  CheckoutPage,
 } from './pages';
 import {Dashboard, AdminOrdersPage, ProductsPage, SingleOrderPage, SingleProductPage, AdminsPage, LoginPage} from "./Admin/adminPages"
 
@@ -61,9 +62,9 @@ function App() {
               <Reset />
             </PrivateRoute>
             <Route exact path='/products/:id' children={<SingleProduct />} />
-            {/* <PrivateRoute exact path='/checkout'>
-              <Checkout />
-            </PrivateRoute> */}
+            <PrivateRoute exact path='/checkout'>
+              <CheckoutPage/>
+            </PrivateRoute>
             <PrivateRoute exact path='/orders'>
               <OrdersPage />
             </PrivateRoute>

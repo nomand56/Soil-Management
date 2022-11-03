@@ -28,7 +28,7 @@ const PrivateRoute = ({ children, ...rest }) => {
     );
   }
 
-  if (rest.path === '/admins') {
+  if (rest.path === '/admins' || rest.path === '/adminproducts' || rest.path === '/adminorders') {
     return currentUser && currentUser.privilege === 'super' ? (
       <Route {...rest}>{children}</Route>
     ) : (

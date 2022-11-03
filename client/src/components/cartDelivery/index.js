@@ -1,40 +1,28 @@
-import React from 'react'
-import {Paper, Typography, Grid, Button} from '@mui/material'
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
-import {useCartContext} from '../../context/cart_context'
+import React, { useState,useEffect } from 'react'
+import {Box} from '@mui/material'
+import {Radio, RadioGroup, Stack} from "@chakra-ui/react"
+import {useCartContext} from "../../context/cart_context"
+import {useForm} from 'react-hook-form'
+
 function CartDelivery() {
-    const [value, setValue] = React.useState()
-  const { deliveryOption} = useCartContext()
-    const handleChange = (event) => {
-        setValue(event.target.value);
-        deliveryOption(event.target.value)
-    };
-    console.log(value)
-  return (
-    <div>
-      <Paper>
-      <FormControl onChange={handleChange}>
-      <FormLabel id="demo-radio-buttons-group-label" >Delivery Method</FormLabel>
-      <RadioGroup
-        aria-labelledby="demo-radio-buttons-group-label"
-        defaultValue="female"
-        name="radio-buttons-group"
-      >
-        <FormControlLabel value="express" control={<Radio />}  label="Delivery Tomorrow" />
-        <FormControlLabel value="standard" control={<Radio />} label="Delivery in 3-5 days" />
-        <FormControlLabel value="ordinary" control={<Radio />} label="Delivery in next week" />
-        <FormControlLabel value="pickUp" control={<Radio />} label="Self Pick up" />
-      </RadioGroup>
-    </FormControl>
-        
-        
-        
-        </Paper></div>
+  const {deliveryOption } = useCartContext()
+  const [value, setValue] = useState('1')
+const handleChange = (e) => {
+deliveryOption(e)
+
+}
+    return (
+    <RadioGroup onChange={handleChange} >
+      <Stack direction='column'>
+        <Radio value='express'>Delivery in two days</Radio>
+        <Radio value='standard'>Delivery in one week</Radio>
+        <Radio value='ordinary'>Delivery in two weeks</Radio>
+        <Radio value='pickUp'>PickUp</Radio>
+      </Stack>
+    </RadioGroup>
   )
+  
+
 }
 
 export default CartDelivery

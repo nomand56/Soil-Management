@@ -6,7 +6,8 @@ import {
   TOGGLE_CART_ITEM_AMOUNT,
   CLEAR_CART,
   COUNT_CART_TOTALS,
-  DELIVERY_OPTION
+  DELIVERY_OPTION,
+  SUBMIT_FORM
 } from '../actions';
 
 const getLocalStorage = () => {
@@ -24,13 +25,16 @@ const initialState = {
   total_items: 0,
   total_amount: 0,
   shipping_fee: 0,
+  form:null
 };
 
 const CartContext = React.createContext();
 
 export const CartProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-
+const onSubmit = (data) => {
+dispatch({ type: SUBMIT_FORM, payload: data })
+}
   const addToCart = (id, amount, product) => {
     dispatch({
       type: ADD_TO_CART,
@@ -62,7 +66,7 @@ export const CartProvider = ({ children }) => {
 
   return (
     <CartContext.Provider
-      value={{ ...state, addToCart, removeItem, toggleAmount, clearCart,deliveryOption }}
+      value={{ ...state, addToCart, removeItem, toggleAmount, clearCart,deliveryOption,onSubmit}}
     >
       {children}
     </CartContext.Provider>

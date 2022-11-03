@@ -29,8 +29,11 @@ const CartContent = () => {
           clear cart
         </button>
       </div>
-      <CartDelivery/>
-      <CartTotals />
+      <div>
+      <Link to='/checkout' className='btn'>
+            proceed to checkout
+          </Link>
+      </div>
     </Wrapper>
   );
 };
