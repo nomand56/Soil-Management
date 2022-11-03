@@ -25,10 +25,10 @@ const Wrapper = styled.section`
     padding: 0.5rem 1rem;
     border: 2px solid var(--clr-black);
     border-radius: var(--radius);
-    color: var(--clr-grey-3);
+
   }
   .form-input::placeholder {
-    color: var(--clr-black);
+
     text-transform: capitalize;
   }
   .form-input-muted {

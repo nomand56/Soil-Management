@@ -26,9 +26,10 @@ function App() {
   const { isSidebarOpen } = useProductsContext();
   const overflowPropertyToHideScroll =
     isSidebarOpen === true ? 'hidden' : 'scroll';
-
+ 
   return (
     <div style={{ maxHeight: '100vh', overflow: overflowPropertyToHideScroll }}>
+    
       <Router>
         <Toast />
         <Navbar />
@@ -94,7 +95,6 @@ function App() {
             <Route exact path='*'>
               <Error />
             </Route>
-
           </Switch>
         </ErrorBoundary>
         <Footer />

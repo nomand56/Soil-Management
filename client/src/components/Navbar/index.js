@@ -7,17 +7,21 @@ import { links } from '../../utils/constants';
 import CartButtons from '../CartButtons/';
 import { useProductsContext } from '../../context/products_context';
 import { useUserContext } from '../../context/user_context';
-
+import ToogleButton from '../toogleButton/index'
+import { ListItem, Text, UnorderedList, useColorModeValue } from '@chakra-ui/react';
 const Nav = () => {
   const { currentUser } = useUserContext();
   const { openSidebar } = useProductsContext();
-console.log(currentUser)
+  console.log(currentUser)
+   const color = useColorModeValue('rgb(40,40,40)', 'rgb(180,180,180)');
   return (
     <NavContainer>
       <div className='nav-center'>
         <div className='nav-header'>
           <Link to='/'>
-            GREEN WASTE COMPANY
+            <Text sx={{ color: '#ab7a5f', fontSize: '25px' }}>
+              GREEN WASTE COMPANY
+            </Text>
           </Link>
           <button type='button' className='nav-toggle' onClick={openSidebar}>
             <FaBars />
@@ -28,22 +32,27 @@ console.log(currentUser)
             const { url, text, id } = link;
             return (
               <li key={id}>
-                <Link to={url}>{text}</Link>
+                <Link to={url}>
+                  <Text color={color}>{text}</Text>
+                </Link>
               </li>
             );
           })}
           {currentUser && (
             <li>
-              <Link to='/checkout'>checkout</Link>
+              <Link to='/checkout'>
+                <Text color={color}>checkout</Text>
+              </Link>
             </li>
           )}
           {currentUser && (
             <li>
-              <Link to='/orders'>orders</Link>
+              <Link to='/orders'><Text color={color}>orders</Text></Link>
             </li>
           )}
         </ul>
         <CartButtons />
+        <ToogleButton />
       </div>
     </NavContainer>
   );

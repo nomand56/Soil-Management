@@ -1,13 +1,10 @@
 import styled from 'styled-components';
 
 const Wrapper = styled.section`
-  h3,
-  h4 {
-    color: var(--clr-primary-1);
-  }
+
   padding: 5rem 0;
 
-  background: var(--clr-primary-10);
+  background-color:rgba(210,210,210,0.2) ;
 
   .header h3 {
     margin-bottom: 2rem;
@@ -15,7 +12,6 @@ const Wrapper = styled.section`
   p {
     margin-bottom: 0;
     line-height: 1.8;
-    color: var(--clr-primary-3);
   }
   .services-center {
     margin-top: 4rem;
@@ -23,12 +19,11 @@ const Wrapper = styled.section`
     gap: 2.5rem;
   }
   .service {
-    background: var(--clr-primary-7);
+    
     text-align: center;
     padding: 2.5rem 2rem;
     border-radius: var(--radius);
     p {
-      color: var(--clr-primary-2);
     }
   }
   span {

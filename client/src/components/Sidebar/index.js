@@ -7,14 +7,18 @@ import { links } from '../../utils/constants';
 import SidebarContainer from './styles';
 import CartButtons from '../CartButtons/';
 import { useUserContext } from '../../context/user_context';
+import { Box, useColorModeValue } from '@chakra-ui/react';
 
 const Sidebar = () => {
   const { currentUser } = useUserContext();
   const { isSidebarOpen, closeSidebar } = useProductsContext();
-
+ const bg = useColorModeValue('rgb(255, 255, 255)', 'rgb(50,50,50)');
+ const color = useColorModeValue('rgb(40,40,40)', 'rgb(200,200,200)');
   return (
     <SidebarContainer>
-      <aside
+      <Box
+        bg={bg}
+        color={color}
         className={`${isSidebarOpen ? 'sidebar show-sidebar' : 'sidebar'}`}
       >
         <div className='sidebar-header'>
@@ -50,7 +54,7 @@ const Sidebar = () => {
           )}
         </ul>
         <CartButtons />
-      </aside>
+      </Box>
     </SidebarContainer>
   );
 };

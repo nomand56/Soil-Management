@@ -27,11 +27,11 @@ const Wrapper = styled.section`
   }
   .password {
     display: flex;
-    background: var(--clr-grey-10);
+    background: rgba(210, 210, 210, 0.2);
     border-radius: var(--radius);
   }
   .togglebtn {
-    background: var(--clr-grey-10);
+   
     display: inline-block;
     min-width: min-content;
     margin: 0.5rem;
@@ -50,7 +50,7 @@ const Wrapper = styled.section`
     .input {
       width: 100%;
       padding: 0.5rem;
-      background: var(--clr-grey-10);
+      background: rgba(210, 210, 210, 0.2);
       border-radius: var(--radius);
       border-color: transparent;
       letter-spacing: var(--spacing);
@@ -74,7 +74,7 @@ const Wrapper = styled.section`
       left: 50%;
       transform: translateX(-50%);
       padding: 0.5rem;
-      background: white;
+      background: rgb(171, 122, 95);
       font-weight: 500;
     }
     hr {

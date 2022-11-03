@@ -8,6 +8,7 @@ import { useCartContext } from '../../context/cart_context';
 import { useProductsContext } from '../../context/products_context';
 import Button from '../../components/Button';
 import { BsFillEyeFill, BsFillEyeSlashFill } from 'react-icons/bs';
+import { Text, useColorModeValue } from '@chakra-ui/react';
 
 function ProfilePage() {
   const {
@@ -32,7 +33,7 @@ function ProfilePage() {
   const [isVisibleNewPassword, setIsVisibleNewPassword] = useState(false);
   const [isVisibleConfirmPassword, setIsVisibleConfirmPassword] =
     useState(false);
-
+ const color = useColorModeValue('rgb(240,240,240)', 'rgb(180,180,180)');
   const handleImage = (e) => {
     const file = e.target.files[0];
     if (!file) {
@@ -124,7 +125,9 @@ function ProfilePage() {
       </div>
       <div className='seperator'>
         <hr />
-        <span>Display Name</span>
+        <span>
+          <Text color={color}>Display Name</Text>
+        </span>
       </div>
       <form onSubmit={handleSubmitName}>
         <div className='form-control'>
@@ -143,7 +146,9 @@ function ProfilePage() {
       </form>
       <div className='seperator'>
         <hr />
-        <span>Password</span>
+        <span>
+          <Text color={color}>Password</Text>
+        </span>
       </div>
       <form onSubmit={handleSubmitPassword}>
         <div className='form-control password'>

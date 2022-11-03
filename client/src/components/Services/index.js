@@ -1,36 +1,39 @@
 import React from 'react';
 import Wrapper from './styles';
 import { services } from '../../utils/constants';
+import { Box, Text, useColorModeValue } from '@chakra-ui/react';
 
 const Services = () => {
+  const bg = useColorModeValue('rgb(171, 122, 95)', 'rgb(171, 122, 95)');
+    const color = useColorModeValue('rgb(40,40,40)', 'rgb(180,180,180)');
+
   return (
-    <Wrapper>
-      <div className='section-center'>
+    <Wrapper >
+      <Box  className='section-center'>
         <article className='header'>
-          <h3>
+          <Text fontSize='xl' color={color}>
             Your wish
-            <br />
             Our command
-          </h3>
-          <p>
+          </Text>
+          <Text fontSize='md' color={color}>
             Customer satisfaction is the top-most priorty for TomperWear. It is
             the only the trust and support of our customers that we are now
             reaching greater heights.
-          </p>
+          </Text>
         </article>
         <div className='services-center'>
           {services.map((service) => {
             const { id, icon, title, text } = service;
             return (
-              <article key={id} className='service'>
+              <Box key={id} bg={bg} className='service'>
                 <span className='icon'>{icon}</span>
                 <h4>{title}</h4>
-                <p>{text}</p>
-              </article>
+                <Text fontSize='sm' color={color}>{text}</Text>
+              </Box>
             );
           })}
         </div>
-      </div>
+      </Box>
     </Wrapper>
   );
 };

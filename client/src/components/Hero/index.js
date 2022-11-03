@@ -30,11 +30,11 @@ const Hero = () => {
       <Box>
         <Box>
           <h1
-            style={{ color: '#ab7a5f', fontWeight: 'bold',fontSize:'30px',wordSpacing:'1px' }}
+            style={{ color: '#ab7a5f', fontWeight: 'bold',fontSize:'30px',wordSpacing:'1px',margin:'5px 0px' }}
           >
             Quality Soil For Your Garden
           </h1>
-          <h4>
+          <h4 style={{margin:'5px 0px'}}>
             Green Waste Company is commited to provide you best quality soil for
             you needs at you door step.
           </h4>

@@ -5,6 +5,7 @@ import Wrapper from './styles';
 import Error from '../Error/';
 import Loading from '../Loading/';
 import Product from '../Product/';
+import { Text, useColorModeValue } from '@chakra-ui/react';
 
 const FeaturedProducts = () => {
   const {
@@ -12,6 +13,7 @@ const FeaturedProducts = () => {
     products_error: error,
     featured_products: featured,
   } = useProductsContext();
+  const color = useColorModeValue('gray.800', 'gray');
 
   if (loading) {
     return <Loading />;
@@ -21,11 +23,10 @@ const FeaturedProducts = () => {
     return <Error />;
   }
   console.log(featured)
-
   return (
     <Wrapper className='section'>
       <div className='title'>
-        <h2>Featured products</h2>
+        <Text color={color} sx={{margin:'10px 0px'}}>Featured products</Text>
         <div className='underline'></div>
       </div>
       <div className='section-center featured'>

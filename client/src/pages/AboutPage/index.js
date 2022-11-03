@@ -15,7 +15,7 @@ const AboutPage = () => {
         <img src={aboutImg} alt='pic' />
         <article>
           <div className='title'>
-            <h2>My Story</h2>
+            <h2 style={{margin:'10px 0px'}}>My Story</h2>
             <div className='underline'></div>
           </div>
           <p>

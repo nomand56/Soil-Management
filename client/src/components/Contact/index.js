@@ -4,11 +4,17 @@ import { Link } from 'react-router-dom';
 import { useForm } from '@formspree/react';
 import { useUserContext } from '../../context/user_context';
 import Button from '../Button';
+import { Textarea, useColorModeValue } from '@chakra-ui/react';
 
 const Contact = () => {
+
   const { currentUser } = useUserContext();
   const [state, handleSubmit] = useForm(process.env.REACT_APP_FORMSPREE);
   const [feedbackText, setFeedbackText] = useState('');
+
+   const bg = useColorModeValue('rgb(255, 255, 255)', 'rgba(171, 122, 95,0.5)');
+   const color = useColorModeValue('rgb(40,40,40)','rgb(250,250,250)');
+
 
   useEffect(() => {
     if (state.succeeded) {
@@ -40,11 +46,13 @@ const Contact = () => {
                 readOnly
               />
             )}
-            <textarea
+            <Textarea
               name='feedback'
               className='form-input'
               placeholder='Your feedback'
               required
+              bg={bg}
+              color={color}
             />
             {currentUser ? (
               <Button
