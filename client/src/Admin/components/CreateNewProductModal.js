@@ -27,15 +27,14 @@ import { useProductsContext } from '../../context/products_context';
 function CreateNewProductModal() {
   const {
     new_product: {
-      name,
+      productName,
       price,
       stock,
       description,
-      colors,
-      sizes,
+      supplierPostalCode,
+      supplierId,
       category,
       company,
-      shipping,
       featured,
     },
     updateNewProductDetails,
@@ -75,12 +74,10 @@ function CreateNewProductModal() {
 
   const handleSubmit = async () => {
     if (
-      !name ||
+      !productName ||
       !price ||
       !stock ||
       !description ||
-      colors.length < 1 ||
-      sizes.length < 1 ||
       !category ||
       !company
     ) {
@@ -104,17 +101,17 @@ function CreateNewProductModal() {
     setLoading(true);
     console.log('uploading');
     const product = {
-      name,
+      productName,
       price,
       stock,
       description,
-      colors,
-      sizes,
       category,
       company,
-      shipping,
+      supplierPostalCode,
+      supplierId,
       featured,
-      images: imageList,
+      supplierPostalCode,
+      image: imageList
     };
     const responseCreate = await createNewProduct(product);
     setLoading(false);
@@ -155,9 +152,9 @@ function CreateNewProductModal() {
               <Input
                 ref={initialRef}
                 placeholder='Product Name'
-                name='name'
+                name='productName'
                 focusBorderColor='brown.500'
-                value={name}
+                value={productName}
                 onChange={updateNewProductDetails}
               />
             </FormControl>
@@ -222,27 +219,15 @@ function CreateNewProductModal() {
             <FormControl mt={4}>
               <FormLabel>Sizes</FormLabel>
               <Input
-                placeholder='Product Sizes (comma separated)'
-                name='sizes'
+                placeholder='supplierPostalCode'
+                name='supplierPostalCode'
                 focusBorderColor='brown.500'
-                value={sizes}
+                value={supplierPostalCode}
                 onChange={updateNewProductDetails}
               />
               <FormHelperText>Eg: m, l, xl, xxl, xxxl</FormHelperText>
             </FormControl>
 
-            <FormControl mt={4}>
-              <FormLabel>Colors</FormLabel>
-              <Input
-                placeholder='Product Colors (comma separated)'
-                name='colors'
-                focusBorderColor='brown.500'
-                value={colors}
-                onChange={updateNewProductDetails}
-              />
-              <FormHelperText>Eg: red,green,blue</FormHelperText>
-              <FormHelperText>Eg: #FF000,#00FF00,#0000FF</FormHelperText>
-            </FormControl>
 
             <FormControl mt={4}>
               <FormLabel>Images</FormLabel>
@@ -293,18 +278,6 @@ function CreateNewProductModal() {
                 })}
               </HStack>
             </FormControl>
-
-            <FormControl mt={4}>
-              <Checkbox
-                name='shipping'
-                colorScheme='brown'
-                isChecked={shipping}
-                onChange={updateNewProductDetails}
-              >
-                Shipping
-              </Checkbox>
-            </FormControl>
-
             <FormControl mt={4}>
               <Checkbox
                 name='featured'

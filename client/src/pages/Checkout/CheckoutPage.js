@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Flex, Button, Heading, useColorModeValue, Input } from '@chakra-ui/react';
 import { ButtonProps, ActiveButtonProps } from './style';
-import { Box } from '@chakra-ui/react';
-import {useForm} from 'react-hook-form';
+import { Box } from '@mui/material';
+import { useForm } from 'react-hook-form';
 // import { ShippingAddress } from '../../components/Checkout/ShippingAddress';
 import CartDelivery from '../../components/cartDelivery';
 import CartTotals from '../../components/CartTotals';
@@ -19,21 +19,34 @@ import {
 import { useCartContext } from '../../context/cart_context';
 function CheckoutPage() {
   let [state, setstate] = useState(1);
-  let [open, setopen] = useState(false);
- const color = useColorModeValue('rgb(40,40,40)', 'rgb(180,180,180)');
- const bg = useColorModeValue('rgb(250,240,240)', 'rgb(40,40,40)');
-  const { onSubmit } = useCartContext();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
 
-const handleClick = (data) => {
- 
-    onSubmit(data);
+  const color = useColorModeValue('rgb(40,40,40)', 'rgb(180,180,180)');
+  const bg = useColorModeValue('rgb(250,240,240)', 'rgb(40,40,40)');  const nameRef = useRef(null);
+  const streetRef = useRef(null);
+  const addressRef = useRef(null);
+  const cityRef = useRef(null);
+  const regionRef = useRef(null);
+  const postalCodeRef = useRef(null);
+  const countryRef = useRef(null);
+  const { onSubmit,form } = useCartContext();
+
+  const handleSubmit = (e) => {
+   
   };
 
+  const handleClick = () => {
+    const data = {
+      name: nameRef.current.value,
+      street: streetRef.current.value,
+      address: addressRef.current.value,
+      city: cityRef.current.value,
+      region: regionRef.current.value,
+      postalCode: postalCodeRef.current.value,
+      country: countryRef.current.value,
+    };
+    onSubmit(data);
+    setstate(state + 1);
+  };
 
   return (
     <Box
@@ -70,18 +83,18 @@ const handleClick = (data) => {
                 <Input
                   style={inputField}
                   type='text'
-                  color={color}
-                bg={bg}
-                  {...register('name', { required: true })}
                   placeholder='First and Last Name'
+                  value={form?.name}
+                  ref={nameRef}
                 />
                 <Input
                   style={inputField}
                   bg={bg}
                   color={color}
                   type='text'
-                  {...register('street', { required: true })}
+                  value={form?.street}
                   placeholder='Street Address'
+                  ref={streetRef}
                 />
                 <div>
                   <Input
@@ -89,54 +102,49 @@ const handleClick = (data) => {
                     bg={bg}
                     color={color}
                     type='text'
-                    {...register('extended_address', { required: true })}
+                    value={form?.address}
                     placeholder='Apt/Suite'
+                    ref={addressRef}
                   />
                   <Input
                     style={halfInputField}
                     bg={bg}
                     color={color}
                     type='text'
-                    {...register('street', { required: true })}
+                    value={form?.country}
                     placeholder='Company'
+                    ref={countryRef}
                   />
                 </div>
                 <div>
-                  <Input
-                   
+                  <input
                     style={cityInputField}
                     bg={bg}
                     color={color}
                     type='text'
-                    {...register('city', { required: true })}
+                    value={form?.city}
                     placeholder='City'
+                    ref={cityRef}
                   />
                   <Input
                     style={stateInputField}
                     bg={bg}
                     color={color}
                     type='text'
-                    {...register('region', { required: true })}
+                    value={form?.region}
                     placeholder='State'
+                    ref={regionRef}
                   />
                   <Input
                     style={postalInputField}
                     type='text'
-                    color={color}
-                  bg={bg}
-                    {...register('postal_code', { required: true })}
-                    required
+                    value={form?.postalCode}
+
                     placeholder='Zip Code'
+                    ref={postalCodeRef}
                   />
                 </div>
-                <Button
-                  variant='contained'
-                  type='submit'
-                  sx={{margin:'20px 0px'}}
-                  // onClick={() => setstate(2)}
-                >
-                  Submit
-                </Button>
+            
               </form>
             </fieldset>
           ) : state === 2 ? (
@@ -145,6 +153,7 @@ const handleClick = (data) => {
             </Box>
           ) : state === 3 ? (
             <Box>
+                {console.log(form)}
               <CartTotals />
             </Box>
           ) : null}
@@ -169,7 +178,7 @@ const handleClick = (data) => {
               <Button
                 variant='contained'
                 onClick={() => {
-                  setstate(state + 1);
+                  state === 1 ? handleClick() : setstate(state + 1);
                 }}
               >
                 Next

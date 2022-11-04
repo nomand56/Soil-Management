@@ -13,7 +13,11 @@ let schema = new mongoose.Schema({
         type:Number,
         required:true
     },
-  quantity: {
+  description: {
+    type: String,
+    required: true,
+  },
+  stock: {
     type: Number,
     required: true,
   },
@@ -21,10 +25,6 @@ let schema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-    productStatus: {
-        type: String,
-        required:true
-    },
     image: {
         type:String,
         required:true
@@ -32,6 +32,10 @@ let schema = new mongoose.Schema({
      category: {
         type:String,
         required:true
+  },
+  featured: {
+    type: Boolean,
+    required: true,
   },
       usedFor: {
         type:[String],

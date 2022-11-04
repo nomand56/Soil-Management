@@ -4,18 +4,18 @@ import {useCartContext} from "../../context/cart_context"
 
 
 function CartDelivery() {
-  const {deliveryOption } = useCartContext()
+  const {deliveryOption,delivery } = useCartContext()
   const [value, setValue] = useState('1')
 const handleChange = (e) => {
 deliveryOption(e)
 
 }
     return (
-    <RadioGroup onChange={handleChange} >
+    <RadioGroup onChange={handleChange} value={delivery} >
       <Stack direction='column'>
-        <Radio value='express'>Delivery in two days</Radio>
-        <Radio value='standard'>Delivery in one week</Radio>
-        <Radio value='ordinary'>Delivery in two weeks</Radio>
+        <Radio value='express'>Expresss (Delivery in 2-3 days)</Radio>
+        <Radio value='standard'>Standard (Delivery in 1-week)</Radio>
+        <Radio value='ordinary'>Ordinary (Delivery in 2-weeks)</Radio>
         <Radio value='pickUp'>PickUp</Radio>
       </Stack>
     </RadioGroup>

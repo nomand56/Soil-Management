@@ -9,14 +9,10 @@ let shipmentAddress = new mongoose.Schema({
   streetAddress: {
     type: String,
     required: true,
-  },
-  apt_suite: {
-    type: String,
-    required: true,
-  },
+  }, 
   company: {
     type: String,
-    required: true,
+
   },
   city: {
     type: String,
@@ -26,11 +22,11 @@ let shipmentAddress = new mongoose.Schema({
     type: String,
     required: true,
   },
-  zipCode: {
+  postalCode: {
     type: Number,
     required: true,
   },
-  deliveryTime: {
+  deliveryType: {
     type: String,
     required: true,
   },

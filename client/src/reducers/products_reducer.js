@@ -11,11 +11,18 @@ import {
   GET_SINGLE_PRODUCT_REVIEWS_ERROR,
   GET_SINGLE_PRODUCT_REVIEWS_SUCCESS,
   SET_GRIDVIEW,
-  SET_LISTVIEW
+  SET_LISTVIEW,
+  CREATE_NEW_PRODUCT
 } from '../actions';
 
 
 const products_reducer = (state, action) => {
+  if (action.type === CREATE_NEW_PRODUCT) {
+    const { name, value } = action.payload;
+    return { ...state, new_product: { ...state.new_product, [name]: value } };
+  }
+
+
   if (action.type === SET_GRIDVIEW) {
     return { ...state, grid_view: true };
   }
@@ -37,6 +44,7 @@ const products_reducer = (state, action) => {
   }
 
   if (action.type === GET_PRODUCTS_SUCCESS) {  
+    console.log("data form ",action.payload);
     return {
       ...state,
       products_loading: false,

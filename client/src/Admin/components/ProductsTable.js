@@ -73,7 +73,7 @@ function ProductsTable({ products }) {
           </Thead>
           <Tbody>
             {products.map((product, index) => {
-              const { image, name, price, stock, category, company, id } =
+              const { image, productName, price, quantity, usedFor, company, _id,category} =
                 product;
               return (
                 <Tr key={index}>
@@ -87,7 +87,7 @@ function ProductsTable({ products }) {
                   </Td>
                   <Td>
                     <VStack alignItems='flex-start' spacing={1}>
-                      <Text as='b'>{name.substring(0, 21)}...</Text>
+                      <Text as='b'>{productName.substring(0, 21)}...</Text>
                       <Text fontSize='sm' color='green.500'>
                         {formatPrice(price)}
                       </Text>
@@ -95,26 +95,26 @@ function ProductsTable({ products }) {
                   </Td>
                   <Td>
                     <VStack alignItems='flex-start' spacing={1}>
-                      <Text as='b'>{category.toUpperCase()}</Text>
+                      <Text as='b'>{category}</Text>
                       <Text fontSize='sm' color='brown.500'>
-                        {company}
+                        {quantity}
                       </Text>
                     </VStack>
                   </Td>
-                  <Td>{stock}</Td>
+                  <Td>{quantity}</Td>
                   <Td>
                     <Menu>
                       <MenuButton as={Button} rightIcon={<BiChevronDown />}>
                         Actions
                       </MenuButton>
                       <MenuList>
-                        <Link to={`/products/${id}`}>
+                        <Link to={`/products/${_id}`}>
                           <MenuItem>View</MenuItem>
                         </Link>
                         <MenuItem>
-                          <UpdateProductModal id={id} />
+                          <UpdateProductModal id={_id} />
                         </MenuItem>
-                        <MenuItem onClick={() => handleDelete(id)}>
+                        <MenuItem onClick={() => handleDelete(_id)}>
                           Delete
                         </MenuItem>
                       </MenuList>

@@ -7,11 +7,11 @@ import {
 } from 'react-icons/fa';
 
 export const LinkItems = [
-  { name: 'Home', url: '/', icon: <FaHome /> },
-  { name: 'Products', url: '/products', icon: <FaProductHunt /> },
-  { name: 'Orders', url: '/orders', icon: <FaShoppingCart /> },
+  { name: 'Home', url: '/dashboard', icon: <FaHome /> },
+  { name: 'Products', url: '/adminproducts', icon: <FaProductHunt /> },
+  { name: 'Orders', url: '/adminorders', icon: <FaShoppingCart /> },
   { name: 'Admins', url: '/admins', icon: <FaUserTie /> },
-];
+];  
 
 export const orderStatusList = [
   { name: 'Reject', value: 'rejected' },

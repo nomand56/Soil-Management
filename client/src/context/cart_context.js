@@ -25,7 +25,8 @@ const initialState = {
   total_items: 0,
   total_amount: 0,
   shipping_fee: 0,
-  form:null
+  form:null,
+  delivery:null
 };
 
 const CartContext = React.createContext();

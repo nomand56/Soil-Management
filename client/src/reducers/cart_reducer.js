@@ -11,16 +11,16 @@ import {
 const cart_reducer = (state, action) => {
   if (action.type === DELIVERY_OPTION) {
     if (action.payload === 'standard') {
-      return { ...state, shipping_fee: 700 };
+      return { ...state, shipping_fee: 700,delivery:action.payload };
     }
     if (action.payload === 'express') {
-      return { ...state, shipping_fee: 1000 };
+      return { ...state, shipping_fee: 1000,delivery:action.payload };
     }
     if (action.payload === 'ordinary') {
-      return { ...state, shipping_fee: 300 };
+      return { ...state, shipping_fee: 300,delivery:action.payload };
     }
     if (action.payload === 'pickUp') {
-      return { ...state, shipping_fee: 50 };
+      return { ...state, shipping_fee: 50,delivery:action.payload };
     }
   }
     if(action.type ===SUBMIT_FORM ){

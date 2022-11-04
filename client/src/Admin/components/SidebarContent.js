@@ -15,24 +15,10 @@ export default function SidebarContent({ onClose, ...rest }) {
   const {
     currentUser: { privilege },
   } = useUserContext();
-  const [Links, setLinks] = useState([]);
+  const [Links, setLinks] = useState([...LinkItems]);
+  // const bg = useColorModeValue('rgb(255, 255, 255)', 'rgb(50,50,50)');
+  // const color = useColorModeValue('rgb(40,40,40)', 'rgb(200,200,200)');
 
-  useEffect(() => {
-    if (privilege === 'super') {
-      setLinks(LinkItems);
-    }
-    if (privilege === 'moderate') {
-      const tempLinks = LinkItems.filter((link) => link.name !== 'Admins');
-      setLinks(tempLinks);
-    }
-    if (privilege === 'low') {
-      const tempLinks = LinkItems.filter(
-        (link) => link.name !== 'Admins' && link.name !== 'Products'
-      );
-      setLinks(tempLinks);
-    }
-    // eslint-disable-next-line
-  }, []);
 
   return (
     <Box

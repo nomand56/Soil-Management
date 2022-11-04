@@ -110,7 +110,7 @@ export const OrderProvider = ({ children }) => {
   const placeOrder = async () => {
     const shippingInfo = {
       address: state.shipping.address.line1,
-      city: state.shipping.address.city,
+      city: state.shipping. address.city,
       state: state.shipping.address.state,
       country: state.shipping.address.country,
       pinCode: state.shipping.address.postal_code,
@@ -127,16 +127,12 @@ export const OrderProvider = ({ children }) => {
         product: item.id.replace(item.color + item.size, ''),
       };
     });
-    const paymentInfo = {
-      id: 'dummy_id_12345',
-      status: 'paid',
-    };
+
     const body = {
       name: state.shipping.name,
       email: currentUser.email,
       shippingInfo,
       orderItems,
-      paymentInfo,
       itemsPrice: total_amount,
       shippingPrice: shipping_fee,
       totalPrice: total_amount + shipping_fee,

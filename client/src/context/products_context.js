@@ -1,7 +1,7 @@
 
 import axios from 'axios';
 import React, { useContext, useEffect, useReducer } from 'react';
-import { products_url as url, update_product_url , create_new_product} from '../utils/constants';
+import { products_url, update_product_url , create_new_product} from '../utils/constants';
 import reducer from '../reducers/products_reducer';
 import {
   SIDEBAR_OPEN,
@@ -35,8 +35,6 @@ const initialState = {
     stock: 10,
     description: '',
     images: [],
-    colors: [],
-    sizes: [],
     category: '',
     company: '',
     shipping: true,
@@ -71,7 +69,7 @@ export const ProductsProvider = ({ children }) => {
   const fetchProducts = async () => {
     dispatch({ type: GET_PRODUCTS_BEGIN });
     try {
-      const {data} = await axios.get(url);
+      const {data} = await axios.get(products_url);
 
       dispatch({ type: GET_PRODUCTS_SUCCESS, payload: data });
 
@@ -135,7 +133,7 @@ export const ProductsProvider = ({ children }) => {
     try {
       const response = await axios.post(create_new_product, product);
       const { success, data } = response.data;
-      fetchProducts();
+   
       return { success, data };
     } catch (error) {
       const { success, message } = error.response.data;
@@ -168,44 +166,12 @@ export const ProductsProvider = ({ children }) => {
     }
   };
 
-  const getProductReviews = async (id) => {
-    dispatch({ type: GET_SINGLE_PRODUCT_REVIEWS_BEGIN });
-    try {
-      const response = await axios.get(`${url}/reviews/${id}`);
-      const reviews = response.data;
-      dispatch({
-        type: GET_SINGLE_PRODUCT_REVIEWS_SUCCESS,
-        payload: reviews.data,
-      });
-    } catch (error) {
-      dispatch({ type: GET_SINGLE_PRODUCT_REVIEWS_ERROR });
-    }
-  };
 
-  const reviewProduct = async (id, stars, comment) => {
-    if (currentUser) {
-      const body = {
-        name: currentUser.displayName || 'User',
-        email: currentUser.email,
-        rating: stars,
-        comment: comment,
-        productId: id,
-      };
-      try {
-        const response = await axios.post(`${url}/reviews/`, body);
-        getProductReviews(id);
-        const { success, message } = response.data;
-        return { success, message };
-      } catch (error) {
-        const { success, message } = error.response.data;
-        return { success, message };
-      }
-    }
-  };
+  
 
-  // useEffect(() => {
-  //   fetchProducts(url);
-  // }, []);
+  useEffect(() => {
+    fetchProducts();
+  }, []);
 
   return (
     <ProductsContext.Provider
@@ -214,7 +180,7 @@ export const ProductsProvider = ({ children }) => {
         openSidebar,
         closeSidebar,
         fetchSingleProduct,
-        reviewProduct,
+        // reviewProduct,
         setGridView,
         deleteProduct,
         updateNewProductDetails,
@@ -225,7 +191,7 @@ export const ProductsProvider = ({ children }) => {
         updateProduct,
         setListView,
         fetchProducts,
-        getProductReviews,
+        // getProductReviews,
       }}
     >
       {children}
