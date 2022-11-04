@@ -32,22 +32,24 @@ const Nav = () => {
             const { url, text, id } = link;
             return (
               <li key={id}>
-                <Link to={url}>
-                  <Text color={color}>{text}</Text>
-                </Link>
+                <Text color={color}>
+                  <Link to={url}>{text}</Link>
+                </Text>
               </li>
             );
           })}
           {currentUser && (
             <li>
-              <Link to='/checkout'>
-                <Text color={color}>checkout</Text>
-              </Link>
+              <Text color={color}>
+                <Link to='/checkout'>checkout</Link>
+              </Text>
             </li>
           )}
           {currentUser && (
             <li>
-              <Link to='/orders'><Text color={color}>orders</Text></Link>
+              <Text color={color}>
+                <Link to='/orders'>orders</Link>
+              </Text>
             </li>
           )}
         </ul>

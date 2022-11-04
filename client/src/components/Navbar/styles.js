@@ -5,7 +5,7 @@ const NavContainer = styled.nav`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom:50px;
+  margin-bottom: 50px;
   .nav-center {
     width: 90vw;
     margin: 0 auto;
@@ -51,11 +51,11 @@ const NavContainer = styled.nav`
         margin: 0 0.5rem;
       }
       a {
-        color: var(--clr-grey-3);
         font-size: 1rem;
         text-transform: capitalize;
         letter-spacing: var(--spacing);
         padding: 0.5rem;
+
         &:hover {
           border-bottom: 2px solid var(--clr-primary-7);
         }

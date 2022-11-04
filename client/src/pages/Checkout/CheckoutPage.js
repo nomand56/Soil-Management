@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Flex, Button, Heading } from '@chakra-ui/react';
+import { Flex, Button, Heading, useColorModeValue, Input } from '@chakra-ui/react';
 import { ButtonProps, ActiveButtonProps } from './style';
-import { Box } from '@mui/material';
+import { Box } from '@chakra-ui/react';
 import {useForm} from 'react-hook-form';
 // import { ShippingAddress } from '../../components/Checkout/ShippingAddress';
 import CartDelivery from '../../components/cartDelivery';
@@ -20,7 +20,8 @@ import { useCartContext } from '../../context/cart_context';
 function CheckoutPage() {
   let [state, setstate] = useState(1);
   let [open, setopen] = useState(false);
-
+ const color = useColorModeValue('rgb(40,40,40)', 'rgb(180,180,180)');
+ const bg = useColorModeValue('rgb(250,240,240)', 'rgb(40,40,40)');
   const { onSubmit } = useCartContext();
   const {
     register,
@@ -40,7 +41,7 @@ const handleClick = (data) => {
         display: { md: 'flex', xs: 'block' },
         alignItems: 'center',
         justifyContent: 'space-evenly',
-        width: '90%',
+        width: '80%',
         margin: '20px auto',
       }}
     >
@@ -66,62 +67,76 @@ const handleClick = (data) => {
             <fieldset style={fieldset}>
               <legend style={legend}>Shipping Address</legend>
               <form onSubmit={handleSubmit(handleClick)}>
-                <input
+                <Input
                   style={inputField}
                   type='text'
+                  color={color}
+                bg={bg}
                   {...register('name', { required: true })}
                   placeholder='First and Last Name'
                 />
-                <input
+                <Input
                   style={inputField}
+                  bg={bg}
+                  color={color}
                   type='text'
                   {...register('street', { required: true })}
                   placeholder='Street Address'
                 />
                 <div>
-                  <input
+                  <Input
                     style={halfInputField}
+                    bg={bg}
+                    color={color}
                     type='text'
                     {...register('extended_address', { required: true })}
                     placeholder='Apt/Suite'
                   />
-                  <input
+                  <Input
                     style={halfInputField}
+                    bg={bg}
+                    color={color}
                     type='text'
                     {...register('street', { required: true })}
                     placeholder='Company'
                   />
                 </div>
                 <div>
-                  <input
+                  <Input
                    
                     style={cityInputField}
+                    bg={bg}
+                    color={color}
                     type='text'
                     {...register('city', { required: true })}
                     placeholder='City'
                   />
-                  <input
+                  <Input
                     style={stateInputField}
+                    bg={bg}
+                    color={color}
                     type='text'
                     {...register('region', { required: true })}
                     placeholder='State'
                   />
-                  <input
+                  <Input
                     style={postalInputField}
                     type='text'
+                    color={color}
+                  bg={bg}
                     {...register('postal_code', { required: true })}
                     required
                     placeholder='Zip Code'
                   />
                 </div>
-                <button
+                <Button
                   variant='contained'
                   type='submit'
-                  
+                  sx={{margin:'20px 0px'}}
                   // onClick={() => setstate(2)}
                 >
                   Submit
-                </button>
+                </Button>
               </form>
             </fieldset>
           ) : state === 2 ? (
