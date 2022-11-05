@@ -9,12 +9,11 @@ import {
   Tr,
   Td,
   Box,
-  Tag,
+  
 } from '@chakra-ui/react';
 import { formatPrice } from '../utils/helpers';
 import { useAdminContext } from '../../context/admin_context';
 import { useProductsContext } from '../../context/products_context';
-import { Stars } from '.';
 import { useOrderContext } from '../../context/order_context';
 
 function SingleProductInfo({ product }) {
@@ -28,20 +27,16 @@ function SingleProductInfo({ product }) {
     name = '',
     description = '',
     price = 0,
-    rating = 0,
-    colors = [],
-    sizes = [],
     company = '',
     category = '',
     stock = 0,
-    numberOfReviews = 0,
     shipping = true,
     featured = false,
     admin = '',
     createdAt,
   } = product;
 
-  useEffect(() => {
+  useEffect(() => { 
     // finding the admin from ID
     const createdBy = admins.find((x) => x.id === admin);
     if (createdBy) {
@@ -53,11 +48,13 @@ function SingleProductInfo({ product }) {
     // creating new array having this product as the only orderItem
     const productOrders = orders.reduce((arr, order) => {
       const item = order.orderItems.find((x) => x.product === id);
+      
       if (item) {
         arr.push(item);
       }
       return arr;
-    }, []);
+    }, [] 
+    );
 
     // calculating total units sold
     const total = productOrders.reduce((total, order) => {
@@ -67,7 +64,8 @@ function SingleProductInfo({ product }) {
     }, 0);
 
     setUnitSold(total);
-    // eslint-disable-next-line
+
+    
   }, [loading]);
 
   return (
@@ -101,44 +99,6 @@ function SingleProductInfo({ product }) {
             <Td>{unitSold}</Td>
           </Tr>
           <Tr>
-            <Td>Rating</Td>
-            <Td>
-              <Stars stars={rating} />
-            </Td>
-          </Tr>
-          <Tr>
-            <Td>Reviews</Td>
-            <Td>{numberOfReviews} customer reviews</Td>
-          </Tr>
-          <Tr>
-            <Td>Colors</Td>
-            <Td>
-              <HStack>
-                {colors.map((color, index) => {
-                  return <Box key={index} bg={color} p='2' borderRadius='5' />;
-                })}
-              </HStack>
-            </Td>
-          </Tr>
-          <Tr>
-            <Td>Sizes</Td>
-            <Td>
-              <HStack>
-                {sizes.map((size, index) => {
-                  return (
-                    <Tag
-                      key={index}
-                      variant='outline'
-                      textTransform='uppercase'
-                    >
-                      {size}
-                    </Tag>
-                  );
-                })}
-              </HStack>
-            </Td>
-          </Tr>
-          <Tr>
             <Td>Company</Td>
             <Td>{company}</Td>
           </Tr>
@@ -151,6 +111,7 @@ function SingleProductInfo({ product }) {
             <Td>{shipping ? formatPrice(55000) : formatPrice(0)}</Td>
           </Tr>
           <Tr>
+
             <Td>Featured</Td>
             <Td>{featured ? 'Yes' : 'No'}</Td>
           </Tr>

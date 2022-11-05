@@ -46,6 +46,9 @@ function App() {
             <Route exact path='/products'>
               <Products />
             </Route>
+            {/* <Route exact path='/products'>
+              <Products />
+            </Route> */}
             <Route exact path='/cart'>
               <Cart />
             </Route>
@@ -61,38 +64,36 @@ function App() {
             <PrivateRoute exact path='/reset-password'>
               <Reset />
             </PrivateRoute>
-            <Route exact path='/products/:id' children={<SingleProduct />} />
+            <Route exact path='/products/:id' >
+              <SingleProduct />
+            </Route>
             <PrivateRoute exact path='/checkout'>
               <CheckoutPage/>
             </PrivateRoute>
             <PrivateRoute exact path='/orders'>
               <OrdersPage />
             </PrivateRoute>
-            <PrivateRoute exact path='/profile'>
-              <ProfilePage />
-            </PrivateRoute>
+          
             {/* <Admin route bellow */}
-            <PrivateRoute exact path='/dashboard'>
+            <PrivateRoute exact path='/admin/dashboard'>
               <Dashboard />
             </PrivateRoute>
-            <PrivateRoute exact path='/adminorders'>
+            <PrivateRoute exact path='/admin/orders'>
               <AdminOrdersPage />
             </PrivateRoute>
-            <PrivateRoute exact path='/adminorders/:id'>
+            <PrivateRoute exact path='/admin/orders/:id'>
               <SingleOrderPage />
             </PrivateRoute>
-            <PrivateRoute exact path='/adminproducts'>
+          <PrivateRoute exact path='/admin/products'>
               <ProductsPage />
             </PrivateRoute>
-            <PrivateRoute exact path='/adminproducts/:id'>
+            <PrivateRoute exact path='/admin/products/:id'>
               <SingleProductPage />
             </PrivateRoute>
-            <PrivateRoute exact path='/admins'>
+            <PrivateRoute exact path='/admin'>
               <AdminsPage />
             </PrivateRoute>
-            <PrivateRoute exact path='/adminlogin'>
-              <LoginPage />
-            </PrivateRoute>
+            
             <Route exact path='*'>
               <Error />
             </Route>

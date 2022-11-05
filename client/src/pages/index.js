@@ -10,7 +10,6 @@ import Reset from './ResetPasswordPage/';
 import Error from './ErrorPage/';
 import OrdersPage from './OrdersPage/';
 import PrivateRoute from './PrivateRoute/';
-import ProfilePage from './ProfilePage/';
 import CheckoutPage from "./Checkout/CheckoutPage"
 export {
   Home,
@@ -25,6 +24,5 @@ export {
   Error,
   OrdersPage,
   PrivateRoute,
-  ProfilePage,
   CheckoutPage
 };

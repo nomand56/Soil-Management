@@ -18,7 +18,7 @@ const initialState = {
     name: '',
     email: '',
     password: '',
-    privilege: 'super',
+    privilege: 'admin',
   },
 };
 
@@ -26,6 +26,7 @@ const AdminContext = React.createContext();
 
 export const AdminProvider = ({ children }) => {
   const { currentUser } = useUserContext();
+  console.log(currentUser);
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const fetchAdmins = async () => {

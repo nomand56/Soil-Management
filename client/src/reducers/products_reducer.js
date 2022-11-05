@@ -7,21 +7,16 @@ import {
   GET_SINGLE_PRODUCT_BEGIN,
   GET_SINGLE_PRODUCT_SUCCESS,
   GET_SINGLE_PRODUCT_ERROR,
-  GET_SINGLE_PRODUCT_REVIEWS_BEGIN,
-  GET_SINGLE_PRODUCT_REVIEWS_ERROR,
-  GET_SINGLE_PRODUCT_REVIEWS_SUCCESS,
   SET_GRIDVIEW,
   SET_LISTVIEW,
-  CREATE_NEW_PRODUCT
+  CREATE_NEW_PRODUCT,
 } from '../actions';
-
 
 const products_reducer = (state, action) => {
   if (action.type === CREATE_NEW_PRODUCT) {
     const { name, value } = action.payload;
     return { ...state, new_product: { ...state.new_product, [name]: value } };
   }
-
 
   if (action.type === SET_GRIDVIEW) {
     return { ...state, grid_view: true };
@@ -43,13 +38,13 @@ const products_reducer = (state, action) => {
     return { ...state, products_loading: true };
   }
 
-  if (action.type === GET_PRODUCTS_SUCCESS) {  
-    console.log("data form ",action.payload);
+  if (action.type === GET_PRODUCTS_SUCCESS) {
+    console.log('data form ', action.payload);
     return {
       ...state,
       products_loading: false,
       products: action.payload,
-      featured_products: action.payload
+      featured_products: action.payload,
     };
   }
 
@@ -66,7 +61,6 @@ const products_reducer = (state, action) => {
   }
 
   if (action.type === GET_SINGLE_PRODUCT_SUCCESS) {
-    
     return {
       ...state,
       single_product_loading: false,
@@ -79,33 +73,6 @@ const products_reducer = (state, action) => {
       ...state,
       single_product_loading: false,
       single_product_error: true,
-    };
-  }
-
-  if (action.type === GET_SINGLE_PRODUCT_REVIEWS_BEGIN) {
-    return {
-      ...state,
-      single_product_reviews_loading: true,
-      single_product_reviews_error: false,
-    };
-  }
-
-  if (action.type === GET_SINGLE_PRODUCT_REVIEWS_ERROR) {
-    return {
-      ...state,
-      single_product_reviews_loading: false,
-      single_product_reviews_error: true,
-    };
-  }
-
-  if (action.type === GET_SINGLE_PRODUCT_REVIEWS_SUCCESS) {
-    return {
-      ...state,
-      single_product_reviews_loading: false,
-      single_product: {
-        ...state.single_product,
-        reviews: action.payload,
-      },
     };
   }
 

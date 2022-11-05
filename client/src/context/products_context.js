@@ -1,7 +1,7 @@
 
 import axios from 'axios';
 import React, { useContext, useEffect, useReducer } from 'react';
-import { products_url, update_product_url , create_new_product} from '../utils/constants';
+import { products_url, update_product_url , create_new_product,single_product_url} from '../utils/constants';
 import reducer from '../reducers/products_reducer';
 import {
   SIDEBAR_OPEN,
@@ -12,9 +12,6 @@ import {
   GET_SINGLE_PRODUCT_BEGIN,
   GET_SINGLE_PRODUCT_SUCCESS,
   GET_SINGLE_PRODUCT_ERROR,
-  GET_SINGLE_PRODUCT_REVIEWS_BEGIN,
-  GET_SINGLE_PRODUCT_REVIEWS_ERROR,
-  GET_SINGLE_PRODUCT_REVIEWS_SUCCESS,
   SET_GRIDVIEW,
   SET_LISTVIEW,
   CREATE_NEW_PRODUCT,
@@ -155,7 +152,7 @@ export const ProductsProvider = ({ children }) => {
   const fetchSingleProduct = async (id) => {
     dispatch({ type: GET_SINGLE_PRODUCT_BEGIN });
     try {
-      const response = await axios.get(id);
+      const response = await axios.get(`${single_product_url}${id}`);
   // console.log(`${single_product_url}${id}`)
       dispatch({
         type: GET_SINGLE_PRODUCT_SUCCESS,
@@ -187,7 +184,6 @@ export const ProductsProvider = ({ children }) => {
         updateExistingProductDetails,
         createNewProduct,
         fetchProducts,
-        fetchSingleProduct,
         updateProduct,
         setListView,
         fetchProducts,

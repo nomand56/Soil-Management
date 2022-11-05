@@ -122,8 +122,6 @@ export const OrderProvider = ({ children }) => {
         price: item.price,
         quantity: item.amount,
         image: item.image,
-        color: item.color,
-        size: item.size,
         product: item.id.replace(item.color + item.size, ''),
       };
     });
@@ -153,8 +151,6 @@ export const OrderProvider = ({ children }) => {
 
   useEffect(() => {
     fetchOrders(get_order_url);
-    // fetchAdminOrders()
-    // eslint-disable-next-line
   }, [currentUser, cart]);
 
 

@@ -108,7 +108,7 @@ function ProductsTable({ products }) {
                         Actions
                       </MenuButton>
                       <MenuList>
-                        <Link to={`/products/${_id}`}>
+                        <Link to={`/adminproducts/${_id}`}>
                           <MenuItem>View</MenuItem>
                         </Link>
                         <MenuItem>

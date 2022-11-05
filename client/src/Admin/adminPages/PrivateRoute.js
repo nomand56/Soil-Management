@@ -27,7 +27,13 @@ const PrivateRoute = ({ children, ...rest }) => {
       <Redirect to={location.state?.from ?? '/'} />
     );
   }
-
+if (rest.path === '/admin' || rest.path === '/admin/*') {
+    return currentUser && currentUser.privilege === 'admin' ? (
+      <Route {...rest}>{children}</Route>
+    ) : (
+      <Redirect to={location.state?.from ?? '/'} />
+    );
+  }
   
 
   return currentUser ? (

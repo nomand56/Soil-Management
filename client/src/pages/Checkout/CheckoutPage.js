@@ -19,7 +19,7 @@ import {
 import { useCartContext } from '../../context/cart_context';
 function CheckoutPage() {
   let [state, setstate] = useState(1);
-
+  let {currentUser} = useCartContext();
   const color = useColorModeValue('rgb(40,40,40)', 'rgb(180,180,180)');
   const bg = useColorModeValue('rgb(250,240,240)', 'rgb(40,40,40)');  const nameRef = useRef(null);
   const streetRef = useRef(null);
@@ -84,7 +84,7 @@ function CheckoutPage() {
                   style={inputField}
                   type='text'
                   placeholder='First and Last Name'
-                  value={form?.name}
+                  value={form? form.name : currentUser?.name+currentUser?.surname}
                   ref={nameRef}
                 />
                 <Input
@@ -98,6 +98,7 @@ function CheckoutPage() {
                 />
                 <div>
                   <Input
+
                     style={halfInputField}
                     bg={bg}
                     color={color}
@@ -122,7 +123,7 @@ function CheckoutPage() {
                     bg={bg}
                     color={color}
                     type='text'
-                    value={form?.city}
+                    value={currentUser?.city}
                     placeholder='City'
                     ref={cityRef}
                   />
@@ -138,7 +139,7 @@ function CheckoutPage() {
                   <Input
                     style={postalInputField}
                     type='text'
-                    value={form?.postalCode}
+                    value={currentUser?.postalCode}
 
                     placeholder='Zip Code'
                     ref={postalCodeRef}

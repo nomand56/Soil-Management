@@ -8,10 +8,9 @@ import {
   Error,
   ProductImages,
   AddToCart,
-  Stars,
   PageHero,
   ReviewModal,
-  UserReview,
+
 } from '../../components';
 import Wrapper from './styles';
 import { Link } from 'react-router-dom';
@@ -27,9 +26,8 @@ const SingleProductPage = () => {
   } = useProductsContext();
 
   useEffect(() => {
-    fetchSingleProduct(`${single_product_url}${id}`);
-    // eslint-disable-next-line
-  }, [id]);
+    fetchSingleProduct(id);
+}, [id]);
 
   useEffect(() => {
     if (error) {
@@ -37,26 +35,16 @@ const SingleProductPage = () => {
         history.push('/');
       }, 3000);
     }
-    // eslint-disable-next-line
-  }, [error]);
-console.log("single product",single_product)
+}, [error]);
+
   const {
    productName,
-  productStatus,
   price,
   image,
   supplierId,
   quantity:stock,
-
   _id: sku }=single_product
-console.log(stock)
-  //   description,
-  //   rating: stars,
-  //   numberOfReviews,
-  //   reviews = [],
-  //   company,
-  //   images,
-  // } = product;
+
 
   useEffect(() => {
     document.title = `Tomper Wear `;
@@ -104,15 +92,7 @@ console.log(stock)
             )}
             <hr />
             <ReviewModal product={single_product} />
-            {/* <section className='reviews'>
-              <h3>Reviews</h3>
-              {reviews.length < 1 && (
-                <p>No reviews yet, be the first one to review &#128512;</p>
-              )}
-              {reviews.map((review, index) => {
-                return <UserReview key={index} {...review} />;
-              })}
-            </section> */}
+        
           </section>
         </div>
       </div>

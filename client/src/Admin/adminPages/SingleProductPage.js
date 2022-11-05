@@ -22,7 +22,7 @@ function SingleProductPage() {
     fetchSingleProduct(id);
     // eslint-disable-next-line
   }, []);
-
+console.log("single product admin in product page",product)
   if (loading) {
     return (
       <SidebarWithHeader>
@@ -43,7 +43,7 @@ function SingleProductPage() {
     );
   }
 
-  const { images, reviews = [] } = product;
+  const { image } = product;
   return (
     <SidebarWithHeader>
       <Stack
@@ -57,12 +57,10 @@ function SingleProductPage() {
         shadow='sm'
         overflowX='auto'
       >
-        <ImagesList images={images} />
+        <ImagesList images={image} />
         <SingleProductInfo product={product} />
       </Stack>
-      {reviews.length > 0 && (
-        <SingleProductReviews reviews={reviews} productId={id} />
-      )}
+   
     </SidebarWithHeader>
   );
 }

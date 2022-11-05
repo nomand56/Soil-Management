@@ -7,10 +7,10 @@ import {
 } from 'react-icons/fa';
 
 export const LinkItems = [
-  { name: 'Home', url: '/dashboard', icon: <FaHome /> },
-  { name: 'Products', url: '/adminproducts', icon: <FaProductHunt /> },
-  { name: 'Orders', url: '/adminorders', icon: <FaShoppingCart /> },
-  { name: 'Admins', url: '/admins', icon: <FaUserTie /> },
+  { name: 'Home', url: '/admin/dashboard', icon: <FaHome /> },
+  { name: 'Products', url: '/admin/products', icon: <FaProductHunt /> },
+  { name: 'Orders', url: '/admin/orders', icon: <FaShoppingCart /> },
+  { name: 'Admins', url: '/admin', icon: <FaUserTie /> },
 ];  
 
 export const orderStatusList = [
@@ -20,7 +20,6 @@ export const orderStatusList = [
   { name: 'Shipped', value: 'shipped' },
   { name: 'Delivered', value: 'delivered' },
 ];
-
 export const domain = process.env.REACT_APP_BACKEND_HOST;
 export const auth_url = `${domain}/api/admin/auth`;
 export const login_url = `${domain}/api/admin/login`;

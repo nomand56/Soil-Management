@@ -9,11 +9,20 @@ const getClient = async (req, res) => {
         res.send({"Error":error})
     }
 }
+const getAdmin = async (req,res)=>{
+    try {
+        let data =await Client.find({privilege:"admin"})
+        res.send(data)
+    }
+     catch (error){
+        res.send({error:error})
+     }
+}
 const postClient = async (req,res) => {
     try {
         let request = await new Client(req.body);
         await request.save();
-        res.send("saved..")
+        res.send("saved..",req.body.name)
     } catch (error) {
         res.send({"Error":error})
     }
@@ -87,5 +96,6 @@ module.exports = {
     updateClient,
     deleteClient,
     loginClient,
-    verifyClient
+    verifyClient,
+    getAdmin
 }

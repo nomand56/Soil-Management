@@ -45,13 +45,13 @@ const login = async (email, password) => {
   
   }
 };
-const createUser = async (data) => {
+const createUser = async (email,password,name) => {
   dispatch({ type: CREATE_USER_BEGIN });
   try {
-    const config = { headers: { "Content-Type": "multipart/form-data" } };
-    const response=await axios.post(signup_url ,data,config);
+ 
+    const response=await axios.post(signup_url ,{email,password,name});
 
-      dispatch ({type:CREATE_USER_SUCCESS,payload:response.data})
+      dispatch ({type:CREATE_USER_SUCCESS,payload:response })
   }
   catch (error) {
     dispatch({ type: CREATE_USER_ERROR });

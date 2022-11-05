@@ -128,5 +128,5 @@ export const single_order_url = `${domain}/api/orders/`;
 export const update_order_status = `${domain}/api/admin/order/`;
 export const create_new_product=`${domain}create/product`;
 export const update_product_url=`${domain}update/product`;
-export const admins_url = `${domain}client`;
+export const admins_url = `${domain}getadmins`;
 export const register_url = `${domain}/api/admin/register`;

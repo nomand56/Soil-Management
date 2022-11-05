@@ -40,10 +40,13 @@ let schema = new mongoose.Schema({
     type: String,
     required: true,
     },
+    privilege:{
+      type:String,
+    },
     userType: {
         type: String,
         required:true
   }
 });
 
-module.exports=schema
+module.exports=schema 
