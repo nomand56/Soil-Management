@@ -1,7 +1,7 @@
 
 import axios from 'axios';
 import React, { useContext, useEffect, useReducer } from 'react';
-import { products_url, update_product_url , create_new_product,single_product_url} from '../utils/constants';
+import { products_url, update_product_url , create_new_product, delete_product_url} from '../utils/constants';
 import reducer from '../reducers/products_reducer';
 import {
   SIDEBAR_OPEN,
@@ -27,15 +27,17 @@ const initialState = {
   grid_view:true,
   products: [],
   new_product: {
-    name: '',
+    productName: '',
+    supplierId: '',
+    supplierPostalCode: 0,
     price: 50000,
     stock: 10,
     description: '',
-    images: [],
     category: '',
     company: '',
     shipping: true,
     featured: false,
+    usedFor:[]
   },
   single_product_loading: false,
   single_product_error: false,
@@ -76,7 +78,7 @@ export const ProductsProvider = ({ children }) => {
   };
   const deleteProduct = async (id) => {
     try {
-      const response = await axios.delete(`${update_product_url}${id}`);
+      const response = await axios.delete(`${delete_product_url}/${id}`);
       const { success, message } = response.data;
       return { success, message };
     } catch (error) {
@@ -87,9 +89,13 @@ export const ProductsProvider = ({ children }) => {
   const updateNewProductDetails = (e) => {
     const name = e.target.name;
     let value = e.target.value;
-    if (name === 'price' || name === 'stock') {
+    if (name === 'price' || name === 'stock' || name === 'supplierPostalCode') {
       value = Number(value);
     }
+    if (name === 'usedFor')
+    {
+      value = e.target.value.split(",");
+      }
     if (name === 'colors' || name === 'sizes') {
       value = value.replace(/\s+/g, '');
       if (value === '') {
@@ -108,7 +114,7 @@ export const ProductsProvider = ({ children }) => {
   const updateExistingProductDetails = (e) => {
     const name = e.target.name;
     let value = e.target.value;
-    if (name === 'price' || name === 'stock') {
+    if (name === 'price' || name === 'stock' || name === 'supplierPostalCode') {
       value = Number(value);
     }
     if (name === 'colors' || name === 'sizes') {

@@ -36,6 +36,7 @@ function CreateNewProductModal() {
       category,
       company,
       featured,
+      usedFor
     },
     updateNewProductDetails,
     createNewProduct,
@@ -89,15 +90,15 @@ function CreateNewProductModal() {
         isClosable: true,
       });
     }
-    if (imageList.length < 1) {
-      return toast({
-        position: 'top',
-        description: 'Add atleast one image',
-        status: 'error',
-        duration: 5000,
-        isClosable: true,
-      });
-    }
+    // if (imageList.length < 1) {
+    //   return toast({
+    //     position: 'top',
+    //     description: 'Add atleast one image',
+    //     status: 'error',
+    //     duration: 5000,
+    //     isClosable: true,
+    //   });
+    // }
     setLoading(true);
     console.log('uploading');
     const product = {
@@ -110,9 +111,9 @@ function CreateNewProductModal() {
       supplierPostalCode,
       supplierId,
       featured,
-      supplierPostalCode,
-      image: imageList
+      usedFor
     };
+    console.log(product)
     const responseCreate = await createNewProduct(product);
     setLoading(false);
     if (responseCreate.success) {
@@ -148,7 +149,7 @@ function CreateNewProductModal() {
           <ModalCloseButton />
           <ModalBody pb={6}>
             <FormControl>
-              <FormLabel>Name</FormLabel>
+              <FormLabel>Product Name</FormLabel>
               <Input
                 ref={initialRef}
                 placeholder='Product Name'
@@ -217,19 +218,42 @@ function CreateNewProductModal() {
             </FormControl>
 
             <FormControl mt={4}>
-              <FormLabel>Sizes</FormLabel>
+              <FormLabel>Supplier Postal Code</FormLabel>
               <Input
-                placeholder='supplierPostalCode'
+                placeholder='Supplier Postal Code'
                 name='supplierPostalCode'
                 focusBorderColor='brown.500'
                 value={supplierPostalCode}
                 onChange={updateNewProductDetails}
               />
-              <FormHelperText>Eg: m, l, xl, xxl, xxxl</FormHelperText>
+              <FormHelperText>Eg: 32100</FormHelperText>
             </FormControl>
 
+            <FormControl mt={4}>
+              <FormLabel>Supplier ID</FormLabel>
+              <Input
+                placeholder='Supplier ID number'
+                name='supplierId'
+                focusBorderColor='brown.500'
+                value={supplierId}
+                onChange={updateNewProductDetails}
+              />
+              <FormHelperText>Eg: 635bfcd14d4210d7b56ba9f0</FormHelperText>
+            </FormControl>
 
             <FormControl mt={4}>
+              <FormLabel>Usages</FormLabel>
+              <Input
+                placeholder='Product Usages'
+                name='usedFor'
+                focusBorderColor='brown.500'
+                value={usedFor.join(',').toString()}
+                onChange={updateNewProductDetails}
+              />
+              <FormHelperText>Eg: vegetable , plants , trees</FormHelperText>
+            </FormControl>
+
+            {/* <FormControl mt={4}>
               <FormLabel>Images</FormLabel>
               <Center
                 bg='brown.50'
@@ -277,7 +301,7 @@ function CreateNewProductModal() {
                   );
                 })}
               </HStack>
-            </FormControl>
+            </FormControl> */}
             <FormControl mt={4}>
               <Checkbox
                 name='featured'

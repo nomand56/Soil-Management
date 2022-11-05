@@ -9,10 +9,10 @@ let schema = new mongoose.Schema({
     type: Schema.Types.ObjectId,
     ref: "clients",
   },
-   supplierPostalCode: {
-        type:Number,
-        required:true
-    },
+  supplierPostalCode: {
+    type: Number,
+    required: true,
+  },
   description: {
     type: String,
     required: true,
@@ -25,22 +25,21 @@ let schema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-    image: {
-        type:String,
-        required:true
+  image: {
+    type: String,
   },
-     category: {
-        type:String,
-        required:true
+  category: {
+    type: String,
+    required: true,
   },
   featured: {
     type: Boolean,
     required: true,
   },
-      usedFor: {
-        type:[String],
-        required:true
-    }
+  usedFor: {
+    type: [String],
+    required: true,
+  },
 });
 
 module.exports = schema;

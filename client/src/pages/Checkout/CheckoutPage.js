@@ -118,7 +118,7 @@ function CheckoutPage() {
                   />
                 </div>
                 <div>
-                  <input
+                  <Input
                     style={cityInputField}
                     bg={bg}
                     color={color}

@@ -22,6 +22,7 @@ import {
   Spinner,
   Text,
   useToast,
+  useColorModeValue,
 } from '@chakra-ui/react';
 import UpdateProductModal from './UpdateProductModal';
 
@@ -29,8 +30,10 @@ function ProductsTable({ products }) {
   const toast = useToast();
   const { fetchProducts, deleteProduct } = useProductsContext();
   const [loading, setLoading] = useState(false);
-
+const color = useColorModeValue('rgb(10,10,10)', 'rgb(180,180,180)');
+const bg = useColorModeValue('transparent', 'rgb(40,40,40)');
   const handleDelete = async (id) => {
+    console.log(id)
     setLoading(true);
     const response = await deleteProduct(id);
     setLoading(false);
@@ -61,7 +64,7 @@ function ProductsTable({ products }) {
           <Spinner size='lg' color='brown.500' />
         </HStack>
       ) : (
-        <Table variant='simple'>
+        <Table variant='simple' color={color} bg={bg}>
           <Thead>
             <Tr>
               <Th>Image</Th>

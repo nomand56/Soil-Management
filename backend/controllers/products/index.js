@@ -4,17 +4,18 @@ const addProduct = async (req, res) => {
   try {
     let data = await new products(req.body);
     await data.save();
-    res.send("add to products successfully");
+    res.send({seccess:"ok",message:"add to products successfully"});
   } catch (error) {
     console.log(error);
   }
+ 
 };
 const deleteProduct = async (req, res) => {
   try {
-    let data = await products.findByIdAndRemove(req.params.id);
-    res.send("delete from products successfully");
+    let data = await products.findByIdAndDelete(req.params.id);
+    res.send({ success: "ok", message: "deleted" });
   } catch (error) {
-    res.send({ error });
+    res.send({ message: error });
   }
 };
 const updateProduct = async (req, res) => {
