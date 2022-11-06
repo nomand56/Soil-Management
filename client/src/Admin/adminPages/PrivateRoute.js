@@ -12,9 +12,10 @@ const PrivateRoute = ({ children, ...rest }) => {
     rest.path === '/forgot-password' ||
     rest.path === '/reset-password'
   ) {
-    return currentUser ? (
+    return currentUser? (
       <Redirect to={location.state?.from ?? '/'} />
-    ) : (
+    ) :
+      (
       <Route {...rest}>{children}</Route>
     );
   }
@@ -28,7 +29,7 @@ const PrivateRoute = ({ children, ...rest }) => {
     );
   }
 if (rest.path === '/admin' || rest.path === '/admin/*') {
-    return currentUser && currentUser.privilege === 'admin' ? (
+    return currentUser && currentUser.userType === 'admin' ? (
       <Route {...rest}>{children}</Route>
     ) : (
       <Redirect to={location.state?.from ?? '/'} />

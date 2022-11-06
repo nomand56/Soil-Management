@@ -5,6 +5,7 @@ const Wrapper = styled.footer`
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+ margin-top:auto;
   align-items: center;
   background: var(--clr-black);
   text-align: center;

@@ -4,6 +4,7 @@ const order = require("../../controllers/order/index");
 
 
 router.get("/orders", order.getAllOrders);
+router.post('/order/user/',order.getspecificOrders)
 router.post("/create/order", order.createOrder);
 router.put("/update/order", order.updateOrder);
 router.delete("/delete/order/:id", order.deleteOrder);

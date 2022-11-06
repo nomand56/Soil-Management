@@ -9,7 +9,14 @@ const createOrder = async (req, res) => {
         res.send(error)
     }
 }
-
+const getspecificOrders = async (req,res) => {
+  try {
+    let data = await order.find({ "user.email" : req.body.email });
+    res.send(data)
+  } catch (error) {
+   res.send(error) 
+  }
+}
 const updateOrder = async (req, res) => {
   try {
     let data = await order.findOne({_id:req.body.id});
@@ -46,8 +53,9 @@ const getAllOrders = async (req, res) => {
 };
 
 module.exports = {
-    createOrder,
-    updateOrder,
-    deleteOrder,
-    getAllOrders
-}
+  createOrder,
+  updateOrder,
+  deleteOrder,
+  getAllOrders,
+  getspecificOrders,
+};

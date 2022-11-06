@@ -7,6 +7,7 @@ import { useCartContext } from '../../context/cart_context';
 import ShippingForm from '../../components/ShippingForm';
 import { checkObjectProperties } from '../../utils/helpers';
 import Wrapper from './style';
+import { useColorModeValue } from '@chakra-ui/react';
 function CheckoutPage() {
   const {
     shipping: {
@@ -34,8 +35,6 @@ function CheckoutPage() {
     setEditingShipping(false);
   };
  
-
-
 
 
   return (

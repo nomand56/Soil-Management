@@ -2,19 +2,19 @@ import React from 'react';
 import Wrapper from './styles';
 import { formatPrice } from '../../utils/helpers';
 
-const OrderItem = ({ name, price, quantity, image, color, size, product }) => {
+const OrderItem = ({ name, price, quantity, image, product }) => {
   return (
     <Wrapper>
       <div className='title'>
         <img src={image} alt={name} />
         <div>
           <h5 className='name'>{name}</h5>
-          <p className='color'>
+          {/* <p className='color'>
             color : <span style={{ background: color }}></span>
-          </p>
-          <p className='size'>
+          </p> */}
+          {/* <p className='size'>
             size :&nbsp;<span>{size}</span>
-          </p>
+          </p> */}
           <h5 className='price-small'>{formatPrice(price)}</h5>
         </div>
       </div>

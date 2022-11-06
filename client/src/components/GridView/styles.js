@@ -6,8 +6,10 @@ const Wrapper = styled.section`
   }
 
   .products-container {
-    display: grid;
-    gap: 2rem 1.5rem;
+    display: flex;
+    justify-content:space-evenly;
+    align-items:center;
+    flex-wrap:wrap;
   }
 
   @media (min-width: 992px) {

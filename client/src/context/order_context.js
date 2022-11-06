@@ -14,7 +14,14 @@ import { useUserContext } from './user_context';
 import { useCartContext } from './cart_context';
 import { toast } from 'react-toastify';
 import axios from 'axios';
-import { get_order_url, create_order_url,update_order_status,orders_url,single_order_url } from '../utils/constants';
+import {
+  get_order_url,
+  create_order_url,
+  update_order_status,
+  orders_url,
+  single_order_url,
+  get_specific_order_url,
+} from '../utils/constants';
 
 const initialState = {
   orders_loading: false,
@@ -47,6 +54,11 @@ export const OrderProvider = ({ children }) => {
   const { currentUser } = useUserContext();
   const { cart, total_amount, shipping_fee } = useCartContext();
 
+ useEffect(() => {
+   fetchOrders(get_specific_order_url);
+ }, [currentUser, cart]);
+
+
   const fetchOrders = async (url) => {
     dispatch({ type: GET_ORDERS_BEGIN });
     try {
@@ -54,9 +66,9 @@ export const OrderProvider = ({ children }) => {
         email: currentUser.email,
       });
       const orders = response.data;
-      dispatch({ type: GET_ORDERS_SUCCESS, payload: orders.data });
+      dispatch({ type: GET_ORDERS_SUCCESS, payload: orders });
     } catch (error) {
-      dispatch({ type: GET_ORDERS_ERROR });
+      dispatch({type:"GET_ORDERS_ERROR",payload:error})
     } 
   };
   const fetchAdminOrders = async () => {
@@ -156,10 +168,7 @@ export const OrderProvider = ({ children }) => {
     dispatch({ type: UPDATE_SHIPPING_DETAILS, payload: { name, value } });
   };
 
-  useEffect(() => {
-    fetchOrders(get_order_url);
-  }, [currentUser, cart]);
-
+ 
 
   return (
     <OrderContext.Provider value={{ ...state, updateShipping, placeOrder,  fetchAdminOrders,fetchSingleOrder,

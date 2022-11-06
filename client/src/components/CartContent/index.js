@@ -29,7 +29,7 @@ const CartContent = () => {
           clear cart
         </button>
       </div>
-      <div>
+      <div style={{margin:'10px 0px'}}>
       <Link to='/checkout' className='btn'>
             proceed to checkout
           </Link>

@@ -27,7 +27,6 @@ const Wrapper = styled.section`
     .input {
       width: 100%;
       padding: 0.5rem;
-      background: var(--clr-grey-10);
       border-radius: var(--radius);
       border-color: transparent;
       letter-spacing: var(--spacing);
