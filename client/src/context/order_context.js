@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useReducer } from 'react';
+  import React, { useEffect, useContext, useReducer } from 'react';
 import reducer from '../reducers/order_reducer';
 import {
   UPDATE_SHIPPING_DETAILS,
@@ -57,7 +57,7 @@ export const OrderProvider = ({ children }) => {
       dispatch({ type: GET_ORDERS_SUCCESS, payload: orders.data });
     } catch (error) {
       dispatch({ type: GET_ORDERS_ERROR });
-    }
+    } 
   };
   const fetchAdminOrders = async () => {
     dispatch({ type: GET_ORDERS_BEGIN });
@@ -113,34 +113,41 @@ export const OrderProvider = ({ children }) => {
       city: state.shipping. address.city,
       state: state.shipping.address.state,
       country: state.shipping.address.country,
-      pinCode: state.shipping.address.postal_code,
+      postalCode: state.shipping.address.postal_code,
       phoneNumber: state.shipping.phone_number,
     };
+
     const orderItems = cart.map((item) => {
       return {
         name: item.name,
         price: item.price,
         quantity: item.amount,
         image: item.image,
-        product: item.id.replace(item.color + item.size, ''),
+        product: item.id,
       };
     });
-
+    const user ={
+      email:currentUser.email,
+      name: state.shipping.name
+    }
     const body = {
-      name: state.shipping.name,
-      email: currentUser.email,
+      user,
       shippingInfo,
       orderItems,
       itemsPrice: total_amount,
       shippingPrice: shipping_fee,
       totalPrice: total_amount + shipping_fee,
     };
+
     try {
-      await axios.post(create_order_url, body);
-      toast.success('Order placed');
-    } catch (error) {
+      const response=  await axios.post(create_order_url, body);
+  
+        if(response){
+          toast.success('Order placed successfully');
+        }
+      }catch (error) {
       toast.error(error.message);
-    }
+    }       
   };
 
   const updateShipping = (e) => {

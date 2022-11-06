@@ -1,3 +1,15 @@
+import styled from 'styled-components';
+
+const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .empty {
+    text-align: center;
+  }
+`;
+
+export default Wrapper;
 export const ButtonProps = {
     width: '100%',
     height: '100%',
@@ -80,4 +92,3 @@ export const ButtonProps = {
     padding: "12px 20px",
     width: "33.3333333333%"
   };
-  

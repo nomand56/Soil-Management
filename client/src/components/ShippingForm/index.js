@@ -6,9 +6,9 @@ import { useOrderContext } from '../../context/order_context';
 import { useCartContext } from '../../context/cart_context';
 import { Country, State, City } from 'country-state-city';
 
-const countries = [Country.getCountryByCode('IN')];
-const states = State.getStatesOfCountry('IN');
-const cities = City.getCitiesOfCountry('IN');
+const countries = [Country.getCountryByCode('NO')];
+const states = State.getStatesOfCountry('NO');
+const cities = City.getCitiesOfCountry('NO');
 
 function ShippingForm({ confirmShipping }) {
   const {
@@ -23,12 +23,12 @@ function ShippingForm({ confirmShipping }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const zipRegex = new RegExp('^[1-9][0-9]{5}$');
+    const zipRegex = new RegExp();
 
     if (!name) {
       return toast.error('Enter your Name');
     }
-    if (!phone_number || !/^\d{10}$/.test(phone_number)) {
+    if (!phone_number || !/^\d{11}$/.test(phone_number)) {
       return toast.error('Enter your phone number');
     }
     if (!line1) {

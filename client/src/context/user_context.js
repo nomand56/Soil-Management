@@ -31,7 +31,6 @@ isAuthenticated:false,
 const UserContext = React.createContext(); 
 
 export const UserProvider = ({ children }) => {
-  // const [currentUser, setCurrentUser] = useState(null);
   const [state, dispatch] = useReducer(reducer, initialState);
 
 const login = async (email, password) => {

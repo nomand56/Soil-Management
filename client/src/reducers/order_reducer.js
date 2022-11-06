@@ -29,7 +29,7 @@ const order_reducer = (state, action) => {
     return {
       ...state,
       orders_loading: false,
-      orders: action.payload.reverse(),
+       orders: action.payload.reverse(),
     };
   }
   throw new Error(`No Matching "${action.type}" - action type`);

@@ -73,8 +73,6 @@ function App() {
             <PrivateRoute exact path='/orders'>
               <OrdersPage />
             </PrivateRoute>
-          
-            {/* <Admin route bellow */}
             <PrivateRoute exact path='/admin/dashboard'>
               <Dashboard />
             </PrivateRoute>
