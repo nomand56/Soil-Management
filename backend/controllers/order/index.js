@@ -42,6 +42,14 @@ const deleteOrder = async (req, res) => {
     res.send(error);
   }
 };
+const getSingleOrder = async (req, res) => {
+  try {
+      let data = await order.find({email:req.body.email});
+  res.send(data);
+} catch (error) {
+  res.send(error);
+}
+};
 
 const getAllOrders = async (req, res) => {
     try {

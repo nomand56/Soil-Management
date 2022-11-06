@@ -29,7 +29,7 @@ import { useOrderContext } from '../../context/order_context';
 function OrdersTable({ orders }) {
   const toast = useToast();
   const { currentUser } = useUserContext();
-  const { fetchOrders, deleteOrder } = useOrderContext();
+  const { fetchAdminOrders, deleteOrder } = useOrderContext();
   const [loading, setLoading] = useState(false);
 
   const handleDelete = async (id) => {

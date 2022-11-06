@@ -39,7 +39,6 @@ const products_reducer = (state, action) => {
   }
 
   if (action.type === GET_PRODUCTS_SUCCESS) {
-    console.log('data form ', action.payload);
     return {
       ...state,
       products_loading: false,

@@ -150,11 +150,9 @@ export const OrderProvider = ({ children }) => {
       shippingPrice: shipping_fee,
       totalPrice: total_amount + shipping_fee,
     };
-
     try {
       const response=  await axios.post(create_order_url, body);
-  
-        if(response){
+        if(response.data.success === 200){
           toast.success('Order placed successfully');
         }
       }catch (error) {

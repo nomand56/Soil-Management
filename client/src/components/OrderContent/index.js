@@ -8,7 +8,6 @@ import {
 } from '../../utils/helpers';
 
 const OrderContent = ({
-  paymentInfo,
   orderItems,
   totalPrice,
   orderStatus,
@@ -23,9 +22,7 @@ const OrderContent = ({
         <h5 className='order-status'>
           Status: <span style={{ color: statusColor }}>{orderStatus}</span>
         </h5>
-        {/* <h5 className='payment-status'>
-          Payment: <span>{paymentInfo.status}</span>
-        </h5> */}
+      
         <h5 className='shipping-fee'>
           Shipping: <span>{formatPrice(shippingPrice)}</span>
         </h5>
