@@ -11,27 +11,34 @@ function LoginPage() {
   const history = useHistory();
   const location = useLocation();
   const mounted = useMounted();
-  const { login,isAuthenticated,loading,error} = useUserContext();
+  const { login, isAuthenticated, loading, error, currentUser } =
+    useUserContext();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [visible, setVisible] = useState(false);
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     login(email, password);
-    if(isAuthenticated){
-      history.push(location.state?.from ?? '/');
-      
+    if (mounted.current) {
+      setIsSubmitting(true);
     }
-    if(error){
-      setIsSubmitting(false);
+
+    if (loading) {
+      toast.info('Loading ...');
+    }
+
+    if (currentUser?.userType === 'admin' && isAuthenticated) {
+      console.log('admin login kar gya');
+      return history.push('/admin/dashboard');
+    }
+
+    if (error) {
+      console.log('error', error);
       toast.error(error);
     }
-    
-
-  };  
+  };
   function togglePasswordVisibility() {
     setVisible(!visible);
   }
@@ -71,8 +78,6 @@ function LoginPage() {
               {!visible ? <BsFillEyeSlashFill /> : <BsFillEyeFill />}
             </div>
           </div>
-          {/* end pass */}
-          {/* links */}
           <div className='links'>
             <Link to='/forgot-password' className='link'>
               forgot password?
@@ -81,7 +86,6 @@ function LoginPage() {
               register
             </Link>
           </div>
-          {/* end links */}
           <Button
             type='submit'
             className='btn login-btn'
@@ -89,7 +93,6 @@ function LoginPage() {
           >
             login
           </Button>
-         
         </form>
       </div>
     </Wrapper>

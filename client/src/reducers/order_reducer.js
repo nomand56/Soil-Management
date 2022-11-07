@@ -43,7 +43,7 @@ const order_reducer = (state, action) => {
   }
     
   if (action.type === GET_ADMIN_ORDERS_SUCCESS) {
-    console.log("from order reducer",action.payload);
+
     const orders = action.payload;
     let recent_orders = action.payload;
     recent_orders = recent_orders

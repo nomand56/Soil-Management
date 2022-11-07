@@ -22,7 +22,6 @@ const FeaturedProducts = () => {
   if (error) {
     return <Error />;
   }
-  console.log(featured)
   return (
     <Wrapper className='section'>
       <div className='title'>

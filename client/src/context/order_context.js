@@ -78,7 +78,7 @@ export const OrderProvider = ({ children }) => {
     dispatch({ type: GET_ADMIN_ORDERS_BEGIN });
     try {
       const response = await axios.get(orders_url);
-     console.log("from fetch admin orders",response);
+  
       dispatch({ type: GET_ADMIN_ORDERS_SUCCESS, payload: response.data });
     } catch (error) {
       dispatch({ type: GET_ADMIN_ORDERS_ERROR });

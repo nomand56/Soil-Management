@@ -37,7 +37,6 @@ function App() {
   const { currentUser } = useUserContext();
   const overflowPropertyToHideScroll =
     isSidebarOpen === true ? 'hidden' : 'scroll';
-  console.log('current User', currentUser);
   return (
     <div style={{ maxHeight: '100vh', overflow: overflowPropertyToHideScroll }}>
       <Router>

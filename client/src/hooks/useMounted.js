@@ -9,7 +9,6 @@ function useMounted() {
       mounted.current = false;
     };
   }, []);
-
   return mounted;
 }
 

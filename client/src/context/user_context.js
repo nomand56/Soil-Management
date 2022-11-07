@@ -1,4 +1,4 @@
-import React, { useContext,useReducer } from 'react';
+import React, { useContext, useReducer } from 'react';
 import {
   LOGIN_BEGIN,
   LOGIN_SUCCESS,
@@ -13,93 +13,70 @@ import {
   DELETE_USER_BEGIN,
   DELETE_USER_SUCCESS,
   DELETE_USER_ERROR,
-
-} from "../actions"
+} from '../actions';
 import reducer from '../reducers/user_reducer';
 
-import {signup_url,login_url,update_url,delete_url} from "../utils/constants"
+import {
+  signup_url,
+  login_url,
+  update_url,
+  delete_url,
+} from '../utils/constants';
 import axios from 'axios';
 
-const initialState={
-token:null, 
-currentUser:null,
-loading:false,
-error:false,
-isAuthenticated:false,
-
-}
-const UserContext = React.createContext(); 
+const initialState = {
+  token: null,
+  currentUser: null,
+  loading: false,
+  error: false,
+  isAuthenticated: false,
+};
+const UserContext = React.createContext();
 
 export const UserProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-const login = async (email, password) => {
-  dispatch({ type: LOGIN_BEGIN });
-  try {
+  const login = async (email, password) => {
+    dispatch({ type: LOGIN_BEGIN });
+    try {
+      const response = await axios.post(login_url, { email, password });
+      dispatch({ type: LOGIN_SUCCESS, payload: response });
+    } catch(error){
+      dispatch({ type: LOGIN_ERROR });
+    }
+  };
+  const createUser = async (email, password, name) => {
+    dispatch({ type: CREATE_USER_BEGIN });
+    try {
+      const response = await axios.post(signup_url, { email, password, name });
+      dispatch({ type: CREATE_USER_SUCCESS, payload: response });
+    } catch (error) {
+      dispatch({ type: CREATE_USER_ERROR });
+    }
+  };
+  const logout = () => {
+    dispatch({ type: LOGOUT_BEGIN });
+  };
+  const updateUser = async (data) => {
+    dispatch({ type: UPDATE_USER_BEGIN });
+    try {
+      const config = { headers: { 'Content-Type': 'multipart/form-data' } };
+      const response = await axios.put(update_url, data, config);
 
-     const response=await axios.post(login_url ,{email,password});
-      dispatch ({type:LOGIN_SUCCESS,payload:response.data})
-  } catch (error) {
-    dispatch({ type: LOGIN_ERROR });
-
-  }
-};
-const createUser = async (email,password,name) => {
-  dispatch({ type: CREATE_USER_BEGIN })
-  try {
- 
-    const response=await axios.post(signup_url ,{email,password,name});
-
-      dispatch ({type:CREATE_USER_SUCCESS,payload:response })
-  }
-  catch (error) {
-    dispatch({ type: CREATE_USER_ERROR });
-  
-  }
-};
-
-const logout =  () => {
-  dispatch({ type: LOGOUT_BEGIN });
-
-}    
-const updateUser = async (data) => {
-  dispatch({ type: UPDATE_USER_BEGIN });
-  try {
-    const config = { headers: { "Content-Type": "multipart/form-data" } };
-    const response=await axios.put(update_url ,data,config);
-    
-      dispatch ({type:UPDATE_USER_SUCCESS,payload:response.data})
-  }
-  catch (error) {
-    dispatch({ type: UPDATE_USER_ERROR });
-  }
-};
-const deleteUser = async (data) => {
-  dispatch({ type: DELETE_USER_BEGIN });
-  try {
-  const respones=await axios.delete(`${delete_url}/${data}`);
-    dispatch ({type:DELETE_USER_SUCCESS,payload:respones.data})
-  }
-  catch (error) {
-    dispatch({ type: DELETE_USER_ERROR });
-  }
-};
-//TODO Verify User  
-  //   const verifyUser = async (data) => {
-  // dispatch({ type: VERIFY_USER_BEGIN });
-  // try {
-  //   const respone=await axios.[ps]](`${verify_url}/${data}`);
-  // }
-//   catch (error) {
-//     dispatch({ type: VERIFY_USER_ERROR });
-//   }
-// };
-
-
-
-
-
-
+      dispatch({ type: UPDATE_USER_SUCCESS, payload: response.data });
+    } catch (error) {
+      dispatch({ type: UPDATE_USER_ERROR });
+    }
+  };
+  const deleteUser = async (data) => {
+    dispatch({ type: DELETE_USER_BEGIN });
+    try {
+      const respones = await axios.delete(`${delete_url}/${data}`);
+      dispatch({ type: DELETE_USER_SUCCESS, payload: respones.data });
+    } catch (error) {
+      dispatch({ type: DELETE_USER_ERROR });
+    }
+  };
   return (
     <UserContext.Provider
       value={{
@@ -109,7 +86,6 @@ const deleteUser = async (data) => {
         createUser,
         updateUser,
         deleteUser,
-        
       }}
     >
       {children}

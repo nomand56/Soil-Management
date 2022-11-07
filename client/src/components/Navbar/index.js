@@ -11,8 +11,7 @@ import ToogleButton from '../toogleButton/index'
 import { ListItem, Text, UnorderedList, useColorModeValue } from '@chakra-ui/react';
 const Nav = () => {
   const { currentUser } = useUserContext();
-  const { openSidebar } = useProductsContext();
-  console.log(currentUser)
+  const { openSidebar } = useProductsContext()
    const color = useColorModeValue('rgb(40,40,40)', 'rgb(180,180,180)');
   return (
     <NavContainer>

@@ -28,7 +28,6 @@ const initialState = {
   form:null,
   delivery:null
 };
-console.log(initialState.cart)
 const CartContext = React.createContext();
 
 export const CartProvider = ({ children }) => {

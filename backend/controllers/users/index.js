@@ -61,7 +61,6 @@ const loginClient = async (req, res) => {
     console.log(req.body)
     try {
         let data = await Client.findOne({ email: req.body.email, password: req.body.password });
-        console.log(data)
         if (data !== null)
         {
             let token = await jwt.sign({data}, 'abcdabcd');
