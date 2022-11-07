@@ -1,30 +1,31 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   ProductsTable,
   SidebarWithHeader,
-  CreateNewProductModal,
+  CreateNewWareHouseModel,
 } from '../components';
 import { HStack, VStack, Spinner, Heading, Button } from '@chakra-ui/react';
-import { BiRefresh }  from 'react-icons/bi';
-import { useProductsContext } from '../../context/products_context';
+import { BiRefresh } from 'react-icons/bi';
+
 import { useWarehouseContext } from '../../context/warehouse_context';
 
-function ProductsPage() {
+function WareHouses() {
   const {
-    products,
-    products_loading: loading,
-    products_error: error,
-    fetchProducts,
-  } = useProductsContext();
+    warehouse,
+    warehouse_loading: loading,
+    warehouse_error: error,
+    fetchWareHouses,
+  } = useWarehouseContext();
+
   const handleRefresh = async () => {
-    await fetchProducts();
+    await fetchWareHouses();
   };
 
   if (loading) {
     return (
       <SidebarWithHeader>
         <HStack mb={5}>
-          <CreateNewProductModal />
+          <CreateNewWareHouseModel />
           <Button
             colorScheme='brown'
             variant='outline'
@@ -45,7 +46,7 @@ function ProductsPage() {
     return (
       <SidebarWithHeader>
         <HStack mb={5}>
-          <CreateNewProductModal />
+          <CreateNewWareHouseModel />
           <Button
             colorScheme='brown'
             variant='outline'
@@ -65,7 +66,7 @@ function ProductsPage() {
   return (
     <SidebarWithHeader>
       <HStack mb={5}>
-        <CreateNewProductModal />
+        <CreateNewWareHouseModel />
         <Button
           colorScheme='brown'
           variant='outline'
@@ -75,9 +76,9 @@ function ProductsPage() {
           Refresh
         </Button>
       </HStack>
-      <ProductsTable products={products} />
+      {/* <ProductsTable products={warehouse} /> */}
     </SidebarWithHeader>
   );
 }
 
-export default ProductsPage;
+export default WareHouses;

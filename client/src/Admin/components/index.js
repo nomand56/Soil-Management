@@ -17,7 +17,7 @@ import SingleProductInfo from './SingleProductInfo';
 import Stars from './Stars';
 import SingleProductReviews from './SingleProductReviews';
 import PreLoader from './PreLoader';
-
+import CreateNewWareHouseModel from './CreateNewWareHouseModel'
 export {
   SidebarWithHeader,
   SidebarContent,
@@ -31,6 +31,7 @@ export {
   OrderDetails,
   CreateNewAdminModal,
   CreateNewProductModal,
+  CreateNewWareHouseModel,
   UpdateProductModal,
   ErrorBoundary,
   ImagesList,
