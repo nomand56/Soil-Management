@@ -27,6 +27,7 @@ import {
 import { useOrderContext } from '../../context/order_context';
 
 function OrdersTable({ orders }) {
+  console.log("Admoin Order Portal",orders)
   const toast = useToast();
   const { currentUser } = useUserContext();
   const { fetchAdminOrders, deleteOrder } = useOrderContext();
@@ -44,7 +45,7 @@ function OrdersTable({ orders }) {
         duration: 5000,
         isClosable: true,
       });
-      return await fetchOrders();
+      return await fetchAdminOrders();
     } else {
       return toast({
         position: 'top',
@@ -78,7 +79,6 @@ function OrdersTable({ orders }) {
               const {
                 user: { name },
                 orderItems,
-                paymentInfo: { status },
                 orderStatus,
                 _id: id,
               } = order;
@@ -109,7 +109,7 @@ function OrdersTable({ orders }) {
                     </VStack>
                   </Td>
                   <Td color='green.500'>
-                    <Badge colorScheme='green'>{status}</Badge>
+                    <Badge colorScheme='green'></Badge>
                   </Td>
                   <Td>
                     <Badge colorScheme={getOrderStatusColor(orderStatus)}>

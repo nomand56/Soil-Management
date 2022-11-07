@@ -6,14 +6,15 @@ import {BiRefresh} from 'react-icons/bi';
 function AdminOrdersPage() {
   const {
     orders,
-    orders_loading: loading,
-    orders_error: error,
-    fetchOrders,
+    admin_orders_loading: loading,
+    admin_orders_error: error,
+    fetchAdminOrders,
   } = useOrderContext();
 
   const handleRefresh = async () => {
-    await fetchOrders();
+    fetchAdminOrders();
   };
+  console.log("Admin Orders Page",orders)
 
   if (loading) {
     return (

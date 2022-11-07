@@ -4,11 +4,14 @@ import {
   UPDATE_SHIPPING_DETAILS,
   GET_ORDERS_BEGIN,
   GET_ORDERS_SUCCESS,
-  GET_ORDERS_ERROR,
+  GET_ADMIN_ORDERS_BEGIN,
   GET_SINGLE_ORDER_BEGIN,
+  GET_ADMIN_ORDERS_SUCCESS,
   GET_SINGLE_ORDER_SUCCESS,
   GET_SINGLE_ORDER_ERROR,
-  UPDATE_ORDER_STATUS
+  UPDATE_ORDER_STATUS,
+  GET_ADMIN_ORDERS_ERROR
+
 } from '../actions';
 import { useUserContext } from './user_context';
 import { useCartContext } from './cart_context';
@@ -72,13 +75,13 @@ export const OrderProvider = ({ children }) => {
     } 
   };
   const fetchAdminOrders = async () => {
-    dispatch({ type: GET_ORDERS_BEGIN });
+    dispatch({ type: GET_ADMIN_ORDERS_BEGIN });
     try {
       const response = await axios.get(orders_url);
-      const { data } = response.data;
-      dispatch({ type: GET_ORDERS_SUCCESS, payload: data });
+     console.log("from fetch admin orders",response);
+      dispatch({ type: GET_ADMIN_ORDERS_SUCCESS, payload: response.data });
     } catch (error) {
-      dispatch({ type: GET_ORDERS_ERROR });
+      dispatch({ type: GET_ADMIN_ORDERS_ERROR });
     }
   };
 
@@ -165,7 +168,9 @@ export const OrderProvider = ({ children }) => {
     const value = e.target.value;
     dispatch({ type: UPDATE_SHIPPING_DETAILS, payload: { name, value } });
   };
-
+useEffect(() => {
+  fetchAdminOrders();
+}, [currentUser]);
  
 
   return (
