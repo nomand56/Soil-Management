@@ -23,12 +23,15 @@ import {
   Spinner,
   HStack,
   useToast,
+  useColorModeValue,
 } from '@chakra-ui/react';
 import { useOrderContext } from '../../context/order_context';
 
 function OrdersTable({ orders }) {
   console.log("Admoin Order Portal",orders)
   const toast = useToast();
+   const color = useColorModeValue('rgb(40,40,40)', 'rgb(180,180,180)');
+   const bg = useColorModeValue('rgb(250,250,250)', 'rgb(40,40,40)');
   const { currentUser } = useUserContext();
   const { fetchAdminOrders, deleteOrder } = useOrderContext();
   const [loading, setLoading] = useState(false);
@@ -64,7 +67,7 @@ function OrdersTable({ orders }) {
           <Spinner size='lg' color='brown.500' />
         </HStack>
       ) : (
-        <Table variant='simple'>
+        <Table variant='simple' color={color} bg={bg}>
           <Thead>
             <Tr>
               <Th>Customer</Th>

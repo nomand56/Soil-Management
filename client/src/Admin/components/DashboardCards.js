@@ -12,11 +12,14 @@ import {
   Heading,
   SimpleGrid,
   Box,
+  useColorModeValue,
 } from '@chakra-ui/react';
 
 function DashboardCards() {
   const { orders, pending_orders, delivered_orders, total_revenue } =
     useOrderContext();
+   const color = useColorModeValue('rgb(40,40,40)', 'rgb(180,180,180)');
+   const bg = useColorModeValue('rgb(250,250,250)', 'rgb(40,40,40)');
   const cardList = [
     {
       title: 'Total Orders',
@@ -52,7 +55,7 @@ function DashboardCards() {
           <Flex
             key={index}
             shadow='lg'
-            bg='white'
+            bg={bg}
             p='5'
             borderRadius='lg'
             justifyContent='center'

@@ -11,6 +11,7 @@ export const LinkItems = [
   { name: 'Products', url: '/admin/products', icon: <FaProductHunt /> },
   { name: 'Orders', url: '/admin/orders', icon: <FaShoppingCart /> },
   { name: 'Admins', url: '/admin', icon: <FaUserTie /> },
+  { name: 'WareHouses', url: '/admin/warehouses', icon: <FaHome /> },
 ];  
 
 export const orderStatusList = [

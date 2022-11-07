@@ -14,6 +14,7 @@ import {
   Select,
   useToast,
   HStack,
+  useColorModeValue,
 } from '@chakra-ui/react';
 import { useAdminContext } from '../../context/admin_context';
 
@@ -21,7 +22,8 @@ function AdminsTable({ admins }) {
   const toast = useToast();
   const { updateAdminPrivilege, deleteAdmin, fetchAdmins } = useAdminContext();
   const [loading, setLoading] = useState(false);
-
+   const color = useColorModeValue('rgb(40,40,40)', 'rgb(180,180,180)');
+   const bg = useColorModeValue('rgb(250,250,250)', 'rgb(40,40,40)');
   const handleEdit = async (e, id) => {
     setLoading(true);
     const privilege = e.target.value;
@@ -79,7 +81,7 @@ function AdminsTable({ admins }) {
           <Spinner size='lg' color='brown.500' />
         </HStack>
       ) : (
-        <Table variant='simple'>
+        <Table variant='simple' color={color} bg={bg}>
           <Thead>
             <Tr>
               <Th>Name</Th>
@@ -90,14 +92,14 @@ function AdminsTable({ admins }) {
           </Thead>
           <Tbody>
             {admins.map((admin, index) => {
-              const { name, email, privilege, id: adminId } = admin;
               return (
                 <Tr key={index}>
-                  <Td>{name}</Td>
-                  <Td>{email}</Td>
+                  <Td>{admin.firstname}</Td>
+                  <Td>{admin.lastname}</Td>
+                  <Td>{admin.email}</Td>
                   <Td>
-                    <Badge colorScheme={getAdminPrivilegeColor(privilege)}>
-                      {privilege}
+                    <Badge colorScheme={getAdminPrivilegeColor(admin.userType)}>
+                      {admin.userType}
                     </Badge>
                   </Td>
                   <Td>
@@ -105,8 +107,8 @@ function AdminsTable({ admins }) {
                       <Select
                         maxW={125}
                         focusBorderColor='brown.500'
-                        value={privilege}
-                        onChange={(e) => handleEdit(e, adminId)}
+                        value={admin.userType}
+                        onChange={(e) => handleEdit(e, admin._id)}
                       >
                         <option value='super'>Super</option>
                         <option value='moderate'>Moderate</option>
@@ -115,7 +117,7 @@ function AdminsTable({ admins }) {
                       <Button
                         variant='outline'
                         colorScheme='red'
-                        onClick={() => handleDelete(adminId)}
+                        onClick={() => handleDelete(admin._id)}
                       >
                         Delete
                       </Button>

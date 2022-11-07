@@ -15,7 +15,6 @@ function AdminsPage() {
     admins_error: error,
     fetchAdmins,
   } = useAdminContext();
-
   const handleRefresh = async () => {
     await fetchAdmins();
   };

@@ -11,7 +11,7 @@ const getClient = async (req, res) => {
 }
 const getAdmin = async (req,res)=>{
     try {
-        let data =await Client.find({privilege:"admin"})
+        let data =await Client.find({userType:"admin"})
         res.send(data)
     }
      catch (error){
