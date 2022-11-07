@@ -19,24 +19,19 @@ function LoginPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (mounted.current) {
-      setIsSubmitting(true);
-    }
+    
     login(email, password);
     if(isAuthenticated){
       history.push(location.state?.from ?? '/');
       
     }
+    if(error){
+      setIsSubmitting(false);
+      toast.error(error);
+    }
     
 
-  };
-  if(error){
-    toast.error(error);
-  }
-  // if(loading){
-  //   toast.info('Loading...');
-  // }
-  
+  };  
   function togglePasswordVisibility() {
     setVisible(!visible);
   }
@@ -52,7 +47,6 @@ function LoginPage() {
           <h2>Login</h2>
         </div>
         <form onSubmit={handleSubmit}>
-          {/* email */}
           <div className='form-control'>
             <input
               type='email'
@@ -63,8 +57,6 @@ function LoginPage() {
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          {/* end email */}
-          {/* pass */}
           <div className='form-control password'>
             <input
               type={!visible ? 'password' : 'text'}

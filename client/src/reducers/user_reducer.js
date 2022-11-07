@@ -31,7 +31,12 @@ const user_reducer = (state, action) => {
         case CREATE_USER_BEGIN:
             return { ...state, loading: true, error: false }
         case CREATE_USER_SUCCESS:
-            return { ...state, loading: false, isAuthenticated: true, currentUser: action.payload }
+            if (action.payload.status === 200) {
+                return { ...state, loading: false, isAuthenticated: true, currentUser: action.payload }
+            }
+            else {
+                return { ...state, loading: false, error: true }
+            }
         case CREATE_USER_ERROR:
             return { ...state, loading: false, error: true }
         case UPDATE_USER_BEGIN:

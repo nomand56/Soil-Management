@@ -36,16 +36,16 @@ export const UserProvider = ({ children }) => {
 const login = async (email, password) => {
   dispatch({ type: LOGIN_BEGIN });
   try {
-    const config = { headers: { "Content-Type": "application/json" } };
-     const response=await axios.post(login_url ,{email,password},config);
+
+     const response=await axios.post(login_url ,{email,password});
       dispatch ({type:LOGIN_SUCCESS,payload:response.data})
   } catch (error) {
     dispatch({ type: LOGIN_ERROR });
-  
+
   }
 };
 const createUser = async (email,password,name) => {
-  dispatch({ type: CREATE_USER_BEGIN });
+  dispatch({ type: CREATE_USER_BEGIN })
   try {
  
     const response=await axios.post(signup_url ,{email,password,name});

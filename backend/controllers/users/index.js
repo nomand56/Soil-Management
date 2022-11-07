@@ -58,20 +58,18 @@ const deleteClient = async (req, res) => {
 
 
 const loginClient = async (req, res) => {
+    console.log(req.body)
     try {
         let data = await Client.findOne({ email: req.body.email, password: req.body.password });
-       
+        console.log(data)
         if (data !== null)
         {
             let token = await jwt.sign({data}, 'abcdabcd');
             res.send({"token":token,"userType":data})
-
-
         }
-        else
-        {
-            res.status(404).json({error:'user not found'})
-            }
+        else{
+            res.send("invalid credentials")
+        }
 
     } catch (error) {
      res.send(error)   
