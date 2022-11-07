@@ -80,7 +80,7 @@ function OrdersTable({ orders }) {
           <Tbody>
             {orders.map((order, index) => {
               const {
-                user: { name },
+                user: { name }, 
                 orderItems,
                 orderStatus,
                 _id: id,
@@ -145,5 +145,4 @@ function OrdersTable({ orders }) {
     </SimpleGrid>
   );
 }
-
 export default OrdersTable;

@@ -115,7 +115,7 @@ export default function RegisterPage() {
                 _hover={{
                   bg: 'brown.500',
                 }}
-                onClick={handleSubmit}
+                onClick={() => handleSubmit()}
               >
               Register
               </Button>
