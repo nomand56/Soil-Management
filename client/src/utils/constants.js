@@ -132,3 +132,7 @@ export const update_product_url = `${domain}update/product`;
 export const delete_product_url = `${domain}delete/product`;
 export const admins_url = `${domain}client/getadmins`;
 export const register_url = `${domain}/api/admin/register`;
+export const get_all_warehouses = `${domain}warehouses`;
+export const create_warehouse = `${domain}warehouses/create`;
+export const delete_warehouses = `${domain}warehouses/delete`;
+export const get_all_product_by_warehouse = `${domain}warehouses/getallproducts`;

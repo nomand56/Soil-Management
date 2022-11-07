@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
 import {
   Button,
   Input,
@@ -20,28 +20,32 @@ import {
   Image,
   VStack,
   Checkbox,
+  Select,
 } from '@chakra-ui/react';
 import { useDropzone } from 'react-dropzone';
 import { useProductsContext } from '../../context/products_context';
+import { useWarehouseContext } from '../../context/warehouse_context';
 
 function CreateNewProductModal() {
-  const {
+  const [wareH, setwareH] = useState(null);
+  const [ID, setID] = useState(0);
+  const [PostalC, setPostalC] = useState(0);
+  const [Comp, setComp] = useState('');
+  let {
     new_product: {
       productName,
       price,
       stock,
       description,
-      supplierPostalCode,
-      supplierId,
       category,
-      company,
       featured,
-      usedFor
+      usedFor,
     },
     updateNewProductDetails,
     createNewProduct,
   } = useProductsContext();
 
+  const { warehouse, fetchWareHouses } = useWarehouseContext();
   const [imageList, setImageList] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -56,7 +60,7 @@ function CreateNewProductModal() {
       reader.readAsDataURL(file);
     });
   }, []);
-
+useEffect(()=>{fetchWareHouses()},[])
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept: 'image/jpeg, image/png',
@@ -72,6 +76,14 @@ function CreateNewProductModal() {
       return [...prev];
     });
   };
+  function setWareHouse(e) {
+    setwareH(e.target.value);
+    let data = warehouse.filter((f) => f.warehouseName === e.target.value);
+    setID(data[0]._id);
+    setPostalC(data[0].PostalCode);
+    setComp(data[0].company);
+    console.log(data[0]._id)
+  }
 
   const handleSubmit = async () => {
     if (
@@ -79,8 +91,7 @@ function CreateNewProductModal() {
       !price ||
       !stock ||
       !description ||
-      !category ||
-      !company
+      !category
     ) {
       return toast({
         position: 'top',
@@ -107,13 +118,13 @@ function CreateNewProductModal() {
       stock,
       description,
       category,
-      company,
-      supplierPostalCode,
-      supplierId,
+      company: Comp,
+      supplierPostalCode: PostalC,
+      supplierId: ID,
       featured,
-      usedFor
+      usedFor,
     };
-    console.log(product)
+    console.log(product);
     const responseCreate = await createNewProduct(product);
     setLoading(false);
     if (responseCreate.success) {
@@ -136,6 +147,7 @@ function CreateNewProductModal() {
     }
   };
 
+
   return (
     <>
       <Button colorScheme='brown' onClick={onOpen}>
@@ -148,112 +160,131 @@ function CreateNewProductModal() {
           <ModalHeader>Create new product</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
-            <FormControl>
-              <FormLabel>Product Name</FormLabel>
-              <Input
-                ref={initialRef}
-                placeholder='Product Name'
-                name='productName'
-                focusBorderColor='brown.500'
-                value={productName}
-                onChange={updateNewProductDetails}
-              />
-            </FormControl>
+            {wareH === null ? (
+              <FormControl>
+                <FormLabel>Choose WareHouse</FormLabel>
+                <Select
+                  placeholder='Choose Ware House'
+                  name='warehouse'
+                  focusBorderColor='brown.500'
+                  onChange={setWareHouse}
+                >
+                  {warehouse &&
+                    warehouse.map((m, i) => {
+                      return <option key={i}>{m.warehouseName}</option>;
+                    })}
+                </Select>
+              </FormControl>
+            ) : (
+              <>
+                <FormControl>
+                  <FormLabel>Product Name</FormLabel>
+                  <Input
+                    ref={initialRef}
+                    placeholder='Product Name'
+                    name='productName'
+                    focusBorderColor='brown.500'
+                    value={productName}
+                    onChange={updateNewProductDetails}
+                  />
+                </FormControl>
 
-            <FormControl mt={4}>
-              <FormLabel>Price</FormLabel>
-              <Input
-                type='number'
-                placeholder='Product Price'
-                name='price'
-                focusBorderColor='brown.500'
-                value={price}
-                onChange={updateNewProductDetails}
-              />
-            </FormControl>
+                <FormControl mt={4}>
+                  <FormLabel>Price</FormLabel>
+                  <Input
+                    type='number'
+                    placeholder='Product Price'
+                    name='price'
+                    focusBorderColor='brown.500'
+                    value={price}
+                    onChange={updateNewProductDetails}
+                  />
+                </FormControl>
 
-            <FormControl mt={4}>
-              <FormLabel>Stock</FormLabel>
-              <Input
-                type='number'
-                placeholder='Product Stock'
-                name='stock'
-                focusBorderColor='brown.500'
-                value={stock}
-                onChange={updateNewProductDetails}
-              />
-            </FormControl>
+                <FormControl mt={4}>
+                  <FormLabel>Stock</FormLabel>
+                  <Input
+                    type='number'
+                    placeholder='Product Stock'
+                    name='stock'
+                    focusBorderColor='brown.500'
+                    value={stock}
+                    onChange={updateNewProductDetails}
+                  />
+                </FormControl>
 
-            <FormControl mt={4}>
-              <FormLabel>Description</FormLabel>
-              <Textarea
-                placeholder='Product Description'
-                name='description'
-                focusBorderColor='brown.500'
-                value={description}
-                onChange={updateNewProductDetails}
-              />
-            </FormControl>
+                <FormControl mt={4}>
+                  <FormLabel>Description</FormLabel>
+                  <Textarea
+                    placeholder='Product Description'
+                    name='description'
+                    focusBorderColor='brown.500'
+                    value={description}
+                    onChange={updateNewProductDetails}
+                  />
+                </FormControl>
 
-            <FormControl mt={4}>
-              <FormLabel>Category</FormLabel>
-              <Input
-                placeholder='Product Category'
-                name='category'
-                focusBorderColor='brown.500'
-                value={category}
-                onChange={updateNewProductDetails}
-              />
-            </FormControl>
+                <FormControl mt={4}>
+                  <FormLabel>Category</FormLabel>
+                  <Input
+                    placeholder='Product Category'
+                    name='category'
+                    focusBorderColor='brown.500'
+                    value={category}
+                    onChange={updateNewProductDetails}
+                  />
+                </FormControl>
 
-            <FormControl mt={4}>
-              <FormLabel>Company</FormLabel>
-              <Input
-                placeholder='Product Company'
-                name='company'
-                focusBorderColor='brown.500'
-                value={company}
-                onChange={updateNewProductDetails}
-              />
-            </FormControl>
+                <FormControl mt={4}>
+                  <FormLabel>Company</FormLabel>
+                  <Input
+                    placeholder='Product Company'
+                    name='company'
+                    focusBorderColor='brown.500'
+                    value={Comp}
+                    onChange={updateNewProductDetails}
+                  />
+                </FormControl>
 
-            <FormControl mt={4}>
-              <FormLabel>Supplier Postal Code</FormLabel>
-              <Input
-                placeholder='Supplier Postal Code'
-                name='supplierPostalCode'
-                focusBorderColor='brown.500'
-                value={supplierPostalCode}
-                onChange={updateNewProductDetails}
-              />
-              <FormHelperText>Eg: 32100</FormHelperText>
-            </FormControl>
+                <FormControl mt={4}>
+                  <FormLabel>Supplier Postal Code</FormLabel>
+                  <Input
+                    placeholder='Supplier Postal Code'
+                    name='supplierPostalCode'
+                    focusBorderColor='brown.500'
+                    value={PostalC}
+                    disabled={true}
+                  />
+                  <FormHelperText>Eg: 32100</FormHelperText>
+                </FormControl>
 
-            <FormControl mt={4}>
-              <FormLabel>Supplier ID</FormLabel>
-              <Input
-                placeholder='Supplier ID number'
-                name='supplierId'
-                focusBorderColor='brown.500'
-                value={supplierId}
-                onChange={updateNewProductDetails}
-              />
-              <FormHelperText>Eg: 635bfcd14d4210d7b56ba9f0</FormHelperText>
-            </FormControl>
+                <FormControl mt={4}>
+                  <FormLabel>Supplier ID</FormLabel>
+                  <Input
+                    placeholder='Supplier ID number'
+                    name='supplierId'
+                    focusBorderColor='brown.500'
+                    value={ID}
+                   disabled={true}
+                  />
+                  <FormHelperText>Eg: 635bfcd14d4210d7b56ba9f0</FormHelperText>
+                </FormControl>
 
-            <FormControl mt={4}>
-              <FormLabel>Usages</FormLabel>
-              <Input
-                placeholder='Product Usages'
-                name='usedFor'
-                focusBorderColor='brown.500'
-                value={usedFor.join(',').toString()}
-                onChange={updateNewProductDetails}
-              />
-              <FormHelperText>Eg: vegetable , plants , trees</FormHelperText>
-            </FormControl>
+                <FormControl mt={4}>
+                  <FormLabel>Usages</FormLabel>
+                  <Input
+                    placeholder='Product Usages'
+                    name='usedFor'
+                    focusBorderColor='brown.500'
+                    value={usedFor.join(',').toString()}
+                    onChange={updateNewProductDetails}
+                  />
+                  <FormHelperText>
+                    Eg: vegetable , plants , trees
+                  </FormHelperText>
+                </FormControl>
 
-            {/* <FormControl mt={4}>
+                {/* <FormControl mt={4}>
               <FormLabel>Images</FormLabel>
               <Center
                 bg='brown.50'
@@ -302,16 +333,18 @@ function CreateNewProductModal() {
                 })}
               </HStack>
             </FormControl> */}
-            <FormControl mt={4}>
-              <Checkbox
-                name='featured'
-                colorScheme='brown'
-                isChecked={featured}
-                onChange={updateNewProductDetails}
-              >
-                Featured
-              </Checkbox>
-            </FormControl>
+                <FormControl mt={4}>
+                  <Checkbox
+                    name='featured'
+                    colorScheme='brown'
+                    isChecked={featured}
+                    onChange={updateNewProductDetails}
+                  >
+                    Featured
+                  </Checkbox>
+                </FormControl>
+              </>
+            )}
           </ModalBody>
 
           <ModalFooter>

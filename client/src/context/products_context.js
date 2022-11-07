@@ -19,6 +19,7 @@ import {
 } from '../actions';
 
 import { useUserContext } from './user_context';
+import { useWarehouseContext } from './warehouse_context';
 
 const initialState = {
   isSidebarOpen: false,
@@ -49,6 +50,8 @@ const ProductsContext = React.createContext();
 
 export const ProductsProvider = ({ children }) => {
   const { currentUser } = useUserContext();
+
+
   const [state, dispatch] = useReducer(reducer, initialState);
   const setGridView = () => {
     dispatch({ type: SET_GRIDVIEW });
@@ -80,6 +83,7 @@ export const ProductsProvider = ({ children }) => {
     try {
       const response = await axios.delete(`${delete_product_url}/${id}`);
       const { success, message } = response.data;
+      fetchProducts();
       return { success, message };
     } catch (error) {
       const { success, message } = error.response.data;
@@ -136,7 +140,7 @@ export const ProductsProvider = ({ children }) => {
     try {
       const response = await axios.post(create_new_product, product);
       const { success, data } = response.data;
-   
+      fetchProducts();
       return { success, data };
     } catch (error) {
       const { success, message } = error.response.data;
@@ -147,7 +151,7 @@ export const ProductsProvider = ({ children }) => {
     try {
       const response = await axios.put(`${update_product_url}${id}`, product);
       const { success, message } = response.data;
-      // fetchProducts();
+      fetchProducts();
       return { success, message };
     } catch (error) {
       const { success, message } = error.response.data;

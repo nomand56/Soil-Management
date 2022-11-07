@@ -30,6 +30,10 @@ import {
   SingleProductPage,
   AdminsPage,
   LoginPage,
+<<<<<<< HEAD
+  WareHouses,
+=======
+>>>>>>> 1d104c8c802d316cd0dce3f73d2d9a519b3cb9eb
 } from './Admin/adminPages';
 
 function App() {
@@ -78,6 +82,10 @@ function App() {
             <PrivateRoute exact path='/orders'>
               <OrdersPage />
             </PrivateRoute>
+<<<<<<< HEAD
+
+=======
+>>>>>>> 1d104c8c802d316cd0dce3f73d2d9a519b3cb9eb
             <PrivateRoute exact path='/admin/dashboard'>
               <Dashboard />
             </PrivateRoute>
@@ -90,6 +98,12 @@ function App() {
             <PrivateRoute exact path='/admin/products'>
               <ProductsPage />
             </PrivateRoute>
+<<<<<<< HEAD
+            <PrivateRoute exact path='/admin/warehouses'>
+              <WareHouses />
+            </PrivateRoute>
+=======
+>>>>>>> 1d104c8c802d316cd0dce3f73d2d9a519b3cb9eb
             <PrivateRoute exact path='/admin/products/:id'>
               <SingleProductPage />
             </PrivateRoute>

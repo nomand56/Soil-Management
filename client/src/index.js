@@ -10,18 +10,21 @@ import { CartProvider } from './context/cart_context';
 import { UserProvider } from './context/user_context';
 import { OrderProvider } from './context/order_context';
 import colorTheme from './components/theme/index'
+import { WareHouseProvider } from './context/warehouse_context';
 ReactDOM.render(
   <UserProvider>
     <AdminProvider>
       <ProductsProvider>
         <CartProvider>
           <OrderProvider>
-            <ChakraProvider theme={theme}>
-              <ColorModeScript
-                initialColorMode={colorTheme.config.initialColorMode}
-              />
-              <App />
-            </ChakraProvider>
+            <WareHouseProvider>
+              <ChakraProvider theme={theme}>
+                <ColorModeScript
+                  initialColorMode={colorTheme.config.initialColorMode}
+                />
+                <App />
+              </ChakraProvider>
+            </WareHouseProvider>
           </OrderProvider>
         </CartProvider>
       </ProductsProvider>

@@ -7,7 +7,7 @@ let schema = new mongoose.Schema({
   },
   supplierId: {
     type: Schema.Types.ObjectId,
-    ref: "clients",
+    ref: "warehouses",
   },
   supplierPostalCode: {
     type: Number,
