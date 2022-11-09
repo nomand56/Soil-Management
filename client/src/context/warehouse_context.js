@@ -45,7 +45,6 @@ export const WareHouseProvider = ({ children }) => {
     dispatch({ type: GET_WAREHOUSE_BEGIN });
     try {
       const { data } = await axios.get(get_all_warehouses);
-      console.log("context" ,data)
       dispatch({ type: GET_WAREHOUSE_SUCCESS, payload: data });
     } catch (error) {
       dispatch({ type: GET_WAREHOUSE_ERROR });

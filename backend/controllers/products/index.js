@@ -71,8 +71,10 @@ const filterProduct = async (req, res) => {
         $gte: +req.body.postalCode - 10,
       },
     });
-    if (data > 0) {
+    console.log(data)
+    if (data.length > 0) {
       res.send(data);
+
     } else {
       res.status(404).send({ message: "not found" });
     }

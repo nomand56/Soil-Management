@@ -38,6 +38,9 @@ export default function Form({ product }) {
         isClosable: true,
       });
     }
+    if (mounted.current) {
+      setLoading(true);
+    }
     const data = {
       email,
       postalCode: product.postalCode,
@@ -46,9 +49,6 @@ export default function Form({ product }) {
       service: product.for,
     };
     InquiryForm(data);
-    if (mounted.current) {
-      setLoading(true);
-    }
     if (success) {
       toast({
         position: 'top',
