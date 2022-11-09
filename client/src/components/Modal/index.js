@@ -10,17 +10,24 @@ import {
   ModalCloseButton,
 } from '@chakra-ui/react';
 import GridView from '../GridView';
-import axios from 'axios';
+import { useProductsContext } from '../../context/products_context';
+import { PreLoader } from '../../Admin/components';
+import Form from '../form';
 
 function BasicModal({ open, setopen, state }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  let [products,setproducts]=useState([])
+  const {
+    filtered_products:products,
+    filtered_products_loading: loading,
+    filtered_products_error: error,
+    filteredProducts,
+  } = useProductsContext();
   useEffect(() => {
-    axios.post('api/v1//product/filterProducts', state).then((res) => {
-      setproducts(res.data)
-    });
-  },[])
+    filteredProducts(state);
+  }, []);
 
+ 
+  console.log("filtered",products);
   return (
     <>
       <Modal
@@ -36,7 +43,8 @@ function BasicModal({ open, setopen, state }) {
           <ModalCloseButton />
           <ModalBody>
             <Box>
-              <GridView products={products} />
+              {products ? (<GridView products={products} />):(<Form product={state}/> )
+              }
             </Box>
           </ModalBody>
 

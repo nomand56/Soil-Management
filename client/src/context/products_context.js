@@ -1,7 +1,6 @@
-
 import axios from 'axios';
 import React, { useContext, useEffect, useReducer } from 'react';
-  import { products_url, update_product_url , create_new_product, delete_product_url,single_product_url } from '../utils/constants';
+  import { products_url, update_product_url , create_new_product, delete_product_url,single_product_url,filtered_products_url,inquiry_product} from '../utils/constants';
 import reducer from '../reducers/products_reducer';
 import {
   SIDEBAR_OPEN,
@@ -16,6 +15,12 @@ import {
   SET_LISTVIEW,
   CREATE_NEW_PRODUCT,
   UPDATE_EXISTING_PRODUCT,
+  GET_FILTERED_PRODUCTS_ERROR,
+  GET_FILTERED_PRODUCTS_SUCCESS,
+  GET_FILTERED_PRODUCTS_BEGIN,
+  INQUIRY_FORM_BEGIN,
+  INQUIRY_FORM_SUCCESS,
+  INQUIRY_FORM_ERROR,
 } from '../actions';
 
 import { useUserContext } from './user_context';
@@ -38,12 +43,16 @@ const initialState = {
     company: '',
     shipping: true,
     featured: false,
-    usedFor:[]
+    usedFor:[],
+    success: false,
   },
+  filtered_products: null,
   single_product_loading: false,
   single_product_error: false,
   single_product: {},
   featured_products: [],
+  filtered_products_loading: false,
+  filtered_products_error: false,
 };
 
 const ProductsContext = React.createContext();
@@ -88,6 +97,8 @@ export const ProductsProvider = ({ children }) => {
     } catch (error) {
       const { success, message } = error.response.data;
       return { success, message };
+  
+  
     }
   };
   const updateNewProductDetails = (e) => {
@@ -115,6 +126,19 @@ export const ProductsProvider = ({ children }) => {
     }
     dispatch({ type: CREATE_NEW_PRODUCT, payload: { name, value } });
   };
+  const InquiryForm = async (data) => {  
+    dispatch({ type: INQUIRY_FORM_BEGIN });
+    try{
+      const response = await axios.post(inquiry_product, data)
+        dispatch({ type: INQUIRY_FORM_SUCCESS, payload: response });      
+    }
+    catch(error){ 
+      dispatch({ type: INQUIRY_FORM_ERROR, payload: error });
+    }
+
+  
+  
+  }
   const updateExistingProductDetails = (e) => {
     const name = e.target.name;
     let value = e.target.value;
@@ -158,12 +182,23 @@ export const ProductsProvider = ({ children }) => {
       return { success, message };
     }
   };
+const filteredProducts = async (data) => {
+    dispatch({ type: GET_FILTERED_PRODUCTS_BEGIN });
+  try{
+      const response = await axios.post(filtered_products_url,data);
+    dispatch({ type: GET_FILTERED_PRODUCTS_SUCCESS, payload: response.data });
+ 
+  }
+  catch(error){
+  dispatch({ type: GET_FILTERED_PRODUCTS_ERROR });
+  }
+
+};
 
   const fetchSingleProduct = async (id) => {
     dispatch({ type: GET_SINGLE_PRODUCT_BEGIN });
     try {
       const response = await axios.get(`${single_product_url}${id}`);
-  // console.log(`${single_product_url}${id}`)
       dispatch({
         type: GET_SINGLE_PRODUCT_SUCCESS,
         payload: response.data,
@@ -197,6 +232,8 @@ export const ProductsProvider = ({ children }) => {
         updateProduct,
         setListView,
         fetchProducts,
+        filteredProducts,
+        InquiryForm
         // getProductReviews,
       }}
     >

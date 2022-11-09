@@ -1,14 +1,13 @@
 let products = require("../../models/products/model");
-
+let inquiry = require("../../models/inquiry/model");
 const addProduct = async (req, res) => {
   try {
     let data = await new products(req.body);
     await data.save();
-    res.send({seccess:"ok",message:"add to products successfully"});
+    res.send({ seccess: "ok", message: "add to products successfully" });
   } catch (error) {
     console.log(error);
   }
- 
 };
 const deleteProduct = async (req, res) => {
   try {
@@ -68,11 +67,15 @@ const filterProduct = async (req, res) => {
     let data = await products.find({
       usedFor: req.body.for,
       supplierPostalCode: {
-        $lte: +req.body.postalcode + 10,
-        $gte: +req.body.postalcode - 10,
+        $lte: +req.body.postalCode + 10,
+        $gte: +req.body.postalCode - 10,
       },
     });
-    res.send(data);
+    if (data > 0) {
+      res.send(data);
+    } else {
+      res.status(404).send({ message: "not found" });
+    }
   } catch (error) {
     res.send({ error });
   }
@@ -81,8 +84,16 @@ const filterProduct = async (req, res) => {
 const getSingleProduct = async (req, res) => {
   try {
     let data = await products.findOne({ _id: req.params.id });
-
     res.send(data);
+  } catch (error) {
+    res.send({ error });
+  }
+};
+const postInquiry = async (req, res) => {
+  try {
+    let data = await new inquiry(req.body);
+    await data.save();
+    res.send({ success: "ok", message: "inquiry sent successfully" });
   } catch (error) {
     res.send({ error });
   }
@@ -96,4 +107,5 @@ module.exports = {
   updateProductStatus,
   getSingleProduct,
   filterProduct,
+  postInquiry,
 };

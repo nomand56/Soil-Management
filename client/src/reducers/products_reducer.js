@@ -10,6 +10,12 @@ import {
   SET_GRIDVIEW,
   SET_LISTVIEW,
   CREATE_NEW_PRODUCT,
+  GET_FILTERED_PRODUCTS_SUCCESS,
+  GET_FILTERED_PRODUCTS_ERROR,
+  GET_FILTERED_PRODUCTS_BEGIN,
+  INQUIRY_FORM_BEGIN,
+  INQUIRY_FORM_SUCCESS,
+  INQUIRY_FORM_ERROR,
 } from '../actions';
 
 const products_reducer = (state, action) => {
@@ -74,7 +80,43 @@ const products_reducer = (state, action) => {
       single_product_error: true,
     };
   }
+  if  (action.type === GET_FILTERED_PRODUCTS_BEGIN) {
+    return {
+      ...state,
+      filtered_products_loading: true,
+    };
+  }
+  if  (action.type === GET_FILTERED_PRODUCTS_SUCCESS) {
+    console.log(action.payload);
+    return {
+      ...state, 
+      filtered_products_loading: false,
+      filtered_products: action.payload,
+    };
+  }
+  if  (action.type === GET_FILTERED_PRODUCTS_ERROR) {
 
+    return {
+    
+      ...state,
+      filtered_products_loading: false,
+      filtered_products_error: true,
+    };
+  }
+  if (action.type === INQUIRY_FORM_BEGIN) {
+  
+    return{
+      ...state,
+      inquiry_form_loading: true,
+      inquiry_form_error: false,
+
+    }
+  }
+    if (action.type === INQUIRY_FORM_SUCCESS) {
+      return{ ...state, inquiry_form_loading: false, inquiry_form_error: false,success:true}  }
+    if (action.type === INQUIRY_FORM_ERROR) {
+      return{ ...state, inquiry_form_loading: false, inquiry_form_error: true, success:false}  }
+        
   throw new Error(`No Matching "${action.type}" - action type`);
 };
 

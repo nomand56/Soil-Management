@@ -24,7 +24,6 @@ function CheckoutPage() {
       return setEditingShipping(true);
     }
     setEditingShipping(false);
-
   }, []);
 
   useEffect(() => {
@@ -34,31 +33,26 @@ function CheckoutPage() {
   const confirmShipping = () => {
     setEditingShipping(false);
   };
- 
-
 
   return (
     <main>
-
-    {editingShipping ? (
-      <ShippingForm confirmShipping={confirmShipping} />
-    ) : (
-      <Wrapper className='page'>
-        {cart.length < 1 ? (
-          <div className='empty'>
-            <h2>Your cart is empty</h2>
-         
-          </div>
-        ) : (
-          <div className="flex">
-
-          <CartDelivery />
-           <CartTotals />
-          </div>
-        )}
-      </Wrapper>
-    )}
-  </main>
+      {editingShipping ? (
+        <ShippingForm confirmShipping={confirmShipping} />
+      ) : (
+        <Wrapper className='page'>
+          {cart.length < 1 ? (
+            <div className='empty'>
+              <h2>Your cart is empty</h2>
+            </div>
+          ) : (
+            <div className='flex'>
+              <CartDelivery />
+              <CartTotals />
+            </div>
+          )}
+        </Wrapper>
+      )}
+    </main>
   );
-          }
+}
 export default CheckoutPage;

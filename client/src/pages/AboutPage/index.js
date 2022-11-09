@@ -5,7 +5,7 @@ import aboutImg from '../../assets/soil.jpg';
 
 const AboutPage = () => {
   useEffect(() => {
-    document.title = 'Tomper Wear | About';
+    document.title = 'Green Waste Company | About';
   }, []);
 
   return (

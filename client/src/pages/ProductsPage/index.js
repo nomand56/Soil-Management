@@ -4,7 +4,7 @@ import {  ProductList,  PageHero,Sort} from '../../components';
 
 const ProductsPage = () => {
   useEffect(() => {
-    document.title = 'Tomper Wear | Products';
+    document.title = 'Green Waste Company| Products';
   }, []);
 
   return (

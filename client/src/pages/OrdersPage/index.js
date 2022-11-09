@@ -12,7 +12,7 @@ const OrdersPage = () => {
   } = useOrderContext();
 
   useEffect(() => {
-    document.title = 'Tomper Wear | Orders';
+    document.title = 'Green Waste Company | Orders';
   }, []);
 
   if (loading) {

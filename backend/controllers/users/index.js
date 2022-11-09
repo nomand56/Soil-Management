@@ -58,7 +58,6 @@ const deleteClient = async (req, res) => {
 
 
 const loginClient = async (req, res) => {
-    console.log(req.body)
     try {
         let data = await Client.findOne({ email: req.body.email, password: req.body.password });
         if (data !== null)

@@ -8,7 +8,7 @@ const CartPage = () => {
   const { cart } = useCartContext();
 
   useEffect(() => {
-    document.title = 'Tomper Wear | Cart';
+    document.title = 'Green Waster Company   | Cart';
   }, []);
 
   if (cart.length < 1) {

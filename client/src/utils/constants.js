@@ -101,13 +101,13 @@ export const services = [
     id: 2,
     icon: <GiDiamondHard />,
     title: 'vision',
-    text: 'Our vision is to take TomperWear to greater heights, by providing our customers best in class service.',
+    text: 'Our vision is to take Green Waste Company to greater heights, by providing our customers best in class service.',
   },
   {
     id: 3,
     icon: <GiStabbedNote />,
     title: 'history',
-    text: `TomperWear was started in December'21 with an initial aim to provide the best in class services to our customers.`,
+    text: `Green Waste Company was started in December'21 with an initial aim to provide the best in class services to our customers.`,
   },
 ];
 
@@ -136,3 +136,5 @@ export const get_all_warehouses = `${domain}warehouses`;
 export const create_warehouse = `${domain}warehouses/create`;
 export const delete_warehouses = `${domain}warehouses/delete`;
 export const get_all_product_by_warehouse = `${domain}warehouses/getallproducts`;
+export const filtered_products_url=`${domain}product/filterProducts`;
+export const inquiry_product=`${domain}product/inquiry`;

@@ -5,11 +5,11 @@ import Wrapper from './styles';
 import { useProductsContext } from '../../context/products_context';
 import { useCartContext } from '../../context/cart_context';
 import { useUserContext } from '../../context/user_context';
-import { default_profile_image } from '../../utils/constants';
+import {IoIosLogOut} from 'react-icons/io'
 import { Text, useColorModeValue } from '@chakra-ui/react';
 
 const CartButtons = () => {
-  const { currentUser } = useUserContext();
+  const { currentUser,logout} = useUserContext();
   const { closeSidebar } = useProductsContext();
   const { total_items } = useCartContext();
    const color = useColorModeValue('rgb(40,40,40)', 'rgb(180,180,180)');
@@ -28,10 +28,7 @@ const CartButtons = () => {
         </Link>
       ) : (
         <Link to='/' className='profile-btn' onClick={closeSidebar}>
-        <img
-          src={currentUser.photoURL || default_profile_image}
-          alt='profile'
-        />
+  <IoIosLogOut size={30}  onClick={logout}/>
       </Link>
       )}
     </Wrapper>

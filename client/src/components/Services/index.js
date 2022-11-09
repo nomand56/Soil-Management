@@ -16,7 +16,7 @@ const Services = () => {
             Our command
           </Text>
           <Text fontSize='md' color={color}>
-            Customer satisfaction is the top-most priorty for TomperWear. It is
+            Customer satisfaction is the top-most priorty for Wear. It is
             the only the trust and support of our customers that we are now
             reaching greater heights.
           </Text>

@@ -47,7 +47,7 @@ const SingleProductPage = () => {
 
 
   useEffect(() => {
-    document.title = `Tomper Wear `;
+    document.title = `Green Waste Company `;
   }, []);
 
   if (loading) {

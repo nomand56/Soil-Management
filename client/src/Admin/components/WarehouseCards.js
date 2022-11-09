@@ -17,7 +17,7 @@ function WarehouseCards({ products }) {
           >
             <Image src="https://www.prologis.com/sites/corporate/files/images/2019/09/large-ontario_dc9_3_11.jpg" alt={product.warehouseName} />
 <Link to={`/singleWarehouseProduct/${product._id}`}>
-
+ 
             <Box p='6'>
               <Box display='flex' alignItems='baseline'>
                 <Badge borderRadius='full' px='2' colorScheme='teal'>

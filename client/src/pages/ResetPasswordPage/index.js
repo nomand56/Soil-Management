@@ -35,7 +35,7 @@ function ResetPasswordPage() {
   };
 
   useEffect(() => {
-    document.title = 'Tomper Wear | Reset Password';
+    document.title = 'Green Waste Company | Reset Password';
   }, []);
 
   return (

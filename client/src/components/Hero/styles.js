@@ -1,4 +1,4 @@
-export const HeroImg = {
+export const  HeroImg = {
   height: '100%',
   borderRadius: '10px',
   margin: '0px auto',
