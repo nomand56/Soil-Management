@@ -101,6 +101,7 @@ const products_reducer = (state, action) => {
       ...state,
       filtered_products_loading: false,
       filtered_products_error: true,
+      filtered_products:null
     };
   }
   if (action.type === INQUIRY_FORM_BEGIN) {

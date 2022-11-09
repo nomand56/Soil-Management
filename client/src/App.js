@@ -29,7 +29,8 @@ import {
   SingleOrderPage,
   SingleProductPage,
   AdminsPage,
-  WareHouses
+  LoginPage,
+  WareHouses,
 } from './Admin/adminPages';
 
 function App() {

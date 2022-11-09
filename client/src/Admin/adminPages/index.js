@@ -13,5 +13,5 @@ export {
   SingleOrderPage,
   SingleProductPage,
   AdminOrdersPage,
-  WareHouses
+  WareHouses,
 };
