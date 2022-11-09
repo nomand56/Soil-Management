@@ -14,7 +14,11 @@ let schema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-
+  serialCode: {
+    type: Number,
+    required: true,
+    unique:true
+},
   city: {
     type: String,
     required: true,
