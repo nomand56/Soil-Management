@@ -43,7 +43,7 @@ function BasicModal({ open, setopen, state }) {
           <ModalCloseButton />
           <ModalBody>
             <Box>
-              {products ? (<GridView products={products} />):(<Form product={state}/> )
+              {products ? (<GridView products={products} />):(<Form product={state} setopen={setopen}/> )
               }
             </Box>
           </ModalBody>

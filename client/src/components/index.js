@@ -1,4 +1,3 @@
-import FeaturedProducts from './FeaturedProducts/';
 import Navbar from './Navbar/';
 import CartButtons from './CartButtons//';
 import Footer from './Footer/';
@@ -23,8 +22,11 @@ import ReviewStars from './ReviewStars/';
 import Sort from './Sort';
 import UserReview from './UserReview/';
 import ErrorBoundary from './ErrorBoundary/';
+import SeacrhBar from './Search';
+import UserSelect from './UserSelect';
+import Stepper from "./stepper";
+import FormCards from "./Card";
 export {
-  FeaturedProducts,
   Navbar,
   CartButtons,
   Footer,
@@ -36,7 +38,7 @@ export {
   Error,
   ProductImages,
   AddToCart,
-   Sort,
+  Sort,
   ProductList,
   Stars,
   CartContent,
@@ -46,7 +48,11 @@ export {
   OrderContent,
   OrderItems,
   ReviewModal,
+  SeacrhBar,
   ReviewStars,
   UserReview,
   ErrorBoundary,
+  UserSelect,
+  Stepper,
+  FormCards
 };

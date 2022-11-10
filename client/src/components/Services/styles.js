@@ -4,7 +4,7 @@ const Wrapper = styled.section`
 
   padding: 5rem 0;
 
-  background-color:rgba(210,210,210,0.2) ;
+  background-color:#32995b ;
 
   .header h3 {
     margin-bottom: 2rem;

@@ -18,7 +18,7 @@ const Nav = () => {
       <div className='nav-center'>
         <div className='nav-header'>
           <Link to='/'>
-            <Text sx={{ color: '#ab7a5f', fontSize: '25px' }}>
+            <Text sx={{ color: '#32995b', fontSize: '25px' }}>
               GREEN WASTE COMPANY
             </Text>
           </Link>

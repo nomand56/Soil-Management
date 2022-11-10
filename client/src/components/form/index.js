@@ -15,14 +15,16 @@ import {
   Image,
 } from '@chakra-ui/react';
 import { useProductsContext } from '../../context/products_context';
+import { useHistory } from 'react-router-dom';
 
-export default function Form({ product }) {
+export default function Form({ product,setopen}) {
   const {
     inquiry_form_error: error,
     inquiry_form_loadng: loading,
     InquiryForm,
     success,
   } = useProductsContext();
+  const history = useHistory();
   const toast = useToast();
   const mounted = useMounted();
   const [email, setEmail] = useState('');
@@ -38,9 +40,6 @@ export default function Form({ product }) {
         isClosable: true,
       });
     }
-    if (mounted.current) {
-      setLoading(true);
-    }
     const data = {
       email,
       postalCode: product.postalCode,
@@ -49,6 +48,10 @@ export default function Form({ product }) {
       service: product.for,
     };
     InquiryForm(data);
+    if (mounted.current) {
+      setLoading(true);
+    }
+    
     if (success) {
       toast({
         position: 'top',
@@ -57,6 +60,8 @@ export default function Form({ product }) {
         duration: 5000,
         isClosable: true,
       });
+      history.push('/');
+      setopen(false);
     }
   };
 

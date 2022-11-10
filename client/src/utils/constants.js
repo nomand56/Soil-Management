@@ -6,7 +6,8 @@ import {
   AiFillTwitterCircle,
   AiFillGithub,
 } from 'react-icons/ai';
-
+import { FormCards } from '../components';
+import { Box } from '@chakra-ui/react';
 export const links = [
   {
     id: 1,
@@ -110,6 +111,34 @@ export const services = [
     text: `Green Waste Company was started in December'21 with an initial aim to provide the best in class services to our customers.`,
   },
 ];
+
+export const CardOne = () => {
+  return <Box sx={{display:"flex",justifyContent:"space-around",alignItems:"center",flexWrap:"wrap"}}>
+
+  < FormCards />
+
+  < FormCards />
+
+   </Box>
+}
+export const CardTwo = () => {
+  return <Box sx={{display:"flex",justifyContent:"space-around",alignItems:"center",flexWrap:"wrap"}}>
+
+  < FormCards />
+
+  < FormCards />
+
+   </Box>
+}
+export const CardThree = () => {
+  return <Box sx={{display:"flex",justifyContent:"space-around",alignItems:"center",flexWrap:"wrap"}}>
+
+  < FormCards />
+
+  < FormCards />
+
+   </Box>
+}
 
 const domain = process.env.REACT_APP_BACKEND_HOST;
 export const products_url = `${domain}getAllProducts`;

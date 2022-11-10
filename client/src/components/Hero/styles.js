@@ -5,25 +5,25 @@ export const  HeroImg = {
   boxShadow: 'rgba(100, 100, 111, 0.4) 0px 7px 29px 0px',
 };
 export const ButtonProps = {
-  width: '100%',
+  width: '40%',
   height: '100%',
   borderRadius: '5px',
-  margin: '5px auto',
+  
   padding:'10px',
   fontWeight: 'bold',
-  color:'#ab7a5f',
+  color:'#32995b',
   boxShadow: 'rgba(100, 100, 111, 0.2) 0px 5px 15px 0px',
 };
 
 export const ActiveButtonProps = {
-  width: '100%',
+  width: '40%',
   height: '100%',
   borderRadius: '5px',
-  margin: '5px auto',
+  
   fontWeight: 'bold',
-  backgroundColor: '#ab7a5f',
+  backgroundColor: '#32995b',
   padding:'10px',
   color:'white',
   boxShadow: 'rgba(100, 100, 111, 0.2) 0px 5px 15px 0px',
- "&:hover":{backgroundColor:'#ab7a5f',color:'white'}
+ "&:hover":{backgroundColor:'#32995b',color:'white'}
 };
