@@ -16,7 +16,7 @@ const HomePage = () => {
   function setvalue(e) {
     setdata({ ...data, [e.target.name]: e.target.value });
     setloading(true)
-    callNext()
+    callNext() 
   }
   function callNext()
   {

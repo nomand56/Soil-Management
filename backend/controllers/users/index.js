@@ -1,5 +1,4 @@
 let Client = require('../../models/users/model')
-
 let jwt = require('jsonwebtoken')
 const getClient = async (req, res) => {
     try {
@@ -22,7 +21,7 @@ const postClient = async (req,res) => {
     try {
         let request = await new Client(req.body);
         await request.save();
-        res.send("saved..",req.body.name)
+        res.status(200).json({'success' : true, 'result': req.body.name})
     } catch (error) {
         res.send({"Error":error})
     }

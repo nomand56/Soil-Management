@@ -49,6 +49,7 @@ export const UserProvider = ({ children }) => {
     dispatch({ type: CREATE_USER_BEGIN });
     try {
       const response = await axios.post(signup_url, { email, password, name });
+      
       dispatch({ type: CREATE_USER_SUCCESS, payload: response });
     } catch (error) {
       dispatch({ type: CREATE_USER_ERROR });

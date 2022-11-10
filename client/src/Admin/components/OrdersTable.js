@@ -125,7 +125,7 @@ function OrdersTable({ orders }) {
                         Actions
                       </MenuButton>
                       <MenuList>
-                        <Link to={`/orders/${id}`}>
+                        <Link to={`/admin/orders/${id}`}>
                           <MenuItem>View</MenuItem>
                         </Link>
                         {currentUser.privilege !== 'low' && (
