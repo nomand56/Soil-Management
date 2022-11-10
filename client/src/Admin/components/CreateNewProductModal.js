@@ -29,8 +29,7 @@ import { useWarehouseContext } from '../../context/warehouse_context';
 function CreateNewProductModal() {
   const [wareH, setwareH] = useState(null);
   const [ID, setID] = useState(0);
-  const [PostalC, setPostalC] = useState(0);
-  const [Comp, setComp] = useState('');
+  const [serialCode, setserialCode] = useState(0);
   let {
     new_product: {
       productName,
@@ -39,7 +38,9 @@ function CreateNewProductModal() {
       description,
       category,
       featured,
+      company,
       usedFor,
+      supplierPostalCode,
     },
     updateNewProductDetails,
     createNewProduct,
@@ -80,9 +81,8 @@ useEffect(()=>{fetchWareHouses()},[])
     setwareH(e.target.value);
     let data = warehouse.filter((f) => f.warehouseName === e.target.value);
     setID(data[0]._id);
-    setPostalC(data[0].PostalCode);
-    setComp(data[0].company);
-    console.log(data[0]._id)
+    if (data[0].serialCode) { setserialCode(data[0].serialCode); console.log(data[0].serialCode);}
+
   }
 
   const handleSubmit = async () => {
@@ -101,6 +101,27 @@ useEffect(()=>{fetchWareHouses()},[])
         isClosable: true,
       });
     }
+    if (
+      supplierPostalCode === 0 
+    ) {
+      return toast({
+        position: 'top',
+        description: `please provide a valid postalcode`,
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
+    }
+    if (supplierPostalCode <= 1 || supplierPostalCode >= (serialCode * 1000 - 1))
+    {
+        return toast({
+          position: 'top',
+          description: serialCode==0?"please provide a valid Postal Code":`please provide a valid postalcode between ${(serialCode-1)*1000} to ${(serialCode*1000)-1}`,
+          status: 'error',
+          duration: 5000,
+          isClosable: true,
+        });
+      }
     // if (imageList.length < 1) {
     //   return toast({
     //     position: 'top',
@@ -118,8 +139,8 @@ useEffect(()=>{fetchWareHouses()},[])
       stock,
       description,
       category,
-      company: Comp,
-      supplierPostalCode: PostalC,
+      company,
+      supplierPostalCode,
       supplierId: ID,
       featured,
       usedFor,
@@ -127,6 +148,7 @@ useEffect(()=>{fetchWareHouses()},[])
     console.log(product);
     const responseCreate = await createNewProduct(product);
     setLoading(false);
+    setwareH(null);
     if (responseCreate.success) {
       onClose();
       return toast({
@@ -145,6 +167,7 @@ useEffect(()=>{fetchWareHouses()},[])
         isClosable: true,
       });
     }
+  
   };
 
 
@@ -241,7 +264,7 @@ useEffect(()=>{fetchWareHouses()},[])
                     placeholder='Product Company'
                     name='company'
                     focusBorderColor='brown.500'
-                    value={Comp}
+                    value={company}
                     onChange={updateNewProductDetails}
                   />
                 </FormControl>
@@ -252,8 +275,8 @@ useEffect(()=>{fetchWareHouses()},[])
                     placeholder='Supplier Postal Code'
                     name='supplierPostalCode'
                     focusBorderColor='brown.500'
-                    value={PostalC}
-                    disabled={true}
+                    value={supplierPostalCode}
+                    onChange={updateNewProductDetails}
                   />
                   <FormHelperText>Eg: 32100</FormHelperText>
                 </FormControl>
@@ -265,7 +288,7 @@ useEffect(()=>{fetchWareHouses()},[])
                     name='supplierId'
                     focusBorderColor='brown.500'
                     value={ID}
-                   disabled={true}
+                    disabled={true}
                   />
                   <FormHelperText>Eg: 635bfcd14d4210d7b56ba9f0</FormHelperText>
                 </FormControl>

@@ -38,6 +38,7 @@ function CreateNewWareHouseModel() {
       warehouseName,
       OwnerName,
       PostalCode,
+      serialCode,
       street,
       state,
       city,
@@ -83,6 +84,7 @@ console.log(warehouse)
           warehouseName,
           OwnerName,
           PostalCode,
+          serialCode,
           street,
           state,
           city,
@@ -158,6 +160,18 @@ console.log(warehouse)
                 value={PostalCode}
                 onChange={updateNewWareHouseDetails}
               />
+            </FormControl>
+            <FormControl mt={4}>
+              <FormLabel>Assign a Serial Number</FormLabel>
+              <Input
+                type='text'
+                placeholder='Serial Code'
+                name='serialCode'
+                focusBorderColor='brown.500'
+                value={serialCode}
+                onChange={updateNewWareHouseDetails}
+              />
+              <FormHelperText>Eg: 1 contains Postal code 0000-1000</FormHelperText>
             </FormControl>
 
             <FormControl mt={4}>
