@@ -1,11 +1,15 @@
-  import {
+import {
   UPDATE_SHIPPING_DETAILS,
   GET_ORDERS_BEGIN,
   GET_ORDERS_SUCCESS,
   GET_ORDERS_ERROR,
   GET_ADMIN_ORDERS_BEGIN,
   GET_ADMIN_ORDERS_SUCCESS,
-  GET_ADMIN_ORDERS_ERROR
+  GET_ADMIN_ORDERS_ERROR,
+  GET_SINGLE_ORDER_BEGIN,
+  GET_SINGLE_ORDER_ERROR,
+  GET_SINGLE_ORDER_SUCCESS,
+  UPDATE_ORDER_STATUS
 } from '../actions';
 
 const order_reducer = (state, action) => {
@@ -32,16 +36,33 @@ const order_reducer = (state, action) => {
     return {
       ...state,
       orders_loading: false,
-       orders: action.payload.reverse(),
+      orders: action.payload.reverse(),
     };
+  }
+  if (action.type === GET_SINGLE_ORDER_BEGIN) {
+    return { ...state, single_order_error: false, single_order_loading: true };
+  }
+  if (action.type === GET_SINGLE_ORDER_SUCCESS) {
+    console.log(action.payload);
+    return {
+      ...state,
+      single_order_loading: false,
+      single_order: action.payload,
+      single_order_status: action.payload.orderStatus,
+    };
+  }
+  if (action.type === GET_SINGLE_ORDER_ERROR) {
+    return { ...state, single_order_loading: false, single_order_error: true };
   }
   if (action.type === GET_ADMIN_ORDERS_BEGIN) {
     return { ...state, admin_orders_loading: true, admin_orders_error: false };
   }
   if (action.type === GET_ADMIN_ORDERS_ERROR) {
-  return { ...state, admin_orders_loading: false, admin_orders_error: true };
+    return { ...state, admin_orders_loading: false, admin_orders_error: true };
   }
-    
+  if (action.type === UPDATE_ORDER_STATUS) {
+    return { ...state, single_order_status: action.payload };
+  }
   if (action.type === GET_ADMIN_ORDERS_SUCCESS) {
 
     const orders = action.payload;
@@ -70,6 +91,7 @@ const order_reducer = (state, action) => {
       total_revenue,
       recent_orders,
     };
+   
   }
   throw new Error(`No Matching "${action.type}" - action type`);
 };

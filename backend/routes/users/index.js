@@ -9,5 +9,6 @@ router.put('/update/client',client.updateClient)
 router.delete('/delete/client/:id', client.deleteClient)
 router.post('/login', client.loginClient)
 router.post('/verify',verifyToken,client.verifyClient)
+router.get('/fetch',client.fetchClient)
 
 module.exports=router

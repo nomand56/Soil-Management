@@ -8,6 +8,7 @@ import { HStack, VStack, Spinner, Heading, Button } from '@chakra-ui/react';
 import { BiRefresh } from 'react-icons/bi';
 
 import { useWarehouseContext } from '../../context/warehouse_context';
+import WarehouseCards from '../components/WarehouseCards';
 
 function WareHouses() {
   const {
@@ -27,7 +28,7 @@ function WareHouses() {
         <HStack mb={5}>
           <CreateNewWareHouseModel />
           <Button
-            colorScheme='brown'
+            colorScheme='green'
             variant='outline'
             leftIcon={<BiRefresh />}
             onClick={handleRefresh}
@@ -48,7 +49,7 @@ function WareHouses() {
         <HStack mb={5}>
           <CreateNewWareHouseModel />
           <Button
-            colorScheme='brown'
+            colorScheme='green'
             variant='outline'
             leftIcon={<BiRefresh />}
             onClick={handleRefresh}
@@ -57,7 +58,7 @@ function WareHouses() {
           </Button>
         </HStack>
         <VStack alignItems='center' justifyContent='center'>
-          <Heading color='red.500'>There was an error</Heading>
+          <Heading color='red.500'>There was an 0error</Heading>
         </VStack>
       </SidebarWithHeader>
     );
@@ -68,7 +69,7 @@ function WareHouses() {
       <HStack mb={5}>
         <CreateNewWareHouseModel />
         <Button
-          colorScheme='brown'
+          colorScheme='green'
           variant='outline'
           leftIcon={<BiRefresh />}
           onClick={handleRefresh}
@@ -76,7 +77,7 @@ function WareHouses() {
           Refresh
         </Button>
       </HStack>
-      {/* <ProductsTable products={warehouse} /> */}
+    <WarehouseCards products={warehouse}/>
     </SidebarWithHeader>
   );
 }

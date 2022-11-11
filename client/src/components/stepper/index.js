@@ -1,7 +1,12 @@
 import { Box, Button, Text, useColorModeValue } from '@chakra-ui/react';
 import React from 'react'
+<<<<<<< HEAD
 
 const Land = ({m,setvalue}) => {
+=======
+import {Box} from '@chakra-ui/react'
+const Land = () => {
+>>>>>>> ecde47d78e8edff22cf9974c8bbaf1488326000d
 
     const color = useColorModeValue('rgb(40,40,40)', 'rgb(250,250,250)');
     const bg = useColorModeValue('rgb(250,250,250)', '#32995b');  

@@ -88,13 +88,14 @@ export const OrderProvider = ({ children }) => {
   const fetchSingleOrder = async (id) => {
     dispatch({ type: GET_SINGLE_ORDER_BEGIN });
     try {
-      const response = await axios.get(`${single_order_url}${id}`);
-      const { data } = response.data;
+      const response = await axios.post(`${single_order_url}${id}`);
+      const { data } = response;
       dispatch({ type: GET_SINGLE_ORDER_SUCCESS, payload: data });
     } catch (error) {
       dispatch({ type: GET_SINGLE_ORDER_ERROR });
     }
   };
+
     const updateOrderStatus = async (status, id) => {
       try {
         const response = await axios.put(`${update_order_status}${id}`, {

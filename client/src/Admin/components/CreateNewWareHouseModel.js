@@ -116,7 +116,7 @@ console.log(warehouse)
 
   return (
     <>
-      <Button colorScheme='brown' onClick={onOpen}>
+      <Button colorScheme='green' onClick={onOpen}>
         Create New WareHouse
       </Button>
 
@@ -132,7 +132,7 @@ console.log(warehouse)
                 ref={initialRef}
                 placeholder='WareHouse Name'
                 name='warehouseName'
-                focusBorderColor='brown.500'
+                focusBorderColor='#32995b'
                 value={warehouseName}
                 onChange={updateNewWareHouseDetails}
               />
@@ -144,7 +144,7 @@ console.log(warehouse)
                 type='text'
                 placeholder='Owner Name'
                 name='OwnerName'
-                focusBorderColor='brown.500'
+                focusBorderColor='#32995b'
                 value={OwnerName}
                 onChange={updateNewWareHouseDetails}
               />
@@ -156,7 +156,7 @@ console.log(warehouse)
                 type='text'
                 placeholder='Postal Code'
                 name='PostalCode'
-                focusBorderColor='brown.500'
+                focusBorderColor='#32995b'
                 value={PostalCode}
                 onChange={updateNewWareHouseDetails}
               />
@@ -167,7 +167,7 @@ console.log(warehouse)
                 type='text'
                 placeholder='Serial Code'
                 name='serialCode'
-                focusBorderColor='brown.500'
+                focusBorderColor='#32995b'
                 value={serialCode}
                 onChange={updateNewWareHouseDetails}
               />
@@ -242,7 +242,7 @@ console.log(warehouse)
               <Input
                 placeholder='Street Address'
                 name='street'
-                focusBorderColor='brown.500'
+                focusBorderColor='#32995b'
                 value={street}
                 onChange={updateNewWareHouseDetails}
               />
@@ -254,7 +254,7 @@ console.log(warehouse)
               <Input
                 placeholder='Company'
                 name='company'
-                focusBorderColor='brown.500'
+                focusBorderColor='#32995b'
                 value={company}
                 onChange={updateNewWareHouseDetails}
               />
@@ -269,7 +269,7 @@ console.log(warehouse)
             <Button
               isLoading={loading}
               loadingText='Creating Product'
-              colorScheme='brown'
+              colorScheme='green'
               onClick={handleSubmit}
             >
               Save

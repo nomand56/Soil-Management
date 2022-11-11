@@ -6,7 +6,7 @@ function OrderItemsList({ orderItems }) {
   return (
     <VStack alignItems='flex-start' spacing='4'>
       {orderItems.map((item, index) => {
-        const { name, price, quantity, image, color, size } = item;
+        const { name, price, quantity, image, } = item;
         return (
           <HStack key={index} alignItems='flex-start' spacing='5'>
             <Image
@@ -18,14 +18,14 @@ function OrderItemsList({ orderItems }) {
             <VStack alignItems='flex-start'>
               <HStack spacing='3'>
                 <Text as='b'>{name}</Text>
-                <Box bg={color} p='2' borderRadius='5' />
+                {/* <Box bg={color} p='2' borderRadius='5' /> */}
                 <Tag
                   variant='outline'
                   colorScheme='brown'
                   size='sm'
                   textTransform='uppercase'
                 >
-                  {size}
+                  {/* {size} */}
                 </Tag>
               </HStack>
               <Text color='green'>{formatPrice(price)}</Text>

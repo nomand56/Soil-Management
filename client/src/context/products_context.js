@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useReducer } from 'react';
-  import { products_url, update_product_url , create_new_product, delete_product_url,single_product_url,filtered_products_url,inquiry_product} from '../utils/constants';
+  import { products_url, update_product_url , create_new_product, delete_product_url,single_product_url,filtered_products_url,inquiry_product, fetch_inquiry_url} from '../utils/constants';
 import reducer from '../reducers/products_reducer';
 import {
   SIDEBAR_OPEN,
@@ -21,6 +21,9 @@ import {
   INQUIRY_FORM_BEGIN,
   INQUIRY_FORM_SUCCESS,
   INQUIRY_FORM_ERROR,
+  FETCH_INQUIRY_FORM_BEGIN,
+  FETCH_INQUIRY_FORM_SUCCESS,
+  FETCH_INQUIRY_FORM_ERROR,
 } from '../actions';
 
 import { useUserContext } from './user_context';
@@ -53,6 +56,9 @@ const initialState = {
   featured_products: [],
   filtered_products_loading: false,
   filtered_products_error: false,
+  inquiryForm: [],
+  inquiry_form_loading: false,
+  inquiry_form_error: false,
 };
 
 const ProductsContext = React.createContext();
@@ -101,6 +107,17 @@ export const ProductsProvider = ({ children }) => {
   
     }
   };
+  const fetchInquiry = async () => {
+    dispatch({ type: FETCH_INQUIRY_FORM_BEGIN });
+    try {
+      const {data} = await axios.get(fetch_inquiry_url);
+      dispatch({ type: FETCH_INQUIRY_FORM_SUCCESS, payload: data });
+    }
+    catch(error){
+      dispatch({ type: FETCH_INQUIRY_FORM_ERROR, payload: error });
+
+    }
+  }
   const updateNewProductDetails = (e) => {
     const name = e.target.name;
     let value = e.target.value;
@@ -213,6 +230,7 @@ const filteredProducts = async (data) => {
 
   useEffect(() => {
     fetchProducts();
+    fetchInquiry()
   }, []);
 
   return (
@@ -233,7 +251,8 @@ const filteredProducts = async (data) => {
         setListView,
         fetchProducts,
         filteredProducts,
-        InquiryForm
+        InquiryForm,
+        fetchInquiry
         // getProductReviews,
       }}
     >

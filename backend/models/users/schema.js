@@ -1,10 +1,6 @@
 let mongoose = require('mongoose');
 let schema = new mongoose.Schema({
-  firstname: {
-    type: String,
-    required: true,
-  },
-  lastname: {
+  name: {
     type: String,
     required: true,
   },
@@ -16,30 +12,10 @@ let schema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  city: {
+  userType: {
     type: String,
-    required: true,
-  },
-  age: {
-    type: Number,
-    required: true,
-  },
-  postalCode: {
-    type: String,
-    required: true,
-  },
-  contact: {
-    type: String,
-    required: true,
-  },
-  address: {
-    type: String,
-    required: true,
-    },
-    userType: {
-        type: String,
-        required:true
+    default: "user",
   }
 });
 
-module.exports=schema
+module.exports = schema

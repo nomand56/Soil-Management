@@ -16,6 +16,9 @@ import {
   INQUIRY_FORM_BEGIN,
   INQUIRY_FORM_SUCCESS,
   INQUIRY_FORM_ERROR,
+  FETCH_INQUIRY_FORM_SUCCESS,
+  FETCH_INQUIRY_FORM_ERROR,
+  FETCH_INQUIRY_FORM_BEGIN,
 } from '../actions';
 
 const products_reducer = (state, action) => {
@@ -111,6 +114,31 @@ const products_reducer = (state, action) => {
       inquiry_form_loading: true,
       inquiry_form_error: false,
 
+    }
+  }
+  if (action.type === FETCH_INQUIRY_FORM_BEGIN) {
+    return{
+      ...state,
+      inquiry_form_loading: true,
+      inquiry_form_error: false,
+
+    }
+
+  }
+  if(action.type === FETCH_INQUIRY_FORM_SUCCESS){
+    return{
+      ...state,
+      inquiry_form_loading: false,
+      inquiry_form_error: false,
+      inquiryForm: action.payload
+    }
+  }
+  if(action.type === FETCH_INQUIRY_FORM_ERROR){
+    return{
+      ...state,
+      inquiry_form_loading: false,
+      inquiry_form_error: true,
+   
     }
   }
     if (action.type === INQUIRY_FORM_SUCCESS) {

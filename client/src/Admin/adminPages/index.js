@@ -6,6 +6,8 @@ import SingleOrderPage from './SingleOrderPage';
 import SingleProductPage from './SingleProductPage';
 import AdminOrdersPage from './AdminOrdersPage';
 import WareHouses from './WareHouses';
+import AdminCustomerPage from './AdminCustomerPage';
+import QuotationsPage from "./QuotationsPage"
 export {
   Dashboard,
   ProductsPage,
@@ -14,4 +16,6 @@ export {
   SingleProductPage,
   AdminOrdersPage,
   WareHouses,
+  AdminCustomerPage,
+  QuotationsPage
 };

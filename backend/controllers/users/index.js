@@ -1,5 +1,4 @@
 let Client = require('../../models/users/model')
-
 let jwt = require('jsonwebtoken')
 const getClient = async (req, res) => {
     try {
@@ -20,9 +19,11 @@ const getAdmin = async (req,res)=>{
 }
 const postClient = async (req,res) => {
     try {
+
+    
         let request = await new Client(req.body);
         await request.save();
-        res.send("saved..",req.body.name)
+    res.status(200).json({'success' : true, 'result': req.body.name})
     } catch (error) {
         res.send({"Error":error})
     }
@@ -56,8 +57,15 @@ const deleteClient = async (req, res) => {
   }
 };
 
-
-const loginClient = async (req, res) => {
+const fetchClient = async (req, res) => {
+    try {
+        let request = await Client.find();
+        res.send(request);
+    } catch (error) {
+        res.send({ Error: error });
+    }
+}
+        const loginClient = async (req, res) => {
     try {
         let data = await Client.findOne({ email: req.body.email, password: req.body.password });
         if (data !== null)
@@ -93,5 +101,6 @@ module.exports = {
     deleteClient,
     loginClient,
     verifyClient,
-    getAdmin
+    getAdmin,
+    fetchClient
 }

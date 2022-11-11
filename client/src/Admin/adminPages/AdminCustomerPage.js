@@ -1,24 +1,24 @@
 import React from 'react';
-import { SidebarWithHeader, OrdersTable } from '../components';
-import { useOrderContext } from "../../context/order_context"
+import { SidebarWithHeader,CustomerTable } from '../components';
 import { Heading, VStack, HStack, Button, Spinner } from '@chakra-ui/react';
-import { BiRefresh } from 'react-icons/bi';
-function AdminOrdersPage() {
+import {BiRefresh} from 'react-icons/bi';
+import { useUserContext } from '../../context/user_context';
+function AdminCustomerPage() {
   const {
-    orders,
-    admin_orders_loading: loading,
-    admin_orders_error: error,
-    fetchAdminOrders,
-  } = useOrderContext();
+    Users,
+ loading,
+     error,
+    fetchUser
+  } = useUserContext();
 
   const handleRefresh = async () => {
-    fetchAdminOrders();
+    fetchUser()
   };
-  console.log("Admin Orders Page", orders)
 
   if (loading) {
     return (
       <SidebarWithHeader>
+        
         <HStack mb={5}>
           <Button
             colorScheme='green'
@@ -68,9 +68,9 @@ function AdminOrdersPage() {
           Refresh
         </Button>
       </HStack>
-      <OrdersTable orders={orders} />
+    <CustomerTable users={Users} />
     </SidebarWithHeader>
   );
 }
 
-export default AdminOrdersPage;
+export default AdminCustomerPage;

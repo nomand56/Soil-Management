@@ -31,6 +31,8 @@ import {
   AdminsPage,
   LoginPage,
   WareHouses,
+  AdminCustomerPage,
+  QuotationsPage
 } from './Admin/adminPages';
 
 function App() {
@@ -100,7 +102,12 @@ function App() {
             <PrivateRoute exact path='/admin'>
               <AdminsPage />
             </PrivateRoute>
-
+            <PrivateRoute exact path='/admin/customers'>
+              <AdminCustomerPage />
+            </PrivateRoute>
+            <PrivateRoute exact path='/admin/quotations'>
+              <QuotationsPage/>
+            </PrivateRoute>
             <Route exact path='*'>
               <Error />
             </Route>

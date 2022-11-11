@@ -25,7 +25,7 @@ const { id } = useParams();
     fetchSingleOrder,
     updateOrderStatus,
   } = useOrderContext();
-
+console.log("order",order)
   const handleChange = async (e) => {
     const status = e.target.value;
     const response = await updateOrderStatus(status, id);
