@@ -3,29 +3,33 @@ import React from 'react';
 import { Text } from '@chakra-ui/react';
 import Wrapper from './style';
 import img1 from '../../assets/homegarden.jpg';
-function UserSelect({setvalue}) {
+function JordType({ setvalue }) {
   return (
     <div>
       <Wrapper>
         <Box
-          sx={{ backgroundImage: `url(${img1})`, backgroundPosition: 'center' ,margin:'20px 0px'}}
+          sx={{
+            backgroundImage: `url(${img1})`,
+            backgroundPosition: 'center',
+            margin: '20px 0px',
+          }}
           className='img_box'
         >
           <Box className='box_p'>
-            <Text>Proffkunde?</Text>
-            <Box width='50%'>
+            <Text>Høyt Mineral</Text>
+            <Box width='80%'>
               <Text fontSize='sm' textAlign='center'>
-                {' '}
-                Vi har jord til anleggsgartnere og entrepenerer
+                Et flott produkt til alle hageprosjekter. Vår anbefaling for
+                kjøkkenhage.
               </Text>
             </Box>
             <Button
-              name='type'
-              value='proffkunder'
+              name='jordType'
+              value='highmineral'
               onClick={setvalue}
               sx={{ fontSize: 'small', background: 'green' }}
             >
-              JORD TIL PROFFKUNDER
+              Les mer om Høyt Mineral
             </Button>
           </Box>
         </Box>
@@ -37,19 +41,20 @@ function UserSelect({setvalue}) {
           className='img_box'
         >
           <Box className='box_p'>
-            <Text>Privatkunde?</Text>
-            <Box width='50%'>
+            <Text>Lite Mineral</Text>
+            <Box width='80%'>
               <Text fontSize='sm' textAlign='center'>
-                Vi har tomt for Privatkunder
+                Stabil og næringsrik jord til alt unntatt grønnsaker, frukt og
+                bær. Vår anbefaling til plen og ferdigplen.
               </Text>
             </Box>
             <Button
-              name='type'
-              value='privatkunder'
+              name='jordType'
+              value='litemineral'
               onClick={setvalue}
               sx={{ fontSize: 'small', background: 'green' }}
             >
-              JORD TIL PRIVATKUNDER
+              Les mer om Lite Mineral
             </Button>
           </Box>
         </Box>
@@ -58,4 +63,4 @@ function UserSelect({setvalue}) {
   );
 }
 
-export default UserSelect;
+export default JordType;

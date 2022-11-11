@@ -1,14 +1,17 @@
-import { Box, Divider, Progress, Slider, SliderFilledTrack, SliderThumb, SliderTrack, useColorModeValue } from '@chakra-ui/react';
+import { Box, Divider, Progress, Slider, SliderFilledTrack, SliderMark, SliderThumb, SliderTrack, useColorModeValue } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import { MdGraphicEq } from 'react-icons/md';
 import { FeaturedProducts, Hero, Services, Contact, SeacrhBar ,UserSelect} from '../../components';
+import AreaCalculate from '../../components/AreaCalculate/AreaCalculate';
 import FilterDetailCard from '../../components/filterDetails/filterDetailCard';
+import JordType from '../../components/JordType/JordType';
 import Land from '../../components/stepper';
+import { landData } from '../../utils/land';
 
 const HomePage = () => {
   const [state, setstate] = useState(false)
   const [loading,setloading]=useState(false)
-  const [steps, setsteps] = useState(0)
+  const [steps, setsteps] = useState(1)
   const [data, setdata] = useState({ type: '', land: '', jordType: '', quantity: 0, postalCode: '' })
   const color = useColorModeValue('rgb(40,40,40)', 'rgb(250,250,250)');  
   const bg = useColorModeValue('rgb(250,250,250)','#32995b');  
@@ -37,13 +40,13 @@ const HomePage = () => {
     console.log(data)
   }
   return (
-    <main>
+    <main style={{padding:'50px'}}>
       <SeacrhBar />
-      {steps !== 0 ? (
+      {steps !== 1 ? (
         <Box style={{ width: '80%', margin: '10px auto' }}>
           <Slider
             aria-label='slider-ex-4'
-            defaultValue={steps}
+            value={steps}
             max={7}
             step={1}
             min={0}
@@ -51,6 +54,17 @@ const HomePage = () => {
               setsteps(e);
             }}
           >
+            <SliderMark
+          value={steps}
+          textAlign='center'
+          bg='green.500'
+          color='white'
+          mt='-10'
+          ml='-5'
+          w='12'
+        >
+          {steps}
+        </SliderMark>
             <SliderTrack bg='red.100'>
               <SliderFilledTrack bg='tomato' />
             </SliderTrack>
@@ -62,29 +76,30 @@ const HomePage = () => {
       ) : null}
       {loading === false ? (
         <Box>
-          {steps === 0 ? (
+          {steps === 1 ? (
             <UserSelect setvalue={setvalue} handleNext={handleNext} />
-          ) : steps === 1 ? (
+          ) : steps === 2 ? (
             <Box
               style={{
-                padding: '50px',
                 display: 'flex',
                 justifyContent: 'space-evenly',
-                flexWrap: 'wrap',
-                flexDirection: { xs: 'column', md: 'row' },
+                  flexWrap: 'wrap',
+                  gap: '50px',
+                width:'fit-content'
               }}
             >
-              <Box>
-                <Land />
-              </Box>
-              <Box>
-                <FilterDetailCard data={data} />
-              </Box>
+
+                {
+                  landData.map((m) => {
+                    return <Land m={m} setvalue={setvalue} />
+                  })
+                }
+
             </Box>
-          ) : null}
+          ) : steps===3?<JordType setvalue={setvalue} handleSubmit={handleSubmit} />:steps===4?<AreaCalculate setvalue={setvalue} />:null}
         </Box>
       ) : (
-        <Progress size='md' isIndeterminate />
+        <Progress size='md' sx={{margin:'100px'}} isIndeterminate />
       )}
     </main>
   );
