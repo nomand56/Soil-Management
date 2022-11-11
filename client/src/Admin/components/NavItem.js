@@ -13,7 +13,7 @@ export default function NavItem({ url, icon, children, ...rest }) {
         role='group'
         cursor='pointer'
         _hover={{
-          bg: 'brown.400',
+          bg: '#32995b',
           color: 'white',
         }}
         {...rest}

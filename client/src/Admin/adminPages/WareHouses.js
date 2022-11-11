@@ -28,7 +28,7 @@ function WareHouses() {
         <HStack mb={5}>
           <CreateNewWareHouseModel />
           <Button
-            colorScheme='brown'
+            colorScheme='green'
             variant='outline'
             leftIcon={<BiRefresh />}
             onClick={handleRefresh}
@@ -49,7 +49,7 @@ function WareHouses() {
         <HStack mb={5}>
           <CreateNewWareHouseModel />
           <Button
-            colorScheme='brown'
+            colorScheme='green'
             variant='outline'
             leftIcon={<BiRefresh />}
             onClick={handleRefresh}
@@ -69,7 +69,7 @@ function WareHouses() {
       <HStack mb={5}>
         <CreateNewWareHouseModel />
         <Button
-          colorScheme='brown'
+          colorScheme='green'
           variant='outline'
           leftIcon={<BiRefresh />}
           onClick={handleRefresh}

@@ -14,7 +14,6 @@ const ProductsPage = () => {
         <div className='section-center products'>
           <div>
           <Sort />
-    {/* thIS IS THE PRODUCTS PAGE */}
             <ProductList />
           </div>
         </div>

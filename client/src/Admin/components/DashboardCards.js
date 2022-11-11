@@ -69,7 +69,7 @@ function DashboardCards() {
               </Heading>
             </Box>
             <Spacer />
-            <Square size='60px' bg='brown.400' borderRadius='lg'>
+            <Square size='60px' bg='#32995b' borderRadius='lg'>
               <Icon as={icon} color='white' />
             </Square>
           </Flex>

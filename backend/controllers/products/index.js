@@ -100,6 +100,15 @@ const postInquiry = async (req, res) => {
     res.send({ error });
   }
 };
+const fetchInquiry = async (req, res) => {
+  try {
+    let data = await inquiry.find();
+    res.send(data);
+  } catch (error) {
+    res.send({ error });
+  }
+};
+
 
 module.exports = {
   addProduct,
@@ -110,4 +119,5 @@ module.exports = {
   getSingleProduct,
   filterProduct,
   postInquiry,
+  fetchInquiry
 };

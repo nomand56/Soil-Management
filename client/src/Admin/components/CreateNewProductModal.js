@@ -173,7 +173,7 @@ useEffect(()=>{fetchWareHouses()},[])
 
   return (
     <>
-      <Button colorScheme='brown' onClick={onOpen}>
+      <Button colorScheme='green' onClick={onOpen}>
         Create New Product
       </Button>
 
@@ -189,7 +189,7 @@ useEffect(()=>{fetchWareHouses()},[])
                 <Select
                   placeholder='Choose Ware House'
                   name='warehouse'
-                  focusBorderColor='brown.500'
+                  focusBorderColor='#32995b'
                   onChange={setWareHouse}
                 >
                   {warehouse &&
@@ -206,7 +206,7 @@ useEffect(()=>{fetchWareHouses()},[])
                     ref={initialRef}
                     placeholder='Product Name'
                     name='productName'
-                    focusBorderColor='brown.500'
+                    focusBorderColor='#32995b'
                     value={productName}
                     onChange={updateNewProductDetails}
                   />
@@ -218,7 +218,7 @@ useEffect(()=>{fetchWareHouses()},[])
                     type='number'
                     placeholder='Product Price'
                     name='price'
-                    focusBorderColor='brown.500'
+                    focusBorderColor='#32995b'
                     value={price}
                     onChange={updateNewProductDetails}
                   />
@@ -230,7 +230,7 @@ useEffect(()=>{fetchWareHouses()},[])
                     type='number'
                     placeholder='Product Stock'
                     name='stock'
-                    focusBorderColor='brown.500'
+                    focusBorderColor='#32995b'
                     value={stock}
                     onChange={updateNewProductDetails}
                   />
@@ -241,7 +241,7 @@ useEffect(()=>{fetchWareHouses()},[])
                   <Textarea
                     placeholder='Product Description'
                     name='description'
-                    focusBorderColor='brown.500'
+                    focusBorderColor='#32995b'
                     value={description}
                     onChange={updateNewProductDetails}
                   />
@@ -252,7 +252,7 @@ useEffect(()=>{fetchWareHouses()},[])
                   <Input
                     placeholder='Product Category'
                     name='category'
-                    focusBorderColor='brown.500'
+                    focusBorderColor='#32995b'
                     value={category}
                     onChange={updateNewProductDetails}
                   />
@@ -263,7 +263,7 @@ useEffect(()=>{fetchWareHouses()},[])
                   <Input
                     placeholder='Product Company'
                     name='company'
-                    focusBorderColor='brown.500'
+                    focusBorderColor='#32995b'
                     value={company}
                     onChange={updateNewProductDetails}
                   />
@@ -274,7 +274,7 @@ useEffect(()=>{fetchWareHouses()},[])
                   <Input
                     placeholder='Supplier Postal Code'
                     name='supplierPostalCode'
-                    focusBorderColor='brown.500'
+                    focusBorderColor='#32995b'
                     value={supplierPostalCode}
                     onChange={updateNewProductDetails}
                   />
@@ -286,7 +286,7 @@ useEffect(()=>{fetchWareHouses()},[])
                   <Input
                     placeholder='Supplier ID number'
                     name='supplierId'
-                    focusBorderColor='brown.500'
+                    focusBorderColor='#32995b'
                     value={ID}
                     disabled={true}
                   />
@@ -298,7 +298,7 @@ useEffect(()=>{fetchWareHouses()},[])
                   <Input
                     placeholder='Product Usages'
                     name='usedFor'
-                    focusBorderColor='brown.500'
+                    focusBorderColor='#32995b'
                     value={usedFor.join(',').toString()}
                     onChange={updateNewProductDetails}
                   />
@@ -377,7 +377,7 @@ useEffect(()=>{fetchWareHouses()},[])
             <Button
               isLoading={loading}
               loadingText='Creating Product'
-              colorScheme='brown'
+              colorScheme='green'
               onClick={handleSubmit}
             >
               Save

@@ -4,14 +4,19 @@ import {
   FaProductHunt,
   FaShoppingCart,
   FaUserTie,
+  FaWpforms,
+  FaTruckLoading
 } from 'react-icons/fa';
 
 export const LinkItems = [
   { name: 'Home', url: '/admin/dashboard', icon: <FaHome /> },
   { name: 'Products', url: '/admin/products', icon: <FaProductHunt /> },
   { name: 'Orders', url: '/admin/orders', icon: <FaShoppingCart /> },
-  { name: 'Admins', url: '/admin', icon: <FaUserTie /> },
   { name: 'WareHouses', url: '/admin/warehouses', icon: <FaHome /> },
+  { name: 'Customers', url: '/admin/customers',icon: <FaUserTie /> },
+  { name: 'Logistics', url: '/admin/logistics', icon: <FaTruckLoading /> },
+  { name: 'Quotations', url: '/admin/quotations', icon: <FaWpforms /> },
+
 ];  
 
 export const orderStatusList = [

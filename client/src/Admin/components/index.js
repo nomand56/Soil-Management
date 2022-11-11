@@ -18,6 +18,7 @@ import Stars from './Stars';
 import SingleProductReviews from './SingleProductReviews';
 import PreLoader from './PreLoader';
 import CreateNewWareHouseModel from './CreateNewWareHouseModel'
+import CustomerTable from './CustomerTable';
 export {
   SidebarWithHeader,
   SidebarContent,
@@ -39,4 +40,5 @@ export {
   Stars,
   SingleProductReviews,
   PreLoader,
+  CustomerTable
 };

@@ -67,7 +67,7 @@ function ProductsPage() {
       <HStack mb={5}>
         <CreateNewProductModal />
         <Button
-          colorScheme='brown'
+          colorScheme='green'
           variant='outline'
           leftIcon={<BiRefresh />}
           onClick={handleRefresh}

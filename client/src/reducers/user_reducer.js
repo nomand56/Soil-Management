@@ -12,6 +12,9 @@ import {
     DELETE_USER_SUCCESS,
     DELETE_USER_ERROR,
     LOGOUT_BEGIN,
+    FETCH_USER_SUCCESS,
+    FETCH_USER_BEGIN,
+    FETCH_USER_ERROR,
 
 } from "../actions"
 
@@ -20,23 +23,42 @@ const user_reducer = (state, action) => {
         case LOGIN_BEGIN:
             return { ...state, loading: true, error: false }
         case LOGIN_SUCCESS:
-            const {data} = action.payload
+            const { data } = action.payload
             if (action.payload.status === 200) {
                 sessionStorage.setItem('token', data.token);
                 return {
-                  ...state,
-                  loading: false,
-                  token: data.token,
-                  isAuthenticated: true,
-                  currentUser: data.userType,
+                    ...state,
+                    loading: false,
+                    token: data.token,
+                    isAuthenticated: true,
+                    currentUser: data.userType,
                 };
-              } else {
+            } else {
                 return {
-                  ...state,
-                  loading: false,
-                  error: true,
+                    ...state,
+                    loading: false,
+                    error: true,
                 };
-              }
+            }
+        case FETCH_USER_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                Users: action.payload,
+            }
+        case FETCH_USER_BEGIN:
+            return {
+                ...state,
+                loading: true,
+            }
+        case FETCH_USER_ERROR:
+            return {
+                ...state,
+                loading: false,
+                error: true,
+
+            }
+
         case LOGIN_ERROR:
             return { ...state, loading: false, error: true }
         case LOGOUT_BEGIN:
