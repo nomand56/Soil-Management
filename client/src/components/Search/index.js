@@ -15,11 +15,7 @@ function SeacrhBar() {
   <option value='option3'>Area</option>
 </Select>
         </Box>
-<Box sx={{padding:"3rem"}}>
-      <Text fontSize="4xl" textAlign="center">
-      Kjøp kompostbasert kvalitetsjord hos oss!
-      </Text>
-</Box>
+
         
         </Wrapper>
 

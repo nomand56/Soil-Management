@@ -28,7 +28,15 @@ let schema = new mongoose.Schema({
   image: {
     type: String,
   },
-  category: {
+  land: {
+    type: String,
+    required: true,
+  },
+  jord: {
+    type: String,
+    required: true,
+  },
+  quantity: {
     type: String,
     required: true,
   },
@@ -36,6 +44,7 @@ let schema = new mongoose.Schema({
     type: Boolean,
     required: true,
   },
+
   usedFor: {
     type: [String],
     required: true,

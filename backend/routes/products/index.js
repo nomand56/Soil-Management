@@ -11,4 +11,8 @@ router.delete("/delete/product/:id", products.deleteProduct);
 router.post("/product/filterProducts", products.filterProduct);
 router.post("/product/inquiry", products.postInquiry);
 router.get("/product/getInquiry", products.fetchInquiry);
+router.get(
+  "/product/getproduct/landjord/:land/:jord/:postal",
+  products.getSingleProductByLandJord
+);
 module.exports = router;

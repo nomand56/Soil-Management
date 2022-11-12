@@ -215,3 +215,18 @@ p {
   cursor: not-allowed;
 }
 
+.detailscard{
+  display:flex;
+  align-items: center;
+  gap: 20px;
+  border:1px solid green;
+  padding: 40px 20px;
+  justify-content: space-evenly;
+}
+
+@media screen and (max-width:800px) {
+  .detailscard{
+    display: block;
+    text-align: center;
+  }
+}

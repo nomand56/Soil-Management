@@ -33,7 +33,7 @@ const initialState = {
   isSidebarOpen: false,
   products_loading: false,
   products_error: false,
-  grid_view:true,
+  grid_view: true,
   products: [],
   new_product: {
     productName: '',
@@ -42,11 +42,13 @@ const initialState = {
     price: 50000,
     stock: 10,
     description: '',
-    category: '',
+    quantity: '',
+    land: '',
     company: '',
+    jord: '',
     shipping: true,
     featured: false,
-    usedFor:[],
+    usedFor: [],
     success: false,
   },
   filtered_products: null,
@@ -182,10 +184,10 @@ export const ProductsProvider = ({ children }) => {
       const response = await axios.post(create_new_product, product);
       const { success, data } = response.data;
       fetchProducts();
-      return { success, data };
+      return { success:true, data };
     } catch (error) {
       const { success, message } = error.response.data;
-      return { success, message };
+      return { success:false, message:"Product Added Successfully" };
     }
   };
   const updateProduct = async (id, product) => {

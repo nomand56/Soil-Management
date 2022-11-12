@@ -1,12 +1,7 @@
 import { Box, Button, Text, useColorModeValue } from '@chakra-ui/react';
-import React from 'react'
-<<<<<<< HEAD
+import React, { lazy } from 'react'
 
 const Land = ({m,setvalue}) => {
-=======
-import {Box} from '@chakra-ui/react'
-const Land = () => {
->>>>>>> ecde47d78e8edff22cf9974c8bbaf1488326000d
 
     const color = useColorModeValue('rgb(40,40,40)', 'rgb(250,250,250)');
     const bg = useColorModeValue('rgb(250,250,250)', '#32995b');  
@@ -24,6 +19,7 @@ const Land = () => {
         <img
           src={m.img}
           alt={m.img}
+          loading={lazy}
           style={{ width: '100%', height: '150px' }}
         />
         <Text fontSize='md' color={color} sx={{ fontWeight: 'bold',margin:'10px 0px' }}>

@@ -26,7 +26,6 @@ const initialState = {
     warehouseName: '',
     OwnerName: '',
     PostalCode: 0,
-    serialCode:0,
       street: '',
       state: '',
       city: '',
@@ -79,7 +78,7 @@ export const WareHouseProvider = ({ children }) => {
       const name = e.target.name;
       let value = e.target.value;
       if (
-        name === 'PostalCode' || name==='serialCode'
+        name === 'PostalCode'
       ) {
         value = Number(value);
       }

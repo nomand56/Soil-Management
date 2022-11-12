@@ -29,14 +29,16 @@ import { useWarehouseContext } from '../../context/warehouse_context';
 function CreateNewProductModal() {
   const [wareH, setwareH] = useState(null);
   const [ID, setID] = useState(0);
-  const [serialCode, setserialCode] = useState(0);
+  const [PostCode, setPostCode] = useState('');
   let {
     new_product: {
       productName,
       price,
       stock,
       description,
-      category,
+      quantity,
+      land,
+      jord,
       featured,
       company,
       usedFor,
@@ -81,7 +83,7 @@ useEffect(()=>{fetchWareHouses()},[])
     setwareH(e.target.value);
     let data = warehouse.filter((f) => f.warehouseName === e.target.value);
     setID(data[0]._id);
-    if (data[0].serialCode) { setserialCode(data[0].serialCode); console.log(data[0].serialCode);}
+    setPostCode(data[0].PostalCode)    
 
   }
 
@@ -91,7 +93,7 @@ useEffect(()=>{fetchWareHouses()},[])
       !price ||
       !stock ||
       !description ||
-      !category
+      !land
     ) {
       return toast({
         position: 'top',
@@ -101,27 +103,8 @@ useEffect(()=>{fetchWareHouses()},[])
         isClosable: true,
       });
     }
-    if (
-      supplierPostalCode === 0 
-    ) {
-      return toast({
-        position: 'top',
-        description: `please provide a valid postalcode`,
-        status: 'error',
-        duration: 5000,
-        isClosable: true,
-      });
-    }
-    if (supplierPostalCode <= 1 || supplierPostalCode >= (serialCode * 1000 - 1))
-    {
-        return toast({
-          position: 'top',
-          description: serialCode==0?"please provide a valid Postal Code":`please provide a valid postalcode between ${(serialCode-1)*1000} to ${(serialCode*1000)-1}`,
-          status: 'error',
-          duration: 5000,
-          isClosable: true,
-        });
-      }
+
+
     // if (imageList.length < 1) {
     //   return toast({
     //     position: 'top',
@@ -138,9 +121,11 @@ useEffect(()=>{fetchWareHouses()},[])
       price,
       stock,
       description,
-      category,
+      quantity,
+      land,
+      jord,
       company,
-      supplierPostalCode,
+      supplierPostalCode:PostCode,
       supplierId: ID,
       featured,
       usedFor,
@@ -150,7 +135,6 @@ useEffect(()=>{fetchWareHouses()},[])
     setLoading(false);
     setwareH(null);
     if (responseCreate.success) {
-      onClose();
       return toast({
         position: 'top',
         description: 'Product created',
@@ -161,7 +145,7 @@ useEffect(()=>{fetchWareHouses()},[])
     } else {
       return toast({
         position: 'top',
-        description: responseCreate.message,
+        description:"error while adding product.!!",
         status: 'error',
         duration: 5000,
         isClosable: true,
@@ -235,7 +219,16 @@ useEffect(()=>{fetchWareHouses()},[])
                     onChange={updateNewProductDetails}
                   />
                 </FormControl>
-
+                <FormControl mt={4}>
+                  <FormLabel>Quantity</FormLabel>
+                  <Input
+                    placeholder='Product Quantity in KG'
+                    name='quantity'
+                    focusBorderColor='#32995b'
+                    value={quantity}
+                    onChange={updateNewProductDetails}
+                  />
+                </FormControl>
                 <FormControl mt={4}>
                   <FormLabel>Description</FormLabel>
                   <Textarea
@@ -248,16 +241,37 @@ useEffect(()=>{fetchWareHouses()},[])
                 </FormControl>
 
                 <FormControl mt={4}>
-                  <FormLabel>Category</FormLabel>
-                  <Input
-                    placeholder='Product Category'
-                    name='category'
+                  <FormLabel>Land</FormLabel>
+                  <Select
+                    placeholder='Land Type'
+                    name='land'
                     focusBorderColor='#32995b'
-                    value={category}
+                    value={land}
                     onChange={updateNewProductDetails}
-                  />
+                  >
+                    <option value='Hage-Mix'>Hage-Mix</option>
+                    <option value='Park-Mix'>Park-Mix</option>
+                    <option value='Blomstereng-Jord'>Blomstereng-Jord</option>
+                    <option value='Vermikompost'>Vermikompost</option>
+                    <option value='Krukkejord'>Krukkejord</option>
+                    <option value='Torvfri Blomsterjord'>
+                      Torvfri Blomsterjord
+                    </option>
+                  </Select>
                 </FormControl>
-
+                <FormControl mt={4}>
+                  <FormLabel>Jord</FormLabel>
+                  <Select
+                    placeholder='JordType'
+                    name='jord'
+                    focusBorderColor='#32995b'
+                    value={jord}
+                    onChange={updateNewProductDetails}
+                  >
+                    <option value='highmineral'>High Minerals</option>
+                    <option value='lowmineral'>Low Minerals</option>
+                  </Select>
+                </FormControl>
                 <FormControl mt={4}>
                   <FormLabel>Company</FormLabel>
                   <Input
@@ -275,8 +289,8 @@ useEffect(()=>{fetchWareHouses()},[])
                     placeholder='Supplier Postal Code'
                     name='supplierPostalCode'
                     focusBorderColor='#32995b'
-                    value={supplierPostalCode}
-                    onChange={updateNewProductDetails}
+                    value={PostCode}
+                    disabled={true}
                   />
                   <FormHelperText>Eg: 32100</FormHelperText>
                 </FormControl>

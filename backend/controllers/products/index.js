@@ -71,10 +71,9 @@ const filterProduct = async (req, res) => {
         $gte: +req.body.postalCode - 10,
       },
     });
-    console.log(data)
+    console.log(data);
     if (data.length > 0) {
       res.send(data);
-
     } else {
       res.status(404).send({ message: "not found" });
     }
@@ -85,12 +84,41 @@ const filterProduct = async (req, res) => {
 
 const getSingleProduct = async (req, res) => {
   try {
-    let data = await products.findOne({_id: req.params.id });
+    let data = await products.findOne({ _id: req.params.id });
     res.send(data);
   } catch (error) {
     res.send({ error });
   }
 };
+
+const getSingleProductByLandJord = async (req, res) => {
+  try {
+    let Postal = parseInt(req.params.postal);
+    let data = await products.find({
+      land: req.params.land,
+      jord: req.params.jord,
+    });
+
+    let closest =await data.reduce(function (prev, curr) {
+      return Math.abs(curr.supplierPostalCode -Postal) <
+        Math.abs(prev.supplierPostalCode - Postal)
+        ? curr
+        : prev;
+    });
+
+    if (
+      closest.supplierPostalCode > Postal - 1000 &&
+      closest.supplierPostalCode < Postal + 1000
+    ) {
+      res.send(closest);
+    } else {
+      res.send("product not found");
+    }
+  } catch (error) {
+    res.send({ error });
+  }
+};
+
 const postInquiry = async (req, res) => {
   try {
     let data = await new inquiry(req.body);
@@ -109,7 +137,6 @@ const fetchInquiry = async (req, res) => {
   }
 };
 
-
 module.exports = {
   addProduct,
   deleteProduct,
@@ -119,5 +146,6 @@ module.exports = {
   getSingleProduct,
   filterProduct,
   postInquiry,
-  fetchInquiry
+  fetchInquiry,
+  getSingleProductByLandJord,
 };
