@@ -1,42 +1,42 @@
 import { Box, Button, Text, useColorModeValue } from '@chakra-ui/react';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import {useHistory } from 'react-router-dom';
 import { landData } from '../../utils/land';
 
-
-
 const Result = ({ data }) => {
+  const history=useHistory();
   const [state, setstate] = useState(null);
   const [product, setproduct] = useState(null);
-    const color = useColorModeValue('rgb(40,40,40)', 'rgb(250,250,250)');
+  const color = useColorModeValue('rgb(40,40,40)', 'rgb(250,250,250)');
   const bg = useColorModeValue('rgb(250,250,250)', '#32995b');
-  
+
   useEffect(() => {
     setstate(landData.filter((land) => land.type === data.land));
-    axios.get(
-      `${process.env.REACT_APP_BACKEND_HOST}product/getproduct/landjord/${data.land}/${data.jordType}/${data.postalCode}`
-    ).then((res) => {
-      setproduct(res.data)
-      console.log(res.data)
-    });
+    axios
+      .get(
+        `${process.env.REACT_APP_BACKEND_HOST}product/getproduct/landjord/${data.land}/${data.jordType}/${data.postalCode}`
+      )
+      .then((res) => {
+        setproduct(res.data);
+        console.log(res.data);
+      });
   }, []);
 
-  function handleCheckout(e)
-  {
-    let obj={...data,productID:product?._id}
-    if(e.target.innerText==='Sjekk Ut')
-    {
-      console.log(obj)
-    }
-    else
-    {
-      console.log(obj)
-      }
-  }
-  function handleAddtoCart()
-  {
+  function handleCheckout(e) {
     let obj = { ...data, productID: product?._id };
-    console.log(obj)
+    if (e.target.innerText === 'Sjekk Ut') {
+      console.log(obj);
+    } else {
+      console.log(obj);
+    }
+  }
+  function handleAddtoCart() {
+    let obj = { ...data, productID: product?._id };
+    
+
+  
+
   }
   return (
     <div style={{ margin: '20px auto' }}>
@@ -54,7 +54,7 @@ const Result = ({ data }) => {
             <img
               src={state[0].img}
               alt={state[0].img}
-              style={{ width: '100%',height:'300px' }}
+              style={{ width: '100%', height: '300px' }}
             />
             <Text color={color} fontSize='xl' sx={{ margin: '10px 0px' }}>
               {state[0].type}
@@ -130,10 +130,25 @@ const Result = ({ data }) => {
                 </Text>
               </Box>
             </Box>
-            <Box sx={{display:'flex',padding:'10px',margin:'10px',alignItems:'center',justifyContent:'space-evenly'}}>
-              <Button bg={bg} onClick={handleCheckout}>
-                {data.type === 'proffkunder' ? 'Logg Inn' : 'Sjekk Ut'}
-              </Button>
+            <Box
+              sx={{
+                display: 'flex',
+                padding: '10px',
+                margin: '10px',
+                alignItems: 'center',
+                justifyContent: 'space-evenly',
+              }}
+            >
+              {data.type === 'proffkunder' ? (
+                <Button onClick={()=>{
+                  history.push('/StepperCheckout')
+
+                }}>Checkout</Button>
+              ) : (
+                <Button bg={bg} onClick={handleCheckout}>
+                  Sjekk Ut
+                </Button>
+              )}
               <Button onClick={handleAddtoCart}>Legg i handlekurv</Button>
             </Box>
           </Box>

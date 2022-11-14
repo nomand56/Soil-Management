@@ -24,7 +24,8 @@ const user_reducer = (state, action) => {
             return { ...state, loading: true, error: false }
         case LOGIN_SUCCESS:
             const { data } = action.payload
-            if (action.payload.status === 200) {
+            console.log(action.payload)
+            if (action.payload.data.token) {
                 sessionStorage.setItem('token', data.token);
                 return {
                     ...state,
@@ -33,11 +34,12 @@ const user_reducer = (state, action) => {
                     isAuthenticated: true,
                     currentUser: data.userType,
                 };
-            } else {
+            } else if (action.payload.data === "invalid credentials") {
                 return {
                     ...state,
-                    loading: false,
-                    error: true,
+                    userloading: false,
+                    usererror: true,
+                    isAuthenticated: false,
                 };
             }
         case FETCH_USER_SUCCESS:

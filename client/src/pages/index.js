@@ -11,6 +11,7 @@ import Error from './ErrorPage/';
 import OrdersPage from './OrdersPage/';
 import PrivateRoute from './PrivateRoute/';
 import CheckoutPage from "./Checkout/CheckoutPage"
+import StepperCheckout from "./StepperCheckout/index"
 export {
   Home,
   About,
@@ -24,5 +25,6 @@ export {
   Error,
   OrdersPage,
   PrivateRoute,
-  CheckoutPage
+  CheckoutPage,
+  StepperCheckout
 };

@@ -54,17 +54,18 @@ const HomePage = () => {
   function setvalue(e) {
     setdata({ ...data, [e.target.name]: e.target.value });
    
-    callNext();
+    handleNext();
   }
   function calculateArea(e) {
     setdata({ ...data, [e.target.name]: e.target.value });
   }
-  function callNext() {
-     setloading(true);
-    setTimeout(() => {
-      handleNext();
-    }, 1000);
-  }
+  // function callNext() {
+   
+  //    handleNext();
+  //   // setTimeout(() => {
+  //   //   handleNext();
+  //   // }, 1000);
+  // }
   function handleNext() {
     setloading(false);
     setsteps((step) => step + 1);
@@ -119,8 +120,9 @@ const HomePage = () => {
               <SliderFilledTrack bg='green-600' />
             </SliderTrack>
             <SliderThumb boxSize={6}>
-              <Box color='green' as={MdGraphicEq} />
+              <Box color='green'  />
             </SliderThumb>
+        
           </Slider>
         </Box>
       ) : null}
@@ -134,10 +136,11 @@ const HomePage = () => {
                   display: 'flex',
                   alignItems: 'center',
                   margin: '20px 5px',
+                  color:"green"
                 }}
               >
                 <button
-                  style={{ margin: '0px 10px' }}
+                  style={{ margin: '0px 10px' ,color:"green"}}
                   onClick={() => {
                     handleClick(index + 1);
                   }}
@@ -172,7 +175,7 @@ const HomePage = () => {
           ) : steps === 3 ? (
             <JordType setvalue={setvalue} />
           ) : steps === 4 ? (
-            <AreaCalculate calculateArea={calculateArea} callNext={callNext} />
+            <AreaCalculate calculateArea={calculateArea} callNext={handleNext} />
           ) : steps === 5 ? (
             <PostalCode setvalue={setvalue} />
           ) : steps === 6 ? (
@@ -180,7 +183,7 @@ const HomePage = () => {
           ) : null}
         </Box>
       ) : (
-        <Progress size='md' sx={{ margin: '100px' }} isIndeterminate />
+        <Progress size='md' sx={{ margin: '100px',backgro:"green.500" }} isIndeterminate />
       )}
     </main>
   );

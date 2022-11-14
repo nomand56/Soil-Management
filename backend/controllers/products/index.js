@@ -98,20 +98,25 @@ const getSingleProductByLandJord = async (req, res) => {
       land: req.params.land,
       jord: req.params.jord,
     });
+// console.log(data)
+if( data.length>0){
+ let closest =await data.reduce(function (prev, curr) {
+    return Math.abs(curr.supplierPostalCode -Postal) <
+      Math.abs(prev.supplierPostalCode - Postal)
+      ? curr
+      : prev;
+  });
+  if (
+    closest.supplierPostalCode > Postal - 1000 &&
+    closest.supplierPostalCode < Postal + 1000
+  ) {
+    res.send(closest);
+  } else {
+    res.send("product not found");
+  }
 
-    let closest =await data.reduce(function (prev, curr) {
-      return Math.abs(curr.supplierPostalCode -Postal) <
-        Math.abs(prev.supplierPostalCode - Postal)
-        ? curr
-        : prev;
-    });
 
-    if (
-      closest.supplierPostalCode > Postal - 1000 &&
-      closest.supplierPostalCode < Postal + 1000
-    ) {
-      res.send(closest);
-    } else {
+}else {
       res.send("product not found");
     }
   } catch (error) {

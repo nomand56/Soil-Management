@@ -21,6 +21,7 @@ import {
   PrivateRoute,
   ProfilePage,
   CheckoutPage,
+  StepperCheckout,
 } from './pages';
 import {
   Dashboard,
@@ -77,6 +78,9 @@ function App() {
             </Route>
             <PrivateRoute exact path='/checkout'>
               <CheckoutPage />
+            </PrivateRoute>
+            <PrivateRoute exact path='/StepperCheckout'>
+            <StepperCheckout/>
             </PrivateRoute>
             <PrivateRoute exact path='/orders'>
               <OrdersPage />

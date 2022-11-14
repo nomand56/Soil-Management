@@ -4,11 +4,12 @@ import logo from '../../assets/logo.png';
 import { FaBars } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { links } from '../../utils/constants';
+import {adminLinks} from '../../utils/constants';
 import CartButtons from '../CartButtons/';
 import { useProductsContext } from '../../context/products_context';
 import { useUserContext } from '../../context/user_context';
 import ToogleButton from '../toogleButton/index'
-import { ListItem, Text, UnorderedList, useColorModeValue } from '@chakra-ui/react';
+import { Flex, ListItem, Text, UnorderedList, useColorModeValue } from '@chakra-ui/react';
 const Nav = () => {
   const { currentUser } = useUserContext();
   const { openSidebar } = useProductsContext()
@@ -27,7 +28,7 @@ const Nav = () => {
           </button>
         </div>
         <ul className='nav-links'>
-          {links.map((link) => {
+          {currentUser  &&    currentUser.userType =="admin" ?  adminLinks.map((link) => {
             const { url, text, id } = link;
             return (
               <li key={id}>
@@ -36,8 +37,18 @@ const Nav = () => {
                 </Text>
               </li>
             );
-          })}
-          {currentUser && (
+          }):links.map((link) => {
+            const { url, text, id } = link;
+            return (
+              <li key={id}>
+                <Text color={color}>
+                  <Link to={url}>{text}</Link>
+                </Text>
+              </li>
+            );
+          })
+          } 
+          {currentUser?.userType=="user" && (
             <li>
               <Text color={color}>
                 <Link to='/checkout'>checkout</Link>
@@ -52,8 +63,11 @@ const Nav = () => {
             </li>
           )}
         </ul>
+        <Flex >
+
+        <ToogleButton/>
         <CartButtons />
-        <ToogleButton />
+        </Flex>
       </div>
     </NavContainer>
   );

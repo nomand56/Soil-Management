@@ -25,7 +25,23 @@ export const links = [
     url: '/products',
   },
 ];
-
+export const adminLinks = [
+  {
+    id: 1,
+    text: 'Dashboard',
+    url: '/admin/dashboard',
+  },
+  {
+    id: 2,
+    text: 'Products',
+    url: '/admin/products',
+  },
+  {
+    id: 3,
+    text: 'warehouse',
+    url: '/admin/warehouses',
+  },
+];
 export const socialLinks = [
   {
     id: 1,

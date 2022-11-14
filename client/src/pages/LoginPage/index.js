@@ -11,7 +11,7 @@ function LoginPage() {
   const history = useHistory();
   const location = useLocation();
   const mounted = useMounted();
-  const { login, isAuthenticated, loading, error, currentUser } =
+  const { login, isAuthenticated, usererror, userloading, currentUser } =
     useUserContext();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -19,13 +19,13 @@ function LoginPage() {
   const [visible, setVisible] = useState(false);
   const handleSubmit = (e) => {
     e.preventDefault();
+if (!email && !password) {
+  toast.error('Please fill in all fields');
+
+}
 
     login(email, password);
-    if (mounted.current) {
-      setIsSubmitting(true);
-    }
-
-    if (loading) {
+    if (userloading) {
       toast.info('Loading ...');
     }
 
@@ -33,12 +33,12 @@ function LoginPage() {
       console.log('admin login kar gya');
       return history.push('/admin/dashboard');
     }
-
-    if (error) {
-      console.log('error', error);
-      toast.error(error);
+    if (usererror) {
+      toast.error("Invalid Credentials");
     }
+    
   };
+  
   function togglePasswordVisibility() {
     setVisible(!visible);
   }

@@ -34,6 +34,8 @@ const initialState = {
   loading: false,
   error: false,
   Users: [],
+  usererror: false,
+  userloading: false,
   isAuthenticated: false,
 };
 const UserContext = React.createContext();

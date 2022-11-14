@@ -19,10 +19,10 @@ const Land = ({m,setvalue}) => {
         <img
           src={m.img}
           alt={m.img}
-          loading={lazy}
+          // loading={lazy}
           style={{ width: '100%', height: '150px' }}
         />
-        <Text fontSize='md' color={color} sx={{ fontWeight: 'bold',margin:'10px 0px' }}>
+        <Text fontSize='md' color="green" sx={{ fontWeight: 'bold',margin:'10px 0px' }}>
           {m.type}
         </Text>
         <Text
@@ -40,7 +40,8 @@ const Land = ({m,setvalue}) => {
             fontSize: '10px',
             width: '100%',
             margin: '10px 0px',
-            color:{color}
+            color:"white",
+            backgroundColor:"green.500"
           }}
           bg={bg}
         >{`Les Mer Om ${m.type}`}</Button>

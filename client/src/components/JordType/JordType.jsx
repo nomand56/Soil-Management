@@ -2,7 +2,8 @@ import { Box, Button } from '@chakra-ui/react';
 import React from 'react';
 import { Text } from '@chakra-ui/react';
 import Wrapper from './style';
-import img1 from '../../assets/homegarden.jpg';
+import img1 from '../../assets/land.jpg';
+import img2 from '../../assets/veg.jpg';
 function JordType({ setvalue }) {
   return (
     <div>
@@ -27,7 +28,7 @@ function JordType({ setvalue }) {
               name='jordType'
               value='highmineral'
               onClick={setvalue}
-              sx={{ fontSize: 'small', background: 'green' }}
+              sx={{ fontSize: 'small', background: 'green.500' }}
             >
               Les mer om Høyt Mineral
             </Button>
@@ -35,7 +36,7 @@ function JordType({ setvalue }) {
         </Box>
         <Box
           sx={{
-            backgroundImage: `url(https://www.farmtek.com/wcsstore/EngineeringServices/allbizunits/prodimages/zoom/1x/pb01680r6cb.jpg)`,
+            backgroundImage:`url(${img2})`,
             backgroundPosition: 'center',
           }}
           className='img_box'
@@ -52,7 +53,7 @@ function JordType({ setvalue }) {
               name='jordType'
               value='litemineral'
               onClick={setvalue}
-              sx={{ fontSize: 'small', background: 'green' }}
+              sx={{ fontSize: 'small', background: 'green.500' }}
             >
               Les mer om Lite Mineral
             </Button>
