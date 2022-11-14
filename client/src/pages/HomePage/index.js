@@ -11,6 +11,7 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
+import { AiFillCaretDown } from 'react-icons/ai';
 import { MdGraphicEq } from 'react-icons/md';
 import {
   FeaturedProducts,
@@ -109,26 +110,64 @@ const HomePage = () => {
               bg='green.500'
               color='white'
               sx={{
-                padding: '3px 4px',
                 borderRadius: '5px',
-                transform: 'translate(-50%,-150%)',
+                transform: 'translate(-50%,-200%)',
+                height: '25px',
+                width: '100px',
+                position: 'relative',
               }}
             >
               {array[steps - 1]}
+              <AiFillCaretDown
+                style={{
+                  color: 'green',
+                  position: 'absolute',
+                  transform: 'translate(170%,-23%)',
+                  fontSize: '22px',
+                }}
+              />
             </SliderMark>
             <SliderTrack bg='green.800'>
               <SliderFilledTrack bg='green-600' />
             </SliderTrack>
-            <SliderThumb boxSize={6}>
-              <Box color='green'  />
-            </SliderThumb>
-        
+            <SliderMark value={1}>
+              <SliderThumb boxSize={6}>
+                 <Box color='green' as={MdGraphicEq} />
+              </SliderThumb>
+            </SliderMark>
+            <SliderMark value={2}>
+              <SliderThumb boxSize={6}>
+                 <Box color='green' as={MdGraphicEq} />
+              </SliderThumb>
+            </SliderMark>
+            <SliderMark value={3}>
+              <SliderThumb boxSize={6}>
+                 <Box color='green' as={MdGraphicEq} />
+              </SliderThumb>
+            </SliderMark>
+            <SliderMark value={4}>
+              <SliderThumb boxSize={6}>
+                 <Box color='green' as={MdGraphicEq} />
+              </SliderThumb>
+            </SliderMark>
+            <SliderMark value={5}>
+              <SliderThumb boxSize={6}>
+                 <Box color='green' as={MdGraphicEq} />
+              </SliderThumb>
+            </SliderMark>
+            <SliderMark value={6}>
+              <SliderThumb boxSize={6}>
+                 <Box color='green' as={MdGraphicEq} />
+              </SliderThumb>
+            </SliderMark>
           </Slider>
         </Box>
       ) : null}
 
       {links.length !== 1 ? (
-        <div style={{ display: 'flex', alignItems: 'center',flexWrap:'wrap' }}>
+        <div
+          style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}
+        >
           {links.map((link, index) => {
             return (
               <div
@@ -136,11 +175,11 @@ const HomePage = () => {
                   display: 'flex',
                   alignItems: 'center',
                   margin: '20px 5px',
-                  color:"green"
+                  color: 'green',
                 }}
               >
                 <button
-                  style={{ margin: '0px 10px' ,color:"green"}}
+                  style={{ margin: '0px 10px', color: 'green' }}
                   onClick={() => {
                     handleClick(index + 1);
                   }}
@@ -175,7 +214,10 @@ const HomePage = () => {
           ) : steps === 3 ? (
             <JordType setvalue={setvalue} />
           ) : steps === 4 ? (
-            <AreaCalculate calculateArea={calculateArea} callNext={handleNext} />
+            <AreaCalculate
+              calculateArea={calculateArea}
+              callNext={handleNext}
+            />
           ) : steps === 5 ? (
             <PostalCode setvalue={setvalue} />
           ) : steps === 6 ? (
@@ -183,7 +225,11 @@ const HomePage = () => {
           ) : null}
         </Box>
       ) : (
-        <Progress size='md' sx={{ margin: '100px',backgro:"green.500" }} isIndeterminate />
+        <Progress
+          size='md'
+          sx={{ margin: '100px', backgro: 'green.500' }}
+          isIndeterminate
+        />
       )}
     </main>
   );

@@ -3,6 +3,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import {useHistory } from 'react-router-dom';
 import { landData } from '../../utils/land';
+import ErrorPage from '../ErrorPage';
 
 const Result = ({ data }) => {
   const history=useHistory();
@@ -10,7 +11,8 @@ const Result = ({ data }) => {
   const [product, setproduct] = useState(null);
   const color = useColorModeValue('rgb(40,40,40)', 'rgb(250,250,250)');
   const bg = useColorModeValue('rgb(250,250,250)', '#32995b');
-
+  const [errorstate, seterrorstate] = useState(false)
+  let [obj,setobj]=useState({})
   useEffect(() => {
     setstate(landData.filter((land) => land.type === data.land));
     axios
@@ -24,23 +26,37 @@ const Result = ({ data }) => {
   }, []);
 
   function handleCheckout(e) {
-    let obj = { ...data, productID: product?._id };
+     setobj( { ...data, productID: product?._id });
     if (e.target.innerText === 'Sjekk Ut') {
-      console.log(obj);
+      if (product === 'product not found')
+      {
+        seterrorstate(true)
+      }
+      else {
+        
+      }
     } else {
-      console.log(obj);
+       if (product === 'product not found') {
+         seterrorstate(true);
+      }
+       else {
+         
+      }
     }
   }
   function handleAddtoCart() {
-    let obj = { ...data, productID: product?._id };
+ setobj({ ...data, productID: product?._id });
     
+     if (product === 'product not found') {
+       seterrorstate(true);
+     }
 
   
 
   }
   return (
     <div style={{ margin: '20px auto' }}>
-      {state ? (
+      {state && !errorstate ? (
         <Box
           sx={{
             border: '2px solid green',
@@ -52,8 +68,8 @@ const Result = ({ data }) => {
         >
           <Box style={{ width: '25%', minWidth: '250px', padding: '5px' }}>
             <img
-              src={state[0].img}
-              alt={state[0].img}
+              src={state[0]?.img}
+              alt={state[0]?.img}
               style={{ width: '100%', height: '300px' }}
             />
             <Text color={color} fontSize='xl' sx={{ margin: '10px 0px' }}>
@@ -140,10 +156,7 @@ const Result = ({ data }) => {
               }}
             >
               {data.type === 'proffkunder' ? (
-                <Button onClick={()=>{
-                  history.push('/StepperCheckout')
-
-                }}>Checkout</Button>
+                <Button onClick={handleCheckout}>Checkout</Button>
               ) : (
                 <Button bg={bg} onClick={handleCheckout}>
                   Sjekk Ut
@@ -153,7 +166,7 @@ const Result = ({ data }) => {
             </Box>
           </Box>
         </Box>
-      ) : null}
+      ) : <ErrorPage obj={obj} />}
     </div>
   );
 };

@@ -29,6 +29,7 @@ function UserSelect({setvalue}) {
             </Button>
           </Box>
         </Box>
+        <Text fontSize='xl' sx={{fontWeight:'bold'}} >Eller</Text>
         <Box
           sx={{
             backgroundImage: `url(https://www.farmtek.com/wcsstore/EngineeringServices/allbizunits/prodimages/zoom/1x/pb01680r6cb.jpg)`,
