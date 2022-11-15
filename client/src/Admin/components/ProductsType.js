@@ -26,14 +26,14 @@ import {
 } from '@chakra-ui/react';
 import UpdateProductModal from './UpdateProductModal';
 
-function ProductsTable({ products }) {
+function ProductsTypeTable({ products }) {
   const toast = useToast();
   const { fetchProducts, deleteProduct } = useProductsContext();
   const [loading, setLoading] = useState(false);
 const color = useColorModeValue('rgb(10,10,10)', 'rgb(180,180,180)');
 const bg = useColorModeValue('transparent', 'rgb(40,40,40)');
   const handleDelete = async (id) => {
-    console.log(id)
+ 
     setLoading(true);
     const response = await deleteProduct(id);
     setLoading(false);
@@ -44,7 +44,7 @@ const bg = useColorModeValue('transparent', 'rgb(40,40,40)');
         status: 'success',
         duration: 5000,
         isClosable: true,
-      });
+    });
       return await fetchProducts();
     } else {
       return toast({
@@ -69,19 +69,17 @@ const bg = useColorModeValue('transparent', 'rgb(40,40,40)');
             <Tr>
               <Th>Image</Th>
               <Th>Name</Th>
-              <Th>Description</Th>
-              <Th></Th>
+        
             </Tr>
           </Thead>
           <Tbody>
             {products.map((product, index) => {
-              const { image, productName, price, quantity, usedFor, company, _id,category,description} =
-                product;
+              
               return (
                 <Tr key={index}>
                   <Td>
                     <Image
-                      src={image}
+                      src={product.image}
                       boxSize='100px'
                       objectFit='cover'
                       borderRadius='lg'
@@ -89,28 +87,21 @@ const bg = useColorModeValue('transparent', 'rgb(40,40,40)');
                   </Td>
                   <Td>
                     <VStack alignItems='flex-start' spacing={1}>
-                      <Text as='b'>{productName.substring(0, 21)}...</Text>
+                      {/* <Text as='b'>{productName.substring(0, 21)}...</Text> */}
                       <Text fontSize='sm' color='green.500'>
-                        {formatPrice(price)}
+                        {product.productType}
                       </Text>
                     </VStack>
                   </Td>
-                  <Td>
-                    <VStack alignItems='flex-start' spacing={1}>
-                      <Text as='b'>{description}</Text>
-                      <Text fontSize='sm' color='brown.500'>
-                        {description}
-                      </Text>
-                    </VStack>
-                  </Td>
+                
                   {/* <Td>{quantity}</Td> */}
-                  <Td>
+                  {/* <Td>
                     <Menu>
                       <MenuButton as={Button} rightIcon={<BiChevronDown />}>
                         Actions
                       </MenuButton>
                       <MenuList>
-                        <Link to={`/adminproducts/${_id}`}>
+                        <Link to={`/adminproducts/${product._id}`}>
                           <MenuItem>View</MenuItem>
                         </Link>
                         <MenuItem>
@@ -121,7 +112,7 @@ const bg = useColorModeValue('transparent', 'rgb(40,40,40)');
                         </MenuItem>
                       </MenuList>
                     </Menu>
-                  </Td>
+                  </Td> */}
                 </Tr>
               );
             })}
@@ -132,4 +123,4 @@ const bg = useColorModeValue('transparent', 'rgb(40,40,40)');
   );
 }
 
-export default ProductsTable;
+export default ProductsTypeTable;

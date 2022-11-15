@@ -8,6 +8,7 @@ import AdminOrdersPage from './AdminOrdersPage';
 import WareHouses from './WareHouses';
 import AdminCustomerPage from './AdminCustomerPage';
 import QuotationsPage from "./QuotationsPage"
+import ProductsType from './ProductsType';
 export {
   Dashboard,
   ProductsPage,
@@ -17,5 +18,6 @@ export {
   AdminOrdersPage,
   WareHouses,
   AdminCustomerPage,
-  QuotationsPage
+  QuotationsPage,
+  ProductsType
 };

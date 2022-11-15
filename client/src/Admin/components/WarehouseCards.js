@@ -41,8 +41,7 @@ function WarehouseCards({ products }) {
                 lineHeight='tight'
                 noOfLines={1}
               >
-                Postal Code:
-                {product.PostalCode}
+               
               </Box>
             </Box>
       </Link>

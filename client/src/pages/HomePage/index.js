@@ -28,8 +28,9 @@ import PostalCode from '../../components/PostalCode/PostalCode';
 import Result from '../../components/Result/Result';
 import Land from '../../components/stepper';
 import { landData } from '../../utils/land';
-
+import { useProductsContext } from '../../context/products_context';
 const HomePage = () => {
+  const {setUserType}=useProductsContext()
   const [state, setstate] = useState(false);
   const [loading, setloading] = useState(false);
   const [steps, setsteps] = useState(1);
@@ -54,27 +55,19 @@ const HomePage = () => {
   ];
   function setvalue(e) {
     setdata({ ...data, [e.target.name]: e.target.value });
+    setUserType(data.type)
    
     handleNext();
   }
   function calculateArea(e) {
     setdata({ ...data, [e.target.name]: e.target.value });
   }
-  // function callNext() {
-   
-  //    handleNext();
-  //   // setTimeout(() => {
-  //   //   handleNext();
-  //   // }, 1000);
-  // }
   function handleNext() {
     setloading(false);
     setsteps((step) => step + 1);
     console.log(data);
     setlinks([...links, array[steps]]);
   }
-
-
   function handleClick(step) {
     setsteps(step);
     let link = links;
@@ -82,10 +75,10 @@ const HomePage = () => {
     setlinks(link);
   }
   return (
-    <main style={{ padding: '50px' }}>
-      <SeacrhBar />
-      <Box sx={{ padding: '3rem' }}>
-        <Text fontSize='4xl' textAlign='center'>
+    <main style={{ padding: '20px',maxWidth:"1200px",margin:"auto" }}>
+      {/* <SeacrhBar /> */}
+      <Box sx={{ padding: '2rem' }}>
+        <Text fontSize='5xl' textAlign='center'>
           {steps === 1
             ? 'Kjøp kompostbasert kvalitetsjord hos oss!'
             : array[steps - 1]}
@@ -131,33 +124,35 @@ const HomePage = () => {
               <SliderFilledTrack bg='green-600' />
             </SliderTrack>
             <SliderMark value={1}>
-              <SliderThumb boxSize={6}>
-                 <Box color='green' as={MdGraphicEq} />
+              <SliderThumb boxSize={10}>
+                 <Box color='green'  />
               </SliderThumb>
             </SliderMark>
             <SliderMark value={2}>
-              <SliderThumb boxSize={6}>
-                 <Box color='green' as={MdGraphicEq} />
+              <SliderThumb boxSize={10}>
+                 <Box color='green'  />
               </SliderThumb>
             </SliderMark>
             <SliderMark value={3}>
-              <SliderThumb boxSize={6}>
-                 <Box color='green' as={MdGraphicEq} />
+              <SliderThumb boxSize={10}>
+                 <Box color='green'  />
               </SliderThumb>
             </SliderMark>
             <SliderMark value={4}>
-              <SliderThumb boxSize={6}>
-                 <Box color='green' as={MdGraphicEq} />
+              <SliderThumb boxSize={10}>
+                 <Box color='green' />
               </SliderThumb>
             </SliderMark>
             <SliderMark value={5}>
-              <SliderThumb boxSize={6}>
-                 <Box color='green' as={MdGraphicEq} />
+              <SliderThumb boxSize={10}>
+                 <Box color='green' >
+                  
+                 </Box>
               </SliderThumb>
             </SliderMark>
-            <SliderMark value={6}>
+            <SliderMark value={10}>
               <SliderThumb boxSize={6}>
-                 <Box color='green' as={MdGraphicEq} />
+                 <Box color='green' backgroundColor="green"  />
               </SliderThumb>
             </SliderMark>
           </Slider>

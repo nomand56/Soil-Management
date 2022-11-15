@@ -185,3 +185,5 @@ export const filtered_products_url=`${domain}product/filterProducts`;
 export const inquiry_product=`${domain}product/inquiry`;
 export const fetch_client_url=`${domain}fetch`;
 export const fetch_inquiry_url=`${domain}product/getInquiry`;
+export const fetch_product_type=`${domain}product/getproductType`;
+export const post_product_type=`${domain}product/ProductType`;

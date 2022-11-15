@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const products = require("../../controllers/products/index");
+const { route } = require("../users");
 
 router.get("/getAllProducts", products.getAllProducts);
 router.get("/getSingleProduct/:id", products.getSingleProduct);
@@ -15,4 +16,7 @@ router.get(
   "/product/getproduct/landjord/:land/:jord/:postal",
   products.getSingleProductByLandJord
 );
+router.post("/product/productType" , products.addProductType)
+router.get("/product/getProductType" , products.getProductType)
+
 module.exports = router;

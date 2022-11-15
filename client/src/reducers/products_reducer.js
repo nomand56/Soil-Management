@@ -19,6 +19,12 @@ import {
   FETCH_INQUIRY_FORM_SUCCESS,
   FETCH_INQUIRY_FORM_ERROR,
   FETCH_INQUIRY_FORM_BEGIN,
+  FETCH_ADD_TYPE_BEGIN,
+  FETCH_ADD_TYPE_SUCCESS,
+  FETCH_ADD_TYPE_ERROR,
+  POST_ADD_TYPE_BEGIN,
+  POST_ADD_TYPE_SUCCESS,
+  POST_ADD_TYPE_ERROR,
 } from '../actions';
 
 const products_reducer = (state, action) => {
@@ -83,41 +89,42 @@ const products_reducer = (state, action) => {
       single_product_error: true,
     };
   }
-  if  (action.type === GET_FILTERED_PRODUCTS_BEGIN) {
+  if (action.type === GET_FILTERED_PRODUCTS_BEGIN) {
     return {
       ...state,
       filtered_products_loading: true,
     };
   }
-  if  (action.type === GET_FILTERED_PRODUCTS_SUCCESS) {
+  if (action.type === GET_FILTERED_PRODUCTS_SUCCESS) {
     console.log(action.payload);
     return {
-      ...state, 
+      ...state,
       filtered_products_loading: false,
       filtered_products: action.payload,
     };
   }
-  if  (action.type === GET_FILTERED_PRODUCTS_ERROR) {
+  if (action.type === GET_FILTERED_PRODUCTS_ERROR) {
 
     return {
-    
+
       ...state,
       filtered_products_loading: false,
       filtered_products_error: true,
-      filtered_products:null
+      filtered_products: null
     };
   }
   if (action.type === INQUIRY_FORM_BEGIN) {
-  
-    return{
+
+    return {
       ...state,
       inquiry_form_loading: true,
       inquiry_form_error: false,
 
     }
   }
+
   if (action.type === FETCH_INQUIRY_FORM_BEGIN) {
-    return{
+    return {
       ...state,
       inquiry_form_loading: true,
       inquiry_form_error: false,
@@ -125,27 +132,94 @@ const products_reducer = (state, action) => {
     }
 
   }
-  if(action.type === FETCH_INQUIRY_FORM_SUCCESS){
-    return{
+  if (action.type === FETCH_INQUIRY_FORM_SUCCESS) {
+    return {
       ...state,
       inquiry_form_loading: false,
       inquiry_form_error: false,
       inquiryForm: action.payload
     }
   }
-  if(action.type === FETCH_INQUIRY_FORM_ERROR){
-    return{
+  if (action.type === FETCH_INQUIRY_FORM_ERROR) {
+    return {
       ...state,
       inquiry_form_loading: false,
       inquiry_form_error: true,
-   
+
     }
   }
-    if (action.type === INQUIRY_FORM_SUCCESS) {
-      return{ ...state, inquiry_form_loading: false, inquiry_form_error: false,success:true}  }
-    if (action.type === INQUIRY_FORM_ERROR) {
-      return{ ...state, inquiry_form_loading: false, inquiry_form_error: true, success:false}  }
-        
+
+  if (action.type === FETCH_ADD_TYPE_BEGIN) {
+    return {
+      ...state,
+      add_type_loading: true,
+      add_type_error: false,
+    }
+  }
+
+  if (action.type === FETCH_ADD_TYPE_SUCCESS) {
+    return {
+      ...state,
+      add_type_loading: false,
+      add_type_error: false,
+      addType: action.payload
+    }
+
+
+  }
+
+  if (action.type === FETCH_ADD_TYPE_ERROR) {
+    return {
+      ...state,
+      add_type_loading: false,
+      add_type_error: true,
+
+    }
+
+
+  }
+
+  if (action.type === POST_ADD_TYPE_BEGIN) {
+    return {
+      ...state,
+      add_type_loading: true,
+      add_type_error: false,
+    }
+  }
+
+  if (action.type === POST_ADD_TYPE_SUCCESS) {
+    return {
+      ...state,
+      add_type_loading: false,
+      add_type_error: false,
+      add_type_success: true
+    }
+
+
+  }
+
+  if (action.type === POST_ADD_TYPE_ERROR) {
+    return {
+      ...state,
+      add_type_loading: false,
+      add_type_error: true,
+
+    }
+
+
+  }
+
+
+
+
+
+  if (action.type === INQUIRY_FORM_SUCCESS) {
+    return { ...state, inquiry_form_loading: false, inquiry_form_error: false, success: true }
+  }
+  if (action.type === INQUIRY_FORM_ERROR) {
+    return { ...state, inquiry_form_loading: false, inquiry_form_error: true, success: false }
+  }
+
   throw new Error(`No Matching "${action.type}" - action type`);
 };
 

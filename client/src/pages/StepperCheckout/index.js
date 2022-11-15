@@ -28,8 +28,6 @@ function StepperCheckout() {
 
       <Box padding={10}>
         <Box>
-
-
           <fieldset style={fieldset}>
             <legend style={legend}>Shipping Address</legend>
             <form id="myForm"onSubmit={handleSubmit(onSubmit)}>
@@ -40,7 +38,6 @@ function StepperCheckout() {
                 type='text'
                 name='name'
                 required
-
                 {...register('firstName', { required: true })}
                 placeholder='First Name'
               />

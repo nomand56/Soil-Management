@@ -19,6 +19,8 @@ import SingleProductReviews from './SingleProductReviews';
 import PreLoader from './PreLoader';
 import CreateNewWareHouseModel from './CreateNewWareHouseModel'
 import CustomerTable from './CustomerTable';
+import ProductsTypeTable from './ProductsType';
+import CreateNewTypeModal from "./CreateNewTypeModal"
 export {
   SidebarWithHeader,
   SidebarContent,
@@ -40,5 +42,7 @@ export {
   Stars,
   SingleProductReviews,
   PreLoader,
-  CustomerTable
+  CustomerTable,
+  CreateNewTypeModal,
+  ProductsTypeTable
 };

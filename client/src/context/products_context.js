@@ -1,6 +1,6 @@
 import axios from 'axios';
-import React, { useContext, useEffect, useReducer } from 'react';
-  import { products_url, update_product_url , create_new_product, delete_product_url,single_product_url,filtered_products_url,inquiry_product, fetch_inquiry_url} from '../utils/constants';
+import React, { useContext, useEffect, useReducer,useState } from 'react';
+  import { products_url, update_product_url , create_new_product, delete_product_url,single_product_url,filtered_products_url,inquiry_product, fetch_inquiry_url, fetch_product_type, post_product_type} from '../utils/constants';
 import reducer from '../reducers/products_reducer';
 import {
   SIDEBAR_OPEN,
@@ -24,6 +24,13 @@ import {
   FETCH_INQUIRY_FORM_BEGIN,
   FETCH_INQUIRY_FORM_SUCCESS,
   FETCH_INQUIRY_FORM_ERROR,
+  FETCH_ADD_TYPE_BEGIN,
+  FETCH_USER_SUCCESS,
+  FETCH_ADD_TYPE_ERROR,
+  FETCH_ADD_TYPE_SUCCESS,
+  POST_ADD_TYPE_ERROR,
+  POST_ADD_TYPE_SUCCESS,
+  POST_ADD_TYPE_BEGIN,
 } from '../actions';
 
 import { useUserContext } from './user_context';
@@ -61,13 +68,18 @@ const initialState = {
   inquiryForm: [],
   inquiry_form_loading: false,
   inquiry_form_error: false,
+  data:null,
+  addType: [],
+  add_type_error: false,
+  add_type_loading: false,
+  add_type_success: false,
 };
 
 const ProductsContext = React.createContext();
 
 export const ProductsProvider = ({ children }) => {
   const { currentUser } = useUserContext();
-
+  const [userType,setUserType]=useState(null)
 
   const [state, dispatch] = useReducer(reducer, initialState);
   const setGridView = () => {
@@ -120,6 +132,29 @@ export const ProductsProvider = ({ children }) => {
 
     }
   }
+  const fetchProductType= async (data)=>{
+     dispatch({type:FETCH_ADD_TYPE_BEGIN})
+    try{
+      const response = await axios.get(fetch_product_type)
+
+      dispatch({type:FETCH_ADD_TYPE_SUCCESS, payload:response.data})
+    }
+    catch(error){
+      dispatch({type:FETCH_ADD_TYPE_ERROR, payload:error})
+    }
+  } 
+  const addProductType= async (data)=>{
+    dispatch({type:POST_ADD_TYPE_BEGIN})
+   try{
+     const response = await axios.post(post_product_type,data  )
+     dispatch({type:POST_ADD_TYPE_SUCCESS, payload:response.data})
+   }
+   catch(error){
+     dispatch({type:POST_ADD_TYPE_ERROR, payload:error})
+   }
+ } 
+
+
   const updateNewProductDetails = (e) => {
     const name = e.target.name;
     let value = e.target.value;
@@ -233,6 +268,7 @@ const filteredProducts = async (data) => {
   useEffect(() => {
     fetchProducts();
     fetchInquiry()
+    fetchProductType()
   }, []);
 
   return (
@@ -253,7 +289,11 @@ const filteredProducts = async (data) => {
         setListView,
         fetchProducts,
         filteredProducts,
+        fetchProductType,
+        addProductType,
         InquiryForm,
+        setUserType,
+        userType,
         fetchInquiry
         // getProductReviews,
       }}

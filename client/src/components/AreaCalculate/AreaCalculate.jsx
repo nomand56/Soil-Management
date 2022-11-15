@@ -14,7 +14,9 @@ export default function AreaCalculate({ calculateArea ,callNext}) {
         type='number'
         placeholder='Angi området i kvadratmeter'
         onChange={calculateArea}
-      />
+        style={{width:"50%"}}
+
+/>
       <Text color={color} fontSize='xl' sx={{ margin: '20px 0px' }}>
         Velg Jordhøyde
       </Text>
@@ -22,7 +24,8 @@ export default function AreaCalculate({ calculateArea ,callNext}) {
         name='Jordhøyde'
         type='number'
         placeholder='Angi bakkehøyde i meter'
-        onChange={calculateArea}
+        onChange={calculateArea} 
+        style={{width:"50%"}}
       />
       <Box
         sx={{
@@ -36,7 +39,11 @@ export default function AreaCalculate({ calculateArea ,callNext}) {
           bg={bg}
           color={color}
           onClick={callNext}
+<<<<<<< HEAD
           sx={{ '&:hover': { background: '#00A300' } }}
+=======
+          backgroundColor='green.500'
+>>>>>>> 06166681b54e95709c38a77d1e9bdd7d77f26da5
         >
           Next
         </Button>
