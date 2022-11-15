@@ -28,7 +28,11 @@ function JordType({ setvalue }) {
               name='jordType'
               value='highmineral'
               onClick={setvalue}
-              sx={{ fontSize: 'small', background: 'green.500' }}
+              sx={{
+                fontSize: 'small',
+                background: 'green.500',
+                '&:hover': { background: '#00A300' },
+              }}
             >
               Les mer om Høyt Mineral
             </Button>
@@ -36,7 +40,7 @@ function JordType({ setvalue }) {
         </Box>
         <Box
           sx={{
-            backgroundImage:`url(${img2})`,
+            backgroundImage: `url(${img2})`,
             backgroundPosition: 'center',
           }}
           className='img_box'
@@ -53,7 +57,11 @@ function JordType({ setvalue }) {
               name='jordType'
               value='litemineral'
               onClick={setvalue}
-              sx={{ fontSize: 'small', background: 'green.500' }}
+              sx={{
+                fontSize: 'small',
+                background: 'green.500',
+                '&:hover': { background: '#00A300' },
+              }}
             >
               Les mer om Lite Mineral
             </Button>

@@ -66,7 +66,7 @@ const Result = ({ data }) => {
             flexWrap: 'wrap',
           }}
         >
-          <Box style={{ width: '25%', minWidth: '250px', padding: '5px' }}>
+          <Box className='imgContainer'>
             <img
               src={state[0]?.img}
               alt={state[0]?.img}
@@ -79,7 +79,7 @@ const Result = ({ data }) => {
               {state[0].disc}
             </Text>
           </Box>
-          <Box sx={{ width: '75%', padding: '40px 20px' }}>
+          <Box className='boxContainer'>
             <Box className='detailscard'>
               <Box>
                 <Text fontSize='xl' sx={{ color: 'green' }}>
@@ -146,27 +146,30 @@ const Result = ({ data }) => {
                 </Text>
               </Box>
             </Box>
-            <Box
-              sx={{
-                display: 'flex',
-                padding: '10px',
-                margin: '10px',
-                alignItems: 'center',
-                justifyContent: 'space-evenly',
-              }}
-            >
+            <Box className='buttoncontainer'>
               {data.type === 'proffkunder' ? (
-                <Button onClick={handleCheckout}>Checkout</Button>
+                <Button onClick={handleCheckout} sx={{'&:hover': { background: '#00A300' }}}>Checkout</Button>
               ) : (
-                <Button bg={bg} onClick={handleCheckout}>
+                <Button
+                  bg={bg}
+                  onClick={handleCheckout}
+                  sx={{ '&:hover': { background: '#00A300' } }}
+                >
                   Sjekk Ut
                 </Button>
               )}
-              <Button onClick={handleAddtoCart}>Legg i handlekurv</Button>
+              <Button
+                onClick={handleAddtoCart}
+                sx={{ '&:hover': { background: '#00A300' } }}
+              >
+                Legg i handlekurv
+              </Button>
             </Box>
           </Box>
         </Box>
-      ) : <ErrorPage obj={obj} />}
+      ) : (
+        <ErrorPage obj={obj} />
+      )}
     </div>
   );
 };

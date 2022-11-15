@@ -2,16 +2,17 @@ import styled from 'styled-components';
 const Wrapper = styled.section`
 
     .select{
-        position:absolute;
-        right:0;
-        top:-40px;
-        
-        width:25%;
+  
+        padding:8px;
+        border:1px solid rgba(240,240,240,0.8);
+        border-radius:5px;
 
     }
     .search-box{
         position:relative;
         width:30%;
+        display:flex;
+        align-items:center;
         margin:auto
     }
     .search-box input{

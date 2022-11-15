@@ -36,6 +36,7 @@ export default function AreaCalculate({ calculateArea ,callNext}) {
           bg={bg}
           color={color}
           onClick={callNext}
+          sx={{ '&:hover': { background: '#00A300' } }}
         >
           Next
         </Button>

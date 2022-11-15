@@ -18,15 +18,32 @@ setdata(e.target.value)
       <Text color={color} sx={{ margin: '20px 0px' }}>
         Skriv inn postnummer
       </Text>
-      <Input placeholder='Skriv inn postnummer' required onChange={handleChange} />
+      <Input
+        placeholder='Skriv inn postnummer'
+        required
+        onChange={handleChange}
+      />
       <Box sx={{ margin: '20px 0px', textAlign: 'right' }}>
-        <Button name='postalCode' value={data} bg={bg} color={color} onClick={(e)=>{if(data){setvalue(e)}else{toast({
-          position: 'top',
-          description: 'Provide Postal Code.!!',
-          status: 'error',
-          duration: 5000,
-          isClosable: true,
-        })}}}>
+        <Button
+          name='postalCode'
+          value={data}
+          bg={bg}
+          color={color}
+          onClick={(e) => {
+            if (data) {
+              setvalue(e);
+            } else {
+              toast({
+                position: 'top',
+                description: 'Provide Postal Code.!!',
+                status: 'error',
+                duration: 5000,
+                isClosable: true,
+              });
+            }
+          }}
+          sx={{ '&:hover': { background: '#00A300' } }}
+        >
           Next
         </Button>
       </Box>

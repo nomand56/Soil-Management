@@ -8,7 +8,13 @@ const Land = ({m,setvalue}) => {
 
 
   return (
-    <div style={{ width: 'fit-content',borderRadius:'10px',boxShadow:" rgba(0, 0, 0, 0.35) 0px 5px 15px" }}>
+    <div
+      style={{
+        width: 'fit-content',
+        borderRadius: '10px',
+        boxShadow: ' rgba(0, 0, 0, 0.35) 0px 5px 15px',
+      }}
+    >
       <Box
         sx={{
           maxWidth: '220px',
@@ -22,14 +28,14 @@ const Land = ({m,setvalue}) => {
           // loading={lazy}
           style={{ width: '100%', height: '150px' }}
         />
-        <Text fontSize='md' color="green" sx={{ fontWeight: 'bold',margin:'10px 0px' }}>
+        <Text
+          fontSize='md'
+          color='green'
+          sx={{ fontWeight: 'bold', margin: '10px 0px' }}
+        >
           {m.type}
         </Text>
-        <Text
-          fontSize='sm'
-          color={color}
-          sx={{ height: '80px' }}
-        >
+        <Text fontSize='sm' color={color} sx={{ height: '80px' }}>
           {m.disc}
         </Text>
         <Button
@@ -40,8 +46,9 @@ const Land = ({m,setvalue}) => {
             fontSize: '10px',
             width: '100%',
             margin: '10px 0px',
-            color:"white",
-            backgroundColor:"green.500"
+            color: 'white',
+            backgroundColor: 'green.500',
+            '&:hover': { background: '#00A300' },
           }}
           bg={bg}
         >{`Les Mer Om ${m.type}`}</Button>

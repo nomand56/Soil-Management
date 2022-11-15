@@ -2,9 +2,9 @@ import { Box, Button, Text, useColorModeValue } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import { BiErrorCircle } from 'react-icons/bi';
 import { landData } from '../../utils/land';
+import FeedBack from '../feedbackform';
 
 const ErrorPage = ({ obj }) => {
-    console.log(obj)
     const [form, setform] = useState(false)
     const [state,setstate] =useState(null)
       const color = useColorModeValue('rgb(40,40,40)', 'rgb(250,250,250)');
@@ -27,7 +27,7 @@ const ErrorPage = ({ obj }) => {
         </Text>
       </Box>
       <Box sx={{ margin: '20px auto' }}>
-        <Button bg={bg} color={color}>
+        <Button bg={bg} color={color} onClick={()=>setform(true)}>
           Be om skjemaet
         </Button>
       </Box>
@@ -35,11 +35,11 @@ const ErrorPage = ({ obj }) => {
         <Box
           sx={{
             display: 'flex',
-            justifyContent: 'space-between',
+            justifyContent: 'space-evenly',
             flexWrap: 'wrap',
           }}
         >
-          <Box style={{ width: '25%', minWidth: '250px', padding: '5px' }}>
+          <Box style={{ width: '25%', minWidth: '300px', padding: '5px' }}>
             <img
               src={state[0]?.img}
               alt={state[0]?.img}
@@ -55,6 +55,7 @@ const ErrorPage = ({ obj }) => {
           <Box
             sx={{
               width: '40%',
+              minWidth:'300px',
               padding: '40px 20px',
               border: '1px solid green',
             }}
@@ -106,6 +107,7 @@ const ErrorPage = ({ obj }) => {
             sx={{
               padding: '40px 20px',
               width: '30%',
+              minWidth:"300px",
               border: '1px solid green',
             }}
           >
@@ -181,7 +183,7 @@ const ErrorPage = ({ obj }) => {
             </Box>
           </Box>
         </Box>
-      ) : null}
+      ) : <FeedBack obj={obj} />}
     </Box>
   );
 }

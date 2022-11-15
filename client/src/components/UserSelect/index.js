@@ -8,7 +8,11 @@ function UserSelect({setvalue}) {
     <div>
       <Wrapper>
         <Box
-          sx={{ backgroundImage: `url(${img1})`, backgroundPosition: 'center' ,margin:'20px 0px'}}
+          sx={{
+            backgroundImage: `url(${img1})`,
+            backgroundPosition: 'center',
+            margin: '20px 0px',
+          }}
           className='img_box'
         >
           <Box className='box_p'>
@@ -23,13 +27,19 @@ function UserSelect({setvalue}) {
               name='type'
               value='proffkunder'
               onClick={setvalue}
-              sx={{ fontSize: 'small', background: 'green' }}
+              sx={{
+                fontSize: 'small',
+                background: 'green',
+                '&:hover': { background: '#00A300' },
+              }}
             >
               JORD TIL PROFFKUNDER
             </Button>
           </Box>
         </Box>
-        <Text fontSize='xl' sx={{fontWeight:'bold'}} >Eller</Text>
+        <Text fontSize='xl' sx={{ fontWeight: 'bold' }}>
+          Eller
+        </Text>
         <Box
           sx={{
             backgroundImage: `url(https://www.farmtek.com/wcsstore/EngineeringServices/allbizunits/prodimages/zoom/1x/pb01680r6cb.jpg)`,
@@ -48,7 +58,11 @@ function UserSelect({setvalue}) {
               name='type'
               value='privatkunder'
               onClick={setvalue}
-              sx={{ fontSize: 'small', background: 'green' }}
+              sx={{
+                fontSize: 'small',
+                background: 'green',
+                '&:hover': { background: '#00A300' },
+              }}
             >
               JORD TIL PRIVATKUNDER
             </Button>

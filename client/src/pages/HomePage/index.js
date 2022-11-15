@@ -179,7 +179,7 @@ const HomePage = () => {
                 }}
               >
                 <button
-                  style={{ margin: '0px 10px', color: 'green' }}
+                  style={{ margin: '0px 10px', color: 'green','&:hover': { background: '#00A300' }, }}
                   onClick={() => {
                     handleClick(index + 1);
                   }}
