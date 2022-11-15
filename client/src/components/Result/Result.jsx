@@ -4,9 +4,13 @@ import React, { useEffect, useState } from 'react';
 import {useHistory } from 'react-router-dom';
 import { landData } from '../../utils/land';
 import ErrorPage from '../ErrorPage';
-
+import { useCartContext } from '../../context/cart_context';
+import { useProductsContext } from '../../context/products_context';
 const Result = ({ data }) => {
+
   const history=useHistory();
+  const {addToCart}= useCartContext()
+  const {setData}=useProductsContext()
   const [state, setstate] = useState(null);
   const [product, setproduct] = useState(null);
   const color = useColorModeValue('rgb(40,40,40)', 'rgb(250,250,250)');
@@ -27,32 +31,35 @@ const Result = ({ data }) => {
 
   function handleCheckout(e) {
      setobj( { ...data, productID: product?._id });
+     handleAddtoCart()
     if (e.target.innerText === 'Sjekk Ut') {
       if (product === 'product not found')
       {
         seterrorstate(true)
       }
       else {
-        
+        history.push("/StepperCheckout")
+ 
       }
     } else {
        if (product === 'product not found') {
          seterrorstate(true);
       }
        else {
-         
+        history.push("/StepperCheckout")
       }
     }
   }
   function handleAddtoCart() {
- setobj({ ...data, productID: product?._id });
-    
+ setobj({ ...data, productID: product?._id,amount:1 });
      if (product === 'product not found') {
        seterrorstate(true);
-     }
-
-  
-
+     }else {
+// console.log("product console",product)
+//       console.log("object",obj)
+//       addToCart(product)
+console.log(product)     
+}
   }
   return (
     <div style={{ margin: '20px auto' }}>

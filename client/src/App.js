@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { Navbar, Sidebar, Footer, Toast, ErrorBoundary } from './components';
+import { Navbar, Sidebar, Footer, Toast, ErrorBoundary, Stepper } from './components';
 import { useProductsContext } from './context/products_context';
 import { useUserContext } from './context/user_context';
 import 'react-toastify/dist/ReactToastify.css';
@@ -33,12 +33,14 @@ import {
   LoginPage,
   WareHouses,
   AdminCustomerPage,
-  QuotationsPage
+  QuotationsPage,
+  ProductsType
 } from './Admin/adminPages';
 
 function App() {
-  const { isSidebarOpen } = useProductsContext();
+  const { isSidebarOpen, userType } = useProductsContext();
   const { currentUser } = useUserContext();
+
   const overflowPropertyToHideScroll =
     isSidebarOpen === true ? 'hidden' : 'scroll';
   return (
@@ -79,9 +81,16 @@ function App() {
             <PrivateRoute exact path='/checkout'>
               <CheckoutPage />
             </PrivateRoute>
-            <PrivateRoute exact path='/StepperCheckout'>
-            <StepperCheckout/>
-            </PrivateRoute>
+            {userType === "proffkunder" ? (
+              <PrivateRoute exact path='/StepperCheckout'>
+                <StepperCheckout />
+              </PrivateRoute>
+            ) : (
+              <Route exact path='/StepperCheckout' >
+                <StepperCheckout />  
+              </Route>
+            )
+            }
             <PrivateRoute exact path='/orders'>
               <OrdersPage />
             </PrivateRoute>
@@ -97,12 +106,17 @@ function App() {
             <PrivateRoute exact path='/admin/products'>
               <ProductsPage />
             </PrivateRoute>
+            <PrivateRoute exact path='/admin/productstype'>
+              <ProductsType />
+            </PrivateRoute>
+
             <PrivateRoute exact path='/admin/warehouses'>
               <WareHouses />
             </PrivateRoute>
             <PrivateRoute exact path='/admin/products/:id'>
               <SingleProductPage />
             </PrivateRoute>
+
             <PrivateRoute exact path='/admin'>
               <AdminsPage />
             </PrivateRoute>
@@ -110,7 +124,7 @@ function App() {
               <AdminCustomerPage />
             </PrivateRoute>
             <PrivateRoute exact path='/admin/quotations'>
-              <QuotationsPage/>
+              <QuotationsPage />
             </PrivateRoute>
             <Route exact path='*'>
               <Error />

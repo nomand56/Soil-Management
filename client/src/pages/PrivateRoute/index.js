@@ -5,6 +5,7 @@ import { useUserContext } from '../../context/user_context';
 const PrivateRoute = ({ children, ...rest }) => {
   const { isAuthenticated, currentUser } = useUserContext();
   const location = useLocation();
+  
 
   if (
     rest.path === '/login' ||

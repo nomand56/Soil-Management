@@ -25,11 +25,12 @@ import {
 import { useDropzone } from 'react-dropzone';
 import { useProductsContext } from '../../context/products_context';
 import { useWarehouseContext } from '../../context/warehouse_context';
-
+import FileBase64 from "react-file-base64";
 function CreateNewProductModal() {
   const [wareH, setwareH] = useState(null);
   const [ID, setID] = useState(0);
   const [PostCode, setPostCode] = useState('');
+  
   let {
     new_product: {
       productName,
@@ -46,11 +47,13 @@ function CreateNewProductModal() {
     },
     updateNewProductDetails,
     createNewProduct,
+    addType,
   } = useProductsContext();
 
-  const { warehouse, fetchWareHouses } = useWarehouseContext();
+  const { productType, setProductType } = useWarehouseContext();
   const [imageList, setImageList] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [image,setBase64]=useState([])
 
   const onDrop = useCallback((acceptedFiles) => {
     acceptedFiles.forEach((file) => {
@@ -63,7 +66,7 @@ function CreateNewProductModal() {
       reader.readAsDataURL(file);
     });
   }, []);
-useEffect(()=>{fetchWareHouses()},[])
+
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept: 'image/jpeg, image/png',
@@ -79,21 +82,10 @@ useEffect(()=>{fetchWareHouses()},[])
       return [...prev];
     });
   };
-  function setWareHouse(e) {
-    setwareH(e.target.value);
-    let data = warehouse.filter((f) => f.warehouseName === e.target.value);
-    setID(data[0]._id);
-    setPostCode(data[0].PostalCode)    
-
-  }
-
   const handleSubmit = async () => {
     if (
       !productName ||
-      !price ||
-      !stock ||
-      !description ||
-      !land
+      !description
     ) {
       return toast({
         position: 'top',
@@ -103,34 +95,15 @@ useEffect(()=>{fetchWareHouses()},[])
         isClosable: true,
       });
     }
-
-
-    // if (imageList.length < 1) {
-    //   return toast({
-    //     position: 'top',
-    //     description: 'Add atleast one image',
-    //     status: 'error',
-    //     duration: 5000,
-    //     isClosable: true,
-    //   });
-    // }
     setLoading(true);
     console.log('uploading');
     const product = {
       productName,
-      price,
-      stock,
-      description,
-      quantity,
-      land,
       jord,
-      company,
-      supplierPostalCode:PostCode,
-      supplierId: ID,
-      featured,
-      usedFor,
+      image,
+      productType: productType,
     };
-    console.log(product);
+
     const responseCreate = await createNewProduct(product);
     setLoading(false);
     setwareH(null);
@@ -167,22 +140,7 @@ useEffect(()=>{fetchWareHouses()},[])
           <ModalHeader>Create new product</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
-            {wareH === null ? (
-              <FormControl>
-                <FormLabel>Choose WareHouse</FormLabel>
-                <Select
-                  placeholder='Choose Ware House'
-                  name='warehouse'
-                  focusBorderColor='#32995b'
-                  onChange={setWareHouse}
-                >
-                  {warehouse &&
-                    warehouse.map((m, i) => {
-                      return <option key={i}>{m.warehouseName}</option>;
-                    })}
-                </Select>
-              </FormControl>
-            ) : (
+       
               <>
                 <FormControl>
                   <FormLabel>Product Name</FormLabel>
@@ -195,40 +153,20 @@ useEffect(()=>{fetchWareHouses()},[])
                     onChange={updateNewProductDetails}
                   />
                 </FormControl>
-
-                <FormControl mt={4}>
-                  <FormLabel>Price</FormLabel>
-                  <Input
-                    type='number'
-                    placeholder='Product Price'
-                    name='price'
-                    focusBorderColor='#32995b'
-                    value={price}
-                    onChange={updateNewProductDetails}
-                  />
-                </FormControl>
-
-                <FormControl mt={4}>
-                  <FormLabel>Stock</FormLabel>
-                  <Input
-                    type='number'
-                    placeholder='Product Stock'
-                    name='stock'
-                    focusBorderColor='#32995b'
-                    value={stock}
-                    onChange={updateNewProductDetails}
-                  />
-                </FormControl>
-                <FormControl mt={4}>
-                  <FormLabel>Quantity</FormLabel>
-                  <Input
-                    placeholder='Product Quantity in KG'
-                    name='quantity'
-                    focusBorderColor='#32995b'
-                    value={quantity}
-                    onChange={updateNewProductDetails}
-                  />
-                </FormControl>
+                <FormControl>
+                <FormLabel>Choose Product Type</FormLabel>
+                <Select
+                  placeholder='Choose Product Type'
+                  name='warehouse'
+                  focusBorderColor='#32995b'
+                  onChange={setProductType}
+                >
+                  {addType &&
+                    addType.map((m, i) => {
+                      return <option key={i}>{m.productType}</option>;
+                    })}
+                </Select>
+              </FormControl>
                 <FormControl mt={4}>
                   <FormLabel>Description</FormLabel>
                   <Textarea
@@ -238,26 +176,6 @@ useEffect(()=>{fetchWareHouses()},[])
                     value={description}
                     onChange={updateNewProductDetails}
                   />
-                </FormControl>
-
-                <FormControl mt={4}>
-                  <FormLabel>Land</FormLabel>
-                  <Select
-                    placeholder='Land Type'
-                    name='land'
-                    focusBorderColor='#32995b'
-                    value={land}
-                    onChange={updateNewProductDetails}
-                  >
-                    <option value='Hage-Mix'>Hage-Mix</option>
-                    <option value='Park-Mix'>Park-Mix</option>
-                    <option value='Blomstereng-Jord'>Blomstereng-Jord</option>
-                    <option value='Vermikompost'>Vermikompost</option>
-                    <option value='Krukkejord'>Krukkejord</option>
-                    <option value='Torvfri Blomsterjord'>
-                      Torvfri Blomsterjord
-                    </option>
-                  </Select>
                 </FormControl>
                 <FormControl mt={4}>
                   <FormLabel>Jord</FormLabel>
@@ -272,56 +190,7 @@ useEffect(()=>{fetchWareHouses()},[])
                     <option value='lowmineral'>Low Minerals</option>
                   </Select>
                 </FormControl>
-                <FormControl mt={4}>
-                  <FormLabel>Company</FormLabel>
-                  <Input
-                    placeholder='Product Company'
-                    name='company'
-                    focusBorderColor='#32995b'
-                    value={company}
-                    onChange={updateNewProductDetails}
-                  />
-                </FormControl>
-
-                <FormControl mt={4}>
-                  <FormLabel>Supplier Postal Code</FormLabel>
-                  <Input
-                    placeholder='Supplier Postal Code'
-                    name='supplierPostalCode'
-                    focusBorderColor='#32995b'
-                    value={PostCode}
-                    disabled={true}
-                  />
-                  <FormHelperText>Eg: 32100</FormHelperText>
-                </FormControl>
-
-                <FormControl mt={4}>
-                  <FormLabel>Supplier ID</FormLabel>
-                  <Input
-                    placeholder='Supplier ID number'
-                    name='supplierId'
-                    focusBorderColor='#32995b'
-                    value={ID}
-                    disabled={true}
-                  />
-                  <FormHelperText>Eg: 635bfcd14d4210d7b56ba9f0</FormHelperText>
-                </FormControl>
-
-                <FormControl mt={4}>
-                  <FormLabel>Usages</FormLabel>
-                  <Input
-                    placeholder='Product Usages'
-                    name='usedFor'
-                    focusBorderColor='#32995b'
-                    value={usedFor.join(',').toString()}
-                    onChange={updateNewProductDetails}
-                  />
-                  <FormHelperText>
-                    Eg: vegetable , plants , trees
-                  </FormHelperText>
-                </FormControl>
-
-                {/* <FormControl mt={4}>
+              <FormControl mt={4}>
               <FormLabel>Images</FormLabel>
               <Center
                 bg='brown.50'
@@ -343,12 +212,16 @@ useEffect(()=>{fetchWareHouses()},[])
                   </p>
                 )}
               </Center>
-              <Input {...getInputProps()} />
+              <FileBase64 
+              type="file"
+              multiple={false} 
+              onDone={({ base64 }) => setBase64(base64)} />
+              
             </FormControl>
 
             <FormControl mt={4}>
               <HStack>
-                {imageList.map((image, index) => {
+                {[image].map((image, index) => {
                   return (
                     <VStack key={index} spacing={3}>
                       <Image
@@ -369,7 +242,7 @@ useEffect(()=>{fetchWareHouses()},[])
                   );
                 })}
               </HStack>
-            </FormControl> */}
+            </FormControl> 
                 <FormControl mt={4}>
                   <Checkbox
                     name='featured'
@@ -381,7 +254,7 @@ useEffect(()=>{fetchWareHouses()},[])
                   </Checkbox>
                 </FormControl>
               </>
-            )}
+            
           </ModalBody>
 
           <ModalFooter>

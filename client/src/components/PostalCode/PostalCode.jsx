@@ -18,7 +18,7 @@ setdata(e.target.value)
       <Text color={color} sx={{ margin: '20px 0px' }}>
         Skriv inn postnummer
       </Text>
-      <Input placeholder='Skriv inn postnummer' required onChange={handleChange} />
+      <Input placeholder='Skriv inn postnummer' required onChange={handleChange} style={{width:"30%"}} />
       <Box sx={{ margin: '20px 0px', textAlign: 'right' }}>
         <Button name='postalCode' value={data} bg={bg} color={color} onClick={(e)=>{if(data){setvalue(e)}else{toast({
           position: 'top',

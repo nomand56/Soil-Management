@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { BiErrorCircle } from 'react-icons/bi';
 import { landData } from '../../utils/land';
 
-const ErrorPage = ({ obj }) => {
+const OrderPlaced = ({ obj }) => {
     console.log(obj)
     const [form, setform] = useState(false)
     const [state,setstate] =useState(null)
@@ -186,4 +186,4 @@ const ErrorPage = ({ obj }) => {
   );
 }
 
-export default ErrorPage
+export default OrderPlaced

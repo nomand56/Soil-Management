@@ -1,5 +1,6 @@
 let products = require("../../models/products/model");
 let inquiry = require("../../models/inquiry/model");
+const ProductType = require("../../models/productsType/schema");
 const addProduct = async (req, res) => {
   try {
     let data = await new products(req.body);
@@ -33,6 +34,24 @@ const updateProduct = async (req, res) => {
     res.send("update successfully");
   } catch (error) {
     res.send({ error });
+  }
+};
+const addProductType = async (req, res) => {
+  try {
+    let data = await new ProductType(req.body);
+    await data.save();
+
+    res.send({ seccess: "ok", message: "add to products successfully" });
+  } catch (error) {
+    console.log(error);
+  }
+};
+const getProductType = async (req, res) => {
+  try {
+    let data = await ProductType.find();
+    res.send(data);
+  } catch (error) {
+    console.log(error);
   }
 };
 
@@ -153,4 +172,6 @@ module.exports = {
   postInquiry,
   fetchInquiry,
   getSingleProductByLandJord,
+  addProductType,
+  getProductType,
 };

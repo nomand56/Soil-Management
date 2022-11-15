@@ -28,6 +28,7 @@ const cart_reducer = (state, action) => {
       return { ...state, form: action.payload };
     }
   if (action.type === ADD_TO_CART) {
+    console.log(action.payload)
     const { id, amount, product } = action.payload;
     const tempItem = state.cart.find((item) => item.id === id);
     if (tempItem) {
@@ -48,7 +49,7 @@ const cart_reducer = (state, action) => {
         id: id,
         name: product.productName,
         amount,
-        image: product.image,
+        image: "https://static.independent.co.uk/s3fs-public/thumbnails/image/2016/04/05/19/pp-soil-rf-gettyc.jpg",
         price: product.price,
         // shipping: product.shipping,
         max: product.quantity,
