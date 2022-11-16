@@ -4,12 +4,8 @@ import { BiErrorCircle } from 'react-icons/bi';
 import { landData } from '../../utils/land';
 import FeedBack from '../feedbackform';
 
-<<<<<<< HEAD
-const ErrorPage = ({ obj }) => {
-=======
 const OrderPlaced = ({ obj }) => {
     console.log(obj)
->>>>>>> 06166681b54e95709c38a77d1e9bdd7d77f26da5
     const [form, setform] = useState(false)
     const [state,setstate] =useState(null)
       const color = useColorModeValue('rgb(40,40,40)', 'rgb(250,250,250)');
