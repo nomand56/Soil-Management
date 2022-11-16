@@ -1,18 +1,18 @@
-import { Box, Button, Text, useColorModeValue } from '@chakra-ui/react';
-import React, { useEffect, useState } from 'react';
+import { Box, Button, Text, useColorModeValue } from '@chakra-ui/react'
+import React, { useEffect, useState } from 'react'
 import { BiErrorCircle } from 'react-icons/bi';
 import { landData } from '../../utils/land';
 import FeedBack from '../feedbackform';
 
-const OrderPlaced = ({ obj }) => {
-  const [form, setform] = useState(false);
-  const [state, setstate] = useState(null);
-  const color = useColorModeValue('rgb(40,40,40)', 'rgb(250,250,250)');
-  const bg = useColorModeValue('rgb(250,250,250)', '#32995b');
+const CheckoutStep = () => {
+    const [form, setform] = useState(false)
+    const [state,setstate] =useState(null)
+      const color = useColorModeValue('rgb(40,40,40)', 'rgb(250,250,250)');
+      const bg = useColorModeValue('rgb(250,250,250)', '#32995b');
 
-  useEffect(() => {
-    setstate(landData.filter((land) => land.type === obj?.land));
-  }, []);
+    useEffect(() => {
+          setstate(landData.filter((land) => land.type === obj?.land));
+    }, [])
 
   return (
     <Box sx={{ textAlign: 'center' }}>
@@ -26,11 +26,11 @@ const OrderPlaced = ({ obj }) => {
         </Text>
       </Box>
       <Box sx={{ margin: '20px auto' }}>
-        <Button bg={bg} color={color} onClick={() => setform(true)}>
+        <Button bg={bg} color={color} onClick={()=>setform(true)}>
           Be om skjemaet
         </Button>
       </Box>
-      {!form && state ? (
+      
         <Box
           sx={{
             display: 'flex',
@@ -54,7 +54,7 @@ const OrderPlaced = ({ obj }) => {
           <Box
             sx={{
               width: '40%',
-              minWidth: '300px',
+              minWidth:'300px',
               padding: '40px 20px',
               border: '1px solid green',
             }}
@@ -106,7 +106,7 @@ const OrderPlaced = ({ obj }) => {
             sx={{
               padding: '40px 20px',
               width: '30%',
-              minWidth: '300px',
+              minWidth:"300px",
               border: '1px solid green',
             }}
           >
@@ -182,11 +182,9 @@ const OrderPlaced = ({ obj }) => {
             </Box>
           </Box>
         </Box>
-      ) : (
-        <FeedBack obj={obj} />
-      )}
+      ) 
     </Box>
   );
-};
+}
 
-export default OrderPlaced;
+export default CheckoutStep

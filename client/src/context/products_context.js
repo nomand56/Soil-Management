@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useReducer,useState } from 'react';
-  import { products_url, update_product_url , create_new_product, delete_product_url,single_product_url,filtered_products_url,inquiry_product, fetch_inquiry_url, fetch_product_type, post_product_type} from '../utils/constants';
+  import { products_url, update_product_url , create_new_product, delete_product_url,single_product_url,filtered_products_url,inquiry_product, fetch_inquiry_url, fetch_product_type, post_product_type, post_postal_code, fetch_postal_code} from '../utils/constants';
 import reducer from '../reducers/products_reducer';
 import {
   SIDEBAR_OPEN,
@@ -73,6 +73,7 @@ const initialState = {
   add_type_error: false,
   add_type_loading: false,
   add_type_success: false,
+  
 };
 
 const ProductsContext = React.createContext();
@@ -80,6 +81,7 @@ const ProductsContext = React.createContext();
 export const ProductsProvider = ({ children }) => {
   const { currentUser } = useUserContext();
   const [userType,setUserType]=useState(null)
+  const [postalData,setPostalData]=useState(null)
 
   const [state, dispatch] = useReducer(reducer, initialState);
   const setGridView = () => {
@@ -153,6 +155,26 @@ export const ProductsProvider = ({ children }) => {
      dispatch({type:POST_ADD_TYPE_ERROR, payload:error})
    }
  } 
+ const addPostalCode = async (data) => {
+  try {
+    const response = await axios.post(post_postal_code, data);
+    const { success, message } = response.data;
+    return { success, message };
+  } catch (error) {
+    const { success, message } = error.response.data;
+    return { success, message };
+  }
+};
+const getPostalCode = async (data) => {
+  try {
+    const response = await axios.get(fetch_postal_code);
+    setPostalData(response.data)
+  } catch (error) {
+    const { success, message } = error.response.data;
+    return { success, message };
+  }
+};
+
 
 
   const updateNewProductDetails = (e) => {
@@ -269,6 +291,7 @@ const filteredProducts = async (data) => {
     fetchProducts();
     fetchInquiry()
     fetchProductType()
+    getPostalCode()
   }, []);
 
   return (
@@ -294,7 +317,9 @@ const filteredProducts = async (data) => {
         InquiryForm,
         setUserType,
         userType,
-        fetchInquiry
+        fetchInquiry,
+        getPostalCode,
+        addPostalCode,
         // getProductReviews,
       }}
     >

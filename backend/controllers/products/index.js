@@ -1,6 +1,6 @@
 let products = require("../../models/products/model");
 let inquiry = require("../../models/inquiry/model");
-const ProductType = require("../../models/productsType/schema");
+let ProductsType=require("../../models/productsType/model")
 const addProduct = async (req, res) => {
   try {
     let data = await new products(req.body);
@@ -14,7 +14,7 @@ const deleteProduct = async (req, res) => {
   try {
     let data = await products.findByIdAndDelete(req.params.id);
     res.send({ success: "ok", message: "deleted" });
-  } catch (error) {
+  } catch (error) {p
     res.send({ message: error });
   }
 };
@@ -38,7 +38,7 @@ const updateProduct = async (req, res) => {
 };
 const addProductType = async (req, res) => {
   try {
-    let data = await new ProductType(req.body);
+    let data = await new ProductsType(req.body);
     await data.save();
 
     res.send({ seccess: "ok", message: "add to products successfully" });
@@ -48,7 +48,7 @@ const addProductType = async (req, res) => {
 };
 const getProductType = async (req, res) => {
   try {
-    let data = await ProductType.find();
+    let data = await ProductsType.find();
     res.send(data);
   } catch (error) {
     console.log(error);

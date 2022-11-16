@@ -15,8 +15,8 @@ import {
 const order_reducer = (state, action) => {
   if (action.type === UPDATE_SHIPPING_DETAILS) {
     const { name, value } = action.payload;
-    if (name === 'name' || name === 'phone_number') {
-      return { ...state, shipping: { ...state.shipping, [name]: value } };
+    if (name === 'firstName' || name === 'phone_number' || name === 'lastName') {
+      return { ...state, shipping: { ...state.shipping, [name]: value } };  
     }
     return {
       ...state,

@@ -44,7 +44,7 @@ let schema = new mongoose.Schema({
     type: Boolean,
     
   },
-  productType: {
+  productsType: {
     type: String,
   },
 

@@ -55,10 +55,8 @@ const Result = ({ data }) => {
      if (product === 'product not found') {
        seterrorstate(true);
      }else {
-// console.log("product console",product)
-//       console.log("object",obj)
-//       addToCart(product)
-console.log(product)     
+      addToCart({id:product._id,amount:1,product})
+console.log("ADD TO CART",product)     
 }
   }
   return (
