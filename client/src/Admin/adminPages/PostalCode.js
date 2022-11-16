@@ -9,11 +9,15 @@ import { BiRefresh } from 'react-icons/bi';
 import {useProductsContext} from '../../context/products_context'
 
 function PostalCode() {
-    const {getPostalCode}=useProductsContext()
+    const {getPostalCode }=useProductsContext()
   const handleRefresh = async () => {
     await getPostalCode();
   };
-  if (loading) {
+  const data={
+    loading:false,
+    error:false,
+  }
+  if (data.loading) {
     return (
       <SidebarWithHeader>
         <HStack mb={5}>
@@ -34,7 +38,7 @@ function PostalCode() {
     );
   }
 
-  if (error) {
+  if (data.error) {
     return (
       <SidebarWithHeader>
         <HStack mb={5}>
@@ -58,7 +62,7 @@ function PostalCode() {
   return (
     <SidebarWithHeader>
       <HStack mb={5}>
-        <CreateNewWareHouseModel />
+        {/* <CreateNewWareHouseModel /> */}
         <Button
           colorScheme='green'
           variant='outline'
@@ -68,7 +72,7 @@ function PostalCode() {
           Refresh
         </Button>
       </HStack>
-    <WarehouseCards products={warehouse}/>
+    {/* <WarehouseCards products={warehouse}/> */}
     </SidebarWithHeader>
   );
 }

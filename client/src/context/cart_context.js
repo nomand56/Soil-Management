@@ -35,10 +35,10 @@ export const CartProvider = ({ children }) => {
 const onSubmit = (data) => {
 dispatch({ type: SUBMIT_FORM, payload: data })
 }
-  const addToCart = (id, amount, product) => {
+  const addToCart = (data) => {
     dispatch({
       type: ADD_TO_CART,
-      payload: { id, amount, product },
+      payload: data,
     });
   };
 

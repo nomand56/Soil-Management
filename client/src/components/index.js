@@ -56,7 +56,8 @@ OrderContent,
   UserSelect,
   Stepper,
   FormCards,
-  ShippingAddress
+  ShippingAddress,
+  CheckoutStepper
 };
 // 
 

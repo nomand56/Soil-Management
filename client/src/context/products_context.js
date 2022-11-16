@@ -73,6 +73,7 @@ const initialState = {
   add_type_error: false,
   add_type_loading: false,
   add_type_success: false,
+  
 };
 
 const ProductsContext = React.createContext();

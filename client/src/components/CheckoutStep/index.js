@@ -4,7 +4,7 @@ import { BiErrorCircle } from 'react-icons/bi';
 import { landData } from '../../utils/land';
 import FeedBack from '../feedbackform';
 
-const OrderPlaced = ({ obj }) => {
+const CheckoutStep = () => {
     const [form, setform] = useState(false)
     const [state,setstate] =useState(null)
       const color = useColorModeValue('rgb(40,40,40)', 'rgb(250,250,250)');
@@ -30,7 +30,7 @@ const OrderPlaced = ({ obj }) => {
           Be om skjemaet
         </Button>
       </Box>
-      {!form && state ? (
+      
         <Box
           sx={{
             display: 'flex',
@@ -182,9 +182,9 @@ const OrderPlaced = ({ obj }) => {
             </Box>
           </Box>
         </Box>
-      ) : <FeedBack obj={obj} />}
+      ) 
     </Box>
   );
 }
 
-export default OrderPlaced
+export default CheckoutStep

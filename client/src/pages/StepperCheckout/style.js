@@ -21,7 +21,7 @@ export const fieldset = {
     fontSize: "14px",
     letterSpacing: "1px",
     padding: "12px 20px",
-    width: "100%",
+    width: "80 %",
     borderRadius:"10px",    
    
     marginBottom: "20px"
@@ -63,7 +63,7 @@ export const fieldset = {
     marginBottom: "20px",
     width:'30%',
     padding: "12px 20px",
-    marginRight:"5px",
+    // marginRight:"5px",
     borderRadius:"10px"
 
   }

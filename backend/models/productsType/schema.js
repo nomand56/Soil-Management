@@ -1,7 +1,7 @@
 const mongooes=require('mongoose');
 
 
-const productTypeSchema=new mongooes.Schema({
+ const schema=new mongooes.Schema({
     productType:{
         type:String,
     },
@@ -10,4 +10,4 @@ const productTypeSchema=new mongooes.Schema({
         
     }
 })
-module.exports=mongooes.model('ProductType',productTypeSchema)
+module.exports=schema

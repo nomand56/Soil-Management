@@ -39,13 +39,15 @@ const initialState = {
   delivered_orders: 0,
   total_revenue: 0,
   shipping: {
-    name: '',
+    firstName:" ",
+    lastName: " ",
+    phone_number: '',
     address: {
       line1: '',
       postal_code: '',
       city: '',
       state: '',
-      country: '',
+        
     },
   },
 };

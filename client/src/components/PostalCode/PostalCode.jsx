@@ -18,15 +18,11 @@ setdata(e.target.value)
       <Text color={color} sx={{ margin: '20px 0px' }}>
         Skriv inn postnummer
       </Text>
-<<<<<<< HEAD
       <Input
         placeholder='Skriv inn postnummer'
         required
         onChange={handleChange}
       />
-=======
-      <Input placeholder='Skriv inn postnummer' required onChange={handleChange} style={{width:"30%"}} />
->>>>>>> 06166681b54e95709c38a77d1e9bdd7d77f26da5
       <Box sx={{ margin: '20px 0px', textAlign: 'right' }}>
         <Button
           name='postalCode'

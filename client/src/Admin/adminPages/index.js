@@ -9,7 +9,7 @@ import WareHouses from './WareHouses';
 import AdminCustomerPage from './AdminCustomerPage';
 import QuotationsPage from "./QuotationsPage"
 import ProductsType from './ProductsType';
-import PostalCode from './PostalCode';
+// import PostalCode from './PostalCode';
 export {
   Dashboard,
   ProductsPage,
@@ -21,5 +21,5 @@ export {
   AdminCustomerPage,
   QuotationsPage,
   ProductsType,
-  PostalCode
+  // PostalCode
 };

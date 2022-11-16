@@ -1,5 +1,5 @@
-import React from 'react'
-import { Box, Flex } from '@chakra-ui/react'
+import React,{useState} from 'react'
+import { Box, Button, Flex } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
 import {
   legend,
@@ -16,48 +16,79 @@ import {
 } from './style';
 import { ShippingAddress } from '../../components'
 import CartDelivery from '../../components/cartDelivery'
+import { useOrderContext } from '../../context/order_context';
 function StepperCheckout() {
+const [show,setShow]=useState(false)
+ const {
+    shipping: {
+      firstName,
+      lastName,
+      phone_number,
+      address: { line1, postal_code, city, state },
+    },
+    updateShipping,
+  } = useOrderContext();
+  const onSubmit = (e) => {
+    e.prevebtDefault();
 
-  const { register, handleSubmit, formState: { errors } } = useForm()
-  const onSubmit = (data) => {
-    console.log(data)
+
   }
 
-  return (
+
+
+  return (<>
+  {show ? 
     <Box style={boxStyle} sx={{ display: "flex" ,flexWrap:"wrap-reverse"}}>
+
+
+
 
       <Box padding={10}>
         <Box>
           <fieldset style={fieldset}>
             <legend style={legend}>Shipping Address</legend>
-            <form id="myForm"onSubmit={handleSubmit(onSubmit)}>
-              <label for='shipping-address-first-and-last-name' />
+            <form id="myForm" onSubmit={onSubmit} >
+              <label for='shipping-address-first' />
               <input
-                id='shipping-address-first-and-last-name'
+                id='shipping-address-firstName  '
                 style={firstInputField}
                 type='text'
-                name='name'
+                name='firstName'
+                value= {firstName}
+                onChange={updateShipping}
                 required
-                {...register('firstName', { required: true })}
                 placeholder='First Name'
               />
               <label for='Last-name' />
               <input
-                id='shipping-address-first-and-last-name'
+                id='shipping-address-last-name'
                 style={nameInputField}
                 type='text'
-                name='name'
+                name='lastName'
                 required
-                {...register('lastName', { required: true })}
-                placeholder='Last Name'
+                value={lastName}
+                onChange={updateShipping}
+                placeholder='Last_Name'
+              />  <label for='phone-number' />
+              <input
+                id='shipping-address-phone_number'
+                style={nameInputField}
+                type='text' 
+                name='phone_number'
+                required
+                value={phone_number}
+                onChange={updateShipping}
+                placeholder='Enter You Phone Number'
               />
+             
               <label for='shipping-address-street-address' />
               <input
                 id='shipping-address-street-address'
                 style={inputField}
                 type='text'
-                {...register('street', { required: true })}
-                name='street_address'
+                name='line1'
+                value= {line1}
+                onChange={updateShipping}
                 placeholder='Street Address'
               />
               <div>
@@ -66,29 +97,32 @@ function StepperCheckout() {
                   id='shipping-address-city-locality'
                   style={cityInputField}
                   type='text'
-                  {...register('city', { required: true })}
-                  name='locality'
+                  name='city'
+                  value={city}
+                  onChange={updateShipping}
                   placeholder='City'
                 />
                 <label for='shipping-address-state-region' />
                 <input
                   id='shipping-address-state-region'
-                  style={stateInputField}
+                  style={postalInputField}
                   type='text'
-                  name='region'
-                  {...register('region', { required: true })}
+                  name='state'
+                  value={state}
+                  onChange={updateShipping}
                   placeholder='State'
-                />
+                  />
                 <label for='shipping-address-postal-code' />
                 <input
                   id='shipping-address-postal-code'
                   style={postalInputField}
                   type='text'
                   name='postal_code'
-                  {...register('postal_code', { required: true })}
+                  value={postal_code}
                   required
-                  placeholder='Zip Code'
-                />
+                  onChange={updateShipping}
+                  placeholder='Postal Code'
+                  />
               </div>
             </form>
           </fieldset>
@@ -96,12 +130,20 @@ function StepperCheckout() {
         <Box>
           <CartDelivery />
         </Box>
-        <input type="submit" form='myForm' value="next" />
+       <Button onClick={()=>{
+        setShow(true)
+       }}>
+        Next
+       </Button>
       </Box>
       <Box borderRadius="10px">
         <img src='https://img.freepik.com/premium-photo/vertical-image-child-hands-holding-multileaved-green-plant-with-root-ball-soil-defocused-green-grass-background_163068-958.jpg?w=2000' style={{ borderRadius: "10px" }} width="300px"  />
       </Box>
     </Box>
+ :
+  <CartDelivery/>
+  }
+                  </>
   )
 }
 
