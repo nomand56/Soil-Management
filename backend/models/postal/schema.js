@@ -2,12 +2,12 @@ const mongooes=require('mongoose');
 
 
 const productTypeSchema=new mongooes.Schema({
-    productType:{
+    postalCode:{
         type:String,
     },
-    image:{
+    wareHouse:{
         type:String,
         
     }
 })
-module.exports=mongooes.model('ProductType',productTypeSchema)
+module.exports=mongooes.model('ProductType',productTypeSchema) 

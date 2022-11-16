@@ -14,7 +14,7 @@ const deleteProduct = async (req, res) => {
   try {
     let data = await products.findByIdAndDelete(req.params.id);
     res.send({ success: "ok", message: "deleted" });
-  } catch (error) {
+  } catch (error) {p
     res.send({ message: error });
   }
 };

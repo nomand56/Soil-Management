@@ -187,3 +187,5 @@ export const fetch_client_url=`${domain}fetch`;
 export const fetch_inquiry_url=`${domain}product/getInquiry`;
 export const fetch_product_type=`${domain}product/getproductType`;
 export const post_product_type=`${domain}product/ProductType`;
+export const post_postal_code=`${domain}warehouses/postal`;
+export const fetch_postal_code=`${domain}warehouses/getPostal`;

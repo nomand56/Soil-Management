@@ -1,5 +1,6 @@
 const WareHouses = require('../../models/warehouses/model')
 const product = require('../../models/products/model')
+const postal=require('../../models/postal/schema')
 const getAllWareHouses = async (req, res) => {
     try {
         let data = await WareHouses.find();
@@ -17,6 +18,24 @@ const getAllProducts = async (req, res) => {
         res.send({error})
   }
 };
+const addPostalCode = async (req, res) => {
+    try {
+        let data = await new postal(req.body);
+        res.send(data)
+    } catch (error) {
+        res.send({error})
+    }
+};
+
+const getPostalCode = async (req, res) => {
+    try {
+        let data = await postal.find();
+        res.send(data)
+    } catch (error) {
+        res.send({error})
+    }
+};
+
 
 const createWareHouses = async (req, res) => {
     try {
@@ -41,4 +60,6 @@ module.exports = {
   getAllProducts,
   createWareHouses,
   deleteWareHouse,
+  addPostalCode,
+    getPostalCode
 };
