@@ -1,18 +1,21 @@
-import { Box, Button, Input, Text, useColorModeValue, useToast } from '@chakra-ui/react';
-import React, { useState } from 'react'
+import {
+  Box,
+  Button,
+  Input,
+  Text,
+  useColorModeValue,
+  useToast,
+} from '@chakra-ui/react';
+import React, { useState } from 'react';
 
-
-const PostalCode = ({setvalue}) => {
-
-
-      const color = useColorModeValue('rgb(40,40,40)', 'rgb(250,250,250)');
-      const bg = useColorModeValue('rgb(250,250,250)', '#32995b');  
-const toast = useToast();
-    const [data, setdata] = useState(null)
-    function handleChange(e)
-    {
-setdata(e.target.value)
-    }
+const PostalCode = ({ setvalue }) => {
+  const color = useColorModeValue('rgb(40,40,40)', 'rgb(250,250,250)');
+  const bg = useColorModeValue('rgb(250,250,250)', '#32995b');
+  const toast = useToast();
+  const [data, setdata] = useState(null);
+  function handleChange(e) {
+    setdata(e.target.value);
+  }
   return (
     <div style={{ width: '80%', margin: '20px auto' }}>
       <Text color={color} sx={{ margin: '20px 0px' }}>
@@ -49,6 +52,6 @@ setdata(e.target.value)
       </Box>
     </div>
   );
-}
+};
 
-export default PostalCode
+export default PostalCode;
