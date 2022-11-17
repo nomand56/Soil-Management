@@ -12,7 +12,6 @@ export const LinkItems = [
   { name: 'Home', url: '/admin/dashboard', icon: <FaHome /> },
   { name: 'Products', url: '/admin/products', icon: <FaProductHunt /> },
   { name: 'Products Type', url: '/admin/productstype',icon: <FaProductHunt /> },
-  { name: 'Logistics', url: '/admin/logistics', icon: <FaTruckLoading /> },
   { name: 'Orders', url: '/admin/orders', icon: <FaShoppingCart /> },
   { name: 'WareHouses', url: '/admin/warehouses', icon: <FaHome /> },
   { name: 'Customers', url: '/admin/customers',icon: <FaUserTie /> },

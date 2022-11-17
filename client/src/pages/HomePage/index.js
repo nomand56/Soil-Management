@@ -45,6 +45,7 @@ const HomePage = () => {
   const color = useColorModeValue('rgb(40,40,40)', 'rgb(250,250,250)');
   const bg = useColorModeValue('rgb(250,250,250)', '#32995b');
   const [links, setlinks] = useState(['Hjem']);
+  const {addType}=useProductsContext()
   const array = [
     'Hjem',
     'Jordvalg',
@@ -202,7 +203,7 @@ const HomePage = () => {
                 width: 'fit-content',
               }}
             >
-              {landData.map((m) => {
+              {addType.map((m) => {
                 return <Land m={m} setvalue={setvalue} />;
               })}
             </Box>

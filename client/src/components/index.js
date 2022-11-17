@@ -26,6 +26,7 @@ import SeacrhBar from './Search';
 import UserSelect from './UserSelect';
 import Stepper from "./stepper";
 import FormCards from "./Card";
+import CheckoutStep from "./CheckoutStep"
 import ShippingAddress from "./Checkout/ShippingAddress"
 export {
   Navbar,
@@ -46,7 +47,7 @@ export {
   PageHero,
   Toast,
   ShippingForm,
-OrderContent,
+  OrderContent,
   OrderItems,
   ReviewModal,
   SeacrhBar,
@@ -56,8 +57,8 @@ OrderContent,
   UserSelect,
   Stepper,
   FormCards,
-  ShippingAddress,
-  CheckoutStepper
+  ShippingAddress,  
+  CheckoutStep
 };
-// 
+
 

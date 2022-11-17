@@ -23,8 +23,8 @@ const Land = ({m,setvalue}) => {
         }}
       >
         <img
-          src={m.img}
-          alt={m.img}
+          src={m.image}
+          alt={m.image}
           // loading={lazy}
           style={{ width: '100%', height: '150px' }}
         />
@@ -33,14 +33,14 @@ const Land = ({m,setvalue}) => {
           color='green'
           sx={{ fontWeight: 'bold', margin: '10px 0px' }}
         >
-          {m.type}
+          {m.productType}
         </Text>
         <Text fontSize='sm' color={color} sx={{ height: '80px' }}>
-          {m.disc}
+          {m.description}
         </Text>
         <Button
           name='land'
-          value={m.type}
+          value={m.productType}
           onClick={setvalue}
           sx={{
             fontSize: '10px',
@@ -51,7 +51,7 @@ const Land = ({m,setvalue}) => {
             '&:hover': { background: '#00A300' },
           }}
           bg={bg}
-        >{`Les Mer Om ${m.type}`}</Button>
+        >{`Les Mer Om ${m.productType}`}</Button>
       </Box>
     </div>
   );

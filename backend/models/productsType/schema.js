@@ -8,6 +8,10 @@ const mongooes=require('mongoose');
     image:{
         type:String,
         
-    }
+    },
+    description:{
+        type:String,
+    },
+    
 })
 module.exports=schema

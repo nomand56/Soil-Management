@@ -29,6 +29,7 @@ import FileBase64 from "react-file-base64";
 function CreateNewTypeModal() {
     const [productType,setProductType]=useState('')
     const [imageList, setImageList] = useState([]);
+    const [desc,setDesc]=useState('')
     const [loading, setLoading] = useState(false);
     const [image, setBase64] = useState([])
     console.log("image", image)
@@ -104,6 +105,18 @@ function CreateNewTypeModal() {
                                     focusBorderColor='#32995b'
                                     value={productType}
                                     onChange={(e) => setProductType(e.target.value)}
+                                />
+                            </FormControl>
+                            <FormControl>
+                                <FormLabel>Product Description</FormLabel>
+                                <textarea
+                                    style={{width:'100%'}}
+                                    ref={initialRef}
+                                    placeholder='Enter Product Type Description'
+                                    name='description'
+                                    focusBorderColor='#32995b'
+                                    value={desc}
+                                    onChange={(e) => setDesc(e.target.value)}
                                 />
                             </FormControl>
                             <FormControl mt={4}>

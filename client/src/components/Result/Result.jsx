@@ -28,6 +28,8 @@ const Result = ({ data }) => {
         console.log(res.data);
       });
   }, []);
+  console.log("landData",landData);
+  console.log("state",data);
 
   function handleCheckout(e) {
      setobj( { ...data, productID: product?._id });
@@ -78,10 +80,10 @@ console.log("ADD TO CART",product)
               style={{ width: '100%', height: '300px' }}
             />
             <Text color={color} fontSize='xl' sx={{ margin: '10px 0px' }}>
-              {state[0].type}
+              {state[0]?.type}
             </Text>
             <Text color={color} fontSize='md' sx={{ margin: '10px 0px' }}>
-              {state[0].disc}
+              {state[0]?.disc}
             </Text>
           </Box>
           <Box className='boxContainer'>

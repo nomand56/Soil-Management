@@ -15,10 +15,6 @@ const orderSchema = mongoose.Schema({
       type: String,
       required: true,
     },
-    country: {
-      type: String,
-      required: true,
-    },
     postalCode: {
       type: Number,
       required: true,
@@ -33,10 +29,12 @@ const orderSchema = mongoose.Schema({
       name: {
         type: String,
         required: true,
+       
       },
       price: {
         type: Number,
         required: true,
+
       },
       quantity: {
         type: Number,

@@ -130,7 +130,6 @@ export const OrderProvider = ({ children }) => {
       address: state.shipping.address.line1,
       city: state.shipping. address.city,
       state: state.shipping.address.state,
-      country: state.shipping.address.country,
       postalCode: state.shipping.address.postal_code,
       phoneNumber: state.shipping.phone_number,
     };
@@ -145,8 +144,8 @@ export const OrderProvider = ({ children }) => {
       };
     });
     const user ={
-      email:currentUser.email,
-      name: state.shipping.name
+      email:currentUser?.email || "Guest",
+      name: state.shipping.firstName || "Guest"
     }
     const body = {
       user,
@@ -160,6 +159,7 @@ export const OrderProvider = ({ children }) => {
       const response=  await axios.post(create_order_url, body);
         if(response.data.success === 200){
           toast.success('Order placed successfully');
+          
         }
       }catch (error) {
       toast.error(error.message);
@@ -189,3 +189,4 @@ useEffect(() => {
 export const useOrderContext = () => {
   return useContext(OrderContext);
 }
+  

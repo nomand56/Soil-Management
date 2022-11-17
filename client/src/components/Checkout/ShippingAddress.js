@@ -20,9 +20,6 @@ const ShippingAddress = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  // const handleClick = (data) => {
-  //     onSubmit(data);
-  // }
 
   return (
     <fieldset style={fieldset}>
