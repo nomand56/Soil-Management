@@ -38,7 +38,7 @@ const updateProduct = async (req, res) => {
 };
 const addProductType = async (req, res) => {
   try {
-    let data = await new ProductsType(req.body);
+    let data =  new ProductsType(req.body);
     await data.save();
 
     res.send({ seccess: "ok", message: "add to products successfully" });
