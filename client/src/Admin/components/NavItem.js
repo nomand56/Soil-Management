@@ -10,7 +10,7 @@ export default function NavItem({ url, icon, children, ...rest }) {
         p='4'
         mx='4'
         borderRadius='lg'
-        role='group'
+      role='group'
         cursor='pointer'
         _hover={{
           bg: '#32995b',

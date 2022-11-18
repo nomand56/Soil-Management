@@ -25,6 +25,9 @@ import {
   POST_ADD_TYPE_BEGIN,
   POST_ADD_TYPE_SUCCESS,
   POST_ADD_TYPE_ERROR,
+  GET_POSTAL_CODES_ERROR,
+  GET_POSTAL_CODES_SUCCESS,
+  GET_POSTAL_CODES_BEGIN,
 } from '../actions';
 
 const products_reducer = (state, action) => {
@@ -177,6 +180,27 @@ const products_reducer = (state, action) => {
     }
 
 
+  }
+
+  if (action.type === GET_POSTAL_CODES_BEGIN ) {
+    return {
+      ...state,
+      postal_codes_loading: true,
+    }
+  }
+  if(action.type === GET_POSTAL_CODES_SUCCESS) {
+    return {
+      ...state,
+      postal_codes_loading: false,  
+      postalCode: action.payload
+    }
+  }
+  if(action.type === GET_POSTAL_CODES_ERROR) {
+return {
+  ...state,
+  postal_codes_loading: false,
+  postal_codes_error: true,
+}
   }
 
   if (action.type === POST_ADD_TYPE_BEGIN) {

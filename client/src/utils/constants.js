@@ -129,31 +129,31 @@ export const services = [
 ];
 
 export const CardOne = () => {
-  return <Box sx={{display:"flex",justifyContent:"space-around",alignItems:"center",flexWrap:"wrap"}}>
+  return <Box sx={{ display: "flex", justifyContent: "space-around", alignItems: "center", flexWrap: "wrap" }}>
 
-  < FormCards />
+    < FormCards />
 
-  < FormCards />
+    < FormCards />
 
-   </Box>
+  </Box>
 }
 export const CardTwo = () => {
-  return <Box sx={{display:"flex",justifyContent:"space-around",alignItems:"center",flexWrap:"wrap"}}>
+  return <Box sx={{ display: "flex", justifyContent: "space-around", alignItems: "center", flexWrap: "wrap" }}>
 
-  < FormCards />
+    < FormCards />
 
-  < FormCards />
+    < FormCards />
 
-   </Box>
+  </Box>
 }
 export const CardThree = () => {
-  return <Box sx={{display:"flex",justifyContent:"space-around",alignItems:"center",flexWrap:"wrap"}}>
+  return <Box sx={{ display: "flex", justifyContent: "space-around", alignItems: "center", flexWrap: "wrap" }}>
 
-  < FormCards />
+    < FormCards />
 
-  < FormCards />
+    < FormCards />
 
-   </Box>
+  </Box>
 }
 
 const domain = process.env.REACT_APP_BACKEND_HOST;
@@ -164,15 +164,15 @@ export const get_order_url = `${domain}/api/orders`;
 export const get_specific_order_url = `${domain}/order/user/`;
 export const payment_url = `${domain}/api/payment/create-payment-intent`;
 export const upload_url = `${domain}/api/upload/`;
-export const default_profile_image ='https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg';
-export const login_url=`${domain}login`;
-export const signup_url=`${domain}register/client`;
-export const update_url=`${domain}update/client`;
-export const delete_url=`${domain}delete/client`;
+export const default_profile_image = 'https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg';
+export const login_url = `${domain}login`;
+export const signup_url = `${domain}register/client`;
+export const update_url = `${domain}update/client`;
+export const delete_url = `${domain}delete/client`;
 export const orders_url = `${domain}orders`;
 export const single_order_url = `${domain}order/single/`;
 export const update_order_status = `${domain}order/status/`;
-export const create_new_product=`${domain}create/product`;
+export const create_new_product = `${domain}create/product`;
 export const update_product_url = `${domain}update/product`;
 export const delete_product_url = `${domain}delete/product`;
 export const admins_url = `${domain}client/getadmins`;
@@ -181,11 +181,12 @@ export const get_all_warehouses = `${domain}warehouses`;
 export const create_warehouse = `${domain}warehouses/create`;
 export const delete_warehouses = `${domain}warehouses/delete`;
 export const get_all_product_by_warehouse = `${domain}warehouses/getallproducts`;
-export const filtered_products_url=`${domain}product/filterProducts`;
-export const inquiry_product=`${domain}product/inquiry`;
-export const fetch_client_url=`${domain}fetch`;
-export const fetch_inquiry_url=`${domain}product/getInquiry`;
-export const fetch_product_type=`${domain}product/getproductType`;
-export const post_product_type=`${domain}product/ProductType`;
-export const post_postal_code=`${domain}warehouses/postal`;
-export const fetch_postal_code=`${domain}warehouses/getPostal`;
+export const filtered_products_url = `${domain}product/filterProducts`;
+export const inquiry_product = `${domain}product/inquiry`;
+export const fetch_client_url = `${domain}fetch`;
+export const fetch_inquiry_url = `${domain}product/getInquiry`;
+export const fetch_product_type = `${domain}product/getproductType`;
+export const post_product_type = `${domain}product/ProductType`;
+export const post_postal_code = `${domain}add/postal`;
+export const fetch_postal_code = `${domain}get/all/postal`;
+export const fetch_specific_postal_code = `${domain}get/specificepostal`;

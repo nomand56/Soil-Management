@@ -3,6 +3,10 @@ import {
   GET_WAREHOUSE_SUCCESS,
   GET_WAREHOUSE_ERROR,
   CREATE_NEW_WAREHOUSE,
+  GET_SPECIFIC_POSTAL_SUCCESS,
+  GET_SPECIFIC_WAREHOUSE_BEGIN,
+  GET_SPECIFIC_POSTAL_BEGIN,
+  GET_SPECIFIC_POSTAL_ERROR,
 } from '../actions';
 
 const warehouse_reducers = (state, action) => {
@@ -11,11 +15,24 @@ const warehouse_reducers = (state, action) => {
     return { ...state, new_warehouse: { ...state.new_warehouse, [name]: value } };
   }
 
-  
+  if (action.type === GET_SPECIFIC_POSTAL_BEGIN) {
+    return { ...state, specific_warehouse_loading: true };
+
+  }
+  if(action.type === GET_SPECIFIC_POSTAL_ERROR){
+    return {
+      ...state,
+      specific_warehouse_loading: false,
+      specific_warehouse_error: true,
+    }
+
+  }
   if (action.type === GET_WAREHOUSE_BEGIN) {
     return { ...state, warehouse_loading: true };
   }
-
+if(action.type===GET_SPECIFIC_POSTAL_SUCCESS){
+  return {...state,specificPostal:action.payload}
+}
   if (action.type === GET_WAREHOUSE_SUCCESS) {
     return {
       ...state,

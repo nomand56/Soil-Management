@@ -26,7 +26,20 @@ const get = async (req, res) => {
   }
 };
 
+const getPostal = async (req, res) => {
+  const { id } = req.params;
+  console.log(id) 
+  try {
+      let data = await PostalCode.find({warehouse:id});
+        res.send(data);
+  } catch (error) {
+    res.send({ success: false, error: error });
+  }
+};
+
+
 module.exports={
     add, deletePostal,
-    get
+    get,
+    getPostal
 }

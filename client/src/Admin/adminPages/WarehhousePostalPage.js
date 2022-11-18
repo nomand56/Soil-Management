@@ -1,27 +1,32 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   ProductsTable,
   SidebarWithHeader,
   CreateNewWareHouseModel,
+  PostalTable,
+  CreatePostalCodeModal,
+  WarehousePostal,
 } from '../components';
+import {useWarehouseContext} from "../../context/warehouse_context"
 import { HStack, VStack, Spinner, Heading, Button } from '@chakra-ui/react';
 import { BiRefresh } from 'react-icons/bi';
-import {useProductsContext} from '../../context/products_context'
+import { useParams } from 'react-router-dom';
 
-function PostalCode() {
-    const {getPostalCode }=useProductsContext()
-  const handleRefresh = async () => {
-    await getPostalCode();
-  };
-  const data={
-    loading:false,
-    error:false,
-  }
-  if (data.loading) {
+function WarehousePostalPage() {
+    const { id } = useParams()
+    const { specificPostal, fetchSpecificPostal, specific_postal_loading: loading, specific_postal_error: error } = useWarehouseContext()
+ const handleRefresh = () => {
+    fetchSpecificPostal(id)
+    }
+
+  useEffect(() => {
+    fetchSpecificPostal(id)
+    }, [])  
+  if (loading) {
     return (
       <SidebarWithHeader>
         <HStack mb={5}>
-          <CreateNewWareHouseModel />
+  
           <Button
             colorScheme='green'
             variant='outline'
@@ -38,7 +43,7 @@ function PostalCode() {
     );
   }
 
-  if (data.error) {
+  if (error) {
     return (
       <SidebarWithHeader>
         <HStack mb={5}>
@@ -62,7 +67,6 @@ function PostalCode() {
   return (
     <SidebarWithHeader>
       <HStack mb={5}>
-        {/* <CreateNewWareHouseModel /> */}
         <Button
           colorScheme='green'
           variant='outline'
@@ -72,9 +76,9 @@ function PostalCode() {
           Refresh
         </Button>
       </HStack>
-    {/* <WarehouseCards products={warehouse}/> */}
+      <WarehousePostal products={specificPostal}/>
     </SidebarWithHeader>
   );
 }
 
-export default PostalCode;
+export default WarehousePostalPage;

@@ -69,7 +69,6 @@ const bg = useColorModeValue('transparent', 'rgb(40,40,40)');
             <Tr>
               <Th>Image</Th>
               <Th>Name</Th>
-        
             </Tr>
           </Thead>
           <Tbody>

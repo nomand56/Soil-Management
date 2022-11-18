@@ -1,8 +1,14 @@
 const mongoose = require("mongoose");
 let schema = new mongoose.Schema({
-  PostalCode: {
+  postalCode: {
     type: Number,
     required: true,
+  },
+  warehouse: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Warehouse",
+    required: true,
+    
   },
 });
 

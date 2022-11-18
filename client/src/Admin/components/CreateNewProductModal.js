@@ -159,11 +159,13 @@ function CreateNewProductModal() {
                   placeholder='Choose Product Type'
                   name='warehouse'
                   focusBorderColor='#32995b'
-                  onChange={setProductType}
+                  onChange={(e)=>{
+                    setProductType(e.target.value)
+                  }}
                 >
                   {addType &&
                     addType.map((m, i) => {
-                      return <option key={i}>{m.productType}</option>;
+                      return <option key={i} value={m.productType}>{m.productType}</option>;
                     })}
                 </Select>
               </FormControl>

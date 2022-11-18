@@ -21,6 +21,10 @@ import CreateNewWareHouseModel from './CreateNewWareHouseModel'
 import CustomerTable from './CustomerTable';
 import ProductsTypeTable from './ProductsType';
 import CreateNewTypeModal from "./CreateNewTypeModal"
+import PostalTable from "./PostalTable"
+import CreatePostalCodeModal from './CreatePostalCode';
+import WarehousePostal from './WarehousePostal';
+import WarehouseProducts from './WarehouseProducts';
 export {
   SidebarWithHeader,
   SidebarContent,
@@ -44,5 +48,9 @@ export {
   PreLoader,
   CustomerTable,
   CreateNewTypeModal,
-  ProductsTypeTable
+  ProductsTypeTable,
+  CreatePostalCodeModal,
+  PostalTable,
+  WarehousePostal,
+  WarehouseProducts
 };

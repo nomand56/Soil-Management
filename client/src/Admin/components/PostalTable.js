@@ -1,128 +1,123 @@
-import React, { useState, useRef, useCallback, useEffect } from 'react';
-import {
-    Button,
-    Input,
-    FormControl,
-    FormLabel,
-    FormHelperText,
-    Modal,
-    ModalOverlay,
-    ModalContent,
-    ModalHeader,
-    ModalFooter,
-    ModalBody,
-    ModalCloseButton,
-    useDisclosure,
-    useToast,
-    Textarea,
-    Center,
-    HStack,
-    Image,
-    VStack,
-    Checkbox,
-    Select,
-} from '@chakra-ui/react';
-import { useDropzone } from 'react-dropzone';
+
+
+import React, { useState } from 'react';
+import { BiChevronDown } from 'react-icons/bi';
 import { useProductsContext } from '../../context/products_context';
+import { Link } from 'react-router-dom';
+import {
+    Table,
+    Thead,
+    Tbody,
+    Tr,
+    Th,
+    Td,
+    Image,
+    Button,
+    Menu,
+    MenuButton,
+    MenuList,
+    MenuItem,
+    SimpleGrid,
+    VStack,
+    HStack,
+    Spinner,
+    Text,
+    useToast,
+    useColorModeValue,
+} from '@chakra-ui/react';
 import { useWarehouseContext } from '../../context/warehouse_context';
-import FileBase64 from "react-file-base64";
-function PostalTable() {
-    const [postalCode,setPostalCode]=useState('')
-    const [wareHouse, setWareHouse] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [image, setBase64] = useState([])
-    console.log("image", image)
-    const {addProductType,} = useProductsContext();
-    const { isOpen, onOpen, onClose } = useDisclosure();
-    const initialRef = useRef();
+function PostalTable({ products }) {
     const toast = useToast();
-
-    const removeImage = (index) => {
-        setImageList((prev) => {
-            prev.splice(index, 1);
-            console.log(prev);
-            return [...prev];
-        });
-    };
-
-
-    const handleSubmit = async () => {
-        if (
-            !productType 
-        ) {
-            return toast({
-                position: 'top',
-                description: 'Provide all the details',
-                status: 'error',
-                duration: 5000,
-                isClosable: true,
-            });
-        }
-        setLoading(true);
-        console.log('uploading');
-        addProductType({productType,image})
-
-
-    };
-
+    const [loading, setLoading] = useState(false);
+    const color = useColorModeValue('rgb(10,10,10)', 'rgb(180,180,180)');
+    const bg = useColorModeValue('transparent', 'rgb(40,40,40)');
+    const { warehouse } = useWarehouseContext()
+    // const handleDelete = async (id) => {
+    //     console.log(id)
+    //     setLoading(true);
+    //     const response = await deleteProduct(id);
+    //     setLoading(false);
+    //     if (response.success) {
+    //         toast({
+    //             position: 'top',
+    //             description: response.message,
+    //             status: 'success',
+    //             duration: 5000,
+    //             isClosable: true,
+    //         });
+    //         return await fetchProducts();
+    //     } else {
+    //         return toast({
+    //             position: 'top',
+    //             description: response.message,
+    //             status: 'error',
+    //             duration: 5000,
+    //             isClosable: true,
+    //         });
+    //     }
+    // };
 
     return (
-        <>
-            <Button colorScheme='green' onClick={onOpen}>
-                Create New Product Type
-            </Button>
+        <SimpleGrid bg='white' p={5} shadow='lg' borderRadius='lg' overflowX='auto'>
+            {loading ? (
+                <HStack my={8} alignItems='center' justifyContent='center'>
+                    <Spinner size='lg' color='brown.500' />
+                </HStack>
+            ) : (
+                <Table variant='simple' color={color} bg={bg}>
+                    <Thead>
+                        <Tr>
+                            <Th>Postal Codes</Th>
+                            <Th>WareHouses</Th>
 
-            <Modal initialFocusRef={initialRef} isOpen={isOpen} onClose={onClose}>
-                <ModalOverlay />
-                <ModalContent>
-                    <ModalHeader>Create new product Type</ModalHeader>
-                    <ModalCloseButton />
-                    <ModalBody pb={6}>
-                        <>
-                            <FormControl>
-                                <FormLabel>Postal Code</FormLabel>
-                                <Input
-                                    ref={initialRef}
-                                    placeholder='Product Name'
-                                    name='productName'
-                                    focusBorderColor='#32995b'
-                                    value={productType}
-                                    onChange={(e) => setProductType(e.target.value)}
-                                />
-                            </FormControl>
-                            <FormControl>
-                                <FormLabel>Postal Code</FormLabel>
-                                <Input
-                                    ref={initialRef}
-                                    placeholder='Product Name'
-                                    name='productName'
-                                    focusBorderColor='#32995b'
-                                    value={productType}
-                                    onChange={(e) => setProductType(e.target.value)}
-                                />
-                            </FormControl>
-                           
-                        </>
+                        </Tr>
+                    </Thead>
+                    <Tbody>
+                        {products?.map((product, index) => {
+                          
+                
+                            return (
+                                <Tr key={index}>
+                                    <Td>
+                                        <VStack alignItems='flex-start' spacing={1}>
+                                            <Text as='b'>{product.postalCode}</Text>
 
-                    </ModalBody>
+                                        </VStack>
+                                    </Td>
+                                    <Td>
+                                        <VStack alignItems='flex-start' spacing={1}>
+                                            <Text as='b'>{product.warehouse}</Text>
 
-                    <ModalFooter>
-                        <Button mr={3} onClick={onClose}>
-                            Cancel
-                        </Button>
-                        <Button
-                            isLoading={loading}
-                            loadingText='Creating Product'
-                            colorScheme='green'
-                            onClick={handleSubmit}
-                        >
-                            Save
-                        </Button>
-                    </ModalFooter>
-                </ModalContent>
-            </Modal>
-        </>
+                                        </VStack>
+                                    </Td>
+
+                                    <Td>
+                                        <Menu>
+                                            <MenuButton as={Button} rightIcon={<BiChevronDown />}>
+                                                Actions
+                                            </MenuButton>
+                                            <MenuList>
+                                                {/* <Link to={`/adminproducts/${_id}`}>
+                                                    <MenuItem>View</MenuItem>
+                                                </Link> */}
+                                                <MenuItem>
+                                                    {/* <UpdateProductModal id={_id} /> */}
+                                                </MenuItem>
+                                                <MenuItem >
+                                                    Delete
+                                                </MenuItem>
+                                            </MenuList>
+                                        </Menu>
+                                    </Td>
+                                </Tr>
+                            );
+                        })}
+                    </Tbody>
+                </Table>
+            )}
+        </SimpleGrid>
     );
 }
 
 export default PostalTable;
+;

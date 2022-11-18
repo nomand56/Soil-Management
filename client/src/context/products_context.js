@@ -31,6 +31,10 @@ import {
   POST_ADD_TYPE_ERROR,
   POST_ADD_TYPE_SUCCESS,
   POST_ADD_TYPE_BEGIN,
+  GET_POSTAL_CODES_SUCCESS,
+  GET_POSTAL_CODES_ERROR,
+  GET_POSTAL_CODES_BEGIN,
+  ADD_POSTAL_CODES_BEGIN,
 } from '../actions';
 
 import { useUserContext } from './user_context';
@@ -73,7 +77,11 @@ const initialState = {
   add_type_error: false,
   add_type_loading: false,
   add_type_success: false,
-  
+  postalCode:null,
+  postal_code_error: false,
+  postal_code_loading: false,
+
+
 };
 
 const ProductsContext = React.createContext();
@@ -165,13 +173,13 @@ export const ProductsProvider = ({ children }) => {
     return { success, message };
   }
 };
-const getPostalCode = async (data) => {
+const getPostalCode = async () => {
+  dispatch({ type: GET_POSTAL_CODES_BEGIN });
   try {
     const response = await axios.get(fetch_postal_code);
-    setPostalData(response.data)
+    dispatch({ type: GET_POSTAL_CODES_SUCCESS, payload: response.data });
   } catch (error) {
-    const { success, message } = error.response.data;
-    return { success, message };
+    dispatch({ type: GET_POSTAL_CODES_ERROR, payload: error });
   }
 };
 
@@ -301,7 +309,6 @@ const filteredProducts = async (data) => {
         openSidebar,
         closeSidebar,
         fetchSingleProduct,
-        // reviewProduct,
         setGridView,
         deleteProduct,
         updateNewProductDetails,
@@ -320,7 +327,7 @@ const filteredProducts = async (data) => {
         fetchInquiry,
         getPostalCode,
         addPostalCode,
-        // getProductReviews,
+
       }}
     >
       {children}

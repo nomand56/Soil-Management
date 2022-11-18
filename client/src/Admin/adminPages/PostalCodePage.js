@@ -3,25 +3,19 @@ import {
   ProductsTable,
   SidebarWithHeader,
   CreateNewWareHouseModel,
+  PostalTable,
+  CreatePostalCodeModal,
 } from '../components';
 import { HStack, VStack, Spinner, Heading, Button } from '@chakra-ui/react';
 import { BiRefresh } from 'react-icons/bi';
-import {useWarehouseContext} from "../../context/warehouse_context"
+import { useProductsContext } from '../../context/products_context'
 
-import WarehouseCards from '../components/WarehouseCards';
-
-function WareHouses() {
-  const {
-    warehouse,
-    warehouse_loading: loading,
-    warehouse_error: error,
-    fetchWareHouses,
-  } = useWarehouseContext();
-
+function PostalCodePage() {
+  const { getPostalCode, postal_code_error: error, postal_code_loading: loading,postalCode:product } = useProductsContext()
   const handleRefresh = async () => {
-    await fetchWareHouses();
+    await getPostalCode();
   };
-
+console.log("postal",product)
   if (loading) {
     return (
       <SidebarWithHeader>
@@ -67,7 +61,7 @@ function WareHouses() {
   return (
     <SidebarWithHeader>
       <HStack mb={5}>
-        <CreateNewWareHouseModel />
+        <CreatePostalCodeModal/>
         <Button
           colorScheme='green'
           variant='outline'
@@ -77,9 +71,9 @@ function WareHouses() {
           Refresh
         </Button>
       </HStack>
-    <WarehouseCards products={warehouse}/>
+      <PostalTable products={product}/>
     </SidebarWithHeader>
   );
 }
 
-export default WareHouses;
+export default PostalCodePage;

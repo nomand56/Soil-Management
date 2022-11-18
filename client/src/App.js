@@ -34,8 +34,11 @@ import {
   WareHouses,
   AdminCustomerPage,
   QuotationsPage,
-  ProductsType
+  ProductsType,
+  PostalCodePage,
+  WarehousePostalPage
 } from './Admin/adminPages';
+import { WarehousePostal, WarehouseProducts } from './Admin/components';
 
 function App() {
   const { isSidebarOpen, userType } = useProductsContext();
@@ -87,7 +90,7 @@ function App() {
               </PrivateRoute>
             ) : (
               <Route exact path='/StepperCheckout' >
-                <StepperCheckout />  
+                <StepperCheckout />
               </Route>
             )
             }
@@ -116,7 +119,12 @@ function App() {
             <PrivateRoute exact path='/admin/products/:id'>
               <SingleProductPage />
             </PrivateRoute>
-
+            <PrivateRoute path="/admin/WarehousePostalPage/:id">
+              <WarehousePostalPage/>
+            </PrivateRoute>
+{/* <PrivateRoute exact path='/admin/WarehouseProduct'>
+<WarehouseProducts/>
+</PrivateRoute> */}
             <PrivateRoute exact path='/admin'>
               <AdminsPage />
             </PrivateRoute>
@@ -126,6 +134,10 @@ function App() {
             <PrivateRoute exact path='/admin/quotations'>
               <QuotationsPage />
             </PrivateRoute>
+            <PrivateRoute exact path='/admin/postal'>
+              <PostalCodePage />
+            </PrivateRoute>
+
             <Route exact path='*'>
               <Error />
             </Route>
