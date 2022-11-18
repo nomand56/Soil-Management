@@ -38,8 +38,8 @@ const HomePage = () => {
     type: '',
     land: '',
     jordType: '',
-    Landområde: '',
-    Jordhøyde:'',
+    Landomrade: '',
+    Jordhoyde:'',
     postalCode: '',
   });
   const color = useColorModeValue('rgb(40,40,40)', 'rgb(250,250,250)');
@@ -105,7 +105,7 @@ const HomePage = () => {
               color='white'
               sx={{
                 borderRadius: '5px',
-                transform: 'translate(-50%,-200%)',
+                transform: 'translate(-42%,-220%)',
                 height: '25px',
                 width: '100px',
                 position: 'relative',

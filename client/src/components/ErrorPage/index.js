@@ -81,7 +81,7 @@ const OrderPlaced = ({ obj }) => {
                   Landområde
                 </Text>
                 <Text fontSize='md' color={color}>
-                  {obj?.Landområde}
+                  {obj?.Landomrade}
                 </Text>
               </Box>
               <Box>
@@ -89,7 +89,7 @@ const OrderPlaced = ({ obj }) => {
                   Jordhøyde
                 </Text>
                 <Text fontSize='md' color={color}>
-                  {obj?.Jordhøyde}
+                  {obj?.Jordhoyde}
                 </Text>
               </Box>
               <Box>

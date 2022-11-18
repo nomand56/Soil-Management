@@ -1,25 +1,43 @@
 const mongoose = require('mongoose');
 let schema = new mongoose.Schema({
-    email: {
-        type: String,
-        required:true
+  "E-postal": {
+    type: String,
+  },
+  address: {
+    type: String,
+  },
+  name: {
+    type: String,
+  },
+  phone: {
+    type: String,
+  },
+  postal: {
+    type: String,
+  },
+  street: {
+    type: String,
+  },
+  productDetails: {
+    JordType: {
+      type: String,
     },
-      postalCode: {
-        type: String,
-        required:true
+    Landomrade: {
+      type: String,
     },
-        quantity: {
-        type: String,
-        required:true
+    Jordhoyde: {
+      type: String,
     },
-          soil: {
-        type: String,
-        required:true
+    land: {
+      type: String,
     },
-        service: {
-        type: String,
-        required:true
-    }
-})
+    postalCode: {
+      type: String,
+    },
+    type: {
+      type: String,
+    },
+  },
+});
 
 module.exports=schema

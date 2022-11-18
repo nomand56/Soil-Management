@@ -3,7 +3,8 @@ import React, { useEffect, useState } from 'react'
 import { BiErrorCircle } from 'react-icons/bi';
 import { landData } from '../../utils/land';
 
-const CheckoutStep = () => {
+const CheckoutStep = ({ allvalues }) => {
+  console.log(allvalues)
   const [form, setform] = useState(false)
   const [state, setstate] = useState(null)
   const color = useColorModeValue('rgb(40,40,40)', 'rgb(250,250,250)');

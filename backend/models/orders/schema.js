@@ -42,7 +42,6 @@ const orderSchema = mongoose.Schema({
       },
       image: {
         type: String,
-        required: true,
       },
       product: {
         type: mongoose.Schema.ObjectId,
@@ -79,7 +78,6 @@ const orderSchema = mongoose.Schema({
   },
   orderStatus: {
     type: String,
-    required: true,
     default: 'processing',
   },
   deliveredAt: Date,

@@ -220,7 +220,7 @@ const getPostalCode = async () => {
       dispatch({ type: INQUIRY_FORM_ERROR, payload: error });
     }
 
-  
+
   
   }
   const updateExistingProductDetails = (e) => {

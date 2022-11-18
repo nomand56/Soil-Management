@@ -1,14 +1,15 @@
 import { Box, Button, Text, useColorModeValue } from '@chakra-ui/react';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import {useHistory } from 'react-router-dom';
+
 import { landData } from '../../utils/land';
 import ErrorPage from '../ErrorPage';
 import { useCartContext } from '../../context/cart_context';
 import { useProductsContext } from '../../context/products_context';
+import { useHistory } from 'react-router-dom';
+
 const Result = ({ data }) => {
 
-  const history=useHistory();
   const {addToCart}= useCartContext()
   const {setData}=useProductsContext()
   const [state, setstate] = useState(null);
@@ -16,7 +17,8 @@ const Result = ({ data }) => {
   const color = useColorModeValue('rgb(40,40,40)', 'rgb(250,250,250)');
   const bg = useColorModeValue('rgb(250,250,250)', '#32995b');
   const [errorstate, seterrorstate] = useState(false)
-  let [obj,setobj]=useState({})
+  let [obj, setobj] = useState({})
+ const history=useHistory()
   useEffect(() => {
     setstate(landData.filter((land) => land.type === data.land));
     axios
@@ -40,7 +42,12 @@ const Result = ({ data }) => {
         seterrorstate(true)
       }
       else {
-        history.push("/StepperCheckout")
+
+        let obj = { ...data, ...product }
+       
+        history.push('/StepperCheckout', {
+          state:obj
+        })
  
       }
     } else {
@@ -48,7 +55,11 @@ const Result = ({ data }) => {
          seterrorstate(true);
       }
        else {
-        history.push("/StepperCheckout")
+         let obj = { ...data, ...product };
+        history.push('/StepperCheckout', {
+          state: obj,
+        });
+
       }
     }
   }
@@ -109,7 +120,7 @@ console.log("ADD TO CART",product)
                   Landområde
                 </Text>
                 <Text fontSize='md' color={color}>
-                  {data?.Landområde}
+                  {data?.Landomrade}
                 </Text>
               </Box>
               <Box>
@@ -117,7 +128,7 @@ console.log("ADD TO CART",product)
                   Jordhøyde
                 </Text>
                 <Text fontSize='md' color={color}>
-                  {data?.Jordhøyde}
+                  {data?.Jordhoyde}
                 </Text>
               </Box>
               <Box>
