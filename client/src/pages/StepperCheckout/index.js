@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Box, Button, Flex, Input, useColorModeValue } from '@chakra-ui/react'
+import { Box, Button, Checkbox, Flex, Input, useColorModeValue, useToast } from '@chakra-ui/react'
 import {
   legend,
   fieldset,
@@ -15,14 +15,17 @@ import CartDelivery from '../../components/cartDelivery'
 import { useOrderContext } from '../../context/order_context';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
+import { create_order_url } from '../../utils/constants';
 
 function StepperCheckout() {
     const color = useColorModeValue('rgb(40,40,40)', 'rgb(250,250,250)');
     const bg = useColorModeValue('rgb(250,250,250)', 'rgb(40,40,40)');
   const [show, setShow] = useState(false)
   let [values, setvalues] = useState({})
+  let [deliveryCharges, setdeliveryCharges] = useState(0)
   let [allvalues, setallvalues] = useState({})
 const {state} = useLocation()
+const toast = useToast()
 console.log(state)
 const {
     shipping: {
@@ -44,7 +47,13 @@ const {
     e.stopPropagation()
     if (!values.city || !values.state || !values.postal_code || !values.phone_number || !values.line1)
     {
-     return alert('please provide details')
+     return toast({
+       position: 'top',
+       description: 'Provide All details .!!',
+       status: 'error',
+       duration: 5000,
+       isClosable: true,
+     });
     }
    
     const obj = {
@@ -68,12 +77,20 @@ const {
         email: 'guest',
       },
       itemsPrice: state?.state.price,
-      shippingPrice: 50,
-      totalPrice: state?.state.price + 50,
+      shippingPrice: deliveryCharges || 1,
+      totalPrice: state?.state.price + deliveryCharges,
     };
-    axios.post('api/v1/create/order', obj).then((res) => {
+    axios.post(create_order_url, obj).then((res) => {
       if (res.data)
       {
+         toast({
+           position: 'top',
+           description: 'Provide Order Place successfully.!!',
+           status: 'success',
+           duration: 5000,
+           isClosable: true,
+         });
+        console.log(res.data)
         setallvalues({...obj,...state.state})
         setShow(true)
         }
@@ -94,98 +111,116 @@ const {
             <Box>
               <fieldset style={fieldset}>
                 <legend style={legend}>Shipping Address</legend>
-                
-                  <label for='shipping-address-first' />
+                <label for='shipping-address-first' />
+                <Input
+                  id='shipping-address-firstName  '
+                  style={firstInputField}
+                  bg={bg}
+                  color={color}
+                  type='text'
+                  name='firstName'
+                  onChange={handleChange}
+                  required
+                  placeholder='First Name'
+                />
+                <label for='Last-name' />
+                <Input
+                  id='shipping-address-last-name'
+                  style={nameInputField}
+                  type='text'
+                  bg={bg}
+                  color={color}
+                  name='lastName'
+                  required
+                  onChange={handleChange}
+                  placeholder='Last_Name'
+                />{' '}
+                <label for='phone-number' />
+                <Input
+                  id='shipping-address-phone_number'
+                  style={nameInputField}
+                  type='number'
+                  bg={bg}
+                  color={color}
+                  name='phone_number'
+                  required
+                  onChange={handleChange}
+                  placeholder='Enter You Phone Number'
+                />
+                <label for='shipping-address-street-address' />
+                <Input
+                  id='shipping-address-street-address'
+                  style={inputField}
+                  type='text'
+                  name='line1'
+                  bg={bg}
+                  onChange={handleChange}
+                  placeholder='Street Address'
+                />
+                <div>
+                  <label for='shipping-address-city-locality' />
                   <Input
-                    id='shipping-address-firstName  '
-                    style={firstInputField}
-                    bg={bg}
-                    color={color}
+                    id='shipping-address-city-locality'
+                    style={cityInputField}
                     type='text'
-                    name='firstName'
+                    name='city'
+                    bg={bg}
                     onChange={handleChange}
-                    required
-                    placeholder='First Name'
+                    color={color}
+                    placeholder='City'
                   />
-                  <label for='Last-name' />
+                  <label for='shipping-address-state-region' />
                   <Input
-                    id='shipping-address-last-name'
-                    style={nameInputField}
+                    id='shipping-address-state-region'
+                    style={postalInputField}
                     type='text'
                     bg={bg}
                     color={color}
-                    name='lastName'
-                    required
+                    name='state'
                     onChange={handleChange}
-                    placeholder='Last_Name'
-                  />{' '}
-                  <label for='phone-number' />
+                    placeholder='State'
+                  />
+                  <label for='shipping-address-postal-code' />
                   <Input
-                    id='shipping-address-phone_number'
-                    style={nameInputField}
+                    id='shipping-address-postal-code'
+                    style={firstInputField}
                     type='number'
                     bg={bg}
+                    sx={{ margin: '20px 0px' }}
                     color={color}
-                    name='phone_number'
+                    name='postal_code'
                     required
                     onChange={handleChange}
-                    placeholder='Enter You Phone Number'
+                    placeholder='Postal Code'
                   />
-                  <label for='shipping-address-street-address' />
-                  <Input
-                    id='shipping-address-street-address'
-                    style={inputField}
-                    type='text'
-                    name='line1'
-                   
-                    bg={bg}
-                    onChange={handleChange}
-                    placeholder='Street Address'
-                  />
-                  <div>
-                    <label for='shipping-address-city-locality' />
-                    <Input
-                      id='shipping-address-city-locality'
-                      style={cityInputField}
-                      type='text'
-                      name='city'
-                      bg={bg}
-                      onChange={handleChange}
-                      color={color}
-                      placeholder='City'
-                    />
-                    <label for='shipping-address-state-region' />
-                    <Input
-                      id='shipping-address-state-region'
-                      style={postalInputField}
-                      type='text'
-                      bg={bg}
-                      color={color}
-                      name='state'
-                      onChange={handleChange}
-                      placeholder='State'
-                    />
-                    <label for='shipping-address-postal-code' />
-                    <Input
-                      id='shipping-address-postal-code'
-                      style={firstInputField}
-                      type='number'
-                      bg={bg}
-                      sx={{ margin: '20px 0px' }}
-                      color={color}
-                      name='postal_code'
-                      required
-                      onChange={handleChange}
-                      placeholder='Postal Code'
-                    />
-                  </div>
-                  <Box>
-                    <CartDelivery />
+                </div>
+                <Box>
+                  <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    <Checkbox onChange={() => setdeliveryCharges(50)} /> Express
+                    (Delivery Within 2-3 Days)
                   </Box>
-                  <Button bg={bg} type='submit' color={color} sx={{ margin: '20px 0px' }} onClick={handleSubmit}>
-                    Submit
-                  </Button>
-                
+                  <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    <Checkbox onChange={() => setdeliveryCharges(30)} /> Standard
+                    (Delivery Within 1 Week)
+                  </Box>
+                  <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    <Checkbox onChange={() => setdeliveryCharges(10)} /> Normal
+                    (Delivery Within 2-3 Weeks)
+                  </Box>
+                  <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    <Checkbox onChange={() => setdeliveryCharges(1)} /> PickUp
+                    
+                  </Box>
+                </Box>
+                <Button
+                  bg={bg}
+                  type='submit'
+                  color={color}
+                  sx={{ margin: '20px 0px' }}
+                  onClick={handleSubmit}
+                >
+                  Submit
+                </Button>
               </fieldset>
             </Box>
           </Box>

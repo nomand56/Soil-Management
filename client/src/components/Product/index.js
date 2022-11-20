@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 const Product = ({ image, productName, price, _id }) => {
   return (
     <Wrapper>
-      <div className='container'>
+      <div className='container' style={{minWidth:'250px',width:'300px'}}>
         <img src={image} alt='main' />
         <Link to={`/products/${_id}`} className='link'>
           <FaSearch />

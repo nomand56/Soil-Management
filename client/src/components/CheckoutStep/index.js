@@ -1,43 +1,51 @@
 import { Box, Button, Text, useColorModeValue } from '@chakra-ui/react'
-import React, { useEffect, useState } from 'react'
-import { BiErrorCircle } from 'react-icons/bi';
-import { landData } from '../../utils/land';
+import React from 'react'
+
+import { FaCheckCircle } from 'react-icons/fa';
 
 const CheckoutStep = ({ allvalues }) => {
   console.log(allvalues)
-  const [form, setform] = useState(false)
-  const [state, setstate] = useState(null)
   const color = useColorModeValue('rgb(40,40,40)', 'rgb(250,250,250)');
-  const bg = useColorModeValue('rgb(250,250,250)', '#32995b');
+  const bg = useColorModeValue('rgb(190,200,190)', '#32995b');
 
-  // useEffect(() => {
-  //       setstate(landData.filter((land) => land.type === obj?.land));
-  // }, [])
+  
 
   return (
     <Box sx={{ textAlign: 'center' }}>
-
       <Box
         sx={{
           display: 'flex',
           justifyContent: 'space-evenly',
           flexWrap: 'wrap',
+          alignItems: 'center',
         }}
       >
-        <Box style={{ width: '25%', minWidth: '300px', padding: '5px' }}>
-          <Text color={color} fontSize='xl' sx={{ margin: '10px 0px' }}>
-            hello
+        <Box
+          style={{
+            width: '25%',
+            minWidth: '300px',
+            padding: '5px',
+            textAlign: 'center',
+          }}
+        >
+          <Box sx={{ textAlign: 'center' }}>
+            <FaCheckCircle
+              style={{ fontSize: '80px', color: 'green', margin: '20px auto' }}
+            />
+          </Box>
+          <Text>
+            Takk for at du bestiller produktet ditt kommer snart på dørstokken
           </Text>
-          <Text color={color} fontSize='md' sx={{ margin: '10px 0px' }}>
-            hello1
-          </Text>
+          <Box>
+            <Button color={color} bg={bg}>handle mer</Button>
+          </Box>
         </Box>
         <Box
           sx={{
             width: '40%',
             minWidth: '300px',
             padding: '40px 20px',
-            border: '1px solid green',
+            border: '2px solid green',
           }}
         >
           <Box>
@@ -46,7 +54,7 @@ const CheckoutStep = ({ allvalues }) => {
                 Land
               </Text>
               <Text fontSize='sm' color={color}>
-                lland
+                {allvalues?.land}
               </Text>
             </Box>
             <Box>
@@ -54,7 +62,7 @@ const CheckoutStep = ({ allvalues }) => {
                 Jord
               </Text>
               <Text fontSize='md' color={color}>
-                jord Tyoe
+                {allvalues?.jordType}
               </Text>
             </Box>
             <Box>
@@ -62,7 +70,7 @@ const CheckoutStep = ({ allvalues }) => {
                 Landområde
               </Text>
               <Text fontSize='md' color={color}>
-                loamorade
+                {allvalues?.Landomrade}
               </Text>
             </Box>
             <Box>
@@ -70,7 +78,7 @@ const CheckoutStep = ({ allvalues }) => {
                 Jordhøyde
               </Text>
               <Text fontSize='md' color={color}>
-                Jordhøyde
+                {allvalues?.Jordhoyde}
               </Text>
             </Box>
             <Box>
@@ -78,7 +86,7 @@ const CheckoutStep = ({ allvalues }) => {
                 Postnr
               </Text>
               <Text fontSize='md' color={color}>
-                PostalCode
+                {allvalues?.postalCode}
               </Text>
             </Box>
           </Box>
@@ -87,7 +95,7 @@ const CheckoutStep = ({ allvalues }) => {
           sx={{
             padding: '40px 20px',
             width: '30%',
-            minWidth: "300px",
+            minWidth: '300px',
             border: '1px solid green',
           }}
         >
@@ -112,7 +120,7 @@ const CheckoutStep = ({ allvalues }) => {
             }}
           >
             <Text fontSize='xl'>Price</Text>
-            <Text fontSize='md'>$ 350</Text>
+            <Text fontSize='md'>{allvalues?.price}</Text>
           </Box>
           <Box
             sx={{
@@ -123,7 +131,9 @@ const CheckoutStep = ({ allvalues }) => {
             }}
           >
             <Text fontSize='xl'>Delivery</Text>
-            <Text fontSize='md'>$ 50</Text>
+            <Text fontSize='md'>
+              {allvalues?.totalPrice - allvalues?.price}
+            </Text>
           </Box>
           <Box
             sx={{
@@ -147,7 +157,7 @@ const CheckoutStep = ({ allvalues }) => {
             }}
           >
             <Text fontSize='xl'>Sub Total</Text>
-            <Text fontSize='md'>$ 450</Text>
+            <Text fontSize='md'>$ {allvalues?.totalPrice + 50}</Text>
           </Box>
           <Box
             sx={{
@@ -159,11 +169,10 @@ const CheckoutStep = ({ allvalues }) => {
             }}
           >
             <Text fontSize='xl'>Order Total</Text>
-            <Text fontSize='md'>$ 450</Text>
+            <Text fontSize='md'>$ {allvalues?.totalPrice + 50}</Text>
           </Box>
         </Box>
       </Box>
-      )
     </Box>
   );
 }
