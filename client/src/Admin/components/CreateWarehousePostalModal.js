@@ -21,7 +21,7 @@ import {useWarehouseContext} from '../../context/warehouse_context'
 function CreateWarehousePostalModal({specific}) {
     console.log("specific",specific)
     const { addType} = useProductsContext()
-    const {addWarehouseProducts,warehouseProductsSuccess:success}=useWarehouseContext()
+    const {addWarehouseProducts,warehouseProductsSuccess:success,warehouseProductsError:error}=useWarehouseContext()
     const { isOpen, onOpen, onClose } = useDisclosure();
     const toast = useToast();
     const [loading, setLoading] = useState(false);
@@ -60,7 +60,47 @@ function CreateWarehousePostalModal({specific}) {
 
     onClose()
     } 
-
+    // if (loading) {
+    //     return (
+    //       <SidebarWithHeader>
+    //         <HStack mb={5}>
+    //           <CreateNewProductModal />
+    //           <Button
+    //             colorScheme='brown'
+    //             variant='outline'
+    //             leftIcon={<BiRefresh />}
+    //             onClick={handleRefresh}
+    //           >
+    //             Refresh
+    //           </Button>
+    //         </HStack>
+    //         <VStack alignItems='center' justifyContent='center'>
+    //           <Spinner size='lg' color='brown.500' />
+    //         </VStack>
+    //       </SidebarWithHeader>
+    //     );
+    //   }
+    
+    //   if (error) {
+    //     return (
+    //       <SidebarWithHeader>
+    //         <HStack mb={5}>
+    //           <CreateNewProductModal />
+    //           <Button
+    //             colorScheme='brown'
+    //             variant='outline'
+    //             leftIcon={<BiRefresh />}
+    //             onClick={handleRefresh}
+    //           >
+    //             Refresh
+    //           </Button>
+    //         </HStack>
+    //         <VStack alignItems='center' justifyContent='center'>
+    //           <Heading color='red.500'>There was an error</Heading>
+    //         </VStack>
+    //       </SidebarWithHeader>
+    //     );
+    //   }
     return (
         <Box>
             <Button colorScheme='brown' onClick={onOpen}>

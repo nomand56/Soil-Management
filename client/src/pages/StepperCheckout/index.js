@@ -47,6 +47,7 @@ const {
      return alert('please provide details')
     }
    
+
     const obj = {
       shippingInfo: {
         address: `${values.line1} ${values.city} ${values.state}`,
@@ -57,19 +58,19 @@ const {
       },
       orderItems: [
         {
-          name: state?.state.productName,
-          price: state?.state.price,
+          name: state?.state[0].land,
+          price: state?.state[0].price,
           quantity: 1,
-          product: state?.state._id,
+          product: state?.state[0]._id,
         },
       ],
       user: {
         name: 'guest',
         email: 'guest',
       },
-      itemsPrice: state?.state.price,
+      itemsPrice: state?.state[0].price,
       shippingPrice: 50,
-      totalPrice: state?.state.price + 50,
+      totalPrice: state?.state[0].price + 50,
     };
     axios.post('api/v1/create/order', obj).then((res) => {
       if (res.data)

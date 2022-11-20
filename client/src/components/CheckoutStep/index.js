@@ -158,7 +158,7 @@ const CheckoutStep = ({ allvalues }) => {
           </Box>
         </Box>
       </Box>
-      )
+      
     </Box>
   );
 }
