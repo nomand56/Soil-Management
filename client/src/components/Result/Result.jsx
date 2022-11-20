@@ -64,12 +64,12 @@ const Result = ({ data }) => {
     }
   }
   function handleAddtoCart() {
- setobj({ ...data, productID: product?._id,amount:1 });
+ setobj({ ...data, productID: product[0]._id,amount:1 });
      if (product === 'product not found') {
        seterrorstate(true);
      }else {
-      addToCart({id:product._id,amount:1,product})
-console.log("ADD TO CART",product)     
+      addToCart({id:product[0]._id,amount:1,product:product[0]})
+console.log("ADD TO CART",product[0])     
 }
   }
   return (
@@ -153,14 +153,15 @@ console.log("ADD TO CART",product)
               <Box>
                 <Text fontSize='xl' color={color}>
                   Quantity :
-                  {product === 'product not found' ? '30' : product?.quantity}
-                  KG
+                  {product === 'product not found' ? '30' : 1}
+                  
                 </Text>
               </Box>
               <Box>
+                {console.log('product', product)}
                 <Text fontSize='xl' color={color}>
                   Price :
-                  {product === 'product not found' ? '###' : product?.price}$
+                  {product === 'product not found' ? '1000' : product && product[0]?.price}$
                 </Text>
               </Box>
             </Box>
