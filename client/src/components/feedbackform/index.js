@@ -1,4 +1,4 @@
-import { Box, Button, Text, useColorModeValue } from '@chakra-ui/react'
+import { Box, Button, Text, useColorModeValue, useToast } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { useProductsContext } from '../../context/products_context';
 
@@ -6,12 +6,13 @@ const FeedBack = ({ obj }) => {
     const [values, setvalues] = useState({})
      const color = useColorModeValue('rgb(40,40,40)', 'rgb(250,250,250)');
   const bg = useColorModeValue('rgb(255,255,250)', 'rgb(40,40,40)');
+  const toast=useToast()
   const { InquiryForm } = useProductsContext();
     function handleChange(e)
     {
         setvalues({...values,[e.target.name]:e.target.value})
     }
-    function handleSubmit(e)
+    async function handleSubmit(e)
     {
       e.preventDefault()
       const newObj = {
@@ -25,7 +26,27 @@ const FeedBack = ({ obj }) => {
           type: obj.type,
         },
       };
-        InquiryForm(newObj)
+      const response = await InquiryForm(newObj)
+      if (response.success)
+      {
+       return toast({
+          position: 'top',
+          description: 'Inquiry Submit successfully.!!',
+          status: 'success',
+          duration: 5000,
+          isClosable: true,
+        }); 
+      }
+      else if (response.error)
+      {
+        return toast({
+          position: 'top',
+          description: 'please fill all details.!!',
+          status: 'error',
+          duration: 5000,
+          isClosable: true,
+        }); 
+        }
     }
   return (
     <Box

@@ -84,16 +84,17 @@ const {
     axios.post(create_order_url, obj).then((res) => {
       if (res.data)
       {
-         toast({
-           position: 'top',
-           description: 'Provide Order Place successfully.!!',
-           status: 'success',
-           duration: 5000,
-           isClosable: true,
-         });
+        
         console.log(res.data)
         setallvalues({...obj,...state.state})
         setShow(true)
+        return toast({
+           position: 'top',
+           description: 'Provide Order Place successfully.!!',
+           status: 'error',
+           duration: 5000,
+           isClosable: true,
+         });
         }
     });
   }

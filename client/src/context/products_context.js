@@ -214,10 +214,12 @@ const getPostalCode = async () => {
     dispatch({ type: INQUIRY_FORM_BEGIN });
     try{
       const response = await axios.post(inquiry_product, data)
-        dispatch({ type: INQUIRY_FORM_SUCCESS, payload: response });      
+      dispatch({ type: INQUIRY_FORM_SUCCESS, payload: response });  
+      return {success:'ok'}
     }
     catch(error){ 
       dispatch({ type: INQUIRY_FORM_ERROR, payload: error });
+      return {error:error}
     }
 
 
