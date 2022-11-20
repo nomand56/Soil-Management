@@ -4,7 +4,7 @@ const order = require("../../controllers/order/index");
 
 
 router.get("/orders", order.getAllOrders);
-router.post('/order/user/',order.getspecificOrders)
+// router.post('/order/user/',order.getspecificOrders)
 router.post("/create/order", order.createOrder);
 router.post("/order/single/:id", order.getAdminSingleOrder);
 router.put("/update/order", order.updateOrder);

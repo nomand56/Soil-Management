@@ -119,7 +119,7 @@ const {
           <Box>
             <CartDelivery />
           </Box>
-          <input type="submit"  id="myForm"  />
+          <input type="submit"  id="myForm" onC  />
           
         </Box>
         <Box borderRadius="10px">

@@ -1,6 +1,7 @@
 let products = require("../../models/products/model");
 let inquiry = require("../../models/inquiry/model");
 let ProductsType=require("../../models/productsType/model")
+
 const addProduct = async (req, res) => {
   try {
     let data = await new products(req.body);

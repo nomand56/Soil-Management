@@ -25,6 +25,7 @@ import PostalTable from "./PostalTable"
 import CreatePostalCodeModal from './CreatePostalCode';
 import WarehousePostal from './WarehousePostal';
 import WarehouseProducts from './WarehouseProducts';
+import CreateWarehousePostalModal from "./CreateWarehousePostalModal"
 export {
   SidebarWithHeader,
   SidebarContent,
@@ -52,5 +53,6 @@ export {
   CreatePostalCodeModal,
   PostalTable,
   WarehousePostal,
-  WarehouseProducts
+  WarehouseProducts,
+  CreateWarehousePostalModal
 };

@@ -8,11 +8,6 @@ const CheckoutStep = () => {
   const [state, setstate] = useState(null)
   const color = useColorModeValue('rgb(40,40,40)', 'rgb(250,250,250)');
   const bg = useColorModeValue('rgb(250,250,250)', '#32995b');
-
-  // useEffect(() => {
-  //       setstate(landData.filter((land) => land.type === obj?.land));
-  // }, [])
-
   return (
     <Box sx={{ textAlign: 'center' }}>
 

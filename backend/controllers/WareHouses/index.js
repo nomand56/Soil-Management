@@ -1,6 +1,6 @@
 const WareHouses = require('../../models/warehouses/model')
-const product = require('../../models/products/model')
-
+const warehouseProduct=require("../../models/warehouseProducts/model")
+const product = require("../../models/products/model");
 const getAllWareHouses = async (req, res) => {
     try {
         let data = await WareHouses.find();
@@ -9,6 +9,26 @@ const getAllWareHouses = async (req, res) => {
         res.send({error})
     }
 }
+const getAllWarehouseProducts = async (req, res) => {
+    try {
+        let data = await warehouseProduct.find();
+    
+        res.send(data);
+      } catch (error) {
+        res.send({ error });
+      }
+    };
+
+const addWarehouseProduct = async (req, res) => {
+    try {
+        let data = new warehouseProduct(req.body);
+        await data.save();
+        res.send("created..");
+        } catch (error) {
+        res.send({ error });
+        }
+    };
+
 
 const getAllProducts = async (req, res) => {
     try {
@@ -43,5 +63,6 @@ module.exports = {
   getAllProducts,
   createWareHouses,
   deleteWareHouse,
-  
+  addWarehouseProduct,
+  getAllWarehouseProducts
 };

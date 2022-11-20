@@ -190,3 +190,5 @@ export const post_product_type = `${domain}product/ProductType`;
 export const post_postal_code = `${domain}add/postal`;
 export const fetch_postal_code = `${domain}get/all/postal`;
 export const fetch_specific_postal_code = `${domain}get/specificepostal`;
+export const fetch_warehouse_products= `${domain}warehouses/getAllWarehouseProducts`;
+export const add_warehouse_products= `${domain}warehouses/warehouseProduct`;
