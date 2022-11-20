@@ -122,9 +122,9 @@ function App() {
             <PrivateRoute path="/admin/WarehousePostalPage/:id">
               <WarehousePostalPage/>
             </PrivateRoute>
-{/* <PrivateRoute exact path='/admin/WarehouseProduct'>
+<PrivateRoute exact path='/admin/WarehouseProducts/:id'>
 <WarehouseProducts/>
-</PrivateRoute> */}
+</PrivateRoute>
             <PrivateRoute exact path='/admin'>
               <AdminsPage />
             </PrivateRoute>

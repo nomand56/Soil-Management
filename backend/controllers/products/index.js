@@ -1,6 +1,7 @@
 let products = require("../../models/products/model");
 let inquiry = require("../../models/inquiry/model");
 let ProductsType=require("../../models/productsType/model")
+let warehouseproducts = require("../../models/warehouseProducts/model");
 const addProduct = async (req, res) => {
   try {
     let data = await new products(req.body);
@@ -14,7 +15,7 @@ const deleteProduct = async (req, res) => {
   try {
     let data = await products.findByIdAndDelete(req.params.id);
     res.send({ success: "ok", message: "deleted" });
-  } catch (error) {p
+  } catch (error) {
     res.send({ message: error });
   }
 };
@@ -113,31 +114,17 @@ const getSingleProduct = async (req, res) => {
 const getSingleProductByLandJord = async (req, res) => {
   try {
     let Postal = parseInt(req.params.postal);
-    let data = await products.find({
+    let data = await warehouseproducts.find({
       land: req.params.land,
       jord: req.params.jord,
+      supplierPostalCode:Postal
     });
-// console.log(data)
-if( data.length>0){
- let closest =await data.reduce(function (prev, curr) {
-    return Math.abs(curr.supplierPostalCode -Postal) <
-      Math.abs(prev.supplierPostalCode - Postal)
-      ? curr
-      : prev;
-  });
-  if (
-    closest.supplierPostalCode > Postal - 1000 &&
-    closest.supplierPostalCode < Postal + 1000
-  ) {
-    res.send(closest);
-  } else {
-    res.send("product not found");
-  }
+if(data.length>0){
+  res.send(data);
+}else{
+  res.send("product not found")
 
-
-}else {
-      res.send("product not found");
-    }
+}
   } catch (error) {
     res.send({ error });
   }

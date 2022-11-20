@@ -6,10 +6,7 @@ import { FaCheckCircle } from 'react-icons/fa';
 const CheckoutStep = ({ allvalues }) => {
   console.log(allvalues)
   const color = useColorModeValue('rgb(40,40,40)', 'rgb(250,250,250)');
-  const bg = useColorModeValue('rgb(190,200,190)', '#32995b');
-
-  
-
+  const bg = useColorModeValue('rgb(250,250,250)', '#32995b');
   return (
     <Box sx={{ textAlign: 'center' }}>
       <Box
@@ -173,6 +170,7 @@ const CheckoutStep = ({ allvalues }) => {
           </Box>
         </Box>
       </Box>
+      
     </Box>
   );
 }

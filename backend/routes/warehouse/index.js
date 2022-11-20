@@ -6,4 +6,6 @@ router.get("/warehouses", WareHouses.getAllWareHouses);
 router.get("/warehouses/getallproducts/:id", WareHouses.getAllProducts);
 router.post("/warehouses/create", WareHouses.createWareHouses);
 router.delete("/warehouses/delete/:id", WareHouses.deleteWareHouse);
+router.get("/warehouses/getAllWarehouseProducts", WareHouses.getAllWarehouseProducts);
+router.post("/warehouses/warehouseProduct", WareHouses.addWarehouseProduct);
 module.exports = router;

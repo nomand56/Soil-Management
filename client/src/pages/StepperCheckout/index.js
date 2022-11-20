@@ -56,6 +56,7 @@ const {
      });
     }
    
+
     const obj = {
       shippingInfo: {
         address: `${values.line1} ${values.city} ${values.state}`,
@@ -66,19 +67,19 @@ const {
       },
       orderItems: [
         {
-          name: state?.state.productName,
-          price: state?.state.price,
+          name: state?.state[0].land,
+          price: state?.state[0].price,
           quantity: 1,
-          product: state?.state._id,
+          product: state?.state[0]._id,
         },
       ],
       user: {
         name: 'guest',
         email: 'guest',
       },
-      itemsPrice: state?.state.price,
-      shippingPrice: deliveryCharges || 1,
-      totalPrice: state?.state.price + deliveryCharges,
+      itemsPrice: state?.state[0].price,
+      shippingPrice: 50,
+      totalPrice: state?.state[0].price + 50,
     };
     axios.post(create_order_url, obj).then((res) => {
       if (res.data)

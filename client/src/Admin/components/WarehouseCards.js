@@ -28,7 +28,6 @@ function WarehouseCards({ products }) {
                   New
                 </Badge>
               </Box>
-
               <Box
                 mt='1'
                 fontWeight='semibold'

@@ -20,6 +20,7 @@ import {
   HStack,
   useColorModeValue
 } from '@chakra-ui/react';
+
 import { BiChevronDown } from 'react-icons/bi';
 function WarehousePostal({products}) {
 const {warehouse} = useWarehouseContext()
