@@ -1,18 +1,31 @@
 import { Box, Button, Text, useColorModeValue } from '@chakra-ui/react'
 import React, { useState } from 'react'
+import { useProductsContext } from '../../context/products_context';
 
 const FeedBack = ({ obj }) => {
     const [values, setvalues] = useState({})
      const color = useColorModeValue('rgb(40,40,40)', 'rgb(250,250,250)');
-     const bg = useColorModeValue('rgb(255,255,250)', 'rgb(40,40,40)');
+  const bg = useColorModeValue('rgb(255,255,250)', 'rgb(40,40,40)');
+  const { InquiryForm } = useProductsContext();
     function handleChange(e)
     {
         setvalues({...values,[e.target.name]:e.target.value})
     }
     function handleSubmit(e)
     {
-        e.preventDefault()
-        console.log(values)
+      e.preventDefault()
+      const newObj = {
+        ...values,
+        productDetails: {
+          Jordhoyde: obj.Jordhoyde,
+          Landomrade: obj.Landomrade,
+          JordType: obj.jordType,
+          land: obj.land,
+          postalCode: obj.postalCode,
+          type: obj.type,
+        },
+      };
+        InquiryForm(newObj)
     }
   return (
     <Box

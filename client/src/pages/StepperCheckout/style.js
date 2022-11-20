@@ -50,7 +50,7 @@ export const fieldset = {
     fontSize: "14px",
     letterSpacing: "1px",
     marginBottom: "20px",
-    width:'30%',
+    width:'100%',
     padding: "12px 20px",
     marginRight:"10px",
     borderRadius:"10px"
@@ -61,7 +61,7 @@ export const fieldset = {
     fontSize: "14px",
     letterSpacing: "1px",
     marginBottom: "20px",
-    width:'30%',
+    width:'100%',
     padding: "12px 20px",
     // marginRight:"5px",
     borderRadius:"10px"
@@ -73,7 +73,7 @@ export const fieldset = {
     fontSize: "14px",
     letterSpacing: "1px",
     padding: "12px 20px",
-    width: "35.6666666667%",
+    width: "50%",
     borderRadius:"10px"
 
 };
@@ -95,7 +95,7 @@ export const fieldset = {
     fontSize: "14px",
     letterSpacing: "1px",
     padding: "12px 20px",
-    width: "33.3333333333%",
+    width: "50%",
     borderRadius:"10px"
   
 };

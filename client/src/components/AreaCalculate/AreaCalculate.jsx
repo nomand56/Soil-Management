@@ -10,7 +10,7 @@ export default function AreaCalculate({ calculateArea ,callNext}) {
         Velg Landområde
       </Text>
       <Input
-        name='Landområde'
+        name='Landomrade'
         type='number'
         placeholder='Angi området i kvadratmeter'
         onChange={calculateArea}
@@ -21,7 +21,7 @@ export default function AreaCalculate({ calculateArea ,callNext}) {
         Velg Jordhøyde
       </Text>
       <Input
-        name='Jordhøyde'
+        name='Jordhoyde'
         type='number'
         placeholder='Angi bakkehøyde i meter'
         onChange={calculateArea} 
