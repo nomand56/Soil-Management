@@ -19,8 +19,8 @@ function ProductsType() {
     addProductType,
     fetchProductType
   } = useProductsContext();
-  const handleRefresh = async () => {
-    await fetchProductType();
+  const handleRefresh =  () => {
+    fetchProductType();
   };
 
   if (loading) {

@@ -42,42 +42,7 @@ export const adminLinks = [
     url: '/admin/warehouses',
   },
 ];
-export const socialLinks = [
-  {
-    id: 1,
-    icon: <AiFillGithub className='github' color='var(--clr-primary-5)' fontSize='2.5rem' />,
-    text: 'GitHub',
-    url: 'https://github.com/varunKT001/tomper-wear-ecommerce/',
-  },
-  {
-    id: 2,
-    icon: (
-      <AiFillLinkedin className='linkedin' color='var(--clr-primary-5)' fontSize='2.5rem' />
-    ),
-    text: 'LinkedIn',
-    url: 'https://www.linkedin.com/in/varun-tiwari-454591178',
-  },
-  {
-    id: 3,
-    icon: (
-      <AiFillTwitterCircle
-        className='twitter'
-        color='var(--clr-primary-5)'
-        fontSize='2.5rem'
-      />
-    ),
-    text: 'Twitter',
-    url: 'https://twitter.com/geekvarun',
-  },
-  {
-    id: 4,
-    icon: (
-      <AiFillYoutube className='youtube' color='var(--clr-primary-5)' fontSize='2.5rem' />
-    ),
-    text: 'YouTube',
-    url: 'https://www.youtube.com/channel/UCUvO6rXuF7VuGhHQI94NIug',
-  },
-];
+
 
 export const footerLinks = [
   {
@@ -95,16 +60,7 @@ export const footerLinks = [
     text: 'Products',
     url: '/products',
   },
-  {
-    id: 4,
-    text: 'Contact',
-    url: '/contact',
-  },
-  {
-    id: 5,
-    text: 'Orders',
-    url: '/orders',
-  },
+
 ];
 
 export const services = [
@@ -161,7 +117,7 @@ export const products_url = `${domain}getAllProducts`;
 export const single_product_url = `${domain}getSingleProduct/`;
 export const create_order_url = `${domain}create/order`;
 export const get_order_url = `${domain}/api/orders`;
-export const get_specific_order_url = `${domain}/order/user/`;
+export const get_specific_order_url = `${domain}/order/user`;
 export const payment_url = `${domain}/api/payment/create-payment-intent`;
 export const upload_url = `${domain}/api/upload/`;
 export const default_profile_image = 'https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg';
@@ -172,6 +128,7 @@ export const delete_url = `${domain}delete/client`;
 export const orders_url = `${domain}orders`;
 export const single_order_url = `${domain}order/single/`;
 export const update_order_status = `${domain}order/status/`;
+export const delete_order_url = `${domain}/delete/order/`;
 export const create_new_product = `${domain}create/product`;
 export const update_product_url = `${domain}update/product`;
 export const delete_product_url = `${domain}delete/product`;
@@ -192,3 +149,4 @@ export const fetch_postal_code = `${domain}get/all/postal`;
 export const fetch_specific_postal_code = `${domain}get/specificepostal`;
 export const fetch_warehouse_products= `${domain}warehouses/getAllWarehouseProducts`;
 export const add_warehouse_products= `${domain}warehouses/warehouseProduct`;
+export const delete_warehouses_products= `${domain}warehouses/deleteWarehouseProduct`;

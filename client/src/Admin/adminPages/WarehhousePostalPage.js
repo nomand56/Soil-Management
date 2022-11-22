@@ -7,15 +7,16 @@ import {
   CreatePostalCodeModal,
   WarehousePostal,
 } from '../components';
+
 import {useWarehouseContext} from "../../context/warehouse_context"
 import { HStack, VStack, Spinner, Heading, Button } from '@chakra-ui/react';
 import { BiRefresh } from 'react-icons/bi';
 import { useParams } from 'react-router-dom';
 
 function WarehousePostalPage() {
-    const { id } = useParams()
-    const { specificPostal, fetchSpecificPostal, specific_postal_loading: loading, specific_postal_error: error } = useWarehouseContext()
- const handleRefresh = () => {
+const { id } = useParams()
+const { specificPostal, fetchSpecificPostal, specific_postal_loading: loading, specific_postal_error: error } = useWarehouseContext()
+const handleRefresh = () => {
     fetchSpecificPostal(id)
     }
 
@@ -47,7 +48,7 @@ function WarehousePostalPage() {
     return (
       <SidebarWithHeader>
         <HStack mb={5}>
-          <CreateNewWareHouseModel />
+          <CreateNewWareHouseModel warehouse={id} />
           <Button
             colorScheme='green'
             variant='outline'

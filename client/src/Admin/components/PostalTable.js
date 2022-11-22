@@ -32,30 +32,7 @@ function PostalTable({ products }) {
     const color = useColorModeValue('rgb(10,10,10)', 'rgb(180,180,180)');
     const bg = useColorModeValue('transparent', 'rgb(40,40,40)');
     const { warehouse } = useWarehouseContext()
-    // const handleDelete = async (id) => {
-    //     console.log(id)
-    //     setLoading(true);
-    //     const response = await deleteProduct(id);
-    //     setLoading(false);
-    //     if (response.success) {
-    //         toast({
-    //             position: 'top',
-    //             description: response.message,
-    //             status: 'success',
-    //             duration: 5000,
-    //             isClosable: true,
-    //         });
-    //         return await fetchProducts();
-    //     } else {
-    //         return toast({
-    //             position: 'top',
-    //             description: response.message,
-    //             status: 'error',
-    //             duration: 5000,
-    //             isClosable: true,
-    //         });
-    //     }
-    // };
+    
 
     return (
         <SimpleGrid bg='white' p={5} shadow='lg' borderRadius='lg' overflowX='auto'>
@@ -74,8 +51,7 @@ function PostalTable({ products }) {
                     </Thead>
                     <Tbody>
                         {products?.map((product, index) => {
-                          
-                
+                          const filtered=warehouse?.filter((item)=>item._id===product.warehouse)
                             return (
                                 <Tr key={index}>
                                     <Td>
@@ -86,7 +62,7 @@ function PostalTable({ products }) {
                                     </Td>
                                     <Td>
                                         <VStack alignItems='flex-start' spacing={1}>
-                                            <Text as='b'>{product.warehouse}</Text>
+                                            <Text as='b'>{filtered[0]?.warehouseName}</Text>
 
                                         </VStack>
                                     </Td>

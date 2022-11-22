@@ -7,7 +7,8 @@ import {
     get_all_product_by_warehouse,
     fetch_specific_postal_code,
     fetch_warehouse_products,
-    add_warehouse_products
+    add_warehouse_products,
+    delete_warehouses_products
 } from '../utils/constants';
 import reducer from '../reducers/warehouse_reducers';
 import {
@@ -121,6 +122,15 @@ dispatch({ type: ADD_WAREHOUSE_PRODUCTS_SUCCESS, payload: response.data });
 dispatch({ type: ADD_WAREHOUSE_PRODUCTS_ERROR });
 
 }}
+const deleteWarehouseProducts= async (id) => {
+try {
+const response = await axios.delete(`${delete_warehouses_products}/${id}`);
+const { success, message } = response.data;
+return { success, message };
+} catch (error) {
+const { success, message } = error.response.data;
+return { success, message };
+}}
 
     const updateNewWareHouseDetails = (e) => {
       const name = e.target.name;
@@ -149,7 +159,8 @@ dispatch({ type: ADD_WAREHOUSE_PRODUCTS_ERROR });
         fetchSpecificPostal,
         updateNewWareHouseDetails,
         addWarehouseProducts,
-        fetchWarehouseProducts
+        fetchWarehouseProducts,
+        deleteWarehouseProducts,
       }}
     >
       {children}

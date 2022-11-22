@@ -80,7 +80,7 @@ export default function RegisterPage() {
                 type='text'
                 placeholder='Enter your full name'
                 variant='filled'
-                focusBorderColor='brown.500'
+                focusBorderColor='green.500'
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
@@ -91,7 +91,7 @@ export default function RegisterPage() {
                 type='email'
                 placeholder='Enter your email address'
                 variant='filled'
-                focusBorderColor='brown.500'
+                focusBorderColor='green.500'
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -102,7 +102,7 @@ export default function RegisterPage() {
                 type='password'
                 placeholder='Enter your password'
                 variant='filled'
-                focusBorderColor='brown.500'
+                focusBorderColor='green.500'
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
@@ -110,10 +110,10 @@ export default function RegisterPage() {
             <Stack spacing={10}>
               <Button
                 isLoading={loadings}
-                bg={'brown.400'}
+                bg={'green.400'}
                 color={'white'}
                 _hover={{
-                  bg: 'brown.500',
+                  bg: 'green.500',
                 }}
                 onClick={() => handleSubmit()}
               >

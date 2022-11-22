@@ -25,6 +25,7 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import UpdateProductModal from './UpdateProductModal';
+import { useWarehouseContext } from '../../context/warehouse_context';
 
 function ProductsTable({ products }) {
   const toast = useToast();
@@ -68,14 +69,15 @@ const bg = useColorModeValue('transparent', 'rgb(40,40,40)');
           <Thead>
             <Tr>
               <Th>Image</Th>
-              <Th>Name</Th>
+              <Th>Product Name</Th>
+              <Th>Product Type</Th>
               <Th>Description</Th>
               <Th></Th>
             </Tr>
           </Thead>
           <Tbody>
             {products.map((product, index) => {
-              const { image, productName, price, quantity, usedFor, company, _id,category,description} =
+              const { image, land, productName,_id,description} =
                 product;
               return (
                 <Tr key={index}>
@@ -89,21 +91,22 @@ const bg = useColorModeValue('transparent', 'rgb(40,40,40)');
                   </Td>
                   <Td>
                     <VStack alignItems='flex-start' spacing={1}>
-                      <Text as='b'>{productName.substring(0, 21)}...</Text>
-                      <Text fontSize='sm' color='green.500'>
-                        {formatPrice(price)}
-                      </Text>
+                      <Text as='b'>{productName}</Text>
                     </VStack>
                   </Td>
                   <Td>
                     <VStack alignItems='flex-start' spacing={1}>
-                      <Text as='b'>{description}</Text>
-                      <Text fontSize='sm' color='brown.500'>
+                      <Text as='b'>{land}</Text>
+                      
+                    </VStack>
+                  </Td>
+                  <Td>
+                    <VStack alignItems='flex-start' spacing={1}>
+                      <Text fontSize='sm' >
                         {description}
                       </Text>
                     </VStack>
                   </Td>
-                  {/* <Td>{quantity}</Td> */}
                   <Td>
                     <Menu>
                       <MenuButton as={Button} rightIcon={<BiChevronDown />}>

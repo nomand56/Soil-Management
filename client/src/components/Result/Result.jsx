@@ -7,11 +7,12 @@ import ErrorPage from '../ErrorPage';
 import { useCartContext } from '../../context/cart_context';
 import { useProductsContext } from '../../context/products_context';
 import { useHistory } from 'react-router-dom';
+import { useOrderContext } from '../../context/order_context';
 
 const Result = ({ data }) => {
 
   const {addToCart}= useCartContext()
-  const {setData}=useProductsContext()
+  const {setDataObj}=useOrderContext()
   const [state, setstate] = useState(null);
   const [product, setproduct] = useState(null);
   const color = useColorModeValue('rgb(40,40,40)', 'rgb(250,250,250)');
@@ -44,10 +45,8 @@ const Result = ({ data }) => {
       else {
 
         let obj = { ...data, ...product }
-       
-        history.push('/StepperCheckout', {
-          state:obj
-        })
+        setDataObj(obj)
+        history.push('/StepperCheckout')
  
       }
     } else {

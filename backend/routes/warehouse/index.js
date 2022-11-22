@@ -8,4 +8,5 @@ router.post("/warehouses/create", WareHouses.createWareHouses);
 router.delete("/warehouses/delete/:id", WareHouses.deleteWareHouse);
 router.get("/warehouses/getAllWarehouseProducts", WareHouses.getAllWarehouseProducts);
 router.post("/warehouses/warehouseProduct", WareHouses.addWarehouseProduct);
+router.delete("/warehouses/deleteWarehouseProduct/:id", WareHouses.deleteWarehouseProduct);
 module.exports = router;

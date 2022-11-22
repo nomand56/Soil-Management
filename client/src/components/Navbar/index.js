@@ -48,14 +48,7 @@ const Nav = () => {
             );
           })
           } 
-          {currentUser?.userType=="user" && (
-            <li>
-              <Text color={color}>
-                <Link to='/checkout'>checkout</Link>
-              </Text>
-            </li>
-          )}
-          {currentUser && (
+          {currentUser &&  (
             <li>
               <Text color={color}>
                 <Link to='/orders'>orders</Link>

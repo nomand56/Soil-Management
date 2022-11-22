@@ -46,22 +46,7 @@ const initialState = {
   products_error: false,
   grid_view: true,
   products: [],
-  new_product: {
-    productName: '',
-    supplierId: '',
-    supplierPostalCode: 0,
-    price: 50000,
-    stock: 10,
-    description: '',
-    quantity: '',
-    land: '',
-    company: '',
-    jord: '',
-    shipping: true,
-    featured: false,
-    usedFor: [],
-    success: false,
-  },
+  new_product: {},
   filtered_products: null,
   single_product_loading: false,
   single_product_error: false,
@@ -154,13 +139,14 @@ export const ProductsProvider = ({ children }) => {
     }
   } 
   const addProductType= async (data)=>{
-    dispatch({type:POST_ADD_TYPE_BEGIN})
    try{
      const response = await axios.post(post_product_type,data  )
-     dispatch({type:POST_ADD_TYPE_SUCCESS, payload:response.data})
+      const {success,message}=response.data
+      return {success,message}
    }
    catch(error){
-     dispatch({type:POST_ADD_TYPE_ERROR, payload:error})
+    const {success,message}=error.response.data
+    return {success,message}
    }
  } 
  const addPostalCode = async (data) => {
@@ -188,28 +174,8 @@ const getPostalCode = async () => {
   const updateNewProductDetails = (e) => {
     const name = e.target.name;
     let value = e.target.value;
-    if (name === 'price' || name === 'stock' || name === 'supplierPostalCode') {
-      value = Number(value);
-    }
-    if (name === 'usedFor')
-    {
-      value = e.target.value.split(",");
-      }
-    if (name === 'colors' || name === 'sizes') {
-      value = value.replace(/\s+/g, '');
-      if (value === '') {
-        value = [];
-      } else if (value.indexOf(',') > -1) {
-        value = value.split(',');
-      } else {
-        value = value.split();
-      }
-    }
-    if (name === 'shipping' || name === 'featured') {
-      value = e.target.checked;
-    }
     dispatch({ type: CREATE_NEW_PRODUCT, payload: { name, value } });
-  };
+};
   const InquiryForm = async (data) => {  
     dispatch({ type: INQUIRY_FORM_BEGIN });
     try{
@@ -251,6 +217,7 @@ const getPostalCode = async () => {
       const response = await axios.post(create_new_product, product);
       const { success, data } = response.data;
       fetchProducts();
+      state.new_product = {};
       return { success:true, data };
     } catch (error) {
       const { success, message } = error.response.data;

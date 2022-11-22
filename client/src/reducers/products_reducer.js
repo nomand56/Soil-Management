@@ -214,8 +214,6 @@ return {
   if (action.type === POST_ADD_TYPE_SUCCESS) {
     return {
       ...state,
-      add_type_loading: false,
-      add_type_error: false,
       add_type_success: true
     }
 

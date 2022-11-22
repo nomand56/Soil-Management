@@ -25,12 +25,10 @@ import {
 import { useDropzone } from 'react-dropzone';
 import { useProductsContext } from '../../context/products_context';
 import { useWarehouseContext } from '../../context/warehouse_context';
+import axios from 'axios';
 import FileBase64 from "react-file-base64";
 function CreateNewProductModal() {
-  const [wareH, setwareH] = useState(null);
-  const [ID, setID] = useState(0);
-  const [PostCode, setPostCode] = useState('');
-  
+
   let {
     new_product: {
       productName,
@@ -50,27 +48,12 @@ function CreateNewProductModal() {
     addType,
   } = useProductsContext();
 
-  const { productType, setProductType } = useWarehouseContext();
+  const [productsType, setProductsType] = useState("");
   const [imageList, setImageList] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [image,setBase64]=useState([])
+  const [image, setBase64] = useState([])
 
-  const onDrop = useCallback((acceptedFiles) => {
-    acceptedFiles.forEach((file) => {
-      const reader = new FileReader();
-      reader.onload = () => {
-        setImageList((prev) => {
-          return [...prev, reader.result];
-        });
-      };
-      reader.readAsDataURL(file);
-    });
-  }, []);
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    onDrop,
-    accept: 'image/jpeg, image/png',
-  });
   const { isOpen, onOpen, onClose } = useDisclosure();
   const initialRef = useRef();
   const toast = useToast();
@@ -83,6 +66,7 @@ function CreateNewProductModal() {
     });
   };
   const handleSubmit = async () => {
+
     if (
       !productName ||
       !description
@@ -96,35 +80,29 @@ function CreateNewProductModal() {
       });
     }
     setLoading(true);
-    console.log('uploading');
-    const product = {
-      productName,
-      jord,
-      image,
-      productType: productType,
-    };
-
-    const responseCreate = await createNewProduct(product);
-    setLoading(false);
-    setwareH(null);
-    if (responseCreate.success) {
-      return toast({
+    let data = new FormData()
+    data.append('file', image);
+    data.append('upload_preset', 'soilmanagement');
+    data.append('cloud_name', 'deseywypd');
+    axios.post('https://api.cloudinary.com/v1_1/deseywypd/image/upload', data).then((res) => {
+      const product = {
+        productName,
+        description,
+        image: res.data.url,
+        land: productsType,
+      };
+      console.log(productsType)
+      createNewProduct(product)
+      setLoading(false);
+      onClose();
+      toast({
         position: 'top',
-        description: 'Product created',
+        description: 'Product Type Added Successfully',
         status: 'success',
         duration: 5000,
         isClosable: true,
       });
-    } else {
-      return toast({
-        position: 'top',
-        description:"error while adding product.!!",
-        status: 'error',
-        duration: 5000,
-        isClosable: true,
-      });
-    }
-  
+    })
   };
 
 
@@ -140,27 +118,27 @@ function CreateNewProductModal() {
           <ModalHeader>Create new product</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
-       
-              <>
-                <FormControl>
-                  <FormLabel>Product Name</FormLabel>
-                  <Input
-                    ref={initialRef}
-                    placeholder='Product Name'
-                    name='productName'
-                    focusBorderColor='#32995b'
-                    value={productName}
-                    onChange={updateNewProductDetails}
-                  />
-                </FormControl>
-                <FormControl>
+
+            <>
+              <FormControl>
+                <FormLabel>Product Name</FormLabel>
+                <Input
+                  ref={initialRef}
+                  placeholder='Product Name'
+                  name='productName'
+                  focusBorderColor='#32995b'
+                  value={productName}
+                  onChange={updateNewProductDetails}
+                />
+              </FormControl>
+              <FormControl>
                 <FormLabel>Choose Product Type</FormLabel>
                 <Select
                   placeholder='Choose Product Type'
                   name='warehouse'
                   focusBorderColor='#32995b'
-                  onChange={(e)=>{
-                    setProductType(e.target.value)
+                  onChange={(e) => {
+                    setProductsType(e.target.value)
                   }}
                 >
                   {addType &&
@@ -169,94 +147,29 @@ function CreateNewProductModal() {
                     })}
                 </Select>
               </FormControl>
-                <FormControl mt={4}>
-                  <FormLabel>Description</FormLabel>
-                  <Textarea
-                    placeholder='Product Description'
-                    name='description'
-                    focusBorderColor='#32995b'
-                    value={description}
-                    onChange={updateNewProductDetails}
-                  />
-                </FormControl>
-                <FormControl mt={4}>
-                  <FormLabel>Jord</FormLabel>
-                  <Select
-                    placeholder='JordType'
-                    name='jord'
-                    focusBorderColor='#32995b'
-                    value={jord}
-                    onChange={updateNewProductDetails}
-                  >
-                    <option value='highmineral'>High Minerals</option>
-                    <option value='lowmineral'>Low Minerals</option>
-                  </Select>
-                </FormControl>
               <FormControl mt={4}>
-              <FormLabel>Images</FormLabel>
-              <Center
-                bg='brown.50'
-                minHeight={100}
-                my={5}
-                borderWidth={3}
-                borderColor='brown.200'
-                borderStyle='dashed'
-                borderRadius='lg'
-                {...getRootProps()}
-              >
-                {isDragActive ? (
-                  <p>Drag your files here</p>
-                ) : (
-                  <p>
-                    Drag drop image files here, or click to select files
-                    <br />
-                    (Only *.jpeg and *.png images will be accepted)
-                  </p>
-                )}
-              </Center>
-              <FileBase64 
-              type="file"
-              multiple={false} 
-              onDone={({ base64 }) => setBase64(base64)} />
+                <FormLabel>Description</FormLabel>
+                <Textarea
+                  placeholder='Product Description'
+                  name='description'
+                  focusBorderColor='#32995b'
+                  value={description}
+                  onChange={updateNewProductDetails}
+                />
+              </FormControl>
               
-            </FormControl>
+              <FormControl mt={4}>
+                <FormLabel>Images</FormLabel>
+                <Input
+                  type='file'
+                  onChange={(e) => setBase64(e.target.files[0])}
+                />
+              </FormControl>
 
-            <FormControl mt={4}>
-              <HStack>
-                {[image].map((image, index) => {
-                  return (
-                    <VStack key={index} spacing={3}>
-                      <Image
-                        src={image}
-                        boxSize='70px'
-                        objectFit='cover'
-                        borderRadius='lg'
-                      />
-                      <Button
-                        size='xs'
-                        variant='outline'
-                        colorScheme='red'
-                        onClick={() => removeImage(index)}
-                      >
-                        Remove
-                      </Button>
-                    </VStack>
-                  );
-                })}
-              </HStack>
-            </FormControl> 
-                <FormControl mt={4}>
-                  <Checkbox
-                    name='featured'
-                    colorScheme='brown'
-                    isChecked={featured}
-                    onChange={updateNewProductDetails}
-                  >
-                    Featured
-                  </Checkbox>
-                </FormControl>
-              </>
-            
+
+
+            </>
+
           </ModalBody>
 
           <ModalFooter>

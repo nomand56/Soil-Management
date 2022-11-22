@@ -24,7 +24,8 @@ function ProductsPage() {
     return (
       <SidebarWithHeader>
         <HStack mb={5}>
-          <CreateNewProductModal />
+      <CreateNewProductModal/>
+
           <Button
             colorScheme='brown'
             variant='outline'
@@ -45,7 +46,7 @@ function ProductsPage() {
     return (
       <SidebarWithHeader>
         <HStack mb={5}>
-          <CreateNewProductModal />
+      <CreateNewProductModal/>
           <Button
             colorScheme='brown'
             variant='outline'
@@ -65,7 +66,7 @@ function ProductsPage() {
   return (
     <SidebarWithHeader>
       <HStack mb={5}>
-        <CreateNewProductModal />
+      <CreateNewProductModal/>
         <Button
           colorScheme='green'
           variant='outline'

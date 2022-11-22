@@ -18,7 +18,14 @@ const getAllWarehouseProducts = async (req, res) => {
         res.send({ error });
       }
     };
-
+const deleteWarehouseProduct = async (req, res) => {
+    try {
+        let data = await warehouseProduct.findByIdAndDelete(req.params.id);
+        res.send({ success: "ok", message: "warehouse product deleted" });
+        } catch (error) {
+        res.send({ error });
+        }
+    };
 const addWarehouseProduct = async (req, res) => {
     try {
         let data = new warehouseProduct(req.body);
@@ -64,5 +71,6 @@ module.exports = {
   createWareHouses,
   deleteWareHouse,
   addWarehouseProduct,
-  getAllWarehouseProducts
+  getAllWarehouseProducts,
+  deleteWarehouseProduct
 };

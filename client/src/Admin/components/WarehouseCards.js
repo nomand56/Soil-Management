@@ -7,7 +7,7 @@ function WarehouseCards({ products }) {
   const history = useHistory()
   console.log(products);
   
-
+  
   return (
     <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
       {products.map((product) => {

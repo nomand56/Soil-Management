@@ -12,10 +12,10 @@ export const LinkItems = [
   { name: 'Home', url: '/admin/dashboard', icon: <FaHome /> },
   { name: 'Products', url: '/admin/products', icon: <FaProductHunt /> },
   { name: 'Products Type', url: '/admin/productstype',icon: <FaProductHunt /> },
-  { name: 'Orders', url: '/admin/orders', icon: <FaShoppingCart /> },
+{ name: 'Orders', url: '/admin/orders', icon: <FaShoppingCart /> },
   { name: 'WareHouses', url: '/admin/warehouses', icon: <FaHome /> },
   { name: 'Customers', url: '/admin/customers',icon: <FaUserTie /> },
-  // { name: 'Logistics', url: '/admin/logistics', icon: <FaTruckLoading /> },
+  { name: 'Inquiries', url: '/admin/quotations', icon: <FaTruckLoading /> },
   { name: 'PostalCodes', url: '/admin/postal', icon: <FaWpforms /> },
 
 ];  

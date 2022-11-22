@@ -72,7 +72,6 @@ function OrdersTable({ orders }) {
             <Tr>
               <Th>Customer</Th>
               <Th>Items</Th>
-              <Th>Payment</Th>
               <Th>Status</Th>
               <Th></Th>
             </Tr>
@@ -91,11 +90,12 @@ function OrdersTable({ orders }) {
                   <Td>
                     <VStack alignItems='flex-start' spacing={5}>
                       {orderItems.map((item, index) => {
-                        const { image, name, price } = item;
+ 
+          const { image, name, price } = item;
                         return (
                           <HStack key={index}>
                             <Image
-                              src={image}
+                              src={image || "https://images.unsplash.com/photo-1533460004989-cef01064af7e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Z3Jhc3N8ZW58MHx8MHx8&w=1000&q=80" }
                               boxSize='50px'
                               objectFit='cover'
                               borderRadius='lg'

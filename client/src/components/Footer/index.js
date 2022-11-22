@@ -5,16 +5,7 @@ import { Link } from 'react-router-dom';
 const Footer = () => {
   return (
     <Wrapper>
-      <div className="footerSocialLinks">
-        {socialLinks.map((link) => {
-          const { url, icon, text } = link;
-          return (
-            <div key={text}>
-              <a href={url}>{icon}</a>
-            </div>
-          );
-        })}
-      </div>
+      
       <div className="footerLinks">
         {footerLinks.map((link) => {
           const { url, text, id } = link;

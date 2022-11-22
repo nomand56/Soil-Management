@@ -38,28 +38,40 @@ function CreateNewTypeModal() {
 
 
     const handleSubmit = async () => {
-        // if (
-        //     !productType 
-        // ) {
-        //     return toast({
-        //         position: 'top',
-        //         description: 'Provide all the details',
-        //         status: 'error',
-        //         duration: 5000,
-        //         isClosable: true,
-        //     });
-        // }
-        // setLoading(true);
+        if (
+            !productType 
+        ) {
+            return toast({
+                position: 'top',
+                description: 'Provide all the details',
+                status: 'error',
+                duration: 5000,
+                isClosable: true,
+            });
+        }
+        setLoading(true);
         // console.log('uploading');
         // addProductType({productType,image})
         let data = new FormData()
         data.append('file', image);
         data.append('upload_preset', 'soilmanagement');
         data.append('cloud_name', 'deseywypd');
-        axios.post('https://api.cloudinary.com/v1_1/deseywypd/image/upload', data).then((res) => {
-            addProductType({ productType ,image:res.data.url,description});
+      axios.post('https://api.cloudinary.com/v1_1/deseywypd/image/upload', data).then((res) => {
+        addProductType({ productType ,image:res.data.url,description});
+            setLoading(false);
+            onClose();
+            toast({
+                position: 'top',
+                description: 'Product Type Added Successfully',
+                status: 'success',
+                duration: 5000,
+                isClosable: true,
+                
+      
         });
-
+         
+      })
+        
     };
 
 
@@ -90,7 +102,7 @@ function CreateNewTypeModal() {
                 <FormControl>
                   <FormLabel>Product Description</FormLabel>
                   <textarea
-                    style={{ width: '100%' }}
+                    style={{ width: '100%',borderRadius:'5px',border:'1px solid #ccc',padding:'10px' }}
                     ref={initialRef}
                     placeholder='Enter Product Type Description'
                     name='description'

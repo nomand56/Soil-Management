@@ -1,14 +1,15 @@
 import { Box, Button, Text, useColorModeValue } from '@chakra-ui/react'
 import React from 'react'
-
+import { useHistory } from 'react-router-dom';
 import { FaCheckCircle } from 'react-icons/fa';
 
 const CheckoutStep = ({ allvalues }) => {
-  console.log(allvalues)
+  const history=  useHistory();
+  console.log("values",allvalues)
   const color = useColorModeValue('rgb(40,40,40)', 'rgb(250,250,250)');
   const bg = useColorModeValue('rgb(250,250,250)', '#32995b');
   return (
-    <Box sx={{ textAlign: 'center' }}>
+    <Box sx={{ textAlign: 'center',padding:"20px" }}>
       <Box
         sx={{
           display: 'flex',
@@ -34,7 +35,9 @@ const CheckoutStep = ({ allvalues }) => {
             Takk for at du bestiller produktet ditt kommer snart på dørstokken
           </Text>
           <Box>
-            <Button color={color} bg={bg}>handle mer</Button>
+            <Button color={color} bg={bg} onClick={()=>{
+              history.push('/')
+            }}>handle mer</Button>
           </Box>
         </Box>
         <Box

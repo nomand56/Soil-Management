@@ -14,7 +14,7 @@ let schema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  city: {
+    city: {
     type: String,
     required: true,
   },

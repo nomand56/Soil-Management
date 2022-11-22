@@ -35,9 +35,10 @@ function WarehouseProductTable({specificProduct}) {
     <Thead>
       <Tr>
         <Th>Image</Th>
-        <Th>Name</Th>
+        <Th>Product Name</Th>
+        <Th>Product Type</Th>
         <Th>Description</Th>
-        <Th>inPrice</Th>
+        <Th>inPrice</Th>  
         <Th>outPrice</Th>
         <Th>Stock</Th>
         <Th>jord</Th>
@@ -47,7 +48,7 @@ function WarehouseProductTable({specificProduct}) {
     </Thead>
     <Tbody>
       {filteredData.map((product, index) => {
-        const { inPrice, description, image,price, land,jord, supplierPostalCode:postal, _id,stock} =
+        const { inPrice, description,productName ,image,price, land,jord, supplierPostalCode:postal, _id,stock} =
           product;
         return (
           <Tr key={index}>
@@ -60,11 +61,16 @@ function WarehouseProductTable({specificProduct}) {
               />
             </Td>
             <Td>
+            <VStack alignItems='flex-start' spacing={1}>
+
+            <Text as='b'>{productName}</Text>
+
+              </VStack>
+            </Td>
+            <Td>
               <VStack alignItems='flex-start' spacing={1}>
                 <Text as='b'>{land}</Text>
-                <Text fontSize='sm' color='green.500'>
-                  price
-                </Text>
+              
               </VStack>
             </Td>
             <Td>

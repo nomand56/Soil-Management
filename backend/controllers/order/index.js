@@ -89,7 +89,7 @@ const updateOrderStatus = catchAsyncError(async (req, res, next) => {
 const deleteOrder = async (req, res) => {
   try {
     let data = await order.findByIdAndRemove(req.params.id)
-    res.send("deleted...");
+    res.send({ message: "deleted Order SuccessFully" ,success:true});
   } catch (error) {
     res.send(error);
   }

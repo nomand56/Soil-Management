@@ -18,7 +18,7 @@ const OrdersPage = () => {
   if (loading) {
     return <Loading />;
   }
-
+console.log(error)
   if (error) {
     return <Error />;
   }

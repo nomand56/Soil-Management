@@ -20,7 +20,7 @@ import { useProductsContext } from '../../context/products_context';
 import {useWarehouseContext} from '../../context/warehouse_context'
 function CreateWarehousePostalModal({specific}) {
     console.log("specific",specific)
-    const { addType} = useProductsContext()
+    const { products} = useProductsContext()
     const {addWarehouseProducts,warehouseProductsSuccess:success,warehouseProductsError:error}=useWarehouseContext()
     const { isOpen, onOpen, onClose } = useDisclosure();
     const toast = useToast();
@@ -35,13 +35,14 @@ function CreateWarehousePostalModal({specific}) {
         e.preventDefault()
     setLoading(true);
         console.log(productID)
-        const filterdProduct = addType.filter((item) => item._id === productID)    
+        const filterdProduct = products.filter((item) => item._id === productID)    
     
     const data={
         supplierPostalCode:specific[0].postalCode,
         description:filterdProduct[0].description,
-        land:filterdProduct[0].productType,
+        land:filterdProduct[0].land,
         image:filterdProduct[0].image,
+        productName:filterdProduct[0].productName,
         stock:stock,
         inPrice:inPrice,
         price:outPrice,
@@ -60,50 +61,10 @@ function CreateWarehousePostalModal({specific}) {
 
     onClose()
     } 
-    // if (loading) {
-    //     return (
-    //       <SidebarWithHeader>
-    //         <HStack mb={5}>
-    //           <CreateNewProductModal />
-    //           <Button
-    //             colorScheme='brown'
-    //             variant='outline'
-    //             leftIcon={<BiRefresh />}
-    //             onClick={handleRefresh}
-    //           >
-    //             Refresh
-    //           </Button>
-    //         </HStack>
-    //         <VStack alignItems='center' justifyContent='center'>
-    //           <Spinner size='lg' color='brown.500' />
-    //         </VStack>
-    //       </SidebarWithHeader>
-    //     );
-    //   }
-    
-    //   if (error) {
-    //     return (
-    //       <SidebarWithHeader>
-    //         <HStack mb={5}>
-    //           <CreateNewProductModal />
-    //           <Button
-    //             colorScheme='brown'
-    //             variant='outline'
-    //             leftIcon={<BiRefresh />}
-    //             onClick={handleRefresh}
-    //           >
-    //             Refresh
-    //           </Button>
-    //         </HStack>
-    //         <VStack alignItems='center' justifyContent='center'>
-    //           <Heading color='red.500'>There was an error</Heading>
-    //         </VStack>
-    //       </SidebarWithHeader>
-    //     );
-    //   }
+   
     return (
         <Box>
-            <Button colorScheme='brown' onClick={onOpen}>
+            <Button colorScheme='green' onClick={onOpen}>
                 Add New Product
             </Button>
             <Modal initialFocusRef={initialRef} isOpen={isOpen} onClose={onClose}>
@@ -114,24 +75,24 @@ function CreateWarehousePostalModal({specific}) {
                     <ModalBody pb={6}>
                         <FormControl mt={4}>
                             <FormLabel>Products</FormLabel>
-                            <Select  name='product' focusBorderColor='brown.500'  onChange={(e)=>{
+                            <Select  name='product' focusBorderColor='green.500'  onChange={(e)=>{
                                 setProductID(e.target.value)
                             }}>
-                                {addType.map((item) => {
-                                    return <option value={item._id}>{item.productType}</option>
+                                {products.map((item) => {
+                                    return <option value={item._id}>{item.productName}</option>
                                
                                })}
                             </Select>
                         </FormControl>
                         <FormControl mt={4}>
                             <FormLabel>Jord</FormLabel>
-                            <Select  name='product' focusBorderColor='brown.500'  onChange={(e)=>{
+                            <Select  name='product' focusBorderColor='green.500'  onChange={(e)=>{
                                 setJord(e.target.value)
                             }}>
                                   <option disabled selected value> -- select an option -- </option>
-                                 <option value="High Mineral">High Mineral</option>
-                                 <option value="Low Mineral">Low Mineral</option>
-                            
+                                 <option value="highmineral">High Mineral</option>
+                                 <option value="lowmineral">Low Mineral</option>
+                                
                             </Select>
                         </FormControl>
                         <FormControl>
@@ -141,7 +102,7 @@ function CreateWarehousePostalModal({specific}) {
                                 placeholder='Product Stock'
                                 name='stock'
                                 type='number'
-                                focusBorderColor='brown.500'
+                                focusBorderColor='green.500'
                                 onChange={(e) => setStock(e.target.value)}
 
                             />
@@ -152,7 +113,7 @@ function CreateWarehousePostalModal({specific}) {
                                 ref={initialRef}
                                 placeholder='Product In Price'
                                 name='Inprice'
-                                focusBorderColor='brown.500'
+                                focusBorderColor='green.500'
                                 onChange={(e) => setInPrice(e.target.value)}
                             />
                         </FormControl>
@@ -162,7 +123,7 @@ function CreateWarehousePostalModal({specific}) {
                                 ref={initialRef}
                                 placeholder='out Price'
                                 name='outPrice'
-                                focusBorderColor='brown.500'
+                                focusBorderColor='green.500'
                                 onChange={(e) => setOutPrice(e.target.value)}
                             />
                         </FormControl>
@@ -173,7 +134,7 @@ function CreateWarehousePostalModal({specific}) {
                         </Button>
                         <Button
                             isLoading={loading}
-                            colorScheme='brown'
+                            colorScheme='green'
                             onClick={handleSubmit}
                         >
                             Save

@@ -24,6 +24,7 @@ import {
   orders_url,
   single_order_url,
   get_specific_order_url,
+  delete_order_url,
 } from '../utils/constants';
 
 const initialState = {
@@ -58,16 +59,16 @@ export const OrderProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const { currentUser } = useUserContext();
   const { cart, total_amount, shipping_fee } = useCartContext();
-
+  const [dataObj,setDataObj] = React.useState([])
  useEffect(() => {
    fetchOrders(get_specific_order_url);
  }, [currentUser, cart]);
 
 
-  const fetchOrders = async (url) => {
+  const fetchOrders = async () => {
     dispatch({ type: GET_ORDERS_BEGIN });
     try {
-      const response = await axios.post(url, {
+      const response = await axios.post(get_specific_order_url, {
         email: currentUser.email,
       });
       const orders = response.data;
@@ -114,7 +115,7 @@ export const OrderProvider = ({ children }) => {
     };
     const deleteOrder = async (id) => {
       try {
-        const response = await axios.delete(`${update_order_status}${id}`);
+        const response = await axios.delete(`${delete_order_url}${id}`);
         const { success, message } = response.data;
         return { success, message };
       } catch (error) {
@@ -179,7 +180,9 @@ useEffect(() => {
   return (
     <OrderContext.Provider value={{ ...state, updateShipping, placeOrder,  fetchAdminOrders,fetchSingleOrder,
       updateOrderStatus,
-      deleteOrder
+      deleteOrder,
+      setDataObj,
+      dataObj,
       }}>
       {children}
     </OrderContext.Provider>

@@ -16,27 +16,23 @@ import { useOrderContext } from '../../context/order_context';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { create_order_url } from '../../utils/constants';
+import { useUserContext } from '../../context/user_context';
 
 function StepperCheckout() {
+  const {dataObj} = useOrderContext();
     const color = useColorModeValue('rgb(40,40,40)', 'rgb(250,250,250)');
     const bg = useColorModeValue('rgb(250,250,250)', 'rgb(40,40,40)');
   const [show, setShow] = useState(false)
   let [values, setvalues] = useState({})
+  const {currentUser} = useUserContext()
   let [deliveryCharges, setdeliveryCharges] = useState(0)
   let [allvalues, setallvalues] = useState({})
-const {state} = useLocation()
+console.log("StepperCheckout",dataObj)
+console.log("StepperCheckout",typeof(dataObj))
+
+const [state, setState] = useState({})
 const toast = useToast()
-console.log(state)
-const {
-    shipping: {
-      firstName,
-      lastName,
-      phone_number,
-      address: { line1, postal_code, city },
-    },
-    updateShipping,
-    placeOrder
-  } = useOrderContext();
+
 
   function handleChange(e)
   {
@@ -67,31 +63,31 @@ const {
       },
       orderItems: [
         {
-          name: state?.state[0].land,
-          price: state?.state[0].price,
+          name: dataObj[0].land,
+          price: dataObj[0].price,
           quantity: 1,
-          product: state?.state[0]._id,
+          product: dataObj[0]._id,
         },
       ],
       user: {
-        name: 'guest',
-        email: 'guest',
+        name: values?.firstName + ' ' + values?.lastName || currentUser?.name || 'Guest', 
+        email: currentUser?.email || "guest", 
       },
-      itemsPrice: state?.state[0].price,
+      itemsPrice: dataObj[0].price,
       shippingPrice: 50,
-      totalPrice: state?.state[0].price + 50,
+      totalPrice: dataObj[0].price + 50,
     };
     axios.post(create_order_url, obj).then((res) => {
       if (res.data)
       {
         
         console.log(res.data)
-        setallvalues({...obj,...state.state})
+        setallvalues({...obj,...dataObj})
         setShow(true)
         return toast({
            position: 'top',
            description: 'Provide Order Place successfully.!!',
-           status: 'error',
+           status: 'success',
            duration: 5000,
            isClosable: true,
          });
