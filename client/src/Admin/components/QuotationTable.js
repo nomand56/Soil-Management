@@ -24,56 +24,6 @@ function QuotationsTable({data}) {
   const [loading, setLoading] = useState(false);
    const color = useColorModeValue('rgb(40,40,40)', 'rgb(180,180,180)');
    const bg = useColorModeValue('rgb(250,250,250)', 'rgb(40,40,40)');
-//   const handleEdit = async (e, id) => {
-//     setLoading(true);
-//     const privilege = e.target.value;
-//     const response = await updateAdminPrivilege(id, privilege);
-//     setLoading(false);
-//     if (response.success) {
-//       const { name, privilege } = response.data;
-//       toast({
-//         position: 'top',
-//         description: `${name}'s privilege changed to ${privilege}`,
-//         status: 'success',
-//         duration: 5000,
-//         isClosable: true,
-//       });
-//       return await fetchAdmins();
-//     } else {
-//       return toast({
-//         position: 'top',
-//         description: response.message,
-//         status: 'error',
-//         duration: 5000,
-//         isClosable: true,
-//       });
-//     }
-//   };
-
-//   const handleDelete = async (id) => {
-//     setLoading(true);
-//     const response = await deleteAdmin(id);
-//     setLoading(false);
-//     if (response.success) {
-//       toast({
-//         position: 'top',
-//         description: response.message,
-//         status: 'success',
-//         duration: 5000,
-//         isClosable: true,
-//       });
-//       return await fetchAdmins();
-//     } else {
-//       return toast({
-//         position: 'top',
-//         description: response.message,
-//         status: 'error',
-//         duration: 5000,
-//         isClosable: true,
-//       });
-//     }
-//   };
-
   return (
     <SimpleGrid bg='white' p={5} shadow='lg' borderRadius='lg' overflowX='auto'>
       {loading ? (
@@ -89,10 +39,6 @@ function QuotationsTable({data}) {
               <Th>Phone</Th>
               <Th>Address</Th>
               <Th>product</Th>
-          
-
-
-
               <Th></Th>
             </Tr>
           </Thead>

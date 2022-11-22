@@ -10,10 +10,11 @@ import { BiRefresh } from 'react-icons/bi';
 import WarehouseProductTable from './WarehouseProductTable';
 function WarehouseProducts() {
   const { specificPostal,fetchWarehouseProducts,warehouseProductsError:error,warehouseProductsLoading:loading } = useWarehouseContext()
-  const { id } = useParams()
-console.log(specificPostal)
-  const data = specificPostal.filter((item) => item.warehouse === id)
+// const { specificPostal, fetchSpecificPostal, specific_postal_loading: loading, specific_postal_error: error } = useWarehouseContext()
   
+
+ 
+
   const handleRefresh = async () => {
     await fetchWarehouseProducts();
   };
@@ -23,7 +24,7 @@ console.log(specificPostal)
     return (
       <SidebarWithHeader>
         <HStack mb={5}>
-        <CreateWarehousePostalModal specific={data}/>
+        <CreateWarehousePostalModal specific={specificPostal}/>
           <Button
             colorScheme='green'
             variant='outline'
@@ -44,7 +45,7 @@ console.log(specificPostal)
     return (
       <SidebarWithHeader>
         <HStack mb={5}>
-        <CreateWarehousePostalModal specific={data}/>
+        <CreateWarehousePostalModal specific={specificPostal}/>
           <Button
             colorScheme='green'
             variant='outline'
@@ -65,7 +66,7 @@ console.log(specificPostal)
   return (
     <SidebarWithHeader>
       <HStack mb={5}>
-        <CreateWarehousePostalModal specific={data}/>
+        <CreateWarehousePostalModal specific={specificPostal}/>
         <Button
             colorScheme='green'
             variant='outline'
@@ -75,7 +76,7 @@ console.log(specificPostal)
             Refresh
           </Button>
       </HStack>
-      <WarehouseProductTable specificProduct={data} />
+      <WarehouseProductTable specificProduct={specificPostal} />
     </SidebarWithHeader>
   );
 }

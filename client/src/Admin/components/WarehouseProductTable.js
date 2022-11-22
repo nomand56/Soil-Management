@@ -131,36 +131,22 @@ return (<Flex>
       })}
     </Tbody>
   </Table>
-<Table variant="simple"  color={color} bg={bg}>
-    <Thead>
-      <Tr>
-        <Th>Postal Codes</Th>
-      </Tr>
-    </Thead>
-  <Tbody>
-<Tr>
-<Td>
 
-  <VStack
-  divider={<StackDivider borderColor='gray.200' />}
-
-  align='stretch'
-  width="100%"
-
+<Box sx={{width:"30%",marginLeft:"5px",boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",borderRadius:"10px",height:"fit-content",padding:"10px"}} >
+ <b>
   
->
+  Postal Codes
+  </b> 
+
   {specificProduct.map((product, index) => {
-    return <Box h='40px' bg="#edf2f7"  >
+    return <Box h='40px' bg="#edf2f7" padding={2} >
     {product.postalCode}
   </Box>
   })}
 
-</VStack>
-  </Td>
-  </Tr>
-  </Tbody>
+</Box>
 
-</Table>
+
       </Flex>
 
   )

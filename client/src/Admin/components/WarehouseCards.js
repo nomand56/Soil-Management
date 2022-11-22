@@ -6,20 +6,29 @@ import { useHistory } from 'react-router-dom'
 function WarehouseCards({ products }) {
   const history = useHistory()
   console.log(products);
-  
+const { specificPostal, fetchSpecificPostal, specific_postal_loading: loading, specific_postal_error: error } = useWarehouseContext()
+
+  const handleClick = (id) => {
+    fetchSpecificPostal(id)
+    console.log("Clicked", id)
+    history.push(`/admin/WarehouseProducts/${id}`)
+    
+  }
+
   
   return (
     <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
       {products.map((product) => {
         return (
-          <Link to={`/admin/WarehousePostalPage/${product._id}`}>
+          // <Link to={`/admin/WarehousePostalPage/${product._id}`}>
           <Box
             maxW='sm'
             borderWidth='1px'
             borderRadius='lg'
             overflow='hidden'
             sx={{ margin: '10px' }}
-          >
+             onClick={() => handleClick(product._id)}   
+      >
             <Image src="https://www.prologis.com/sites/corporate/files/images/2019/09/large-ontario_dc9_3_11.jpg" alt={product.warehouseName} />
 
             <Box p='6'  >
@@ -49,7 +58,7 @@ function WarehouseCards({ products }) {
             </Box>
 
           </Box>
-      </Link>
+      //  </Link>
         );
       })}
     </Box>

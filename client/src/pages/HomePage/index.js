@@ -42,7 +42,8 @@ const HomePage = () => {
     Jordhoyde:'',
     postalCode: '',
   });
-  console.log("data xxx",data)
+
+  
   const color = useColorModeValue('rgb(40,40,40)', 'rgb(250,250,250)');
   const bg = useColorModeValue('rgb(250,250,250)', '#32995b');
   const [links, setlinks] = useState(['Hjem']);
