@@ -5,10 +5,13 @@ let schema = new mongoose.Schema({
     type:String,
     required:true
   },
-  supplierPostalCode: {
-   type:mongoose.Schema.Types.ObjectId,
-    ref:"PostalCode",
-  },
+  supplierPostalCode: [
+    {
+      warehouse: mongoose.Schema.Types.ObjectId,
+      postalCode: Number,
+      _id: mongoose.Schema.Types.ObjectId
+    }
+  ],
   description: {
     type: String,
     required: true,

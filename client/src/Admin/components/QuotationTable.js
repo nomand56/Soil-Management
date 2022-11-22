@@ -86,9 +86,9 @@ function QuotationsTable({data}) {
             <Tr>
               <Th>Name</Th>
               <Th>PostalCode</Th>
-              <Th>Quantity</Th>
-              <Th>Soil</Th>
-              <Th>Category</Th>
+              <Th>Phone</Th>
+              <Th>Address</Th>
+              <Th>product</Th>
           
 
 
@@ -100,11 +100,11 @@ function QuotationsTable({data}) {
             {data.map((item, index) => {
               return (
                 <Tr key={index}>
-                  <Td>{item.email}</Td>
-                  <Td>{item.postalCode}</Td>
-                  <Td>{item.quantity}</Td>
-                  <Td>{item.soil}</Td>
-                    <Td>{item.service}</Td>
+                  <Td>{item.name}</Td>
+                  <Td>{item.postal}</Td>
+                  <Td>{item.phone}</Td>
+                  <Td>{item.address}</Td>
+                  <Td>{item.productDetails.land}</Td>
                 </Tr>
               );
             })}

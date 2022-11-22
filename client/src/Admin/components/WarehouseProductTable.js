@@ -19,6 +19,9 @@ import {
     Text,
     useToast,
     useColorModeValue,
+    StackDivider,
+    Box,
+    Flex,
   } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import { useProductsContext } from '../../context/products_context';
@@ -29,9 +32,13 @@ function WarehouseProductTable({specificProduct}) {
     console.log("Warehouse Product Table",warehouseProducts)  
     const bg = useColorModeValue('rgb(255, 255, 255)', 'rgb(50,50,50)');    
     const color = useColorModeValue('rgb(40,40,40)', 'rgb(200,200,200)');
-  const filteredData=warehouseProducts.filter((item)=>item.supplierPostalCode===specificProduct[0].postalCode)
-  return (
-    <Table variant='simple' color={color} bg={bg}>
+console.log(warehouseProducts)
+console.log("specifice", specificProduct)
+const filteredProducts=warehouseProducts.filter((item)=>item.supplierPostalCode[0].warehouse===specificProduct[0].warehouse)
+// const filterdProduct=warehouseProducts.filter((item)=>item.supplierPostalCode[0].warehouse === specificProduct.warehouse)
+console.log("filterd",filteredProducts)
+return (<Flex>
+    <Table variant='simple' color={color} bg={bg}   > 
     <Thead>
       <Tr>
         <Th>Image</Th>
@@ -42,12 +49,11 @@ function WarehouseProductTable({specificProduct}) {
         <Th>outPrice</Th>
         <Th>Stock</Th>
         <Th>jord</Th>
-
         <Th></Th>
       </Tr>
     </Thead>
     <Tbody>
-      {filteredData.map((product, index) => {
+      {filteredProducts.map((product, index) => {
         const { inPrice, description,productName ,image,price, land,jord, supplierPostalCode:postal, _id,stock} =
           product;
         return (
@@ -125,6 +131,38 @@ function WarehouseProductTable({specificProduct}) {
       })}
     </Tbody>
   </Table>
+<Table variant="simple"  color={color} bg={bg}>
+    <Thead>
+      <Tr>
+        <Th>Postal Codes</Th>
+      </Tr>
+    </Thead>
+  <Tbody>
+<Tr>
+<Td>
+
+  <VStack
+  divider={<StackDivider borderColor='gray.200' />}
+
+  align='stretch'
+  width="100%"
+
+  
+>
+  {specificProduct.map((product, index) => {
+    return <Box h='40px' bg="#edf2f7"  >
+    {product.postalCode}
+  </Box>
+  })}
+
+</VStack>
+  </Td>
+  </Tr>
+  </Tbody>
+
+</Table>
+      </Flex>
+
   )
 }
 

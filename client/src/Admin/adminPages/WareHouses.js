@@ -7,7 +7,6 @@ import {
 import { HStack, VStack, Spinner, Heading, Button } from '@chakra-ui/react';
 import { BiRefresh } from 'react-icons/bi';
 import {useWarehouseContext} from "../../context/warehouse_context"
-
 import WarehouseCards from '../components/WarehouseCards';
 
 function WareHouses() {

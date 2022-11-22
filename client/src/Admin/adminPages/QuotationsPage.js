@@ -13,6 +13,7 @@ function QuotationsPage() {
         inquiryForm
     } = useProductsContext();
 
+    console.log("inquiryForm",inquiryForm)
     const handleRefresh = async () => {
         fetchInquiry()
     };

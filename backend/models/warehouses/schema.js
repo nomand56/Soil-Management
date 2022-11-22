@@ -10,10 +10,7 @@ let schema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  PostalCode: {
-    type: Number,
-    required: true,
-  },
+
     city: {
     type: String,
     required: true,

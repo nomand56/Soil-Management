@@ -19,7 +19,7 @@ import {
 import { useProductsContext } from '../../context/products_context';
 import {useWarehouseContext} from '../../context/warehouse_context'
 function CreateWarehousePostalModal({specific}) {
-    console.log("specific",specific)
+
     const { products} = useProductsContext()
     const {addWarehouseProducts,warehouseProductsSuccess:success,warehouseProductsError:error}=useWarehouseContext()
     const { isOpen, onOpen, onClose } = useDisclosure();
@@ -36,9 +36,9 @@ function CreateWarehousePostalModal({specific}) {
     setLoading(true);
         console.log(productID)
         const filterdProduct = products.filter((item) => item._id === productID)    
-    
+
     const data={
-        supplierPostalCode:specific[0].postalCode,
+        supplierPostalCode:specific,
         description:filterdProduct[0].description,
         land:filterdProduct[0].land,
         image:filterdProduct[0].image,
@@ -92,7 +92,7 @@ function CreateWarehousePostalModal({specific}) {
                                   <option disabled selected value> -- select an option -- </option>
                                  <option value="highmineral">High Mineral</option>
                                  <option value="lowmineral">Low Mineral</option>
-                                
+
                             </Select>
                         </FormControl>
                         <FormControl>

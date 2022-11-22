@@ -11,8 +11,9 @@ import WarehouseProductTable from './WarehouseProductTable';
 function WarehouseProducts() {
   const { specificPostal,fetchWarehouseProducts,warehouseProductsError:error,warehouseProductsLoading:loading } = useWarehouseContext()
   const { id } = useParams()
+console.log(specificPostal)
   const data = specificPostal.filter((item) => item.warehouse === id)
-  console.log(data)
+  
   const handleRefresh = async () => {
     await fetchWarehouseProducts();
   };

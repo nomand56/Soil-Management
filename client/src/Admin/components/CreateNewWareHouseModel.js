@@ -62,7 +62,7 @@ console.log(warehouse)
     if (
       !warehouseName ||
       !OwnerName ||
-      !PostalCode ||
+     
       !street ||
       !state ||
       !country ||
@@ -146,19 +146,7 @@ console.log(warehouse)
                 value={OwnerName}
                 onChange={updateNewWareHouseDetails}
               />
-            </FormControl>
-
-            <FormControl mt={4}>
-              <FormLabel>Postal Code</FormLabel>
-              <Input
-                type='text'
-                placeholder='Postal Code'
-                name='PostalCode'
-                focusBorderColor='#32995b'
-                value={PostalCode}
-                onChange={updateNewWareHouseDetails}
-              />
-            </FormControl>
+          </FormControl>
 
             <FormControl mt={4}>
               <FormLabel>Select City</FormLabel>

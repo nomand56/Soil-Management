@@ -117,7 +117,9 @@ const getSingleProductByLandJord = async (req, res) => {
     let data = await warehouseproducts.find({
       land: req.params.land,
       jord: req.params.jord,
-      supplierPostalCode:Postal
+    "supplierPostalCode": { $elemMatch: { "postalCode": Postal } } 
+    
+      // supplierPostalCode:Postal
     });
 if(data.length>0){
   res.send(data);

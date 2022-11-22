@@ -48,7 +48,6 @@ const handleRefresh = () => {
     return (
       <SidebarWithHeader>
         <HStack mb={5}>
-          <CreateNewWareHouseModel warehouse={id} />
           <Button
             colorScheme='green'
             variant='outline'

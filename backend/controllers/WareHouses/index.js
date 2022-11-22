@@ -12,7 +12,7 @@ const getAllWareHouses = async (req, res) => {
 const getAllWarehouseProducts = async (req, res) => {
     try {
         let data = await warehouseProduct.find();
-    
+    console.log(data)
         res.send(data);
       } catch (error) {
         res.send({ error });
@@ -39,7 +39,7 @@ const addWarehouseProduct = async (req, res) => {
 
 const getAllProducts = async (req, res) => {
     try {
-        let data = await product.find({ supplierId: req.params.id });
+        let data = await product.find({ supplierId: req.params.id })
         res.send(data)
     } catch (error) {
         res.send({error})
