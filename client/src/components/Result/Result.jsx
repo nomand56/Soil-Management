@@ -1,8 +1,6 @@
 import { Box, Button, Text, useColorModeValue } from '@chakra-ui/react';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-
-import { landData } from '../../utils/land';
 import ErrorPage from '../ErrorPage';
 import { useCartContext } from '../../context/cart_context';
 import { useProductsContext } from '../../context/products_context';
@@ -10,8 +8,8 @@ import { useHistory } from 'react-router-dom';
 import { useOrderContext } from '../../context/order_context';
 
 const Result = ({ data }) => {
-
-  const {addToCart}= useCartContext()
+  const { addToCart } = useCartContext()
+  const { products } = useProductsContext();
   const {setDataObj}=useOrderContext()
   const [state, setstate] = useState(null);
   const [product, setproduct] = useState(null);
@@ -21,18 +19,16 @@ const Result = ({ data }) => {
   let [obj, setobj] = useState({})
  const history=useHistory()
   useEffect(() => {
-    setstate(landData.filter((land) => land.type === data.land));
+    setstate(products.filter((product) => product.productName === data.jordType));
     axios
       .get(
         `${process.env.REACT_APP_BACKEND_HOST}product/getproduct/landjord/${data.land}/${data.jordType}/${data.postalCode}`
       )
       .then((res) => {
         setproduct(res.data);
-        console.log(res.data);
       });
   }, []);
-  console.log("landData",landData);
-  console.log("state",data);
+
 
   function handleCheckout(e) {
      setobj( { ...data, productID: product?._id });
@@ -67,8 +63,7 @@ const Result = ({ data }) => {
      if (product === 'product not found') {
        seterrorstate(true);
      }else {
-      addToCart({id:product[0]._id,amount:1,product:product[0]})
-console.log("ADD TO CART",product[0])     
+      addToCart({id:product[0]._id,amount:1,product:product[0]})   
 }
   }
   return (
@@ -85,15 +80,15 @@ console.log("ADD TO CART",product[0])
         >
           <Box className='imgContainer'>
             <img
-              src={state[0]?.img}
-              alt={state[0]?.img}
+              src={state[0]?.image}
+              alt={state[0]?.image}
               style={{ width: '100%', height: '300px' }}
             />
             <Text color={color} fontSize='xl' sx={{ margin: '10px 0px' }}>
-              {state[0]?.type}
+              {state[0]?.productName}
             </Text>
             <Text color={color} fontSize='md' sx={{ margin: '10px 0px' }}>
-              {state[0]?.disc}
+              {state[0]?.description}
             </Text>
           </Box>
           <Box className='boxContainer'>
@@ -157,7 +152,7 @@ console.log("ADD TO CART",product[0])
                 </Text>
               </Box>
               <Box>
-                {console.log('product', product)}
+                
                 <Text fontSize='xl' color={color}>
                   Price :
                   {product === 'product not found' ? '1000' : product && product[0]?.price}$

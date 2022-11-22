@@ -30,7 +30,7 @@ import Land from '../../components/stepper';
 import { landData } from '../../utils/land';
 import { useProductsContext } from '../../context/products_context';
 const HomePage = () => {
-  const {setUserType}=useProductsContext()
+  const { setUserType } = useProductsContext();
   const [state, setstate] = useState(false);
   const [loading, setloading] = useState(false);
   const [steps, setsteps] = useState(1);
@@ -39,15 +39,14 @@ const HomePage = () => {
     land: '',
     jordType: '',
     Landomrade: '',
-    Jordhoyde:'',
+    Jordhoyde: '',
     postalCode: '',
   });
 
-  
   const color = useColorModeValue('rgb(40,40,40)', 'rgb(250,250,250)');
   const bg = useColorModeValue('rgb(250,250,250)', '#32995b');
   const [links, setlinks] = useState(['Hjem']);
-  const {addType}=useProductsContext()
+  const { addType } = useProductsContext();
   const array = [
     'Hjem',
     'Jordvalg',
@@ -58,8 +57,8 @@ const HomePage = () => {
   ];
   function setvalue(e) {
     setdata({ ...data, [e.target.name]: e.target.value });
-    setUserType(data.type)
-   
+    setUserType(data.type);
+
     handleNext();
   }
   function calculateArea(e) {
@@ -68,7 +67,6 @@ const HomePage = () => {
   function handleNext() {
     setloading(false);
     setsteps((step) => step + 1);
-    console.log(data);
     setlinks([...links, array[steps]]);
   }
   function handleClick(step) {
@@ -78,7 +76,7 @@ const HomePage = () => {
     setlinks(link);
   }
   return (
-    <main style={{ padding: '20px',maxWidth:"1200px",margin:"auto" }}>
+    <main style={{ padding: '20px', maxWidth: '1200px', margin: 'auto' }}>
       {/* <SeacrhBar /> */}
       <Box sx={{ padding: '2rem' }}>
         <Text fontSize='5xl' textAlign='center'>
@@ -127,37 +125,36 @@ const HomePage = () => {
               <SliderFilledTrack bg='green-600' />
             </SliderTrack>
             <SliderMark value={1}>
-              <SliderThumb boxSize={10}>
-                 <Box color='green'  />
+              <SliderThumb boxSize={10} bg='green'>
+                <Box />
               </SliderThumb>
             </SliderMark>
             <SliderMark value={2}>
-              <SliderThumb boxSize={10}>
-                 <Box color='green'  />
+              <SliderThumb boxSize={10} bg='green'>
+                <Box />
               </SliderThumb>
             </SliderMark>
             <SliderMark value={3}>
-              <SliderThumb boxSize={10}>
-                 <Box color='green'  />
+              <SliderThumb boxSize={10} bg='green'>
+                <Box />
               </SliderThumb>
             </SliderMark>
             <SliderMark value={4}>
-              <SliderThumb boxSize={10}>
-                 <Box color='green' />
+              <SliderThumb boxSize={10} bg='green'>
+                <Box />
               </SliderThumb>
             </SliderMark>
             <SliderMark value={5}>
-              <SliderThumb boxSize={10}>
-                 <Box color='green' >
-                  
-                 </Box>
+              <SliderThumb boxSize={10} bg='green'>
+                <Box></Box>
               </SliderThumb>
             </SliderMark>
-            <SliderMark value={10}>
-              <SliderThumb boxSize={6}>
-                 <Box color='green' backgroundColor="green"  />
+            <SliderMark value={6}>
+              <SliderThumb boxSize={10} bg='green'>
+                <Box />
               </SliderThumb>
             </SliderMark>
+          
           </Slider>
         </Box>
       ) : null}
@@ -177,7 +174,11 @@ const HomePage = () => {
                 }}
               >
                 <button
-                  style={{ margin: '0px 10px', color: 'green','&:hover': { background: '#00A300' }, }}
+                  style={{
+                    margin: '0px 10px',
+                    color: 'green',
+                    '&:hover': { background: '#00A300' },
+                  }}
                   onClick={() => {
                     handleClick(index + 1);
                   }}
@@ -210,7 +211,7 @@ const HomePage = () => {
               })}
             </Box>
           ) : steps === 3 ? (
-            <JordType setvalue={setvalue} />
+            <JordType setvalue={setvalue} data={data} />
           ) : steps === 4 ? (
             <AreaCalculate
               calculateArea={calculateArea}

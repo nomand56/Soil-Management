@@ -116,7 +116,7 @@ const getSingleProductByLandJord = async (req, res) => {
     let Postal = parseInt(req.params.postal);
     let data = await warehouseproducts.find({
       land: req.params.land,
-      jord: req.params.jord,
+      productName: req.params.jord,
     "supplierPostalCode": { $elemMatch: { "postalCode": Postal } } 
     
       // supplierPostalCode:Postal

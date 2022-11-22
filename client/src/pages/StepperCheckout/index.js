@@ -19,7 +19,8 @@ import { create_order_url } from '../../utils/constants';
 import { useUserContext } from '../../context/user_context';
 
 function StepperCheckout() {
-  const {dataObj} = useOrderContext();
+  const { dataObj } = useOrderContext();
+
     const color = useColorModeValue('rgb(40,40,40)', 'rgb(250,250,250)');
     const bg = useColorModeValue('rgb(250,250,250)', 'rgb(40,40,40)');
   const [show, setShow] = useState(false)
@@ -27,8 +28,7 @@ function StepperCheckout() {
   const {currentUser} = useUserContext()
   let [deliveryCharges, setdeliveryCharges] = useState(0)
   let [allvalues, setallvalues] = useState({})
-console.log("StepperCheckout",dataObj)
-console.log("StepperCheckout",typeof(dataObj))
+
 
 const [state, setState] = useState({})
 const toast = useToast()
@@ -70,18 +70,19 @@ const toast = useToast()
         },
       ],
       user: {
-        name: values?.firstName + ' ' + values?.lastName || currentUser?.name || 'Guest', 
-        email: currentUser?.email || "guest", 
+        name:
+          values?.firstName + ' ' + values?.lastName ||
+          currentUser?.name ||
+          'Guest',
+        email: currentUser?.email || 'guest',
       },
       itemsPrice: dataObj[0].price,
-      shippingPrice: 50,
-      totalPrice: dataObj[0].price + 50,
+      shippingPrice: deliveryCharges,
+      totalPrice: dataObj[0].price + deliveryCharges,
     };
     axios.post(create_order_url, obj).then((res) => {
       if (res.data)
       {
-        
-        console.log(res.data)
         setallvalues({...obj,...dataObj})
         setShow(true)
         return toast({
@@ -224,9 +225,10 @@ const toast = useToast()
           </Box>
           <Box borderRadius='10px'>
             <img
-              src='https://img.freepik.com/premium-photo/vertical-image-child-hands-holding-multileaved-green-plant-with-root-ball-soil-defocused-green-grass-background_163068-958.jpg?w=2000'
-              style={{ borderRadius: '10px' }}
-              width='300px'
+              alt=""
+              src={dataObj[0]?.image}
+               style={{ borderRadius: '10px',width:'300px',maxHeight:'350px',minWidth:'250px' }}
+             
             />
           </Box>
         </Box>

@@ -12,7 +12,7 @@ const Wrapper = styled.div`
     height: 400px;
     width: 300px;
     display: flex;
-
+    
     justify-content: center;
     align-items: center;
   }

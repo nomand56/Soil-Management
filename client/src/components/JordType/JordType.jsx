@@ -1,71 +1,61 @@
 import { Box, Button } from '@chakra-ui/react';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Text } from '@chakra-ui/react';
 import Wrapper from './style';
 import img1 from '../../assets/land.jpg';
 import img2 from '../../assets/veg.jpg';
-function JordType({ setvalue }) {
+import { useProductsContext } from '../../context/products_context';
+function JordType({ setvalue, data }) {
+  const [filterProducts,setfilterProducts]=useState([])
+  console.log(data)
+  const { products } = useProductsContext()
+  console.log(products)
+  useEffect(() => {
+
+      let value = products.filter((f) => f.land == data.land)
+      setfilterProducts(value)
+
+  },[])
   return (
     <div>
       <Wrapper>
-        <Box
-          sx={{
-            backgroundImage: `url(${img1})`,
-            backgroundPosition: 'center',
-            margin: '20px 0px',
-          }}
-          className='img_box'
-        >
-          <Box className='box_p'>
-            <Text>Høyt Mineral</Text>
-            <Box width='80%'>
-              <Text fontSize='sm' textAlign='center'>
-                Et flott produkt til alle hageprosjekter. Vår anbefaling for
-                kjøkkenhage.
-              </Text>
-            </Box>
-            <Button
-              name='jordType'
-              value='highmineral'
-              onClick={setvalue}
-              sx={{
-                fontSize: 'small',
-                background: 'green.500',
-                '&:hover': { background: '#00A300' },
-              }}
-            >
-              Les mer om Høyt Mineral
-            </Button>
-          </Box>
-        </Box>
-        <Box
-          sx={{
-            backgroundImage: `url(${img2})`,
-            backgroundPosition: 'center',
-          }}
-          className='img_box'
-        >
-          <Box className='box_p'>
-            <Text>Lite Mineral</Text>
-            <Box width='80%'>
-              <Text fontSize='sm' textAlign='center'>
-                Stabil og næringsrik jord til alt unntatt grønnsaker, frukt og
-                bær. Vår anbefaling til plen og ferdigplen.
-              </Text>
-            </Box>
-            <Button
-              name='jordType'
-              value='litemineral'
-              onClick={setvalue}
-              sx={{
-                fontSize: 'small',
-                background: 'green.500',
-                '&:hover': { background: '#00A300' },
-              }}
-            >
-              Les mer om Lite Mineral
-            </Button>
-          </Box>
+        <Box sx={{display:'flex',alignItems:'center',justifyContent:'center',gap:'20px'}}>
+          {
+            filterProducts && filterProducts.map((product) => {
+              return (
+                <Box
+                  sx={{
+                    backgroundImage: `url(${product?.image})`,
+                    backgroundPosition: 'center',
+                    margin: '20px 0px',
+                  }}
+                  className='img_box'
+                >
+                  <Box className='box_p'>
+                    <Text>{ product?.productName}</Text>
+                    <Box width='80%'>
+                      <Text fontSize='sm' textAlign='center'>
+                       {product?.description}
+                      </Text>
+                    </Box>
+                    <Button
+                      name='jordType'
+                      value={product?.productName}
+                      onClick={setvalue}
+                      sx={{
+                        fontSize: 'small',
+                        background: 'green.500',
+                        '&:hover': { background: '#00A300' },
+                      }}
+                    >
+                      Les mer om { product?.productName}
+                    </Button>
+                  </Box>
+                </Box>
+              );
+            })
+          }
+          
         </Box>
       </Wrapper>
     </div>

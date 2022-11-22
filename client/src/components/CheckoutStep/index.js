@@ -120,7 +120,7 @@ const CheckoutStep = ({ allvalues }) => {
             }}
           >
             <Text fontSize='xl'>Price</Text>
-            <Text fontSize='md'>{allvalues?.price}</Text>
+            <Text fontSize='md'>{allvalues[0]?.price}</Text>
           </Box>
           <Box
             sx={{
@@ -132,7 +132,7 @@ const CheckoutStep = ({ allvalues }) => {
           >
             <Text fontSize='xl'>Delivery</Text>
             <Text fontSize='md'>
-              {allvalues?.totalPrice - allvalues?.price}
+              {allvalues?.totalPrice - allvalues[0]?.price}
             </Text>
           </Box>
           <Box
