@@ -52,7 +52,7 @@ const toast = useToast()
      });
     }
    
-
+console.log("data",dataObj)
     const obj = {
       shippingInfo: {
         address: `${values.line1} ${values.city} ${values.state}`,
@@ -62,7 +62,7 @@ const toast = useToast()
         phoneNumber: +values.phone_number,
       },
       orderItems: [
-        {
+        { image:dataObj[0].image,
           name: dataObj[0].land,
           price: dataObj[0].price,
           quantity: 1,

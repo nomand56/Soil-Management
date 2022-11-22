@@ -67,24 +67,7 @@ function PostalTable({ products }) {
                                         </VStack>
                                     </Td>
 
-                                    <Td>
-                                        <Menu>
-                                            <MenuButton as={Button} rightIcon={<BiChevronDown />}>
-                                                Actions
-                                            </MenuButton>
-                                            <MenuList>
-                                                {/* <Link to={`/adminproducts/${_id}`}>
-                                                    <MenuItem>View</MenuItem>
-                                                </Link> */}
-                                                <MenuItem>
-                                                    {/* <UpdateProductModal id={_id} /> */}
-                                                </MenuItem>
-                                                <MenuItem >
-                                                    Delete
-                                                </MenuItem>
-                                            </MenuList>
-                                        </Menu>
-                                    </Td>
+                                    
                                 </Tr>
                             );
                         })}

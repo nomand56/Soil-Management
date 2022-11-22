@@ -32,9 +32,14 @@ function WarehouseProductTable({specificProduct}) {
     console.log("Warehouse Product Table",warehouseProducts)  
     const bg = useColorModeValue('rgb(255, 255, 255)', 'rgb(50,50,50)');    
     const color = useColorModeValue('rgb(40,40,40)', 'rgb(200,200,200)');
-console.log(warehouseProducts)
-console.log("specifice", specificProduct)
-const filteredProducts=warehouseProducts.filter((item)=>item.supplierPostalCode[0].warehouse===specificProduct[0].warehouse)
+  if(warehouseProducts.length == 0){
+    return (
+      <Box>
+        <Text>No Products Found</Text>
+      </Box>
+    )
+  }
+const filteredProducts=warehouseProducts?.filter((item)=>item.supplierPostalCode[0]?.warehouse===specificProduct[0]?.warehouse)
 // const filterdProduct=warehouseProducts.filter((item)=>item.supplierPostalCode[0].warehouse === specificProduct.warehouse)
 console.log("filterd",filteredProducts)
 return (<Flex>
@@ -53,7 +58,7 @@ return (<Flex>
       </Tr>
     </Thead>
     <Tbody>
-      {filteredProducts.map((product, index) => {
+      {filteredProducts?.map((product, index) => {
         const { inPrice, description,productName ,image,price, land,jord, supplierPostalCode:postal, _id,stock} =
           product;
         return (

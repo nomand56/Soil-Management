@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   .img_box {
     padding: 1rem;
     height: 400px;
-    width: 300px;
+    width: 270px;
     display: flex;
     
     justify-content: center;

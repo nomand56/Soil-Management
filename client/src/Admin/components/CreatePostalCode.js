@@ -24,6 +24,7 @@ import {
 } from '@chakra-ui/react';
 import { useProductsContext } from '../../context/products_context';
 import { useWarehouseContext } from '../../context/warehouse_context';
+import { Placeholder } from 'react-bootstrap';
 
 function CreatePostalCodeModal() {
     const [postalCode, setPostalCode] = useState('')
@@ -69,7 +70,7 @@ console.log("warehouse",warehouses)
     return (
         <>
             <Button colorScheme='green' onClick={onOpen}>
-                Create New Product Type
+                Create New Postal Code
             </Button>
 
             <Modal initialFocusRef={initialRef} isOpen={isOpen} onClose={onClose}>
@@ -83,10 +84,9 @@ console.log("warehouse",warehouses)
                                 <FormLabel>Postal Codes</FormLabel>
                                 <Input
                                     ref={initialRef}
-                                    placeholder='Product Name'
+                                    placeholder='Postal Codes'
                                     name='productName'
                                     focusBorderColor='#32995b'
-                                    value={postalCode}
                                     onChange={(e) => setPostalCode(e.target.value)}
 
 
@@ -94,8 +94,10 @@ console.log("warehouse",warehouses)
                             </FormControl>
                             <FormControl>
                                 <FormLabel>Select WareHouse</FormLabel>
-                                <Select onChange={(e)=>{
+                                <Select  placeholder='Select WareHouse'
+                                onChange={(e)=>{
                                     setWarehouses(e.target.value)
+                                    
                                 }}>
                                     {warehouse.map((item) => (
                                         <option value={item._id}>{item.warehouseName}</option>

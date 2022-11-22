@@ -13,13 +13,19 @@ function JordType({ setvalue, data }) {
   useEffect(() => {
 
       let value = products.filter((f) => f.land == data.land)
-      setfilterProducts(value)
+      if(value.length === 0){
+        setfilterProducts(products)
+      }
+      else{
+
+        setfilterProducts(value)
+      }
 
   },[])
   return (
     <div>
       <Wrapper>
-        <Box sx={{display:'flex',alignItems:'center',justifyContent:'center',gap:'20px'}}>
+        <Box sx={{display:'flex',alignItems:'center',justifyContent:'center',gap:'20px',flexWrap:"wrap"}}>
           {
             filterProducts && filterProducts.map((product) => {
               return (
@@ -33,7 +39,7 @@ function JordType({ setvalue, data }) {
                 >
                   <Box className='box_p'>
                     <Text>{ product?.productName}</Text>
-                    <Box width='80%'>
+                    <Box width='70%'>
                       <Text fontSize='sm' textAlign='center'>
                        {product?.description}
                       </Text>

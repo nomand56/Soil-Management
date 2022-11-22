@@ -8,8 +8,8 @@ function WarehouseCards({ products }) {
   console.log(products);
 const { specificPostal, fetchSpecificPostal, specific_postal_loading: loading, specific_postal_error: error } = useWarehouseContext()
 
-  const handleClick = (id) => {
-    fetchSpecificPostal(id)
+  const handleClick = async (id) => {
+    await fetchSpecificPostal(id)
     console.log("Clicked", id)
     history.push(`/admin/WarehouseProducts/${id}`)
     

@@ -35,7 +35,7 @@ function OrdersTable({ orders }) {
   const { currentUser } = useUserContext();
   const { fetchAdminOrders, deleteOrder } = useOrderContext();
   const [loading, setLoading] = useState(false);
-
+// console.log("Admin Order Portal",fetchAdminOrders)
   const handleDelete = async (id) => {
     setLoading(true);
     const response = await deleteOrder(id);
@@ -91,11 +91,11 @@ function OrdersTable({ orders }) {
                     <VStack alignItems='flex-start' spacing={5}>
                       {orderItems.map((item, index) => {
  
-          const { image, name, price } = item;
+          const { image, name, price} = item;
                         return (
                           <HStack key={index}>
                             <Image
-                              src={image || "https://images.unsplash.com/photo-1533460004989-cef01064af7e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Z3Jhc3N8ZW58MHx8MHx8&w=1000&q=80" }
+                              src={image}
                               boxSize='50px'
                               objectFit='cover'
                               borderRadius='lg'
@@ -111,13 +111,13 @@ function OrdersTable({ orders }) {
                       })}
                     </VStack>
                   </Td>
-                  <Td color='green.500'>
-                    <Badge colorScheme='green'></Badge>
-                  </Td>
                   <Td>
                     <Badge colorScheme={getOrderStatusColor(orderStatus)}>
                       {orderStatus}
                     </Badge>
+                  </Td>
+                  <Td color='green.500'>
+                    <Badge colorScheme='green'></Badge>
                   </Td>
                   <Td>
                     <Menu>

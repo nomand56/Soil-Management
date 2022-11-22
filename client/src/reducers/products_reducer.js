@@ -53,7 +53,7 @@ const products_reducer = (state, action) => {
   }
 
   if (action.type === GET_PRODUCTS_BEGIN) {
-    return { ...state, products_loading: true };
+    return { ...state, products_loading: true ,new_product:{}};
   }
 
   if (action.type === GET_PRODUCTS_SUCCESS) {
@@ -156,7 +156,7 @@ const products_reducer = (state, action) => {
     return {
       ...state,
       add_type_loading: true,
-      add_type_error: false,
+
     }
   }
 

@@ -11,9 +11,10 @@ const OrderPlaced = ({ obj }) => {
   const bg = useColorModeValue('rgb(250,250,250)', '#32995b');
 
   useEffect(() => {
-    setstate(landData.filter((land) => land.type === obj?.land));
+    setstate(landData?.filter((land) => land.type === obj?.land));
   }, []);
-
+console.log("Order Placed",obj)
+console.log("land Data",landData)
   return (
     <Box sx={{ textAlign: 'center' }}>
       <Box sx={{ width: 'fit-content', margin: '20px auto' }}>
@@ -40,15 +41,15 @@ const OrderPlaced = ({ obj }) => {
         >
           <Box style={{ width: '25%', minWidth: '300px', padding: '5px' }}>
             <img
-              src={state[0]?.img}
-              alt={state[0]?.img}
+              src={state && state[0]?.img}
+              alt={state &&  state[0]?.img}
               style={{ width: '100%', height: '300px' }}
             />
             <Text color={color} fontSize='xl' sx={{ margin: '10px 0px' }}>
-              {state[0].type}
+              {state &&  state[0]?.type}
             </Text>
             <Text color={color} fontSize='md' sx={{ margin: '10px 0px' }}>
-              {state[0].disc}
+              { state &&  state[0]?.disc}
             </Text>
           </Box>
           <Box
@@ -65,7 +66,7 @@ const OrderPlaced = ({ obj }) => {
                   Land
                 </Text>
                 <Text fontSize='sm' color={color}>
-                  {obj?.land}
+                  { obj && obj?.land}
                 </Text>
               </Box>
               <Box>
@@ -73,7 +74,7 @@ const OrderPlaced = ({ obj }) => {
                   Jord
                 </Text>
                 <Text fontSize='md' color={color}>
-                  {obj?.jordType}
+                  {obj && obj?.jordType}
                 </Text>
               </Box>
               <Box>

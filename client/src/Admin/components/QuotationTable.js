@@ -43,7 +43,7 @@ function QuotationsTable({data}) {
             </Tr>
           </Thead>
           <Tbody>
-            {data.map((item, index) => {
+            {data?.map((item, index) => {
               return (
                 <Tr key={index}>
                   <Td>{item.name}</Td>

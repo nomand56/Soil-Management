@@ -33,7 +33,7 @@ const Result = ({ data }) => {
   function handleCheckout(e) {
      setobj( { ...data, productID: product?._id });
      handleAddtoCart()
-    if (e.target.innerText === 'Sjekk Ut') {
+    if (e.target.innerText === 'Sjekk Ut' ) {
       if (product === 'product not found')
       {
         seterrorstate(true)
@@ -160,9 +160,7 @@ const Result = ({ data }) => {
               </Box>
             </Box>
             <Box className='buttoncontainer'>
-              {data.type === 'proffkunder' ? (
-                <Button onClick={handleCheckout} sx={{'&:hover': { background: '#00A300' }}}>Checkout</Button>
-              ) : (
+              
                 <Button
                   bg={bg}
                   onClick={handleCheckout}
@@ -170,7 +168,7 @@ const Result = ({ data }) => {
                 >
                   Sjekk Ut
                 </Button>
-              )}
+              
               <Button
                 onClick={handleAddtoCart}
                 sx={{ '&:hover': { background: '#00A300' } }}

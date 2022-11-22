@@ -46,7 +46,6 @@ function CreateWarehousePostalModal({specific}) {
         stock:stock,
         inPrice:inPrice,
         price:outPrice,
-        jord:jord,
     }
     addWarehouseProducts(data)
     if(success){
@@ -75,7 +74,7 @@ function CreateWarehousePostalModal({specific}) {
                     <ModalBody pb={6}>
                         <FormControl mt={4}>
                             <FormLabel>Products</FormLabel>
-                            <Select  name='product' focusBorderColor='green.500'  onChange={(e)=>{
+                            <Select   placeholder='Choose Product ' name='product' focusBorderColor='green.500'  onChange={(e)=>{
                                 setProductID(e.target.value)
                             }}>
                                 {products.map((item) => {
@@ -84,17 +83,7 @@ function CreateWarehousePostalModal({specific}) {
                                })}
                             </Select>
                         </FormControl>
-                        <FormControl mt={4}>
-                            <FormLabel>Jord</FormLabel>
-                            <Select  name='product' focusBorderColor='green.500'  onChange={(e)=>{
-                                setJord(e.target.value)
-                            }}>
-                                  <option disabled selected value> -- select an option -- </option>
-                                 <option value="highmineral">High Mineral</option>
-                                 <option value="lowmineral">Low Mineral</option>
-
-                            </Select>
-                        </FormControl>
+                       
                         <FormControl>
                             <FormLabel>Stock</FormLabel>
                             <Input

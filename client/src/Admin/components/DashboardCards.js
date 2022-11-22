@@ -1,6 +1,6 @@
 import React from 'react';
 import { useOrderContext } from '../../context/order_context';
-import { FaShoppingCart, FaRupeeSign} from 'react-icons/fa';
+import { FaShoppingCart, FaRupeeSign, FaDollarSign} from 'react-icons/fa';
 import { MdPhonelink } from 'react-icons/md';
 import { formatPrice } from '../utils/helpers';
 import {
@@ -42,7 +42,7 @@ function DashboardCards() {
     {
       title: 'Total Revenue',
       value: formatPrice(total_revenue),
-      icon: FaRupeeSign,
+      icon: FaDollarSign,
       color: 'green.500',
     },
   ];

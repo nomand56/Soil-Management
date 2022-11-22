@@ -38,7 +38,7 @@ let schema = new mongoose.Schema({
   },
   jord:{
     type: String,
-    required: true,
+    
 
   },
   image:{

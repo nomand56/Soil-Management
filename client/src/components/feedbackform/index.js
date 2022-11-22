@@ -36,6 +36,7 @@ const FeedBack = ({ obj }) => {
           duration: 5000,
           isClosable: true,
         }); 
+        window.location.reload()
       }
       else if (response.error)
       {
