@@ -62,7 +62,6 @@ console.log(warehouse)
     if (
       !warehouseName ||
       !OwnerName ||
-     
       !street ||
       !state ||
       !country ||
